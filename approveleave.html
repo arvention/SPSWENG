@@ -19,13 +19,13 @@
 			background-color: #E8E8E8;
 		}
 		div.header{
+			text-align: center;
 			border-style: solid;
 			border-color: #E8E8E8;
 			width: 100%;
 			position absolute;
 			font-family: sans-serif;
 			background-color: #E8E8E8;
-			text-align:center;
 		}
 		div.content{
 			font-family: sans-serif;
@@ -38,7 +38,6 @@
 			border-style: solid;
 			border-width: 40px;
 			border-color: #FF3300;
-			text-align: left;
 		}
 		.submitButton{
 			font-size: 20px;
@@ -71,7 +70,6 @@
 			font-family: sans-serif;
 			text-align: center;
 		}
-		
   </style>
   </head>
     <script src="js/jquery.min.js"></script>
@@ -87,32 +85,13 @@
 	
 	<body>
 		<div class= "header">
-			<h3>Leave Form Application</h3>
+			<h3>Leave Approval</h3>
 		</div>
-		<div align="center" class="content">
-		<h4>Type of Leave:
-		<select name= "leaves">
-			<option value= "0">Sick</option>
-			<option value= "1">Vacation</option>
-			<option value= "2">Emergency</option>
-			<option value= "3">Maternity</option>
-			<option value= "4">Paternity</option>
-			<option value= "5">Bereavement</option>
-		</select></h4>
-		</br>
-	
-		<h4>Days of Leave: <input type="number" min="0.5" max="15" step="0.5"></h4></br>
-	
-		<h4>
-		Inclusive Dates:
-	
-		<input type= "date" class= "form-control" id="dp"/> 
-		until 
-		<input type= "date" class= "form-control" id="dp"/></h4>
-		<input class= "submitButton" input type="submit" value= "Submit" name=  "datSubmit"></input>
-		<input class="back" input type="submit" value="Back" name="bBack"></input>
+		<div class= "content" align="center">
+		<h4>Good day! You have a pending leave request:</h4>
+		<input class="submitButton" input type="submit" value="Approve" name="bApprove"/>
+		<input class="back" input type="submit" value="Decline" name="bDecline"/>
 		</div>
-		
 		<div class= "footer">
 			EQUILIBRIUM INTERTRADE CORP.
 		</div>

@@ -1,0 +1,106 @@
+<html>
+<head>
+	<link rel = "shortcut icon" href="eq logo.ico"/>
+	<title> EQuilibrium </title>
+	<style>
+	DIV.pageTop{
+		background-color: #E8E8E8;
+		padding-bottom: 10px;
+		margin: 0px;
+		padding-top: 0px;
+	}
+	DIV.pageMid{
+		padding-top: 30px;
+	}
+	DIV.pageBottom{
+		padding-top: 110px;
+		text-align:center;
+		color: #808080;
+		font-size: 11;
+		font-family: "Arial";
+	}
+	DIV.loginForm{
+		background-color: #A05030;
+    		border-radius: 10px;
+		width: 250;
+		height: 120;
+		margin: 0 auto;
+		opacity: .80;
+	}
+	IMG.compLogo{
+		display: block;
+		width: 365;
+		height: auto;
+		margin: 0 auto;
+	}
+	#button-buttons{
+		padding-top: 15px;
+	}
+	.loginButton{
+		position:relative;
+		width: 220px;
+		height: 40px;
+		background-color: #E80000;
+		color: white;
+		cursor: hand;	
+		border: 1px solid rgba(0,0,0,0.1);
+		margin: 0 auto;	
+		font-weight: bold;
+		opacity:.75;
+	}
+	.loginButton:hover{
+		color:#F0F0F0;
+		opacity: .50;
+		border: 1px solid black;
+	}
+	.inputBox{
+		width: 220px;
+		height: 30px;
+		padding-left: 8px;
+		border-radius: 1px;
+		border: 1px solid #E8E8E8;
+	}
+	
+	
+	.infoText{
+		margin-top: 3px;
+		font-family: Arial;
+		color: Black;
+		font-size: 12px;
+		
+	}
+	a{
+                text-decoration: none;
+        }
+        .moved {
+                 margin-top:40px;
+        }	
+	</style>
+	
+	<script>
+		function validatePassword(){
+			var pwd = document.getElementById('password');
+			//if password length is less than six show error message
+			if(pwd.value<6){
+				
+			}
+		}
+	</script>
+
+</head>
+
+<body bgcolor= "#E8E8E8">
+	<DIV class = "pageTop"></div>
+	<DIV class = "pageMid" align="center"><IMG class ="compLogo" src = "eqlogobig.png"></div>
+	<form action ="homepage.html">
+	<DIV class = "loginForm" align = "center">
+		<p></p>
+		<input type="text" style="margin-top: 30px" class= "inputBox" placeholder="Username" id="username" required/>
+		<input type="password" class= "inputBox" placeholder="Password" id="password" required/>
+	</div> 
+	<div id="button-buttons" align="center">
+	<input type="submit" id="login" class="loginButton"value="Login"/></div>
+	</form>
+	<DIV class = "pageBottom" style="margin-bottom: 3px"><hr width ="50%"/></br> EQUILIBRIUM INTERTRADE CORP.</div>
+</body>
+</html>

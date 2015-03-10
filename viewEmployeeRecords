@@ -1,0 +1,208 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" media="all" href="Style.css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		var currPage = "#personal";
+		var nextPage;
+		$(".pages").hide();
+		$("#personal").show();
+		
+		$("#options").change(function(){
+			nextPage = "#" + $("#options").find(":selected").val();
+			$(currPage).hide();
+			$(nextPage).show();
+			currPage = nextPage;
+		});
+	});
+	</script>
+</head>
+<body bgcolor ="E8E8E8">
+
+<div id="box">
+	<div id="name">Employee Name</div>
+	<select id="options" size="6">
+		<option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
+																birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
+		<option value="relations">Relations</option> <!--name, age, occupation and company of occupation of the employee’s siblings and parents. Information 
+														regarding the spouse’s name, contact number and occupation or employer is added, as well as the names of their children, age, grade or year and the school of the children-->	
+		<option value="edu">Education</option> <!--elementary, high school, college, vocational, masters and others. In the history, the name of 
+														school, years the employee has studied in that school and the awards given by the school to the employee are mentioned. The bio-data also includes the licensure exams taken and the score of the employee in the exams-->
+		<option value="history">Employment History</option> <!--job names, date of employment, beginning & ending salary, employer’s name, employer’s address, 
+															employer’s telephone number, supervisor’s name, supervisor’s contact number and reason for leaving-->
+		<option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
+													disciplinary actions, records of filed leaves, recognitions, and awards-->
+		<option value="others">Others</option> <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
+													of that offense. -->
+	</select>
+
+	<div id="personal" class="pages"><div class="content">
+		<div class="line"><span class="label">Name</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Position</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Expected Salary</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Date of Birth</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Place of Birth</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Home Address</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Home Phone Number</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Mobile Number</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Email Address</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Civil Status</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Citizenship</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Religion</span>
+			<span class="data"></span></div>
+	</div></div>
+
+	<div id="relations" class="pages"><div class="content">
+		<div class="label-rel">Spouse</div>
+		<div class="line"><span class="label"><b>Name</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Contact Number</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Occupation</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Employer</span>
+			<span class="data"></span></div><br/>
+		
+		<div class="label-rel">Children</div>
+		<div class="line"><span class="label"><b>Name</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Age</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Grade/Year</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">School</span>
+			<span class="data"></span></div><br/>
+				
+		<div class="label-rel">Parents</div>
+		<div class="line"><span class="label"><b>Name</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Age</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Occupation</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Company</span>
+			<span class="data"></span></div><br/>
+				
+		<div class="label-rel">Siblings</div>
+		<div class="line"><span class="label"><b>Name</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Age</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Occupation</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Company</span>
+			<span class="data"></span></div>
+	</div></div>
+
+	<div id="edu" class="pages"><div class="content"> 
+		<div class="label-rel">Elementary</div>
+		<div class="line"><span class="label"><b>Name of School</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Years</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Awards</span>
+			<span class="data"></span></div><br/>
+				
+		<div class="label-rel">High School</div>
+		<div class="line"><span class="label"><b>Name of School</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Years</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Awards</span>
+			<span class="data"></span></div><br/>
+				
+		<div class="label-rel">College</div>
+		<div class="line"><span class="label"><b>Name of School</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Years</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Awards</span>
+			<span class="data"></span></div><br/>
+				
+		<div class="label-rel">Vocational</div>
+		<div class="line"><span class="label"><b>Name of School</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Years</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Awards</span>
+			<span class="data"></span></div><br/>
+				
+		<div class="label-rel">Masters</div>
+		<div class="line"><span class="label"><b>Name of School</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Years</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Awards</span>
+			<span class="data"></span></div><br/>
+			
+		<div class="label-rel">Others</div>
+		<div class="line"><span class="label"><b>Name of School</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Years</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Awards</span>
+			<span class="data"></span></div><br/>
+				
+		<div class="label-rel">Licensure Exams</div>
+		<div class="line"><span class="label"><b>Name of School</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Score</span>
+			<span class="data"></span></div>
+	</div></div>
+	
+	<div id="history" class="pages"><div class="content"> 
+		<div class="label-rel">Year</div>
+		<div class="line"><span class="label"><b>Occupation</b></span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Date of Employment</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Beginning Salary</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Ending Salary</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Name of Employer</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Address of Employer</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Contact Number of Employer</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Name of Supervisor</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Contact Number of Supervisor</span>
+			<span class="data"></span></div>
+		<div class="line"><span class="label">Reason for leaving</span>
+			<span class="data"></span></div>
+	</div></div>
+	
+	<div id="docs" class="pages"><div class="content"> 
+		<select id="docs-select">
+			<option>Employment Contract</option>
+			<option>Memorandums of Disciplinary Actions</option>
+			<option>Filed Leaves</option>
+			<option>Recognitions and Awards</option>
+		</select>
+	</div></div>
+
+	<div id="others" class="pages"><div class="content"> 
+
+	</div></div>
+
+</div> <!-- end of box -->
+	<DIV class = "pageBot">
+		<hr width = "75%">
+	</div>
+
+</body>
+</html>

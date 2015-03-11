@@ -1,0 +1,36 @@
+button{
+  background-color: #2663ae;
+  color: white;
+  border-radius: 2px;
+  border-width: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 12;
+}
+
+button:hover{
+  background-color: #22599c;
+}
+
+body{
+ background-color: #e3e3e3;
+ color: #ff0000;
+ font-family: Arial, sans-serif;
+}
+
+#headers{
+ font-weight: bold;
+}
+
+table{
+ font-family: Verdana, sans-serif;
+ font-size: 14;
+}
+
+input[type=text]{
+ border-radius: 5px;
+}
+
+
+

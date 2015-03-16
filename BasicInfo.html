@@ -6,10 +6,19 @@
 	 <script src="SampleScreensFunc.js"></script>
 	 <script>
 	     $(function(){
-		         var siblingcount =1;
+		                 var siblingcount =1;
 				 var siblingwrapper = $('table[name=siblings]');
 				 var childcount = 1;
 				 var childwrapper = $('table[name=children]');
+                                 var tohide = $('.tohide');
+                                 
+                                 $(tohide).hide();
+			         $('select[name=civilstatus]').change(function(){
+			           if( $('select[name=civilstatus]').find(':selected').val()==="s" )
+				      $(tohide).hide();
+			     else
+				     $(tohide).show();
+			  });
 				 
 				 $(document).on("click", ".addsibling", function(e){
 				   e.preventDefault();
@@ -54,32 +63,56 @@
 	 </script>
    </head>
    <body>
+            <div class="content">
 	    <span id="headers">Personal Information</span><br/>
-	    <input type="text" name="lastname" placeholder="Last Name"/>
-		<input type="text" name="firstname" placeholder="First Name"/>
-		<input type="text" name="middlename" placeholder="Middle Name"/>
-		<input type="text" name="posal" placeholder="Position Applied For/Expected Salary"/><br/>
-		<input type="text" name="empaddress" placeholder="Address"/><br/>
-		<input type="text" name="birthday" placeholder="Birthday"/>
-		<input type="text" name="birthplace" placeholder="Birth Place"/>
-		<input type="text" name="homephone" placeholder="Home Phone"/>
-		<input type="text" name="mobileno" placeholder="Mobile Number"/>
-		<input type="text" name="emailadd" placeholder="Email Address"/><br/>
-		<input type="text" name="sssno" placeholder="SSS #"/>
-		<input type="text" name="tinno" placeholder="TIN #"/>
-		<input type="text" name="phicno" placeholder="PHIC #"/>
-		<input type="text" name="pagibigno" placeholder="PAG-IBIG #"/><br/>
-		<input type="text" name="civilstatus" placeholder="Civil Status"/>
-		<input type="text" name="citizenship" placeholder="Citizenship"/>
-		<input type="text" name="religion" placeholder="Religion"/><br/><br/>
+	        Last Name: <input type="text" name="lastname" placeholder="Last Name"/><br/>
+		First Name: <input type="text" name="firstname" placeholder="First Name"/><br/>
+		Middle Name: <input type="text" name="middlename" placeholder="Middle Name"/><br/>
+		Position Applied For / Expected Salary: <input type="text" name="posal" placeholder="Position Applied For/Expected 
 
-		<span id="headers">Familial Relations</span><br/>
-		<input type="text" name="fathername" placeholder="Father's Name"/>
-		<input type="text" name="fatherage" placeholder="Age"/>
-		<input type="text" name="fatheroccupation" placeholder="Occupation"/><br/>
-		<input type="text" name="mothername" placeholder="Mother's Maiden Name"/>
-		<input type="text" name="motherage" placeholder="Age"/>
-		<input type="text" name="motheroccupation" placeholder="Occupation"/><br/><br/>
+Salary"/><br/>
+		Address: <input type="text" name="empaddress" placeholder="Address"/><br/>
+		Birthday: <input type="text" name="birthday" placeholder="Birthday"/><br/>
+		Birthplace: <input type="text" name="birthplace" placeholder="Birth Place"/><br/>
+		Home Phone: <input type="text" name="homephone" placeholder="Home Phone"/><br/>
+		Mobile Number: <input type="text" name="mobileno" placeholder="Mobile Number"/><br/>
+		Email Address:<input type="text" name="emailadd" placeholder="Email Address"/><br/>
+		SSS #: <input type="text" name="sssno" placeholder="SSS #"/><br/>
+		TIN #: <input type="text" name="tinno" placeholder="TIN #"/><br/>
+		PHIC #: <input type="text" name="phicno" placeholder="PHIC #"/><br/>
+		PAG-IBIG #: <input type="text" name="pagibigno" placeholder="PAG-IBIG #"/><br/>
+		Civil Status: <!--<input type="text" name="civilstatus" placeholder="Civil Status"/>-->
+                   <select name="civilstatus">
+                     <option value="s">Single</option>
+                     <option value="m">Married</option>
+                     <option value="d">Divorced</option>
+                     <option value="w">Widowed</option>
+                   </select><br/>
+		Citizenship: <input type="text" name="citizenship" placeholder="Citizenship"/><br/>
+		Religion: <input type="text" name="religion" placeholder="Religion"/><br/><br/>
+
+		<span id="headers">Familial Relations</span><br/><br/>
+                <span id="headers">Parents</span><br/>
+                <table>
+                   <tr>
+                     <td></td>
+                     <td>Name</td>
+                     <td>Age</td>
+                     <td>Occupation</td>
+                   </tr>
+                   <tr>
+                     <td>Father</td>
+                     <td><input type="text" name="fathername" placeholder="Father's Name"/></td>
+                     <td><input type="text" name="fatherage" placeholder="Age"/></td>
+                     <td><input type="text" name="fatheroccupation" placeholder="Occupation"/><br/></td>
+                   </tr>
+                   <tr>
+                     <td>Mother</td>
+                     <td><input type="text" name="mothername" placeholder="Mother's Maiden Name"/></td>
+                     <td><input type="text" name="motherage" placeholder="Age"/></td>
+                     <td><input type="text" name="motheroccupation" placeholder="Occupation"/></td>
+                   </tr>
+                </table><br/><br/>
 
                 <span id="headers">Siblings</span><br/>                
 		<table name="siblings">
@@ -99,11 +132,15 @@
 		         <td><input type="text" name="siblingcompany" placeholder="ex. Binan, Laguna"/></td>
 		         <td><button class="addsibling">Add sibling info</button></td>
 			  </tr>
-		    </table><br/>
+		    </table><br/><br/>
 
-		<input type="text" name="spousename" placeholder="Name of Spouse"/>
-		<input type="text" name="spousecontact" placeholder="Contact Number"/>
-		<input type="text" name="spouseoccupation" placeholder="Occupation/Employer"/><br/><br/>
+                <div class="tohide">
+		Spouse's Name: <input type="text" name="spousename" placeholder="Name of Spouse"/><br/>
+		Spouse's Contact Number: <input type="text" name="spousecontact" placeholder="Contact Number"/><br/>
+		Spourse's Occupation/Employer: <input type="text" name="spouseoccupation" 
+
+placeholder="Occupation/Employer"/><br/><br/>
+                </div>
 
                 <span id="headers">Children</span><br/>
 		<table name="children">
@@ -123,13 +160,21 @@
 		         <td><input type="text" name="childschool" placeholder="ex. Binan, Laguna"/></td>
 		         <td><button class="addchild">Add child info</button></td>
 			  </tr>
-		    </table><br/>
+		    </table><br/><br/>
 
-		<input type="text" name="emergencyname" placeholder="Person to notify in case of emergency"/>
-		<input type="text" name="emergencyrel" placeholder="Relationship"/><br/>
-		<input type="text" name="emergencyaddress" placeholder="Address"/>
-		<input type="text" name="emergencynumber" placeholder="Contact Number"/><br/><br/>
+		Emergency Contact's Name: <input type="text" name="emergencyname" placeholder="Person to notify in case of 
+
+emergency"/><br/>
+		Relationship with Emergency Contact: <input type="text" name="emergencyrel" placeholder="Relationship"/><br/>
+		Emergency Contact's Address: <input type="text" name="emergencyaddress" placeholder="Address"/><br/>
+		Emergency Contact's Number: <input type="text" name="emergencynumber" placeholder="Contact Number"/><br/><br/>
 		<button>Next</button>
+                </div><br/><br/><br/>
+
+                <div class= "footer">
+			<hr width="75%"/>
+			EQUILIBRIUM INTERTRADE CORP.
+		</div>
 	  
    </body>
 </html>

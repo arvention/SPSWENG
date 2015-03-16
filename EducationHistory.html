@@ -30,7 +30,6 @@
 					   + '<td><input type="text" name="elemfrom" placeholder="ex. 2000" /></td>'
 					   + '<td><input type="text" name="elemto" placeholder="ex. 2012" /></td>'
 					   + '<td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance" 
-
 /></td>'
 					   + '<td><button class="removeelem">Remove elementary school info</button></td></tr>'
 					   );
@@ -52,7 +51,6 @@
 					   + '<td><input type="text" name="highschoolfrom" placeholder="ex. 2000" /></td>'
 					   + '<td><input type="text" name="highschooltoelemto" placeholder="ex. 2012" /></td>'
 					   + '<td><input type="text" name="highschoolawards" placeholder="ex. Perfect Attendance" 
-
 /></td>'
 					   + '<td><button class="removehighschool">Remove high school info</button></td></tr>'
 					   );
@@ -74,7 +72,6 @@
 					   + '<td><input type="text" name="collegefrom" placeholder="ex. 2000" /></td>'
 					   + '<td><input type="text" name="collegeto" placeholder="ex. 2012" /></td>'
 					   + '<td><input type="text" name="collegewards" placeholder="ex. Perfect Attendance" 
-
 /></td>'
 					   + '<td><button class="removecollege">Remove college info</button></td></tr>'
 					   );
@@ -93,15 +90,12 @@
 					$(vocationalwrapper).append('<tr><td> ' + vocationalcount.toString()
 					   + ' </td>' 
 					   + '<td><input type="text" name="vocationalschool" placeholder="ex. Don Bosco 
-
 School"/></td>'
 					   + '<td><input type="text" name="vocataionalschoolfrom" placeholder="ex. 2000" /></td>'
 					   + '<td><input type="text" name="vocationalschoolto" placeholder="ex. 2012" /></td>'
 					   + '<td><input type="text" name="vocationalschoolawards" placeholder="ex. Perfect 
-
 Attendance" /></td>'
 					   + '<td><button class="removevocational">Remove vocational school 
-
 info</button></td></tr>'
 					   );
 			});
@@ -119,12 +113,10 @@ info</button></td></tr>'
 					$(masteralwrapper).append('<tr><td> ' + masteralcount.toString()
 					   + ' </td>' 
 					   + '<td><input type="text" name="masteralschool" placeholder="ex. Don Bosco 
-
 School"/></td>'
 					   + '<td><input type="text" name="masteralschoolfrom" placeholder="ex. 2000" /></td>'
 					   + '<td><input type="text" name="masteralschoolto" placeholder="ex. 2012" /></td>'
 					   + '<td><input type="text" name="masteralschoolawards" placeholder="ex. Perfect 
-
 Attendance" /></td>'
 					   + '<td><button class="removemasteral">Remove masteral school info</button></td></tr>'
 					   );
@@ -146,7 +138,6 @@ Attendance" /></td>'
 					   + '<td><input type="text" name="otherfrom" placeholder="ex. 2000" /></td>'
 					   + '<td><input type="text" name="otherto" placeholder="ex. 2012" /></td>'
 					   + '<td><input type="text" name="otherawards" placeholder="ex. Perfect Attendance" 
-
 /></td>'
 					   + '<td><button class="removeother">Remove other school info</button></td></tr>');
 			});
@@ -164,7 +155,6 @@ Attendance" /></td>'
 					   + ' </td>' 
 					   + '<td><input type="text" name="license" placeholder="License/Exam Name"/></td>'
 					   + '<td><input type="text" name="licensepercentage" placeholder="Percentage 
-
 Result"/></td>'
 					   + '<td><button class="removelicense">Remove license/exam info</button></td></tr>'
 					   );
@@ -182,6 +172,7 @@ Result"/></td>'
    </head>
    <body>
       <form>
+            <div class="content">
 	    <span id="headers">Education History</span><br/><br/>
 		
 		<span id="headers">Elementary</span><br/>
@@ -256,7 +247,6 @@ Result"/></td>'
 			 <td><input type="text" name="vocationalschoolfrom" placeholder="Year Start"/></td>
 			 <td><input type="text" name="vocationalschoolto" placeholder="Year End"/></td>
 			 <td><input type="text" name="vocationalschoolawards" placeholder="Degree Taken/Highest 
-
 Attainment/Awards"/></td>
 			 <td><button class="addvocational">Add vocational school</button></td>
 		   </tr>
@@ -277,7 +267,6 @@ Attainment/Awards"/></td>
 			 <td><input type="text" name="masteralschoolfrom" placeholder="Year Start"/></td>
 			 <td><input type="text" name="masteralschoolto" placeholder="Year End"/></td>
 			 <td><input type="text" name="masteralschoolawards" placeholder="Degree Taken/Highest 
-
 Attainment/Awards"/></td>
 			 <td><button class="addmasteral">Add masteral school</button></td>
 		   </tr>
@@ -318,6 +307,12 @@ Attainment/Awards"/></td>
 		</table><br/><br/>
 		
 		<button>Next</button>
+                </div><br/><br/>
+
+                <div class= "footer">
+			<hr width="75%"/>
+			EQUILIBRIUM INTERTRADE CORP.
+		</div>
 	  </form>
    </body>
 </html>

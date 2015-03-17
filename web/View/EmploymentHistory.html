@@ -52,12 +52,9 @@
 				     + '<td><input type="text" name="offensename" placeholder="Criminal Offense"/></td>'
 					 + '<td><input type="text" name="offensedate" placeholder="Date of Offence"/></td>'
 					 + '<td><input type="text" name="offenceplace" placeholder="Place of Offence"/></td>'
-					 + '<td><button class="removecriminaloffense">Remove criminal offense 
-
-history</button></td></tr>'
+					 + '<td><button class="removecriminaloffense">Remove criminal offense history</button></td></tr>'
 				  );
 			 });
-
 			 $(document).on("click", ".removecriminaloffense", function(e){
 			    e.preventDefault();
 				criminaloffensecount--;
@@ -67,6 +64,7 @@ history</button></td></tr>'
    </script>
    <body>
       <form>
+            <div class="content" style="width: 100%;">
 	    <span id="headers">Employment History</span><br/>
 		<span>Note: Begin with present or most recent job.</span><br/><br/>
 		<table name="employment">
@@ -91,7 +89,7 @@ history</button></td></tr>'
 			  <td><input type="text" name="jobendsal" placeholder="Ending Salary"/></td>
 			  <td><input type="text" name="jobemployer" placeholder="Employer"/></td>
 			  <td><input type="text" name="jobaddress" placeholder="Employer Address"/></td>
-			  <td><input type="text" name="jobtelno" placeholder="Employer Telephone Number"/><br/></td>
+			  <td><input type="text" name="jobtelno" placeholder="Employer Telephone Number"/></td>
 			  <td><input type="text" name="jobsupname" placeholder="Supervisor Name"/></td>
 			  <td><input type="text" name="jobsupno" placeholder="Supervisor Number"/></td>
 			  <td><input type="text" name="jobreason" placeholder="Reason for Leaving"/></td>
@@ -123,6 +121,11 @@ history</button></td></tr>'
 		</table>
 		</div>
 		<br/><br/><button>Next</button>
-	  </form>
+	  </form><br/><br/>
+          </div>
+          <div class= "footer">
+			<hr width="75%"/>
+			EQUILIBRIUM INTERTRADE CORP.
+		</div>
    </body>
 </html>

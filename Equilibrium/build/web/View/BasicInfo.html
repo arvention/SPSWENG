@@ -1,0 +1,135 @@
+<html>
+   <head>
+     <title>Employee BioData - Personal Information</title>
+	 <link rel="stylesheet" type="text/css" media="all" href="SampleScreensStyle.css"/>
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	 <script src="SampleScreensFunc.js"></script>
+	 <script>
+	     $(function(){
+		         var siblingcount =1;
+				 var siblingwrapper = $('table[name=siblings]');
+				 var childcount = 1;
+				 var childwrapper = $('table[name=children]');
+				 
+				 $(document).on("click", ".addsibling", function(e){
+				   e.preventDefault();
+				    siblingcount++;
+					$(siblingwrapper).append('<tr"><td> ' + siblingcount.toString()
+					   + ' </td>' 
+					   + '<td><input type="text" name="siblingname" placeholder="ex. Virma Lopez" /></td>'
+					   + '<td><input type="text" name="siblingage" placeholder="ex. 14" /></td>'
+					   + '<td><input type="text" name="siblingoccupation" placeholder="ex. Student" /></td>'
+					   + '<td><input type="text" name="siblingname" placeholder="ex. Binan, Laguna" /></td>'
+					   + '<td><button class="removesibling">Remove sibling info</button></td></tr>'
+					   );
+				 });
+				 
+				 $(document).on("click", ".removesibling", function(e){
+				    e.preventDefault();
+					siblingcount--;
+					//alert("Removing.");
+					$(this).parent().parent().remove();
+				 });
+				 
+				 $(document).on("click", ".addchild", function(e){
+				   e.preventDefault();
+				    childcount++;
+					$(childwrapper).append('<tr"><td> ' + childcount.toString()
+					   + ' </td>' 
+					   + '<td><input type="text" name="childrenname" placeholder="Name of Child"/></td>'
+					   + '<td><input type="text" name="childrenage" placeholder="Age"/></td>'
+					   + '<td><input type="text" name="childyear" placeholder="Grade/Year"/></td>'
+					   + '<td><input type="text" name="childschool" placeholder="School/Location"/></td>'
+					   + '<td><button class="removechild">Remove child info</button></td></tr>'
+					   );
+				 });
+				 
+				 $(document).on("click", ".removechild", function(e){
+				    e.preventDefault();
+					childcount--;
+					//alert("Removing.");
+					$(this).parent().parent().remove();
+				 });
+		 });
+	 </script>
+   </head>
+   <body>
+	    <span id="headers">Personal Information</span><br/>
+	    <input type="text" name="lastname" placeholder="Last Name"/>
+		<input type="text" name="firstname" placeholder="First Name"/>
+		<input type="text" name="middlename" placeholder="Middle Name"/>
+		<input type="text" name="posal" placeholder="Position Applied For/Expected Salary"/><br/>
+		<input type="text" name="empaddress" placeholder="Address"/><br/>
+		<input type="text" name="birthday" placeholder="Birthday"/>
+		<input type="text" name="birthplace" placeholder="Birth Place"/>
+		<input type="text" name="homephone" placeholder="Home Phone"/>
+		<input type="text" name="mobileno" placeholder="Mobile Number"/>
+		<input type="text" name="emailadd" placeholder="Email Address"/><br/>
+		<input type="text" name="sssno" placeholder="SSS #"/>
+		<input type="text" name="tinno" placeholder="TIN #"/>
+		<input type="text" name="phicno" placeholder="PHIC #"/>
+		<input type="text" name="pagibigno" placeholder="PAG-IBIG #"/><br/>
+		<input type="text" name="civilstatus" placeholder="Civil Status"/>
+		<input type="text" name="citizenship" placeholder="Citizenship"/>
+		<input type="text" name="religion" placeholder="Religion"/><br/><br/>
+
+		<span id="headers">Familial Relations</span><br/>
+		<input type="text" name="fathername" placeholder="Father's Name"/>
+		<input type="text" name="fatherage" placeholder="Age"/>
+		<input type="text" name="fatheroccupation" placeholder="Occupation"/><br/>
+		<input type="text" name="mothername" placeholder="Mother's Maiden Name"/>
+		<input type="text" name="motherage" placeholder="Age"/>
+		<input type="text" name="motheroccupation" placeholder="Occupation"/><br/><br/>
+
+                <span id="headers">Siblings</span><br/>                
+		<table name="siblings">
+		      <tr>
+			     <td>#</td>
+				 <td>Name of Sibling</td>
+				 <td>Age</td>
+				 <td>Occupation</td>
+				 <td>Company/Location</td>
+				 <td> </td>
+			  </tr>
+			  <tr>
+			     <td>1</td>
+			     <td><input type="text" name="siblingname" placeholder="ex. Virma Lopez"/></td>
+		         <td><input type="text" name="siblingage" placeholder="ex. 14"/></td>
+		         <td><input type="text" name="siblingoccupation" placeholder="ex. Student"/></td>
+		         <td><input type="text" name="siblingcompany" placeholder="ex. Binan, Laguna"/></td>
+		         <td><button class="addsibling">Add sibling info</button></td>
+			  </tr>
+		    </table><br/>
+
+		<input type="text" name="spousename" placeholder="Name of Spouse"/>
+		<input type="text" name="spousecontact" placeholder="Contact Number"/>
+		<input type="text" name="spouseoccupation" placeholder="Occupation/Employer"/><br/><br/>
+
+                <span id="headers">Children</span><br/>
+		<table name="children">
+		      <tr>
+			     <td>#</td>
+				 <td>Name of Child</td>
+				 <td>Age</td>
+				 <td>Grade/Year</td>
+				 <td>School/Location</td>
+				 <td> </td>
+			  </tr>
+			  <tr>
+			     <td>1</td>
+			     <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez"/></td>
+		         <td><input type="text" name="childrengage" placeholder="ex. 14"/></td>
+		         <td><input type="text" name="childrenyear" placeholder="ex. II"/></td>
+		         <td><input type="text" name="childschool" placeholder="ex. Binan, Laguna"/></td>
+		         <td><button class="addchild">Add child info</button></td>
+			  </tr>
+		    </table><br/>
+
+		<input type="text" name="emergencyname" placeholder="Person to notify in case of emergency"/>
+		<input type="text" name="emergencyrel" placeholder="Relationship"/><br/>
+		<input type="text" name="emergencyaddress" placeholder="Address"/>
+		<input type="text" name="emergencynumber" placeholder="Contact Number"/><br/><br/>
+		<button>Next</button>
+	  
+   </body>
+</html>

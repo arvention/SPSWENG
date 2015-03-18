@@ -5,17 +5,13 @@
  */
 package Equilibrium_Servlet;
 
-import Equilibrium_Classes.EquilibriumDatabase;
-import database.Database;
+import Equilibrium_Classes.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -97,27 +93,37 @@ public class LeaveSubmit extends HttpServlet {
         HttpSession reqSession = request.getSession();
         RequestDispatcher reqDispatcher = null;
         ArrayList<Boolean> errorFlags = new ArrayList<>();
+        int empIDNum = Integer.parseInt(request.getParameter("idNum"));
         
         System.out.println("start: " + startDate + " end: " + endDate + " | "+ getDateDiff(startDate, endDate) + " vs " + (int) Float.parseFloat(request.getParameter("dayCount")));
         
         if (endDate != null && startDate != null) {
             if (endDate.before(startDate)) {
                 errorFlags.add(true);
+                errorFlags.add(false);
                 errorFlags.add(false);                
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
             } else if (getDateDiff(startDate, endDate) > (int) Float.parseFloat(request.getParameter("dayCount"))) {
                 errorFlags.add(false);
-                errorFlags.add(true);     
+                errorFlags.add(true);
+                errorFlags.add(false);
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
-            } else {
+            } else if(!ed.checkEmpID(empIDNum)){
+                errorFlags.add(false);
+                errorFlags.add(false);
+                errorFlags.add(true);
+                
+                reqSession.setAttribute("errorFlags", errorFlags);
+                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
+            }else {
                 String leaveType = request.getParameter("leaveType");
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
-                ed.addLeaveForm(leaveType, 1234, new java.sql.Date(startDate.getTime()), duration);
+                ed.addLeaveForm(leaveType, ed.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
                 reqDispatcher = request.getRequestDispatcher("leavesuccess.html");
             }
             reqDispatcher.forward(request, response);

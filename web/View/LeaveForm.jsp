@@ -31,9 +31,10 @@
             <h3>Leave Form Application</h3>
         </div>
         <div align="center" class="content">
-            <form id = "leave_form" action = "LeaveSubmit" method = "post">
+            <form id = "leave_form" action = "LeaveSubmit" method = "post"><br>
+                <h4>ID Number: <input type="number" name = "idNum" required></h4>
                 <h4>Type of Leave:
-                    <select name= "leaveChoice" required>
+                    <select name= "leaveType" required>
                         <option value= "Sick">Sick</option>
                         <option value= "Vacation">Vacation</option>
                         <option value= "Emergency">Emergency</option>
@@ -41,10 +42,7 @@
                         <option value= "Paternity">Paternity</option>
                         <option value= "Bereavement">Bereavement</option>
                     </select></h4>
-                </br>
-
-                <h4>Days of Leave: <input type="number" min="0.5" max="15" name = "dayCount" step="0.5" required></h4></br>
-
+                <h4>Days of Leave: <input type="number" min="0.5" max="15" name = "dayCount" step="0.5" required></h4><br/>
                 <h4>
                     Inclusive Dates:
 
@@ -69,6 +67,12 @@
                 %>
                             <h4><hr/>Invalid Input! The number of days of leave doesn't match the duration between the start and end date.</h4>
                 <%
+                        }
+                        else if(errorFlags.get(2))
+                        {
+                %>
+                            <h4><hr/>Employee ID not found.</h4>
+                <%        
                         }
                     }
                 %>

@@ -8,11 +8,11 @@ public class modelLeaveForm {
     private String leaveType;
     private int empEntryNum;
     private Date startDate;
-    private int duration;
+    private float duration;
     private boolean isApproved;
     private int approverEntryNum;
 
-    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Date startDate, int duration){
+    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Date startDate, float duration){
         this.leaveID = leaveID;
         this.leaveType = leaveType;
         this.empEntryNum = empEntryNum;
@@ -65,11 +65,11 @@ public class modelLeaveForm {
         this.startDate = startDate;
     }
 
-    public int getDuration() {
+    public float getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(float duration) {
         this.duration = duration;
     }
 

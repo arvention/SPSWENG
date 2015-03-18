@@ -1,34 +1,34 @@
 
 package models;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class modelLeaveForm {
     private int leaveID;
     private String leaveType;
     private int empEntryNum;
-    private Timestamp startTime;
-    private Timestamp endTime;
+    private Date startDate;
+    private int duration;
     private boolean isApproved;
     private int approverEntryNum;
 
-    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Timestamp startTime, Timestamp endTime){
+    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Date startDate, int duration){
         this.leaveID = leaveID;
         this.leaveType = leaveType;
         this.empEntryNum = empEntryNum;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startDate = startDate;
+        this.duration = duration;
         isApproved = false;
         approverEntryNum = 0;
     }
     
     
-    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Timestamp startTime, Timestamp endTime, boolean isApproved, int approverEntryNum){
+    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Date startDate, int duration, boolean isApproved, int approverEntryNum){
         this.leaveID = leaveID;
         this.leaveType = leaveType;
         this.empEntryNum = empEntryNum;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startDate = startDate;
+        this.duration = duration;
         this.isApproved = isApproved;
         this.approverEntryNum = approverEntryNum;
     }
@@ -57,20 +57,20 @@ public class modelLeaveForm {
         this.empEntryNum = empEntryNum;
     }
 
-    public Timestamp getStartTime() {
-        return startTime;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStartTime(Timestamp startTime) {
-        this.startTime = startTime;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Timestamp getEndTime() {
-        return endTime;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setEndTime(Timestamp endTime) {
-        this.endTime = endTime;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public boolean isIsApproved() {

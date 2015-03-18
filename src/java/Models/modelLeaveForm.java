@@ -23,7 +23,7 @@ public class modelLeaveForm {
     }
     
     
-    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Date startDate, int duration, boolean isApproved, int approverEntryNum){
+    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum, Date startDate, float duration, boolean isApproved, int approverEntryNum){
         this.leaveID = leaveID;
         this.leaveType = leaveType;
         this.empEntryNum = empEntryNum;

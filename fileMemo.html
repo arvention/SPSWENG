@@ -4,11 +4,11 @@
 	<title> Memo Form - Equilibrium </title>
 	<style>
 	.memoForm{
-		background-color: red;
+		background-color: white;
 		border-radius: 16px;
 		width:750;
 		height: 450;
-		opacity: 0.65;
+		opacity: 0.55;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -35,15 +35,17 @@
 		font-size: 35;
 		font-family: Arial;
 		font-weight: bold;
-		color: white;
+		color: red;
 		margin-left: 125px;
+		opacity: .85;
 	}
 	.contentText{
 		font-size: 17;
 		font-family: Arial;
-		color: white;
+		color: red;
 		margin-left: 125px;
 		margin-top: 8px;
+		opacity: .85;
 	}
 	DIV.pageBottom{
 		padding-top: 130px;
@@ -70,6 +72,13 @@
 		<option value="employee1">Employee 1</option>
 		<option value="employee2">Employee 2</option>
 		<option value="employee3">Employee 3</option>
+		<option value="employee3" selected>Select Employee...</option>
+		</select>
+		<select required name="listTypeMemo">
+		<option value="Verbal Reprimand">Verbal Reprimand</option>
+		<option value="Written Reprimand">Written Reprimand</option>
+		<option value="Suspension">Suspension</option>
+		<option value="employee3" selected>Select Memo type...</option>
 		</select></div>
 		<textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."required ></textarea>
 		<input type="submit" class="submitButton"/> </form>

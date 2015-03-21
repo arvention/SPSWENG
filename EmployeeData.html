@@ -6,162 +6,156 @@
 	 <script src="SampleScreensFunc.js"></script>
 	 <script>
 	     $(function(){
-		                 var siblingcount =1;
-				 var siblingwrapper = $('table[name=siblings]');
-				 var childcount = 1;
-				 var childwrapper = $('table[name=children]');
-                                 var tohide = $('.tohide');
-            var elemcount =1;
-			var highschoolcount =1;
-			var collegecount =1;
-			var vocationalcount =1;
-			var masteralcount =1;
-			var otherscount = 1;
-			var licensecount = 1;
-			var elemwrapper = $('table[name=elementary]');
-			var highschoolwrapper = $('table[name=highschool]');
-			var collegewrapper = $('table[name=college]');
-			var vocationalwrapper = $('table[name=vocational]');
-			var masteralwrapper = $('table[name=masteral]');
-			var otherswrapper = $('table[name=others]');
-			var licensewrapper = $('table[name=license]');
+		      var siblingcount =1;
+		      var siblingwrapper = $('table[name=siblings]');
+			  var childcount = 1;
+			  var childwrapper = $('table[name=children]');
+              var tohide = $('.tohide');
+              var elemcount =1;
+			  var highschoolcount =1;
+			  var collegecount =1;
+			  var vocationalcount =1;
+			  var masteralcount =1;
+			  var otherscount = 1;
+			  var licensecount = 1;
+			  var elemwrapper = $('table[name=elementary]');
+			  var highschoolwrapper = $('table[name=highschool]');
+			  var collegewrapper = $('table[name=college]');
+			  var vocationalwrapper = $('table[name=vocational]');
+			  var masteralwrapper = $('table[name=masteral]');
+			  var otherswrapper = $('table[name=others]');
+			  var licensewrapper = $('table[name=license]');
 		      var employmentcount = 1;
 			  var criminaloffensecount = 1;
 			  var employmentwrapper = $('table[name=employment]');
 			  var criminaloffensewrapper = $('table[name=criminaloffense]');			
                                  
-                                 $(tohide).hide();
-			         $('select[name=civilstatus]').change(function(){
-			           if( $('select[name=civilstatus]').find(':selected').val()==="s" )
-				      $(tohide).hide();
-			     else
-				     $(tohide).show();
+              $(tohide).hide();
+			  $('select[name=civilstatus]').change(function(){
+			       if( $('select[name=civilstatus]').find(':selected').val()==="s" )
+				             $(tohide).hide();
+			       else
+				             $(tohide).show();
 			  });
 			  
 			  $('select[name=convicted]').change(function(){
 			      if( $('select[name=convicted]').find(':selected').val()==="y" )
 				      $(tohide).show();
 			     else
-				     $(tohide).hide();
+				      $(tohide).hide();
 			  });
 				 
-				 $(document).on("click", ".addsibling", function(e){
-				   e.preventDefault();
-				    siblingcount++;
-					$(siblingwrapper).append('<tr"><td> ' + siblingcount.toString()
-					   + ' </td>' 
-					   + '<td><input type="text" name="siblingname" placeholder="ex. Virma Lopez" /></td>'
-					   + '<td><input type="text" name="siblingage" placeholder="ex. 14" /></td>'
-					   + '<td><input type="text" name="siblingoccupation" placeholder="ex. Student" /></td>'
-					   + '<td><input type="text" name="siblingname" placeholder="ex. Binan, Laguna" /></td>'
-					   + '<td><button class="removesibling">Remove sibling info</button></td></tr>'
+			  $(document).on("click", ".addsibling", function(e){
+				      e.preventDefault();
+				      siblingcount++;
+					  $(siblingwrapper).append(
+					          '<tr><td> ' + siblingcount.toString() + ' </td>' 
+					          + '<td><input type="text" name="siblingname" placeholder="ex. Virma Lopez"  /></td>'
+					          + '<td><input type="number" name="siblingage" placeholder="ex. 14"  /></td>'
+					          + '<td><input type="text" name="siblingoccupation" placeholder="ex. Student"  /></td>'
+					          + '<td><input type="text" name="siblinglocation" placeholder="ex. Binan, Laguna"  /></td>'
+					          + '<td><button class="removesibling">Remove sibling info</button></td></tr>'
 					   );
-				 });
+			 });
 				 
-				 $(document).on("click", ".removesibling", function(e){
-				    e.preventDefault();
-					siblingcount--;
-					//alert("Removing.");
-					$(this).parent().parent().remove();
-				 });
+			 $(document).on("click", ".removesibling", function(e){
+				       e.preventDefault();
+					   siblingcount--;
+					   $(this).parent().parent().remove();
+			 });
 				 
-				 $(document).on("click", ".addchild", function(e){
-				   e.preventDefault();
-				    childcount++;
-					$(childwrapper).append('<tr"><td> ' + childcount.toString()
-					   + ' </td>' 
-					   + '<td><input type="text" name="childrenname" placeholder="Name of Child"/></td>'
-					   + '<td><input type="text" name="childrenage" placeholder="Age"/></td>'
-					   + '<td><input type="text" name="childyear" placeholder="Grade/Year"/></td>'
-					   + '<td><input type="text" name="childschool" placeholder="School/Location"/></td>'
-					   + '<td><button class="removechild">Remove child info</button></td></tr>'
+			 $(document).on("click", ".addchild", function(e){
+				       e.preventDefault();
+				       childcount++;
+					   $(childwrapper).append(
+					            '<tr><td> ' + childcount.toString() + ' </td>' 
+					           + '<td><input type="text" name="childrenname" placeholder="Name of Child" /></td>'
+					           + '<td><input type="number" name="childrenage" placeholder="Age" /></td>'
+					           + '<td><input type="text" name="childyear" placeholder="Grade/Year" /></td>'
+					           + '<td><input type="text" name="childschool" placeholder="School/Location" /></td>'
+					           + '<td><button class="removechild">Remove child info</button></td></tr>'
 					   );
-				 });
+			 });
 				 
-				 $(document).on("click", ".removechild", function(e){
-				    e.preventDefault();
-					childcount--;
-					//alert("Removing.");
-					$(this).parent().parent().remove();
-				 });
+			 $(document).on("click", ".removechild", function(e){
+				      e.preventDefault();
+					  childcount--;
+					  $(this).parent().parent().remove();
+			});
 				 
-				 $(document).on("click", ".addelem", function(e){
-				   e.preventDefault();
-				    elemcount++;
-					$(elemwrapper).append('<tr><td> ' + elemcount.toString()
-					   + ' </td>' 
-					   + '<td><input type="text" name="elemschool" placeholder="ex. Don Bosco School"/></td>'
-					   + '<td><input type="text" name="elemfrom" placeholder="ex. 2000" /></td>'
-					   + '<td><input type="text" name="elemto" placeholder="ex. 2012" /></td>'
-					   + '<td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance"/></td>'
-					   + '<td><button class="removeelem">Remove elementary school info</button></td></tr>'
-					   );
+			$(document).on("click", ".addelem", function(e){
+				      e.preventDefault();
+				      elemcount++;
+					  $(elemwrapper).append(
+					            '<tr><td> ' + elemcount.toString() + ' </td>' 
+					           + '<td><input type="text" name="elemschool" placeholder="ex. Don Bosco School" required /></td>'
+					           + '<td><input type="date" name="elemfrom" placeholder="ex. 2000" required /></td>'
+					           + '<td><input type="date" name="elemto" placeholder="ex. 2012" required /></td>'
+					           + '<td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance" /></td>'
+					           + '<td><button class="removeelem">Remove elementary school info</button></td></tr>'
+					  );
 			});
 				 
 			$(document).on("click", ".removeelem", function(e){
-				    e.preventDefault();
-					elemcount--;
-					//alert("Removing.");
-					$(this).parent().parent().remove();
+				     e.preventDefault();
+					 elemcount--;
+					 $(this).parent().parent().remove();
 			});
 			
 			$(document).on("click", ".addhighschool", function(e){
-				   e.preventDefault();
-				    highschoolcount++;
-					$(highschoolwrapper).append('<tr><td> ' + highschoolcount.toString()
-					   + ' </td>' 
-					   + '<td><input type="text" name="highschool" placeholder="ex. Don Bosco School"/></td>'
-					   + '<td><input type="text" name="highschoolfrom" placeholder="ex. 2000" /></td>'
-					   + '<td><input type="text" name="highschooltoelemto" placeholder="ex. 2012" /></td>'
-					   + '<td><input type="text" name="highschoolawards" placeholder="ex. Perfect Attendance"/></td>'
-					   + '<td><button class="removehighschool">Remove high school info</button></td></tr>'
-					   );
+				     e.preventDefault();
+				     highschoolcount++;
+					 $(highschoolwrapper).append(
+					            '<tr><td> ' + highschoolcount.toString() + ' </td>' 
+					           + '<td><input type="text" name="highschool" placeholder="ex. Don Bosco School" required /></td>'
+					           + '<td><input type="date" name="highschoolfrom" placeholder="ex. 2000" required /></td>'
+					           + '<td><input type="date" name="highschooltoelemto" placeholder="ex. 2012" required /></td>'
+					           + '<td><input type="text" name="highschoolawards" placeholder="ex. Perfect Attendance" /></td>'
+					           + '<td><button class="removehighschool">Remove high school info</button></td></tr>'
+					);
 			});
 				 
 			$(document).on("click", ".removehighschool", function(e){
 				    e.preventDefault();
 					highschoolcount--;
-					//alert("Removing.");
 					$(this).parent().parent().remove();
 			});
 			
 			$(document).on("click", ".addcollege", function(e){
-				   e.preventDefault();
+				    e.preventDefault();
 				    collegecount++;
-					$(collegewrapper).append('<tr><td> ' + collegecount.toString()
-					   + ' </td>' 
-					   + '<td><input type="text" name="college" placeholder="ex. Don Bosco School"/></td>'
-					   + '<td><input type="text" name="collegefrom" placeholder="ex. 2000" /></td>'
-					   + '<td><input type="text" name="collegeto" placeholder="ex. 2012" /></td>'
-					   + '<td><input type="text" name="collegewards" placeholder="ex. Perfect Attendance"/></td>'
-					   + '<td><button class="removecollege">Remove college info</button></td></tr>'
-					   );
+					$(collegewrapper).append(
+					            '<tr><td> ' + collegecount.toString() + ' </td>' 
+					           + '<td><input type="text" name="college" placeholder="ex. Don Bosco School" required /></td>'
+					           + '<td><input type="date" name="collegefrom" placeholder="ex. 2000" required /></td>'
+					           + '<td><input type="date" name="collegeto" placeholder="ex. 2012" required /></td>'
+					           + '<td><input type="text" name="collegewards" placeholder="ex. Perfect Attendance" /></td>'
+					           + '<td><button class="removecollege">Remove college info</button></td></tr>'
+					);
 			});
 				 
 			$(document).on("click", ".removecollege", function(e){
 				    e.preventDefault();
 					collegecount--;
-					//alert("Removing.");
 					$(this).parent().parent().remove();
 			});
 			
 			$(document).on("click", ".addvocational", function(e){
-				   e.preventDefault();
+				    e.preventDefault();
 				    vocationalcount++;
-					$(vocationalwrapper).append('<tr><td> ' + vocationalcount.toString()
-					   + ' </td>' 
-					   + '<td><input type="text" name="vocationalschool" placeholder="ex. Don Bosco School"/></td>'
-					   + '<td><input type="text" name="vocataionalschoolfrom" placeholder="ex. 2000" /></td>'
-					   + '<td><input type="text" name="vocationalschoolto" placeholder="ex. 2012" /></td>'
-					   + '<td><input type="text" name="vocationalschoolawards" placeholder="ex. Perfect Attendance" /></td>'
-					   + '<td><button class="removevocational">Remove vocational school info</button></td></tr>'
-					   );
+					$(vocationalwrapper).append(
+					           '<tr><td> ' + vocationalcount.toString() + ' </td>' 
+					          + '<td><input type="text" name="vocationalschool" placeholder="ex. Don Bosco School" /></td>'
+					          + '<td><input type="text" name="vocataionalschoolfrom" placeholder="ex. 2000"  /></td>'
+					          + '<td><input type="text" name="vocationalschoolto" placeholder="ex. 2012"  /></td>'
+					          + '<td><input type="text" name="vocationalschoolawards" placeholder="ex. Perfect Attendance"  /></td>'
+					          + '<td><button class="removevocational">Remove vocational school info</button></td></tr>'
+					);
 			});
 				 
 			$(document).on("click", ".removevocational", function(e){
 				    e.preventDefault();
 					vocationalcount--;
-					//alert("Removing.");
 					$(this).parent().parent().remove();
 			});
 			
@@ -170,10 +164,10 @@
 				    masteralcount++;
 					$(masteralwrapper).append('<tr><td> ' + masteralcount.toString()
 					   + ' </td>' 
-					   + '<td><input type="text" name="masteralschool" placeholder="ex. Don Bosco School"/></td>'
-					   + '<td><input type="text" name="masteralschoolfrom" placeholder="ex. 2000" /></td>'
-					   + '<td><input type="text" name="masteralschoolto" placeholder="ex. 2012" /></td>'
-					   + '<td><input type="text" name="masteralschoolawards" placeholder="ex. Perfect Attendance" /></td>'
+					   + '<td><input type="text" name="masteralschool" placeholder="ex. Don Bosco School" /></td>'
+					   + '<td><input type="text" name="masteralschoolfrom" placeholder="ex. 2000"  /></td>'
+					   + '<td><input type="text" name="masteralschoolto" placeholder="ex. 2012"  /></td>'
+					   + '<td><input type="text" name="masteralschoolawards" placeholder="ex. Perfect Attendance"  /></td>'
 					   + '<td><button class="removemasteral">Remove masteral school info</button></td></tr>'
 					   );
 			});
@@ -190,10 +184,10 @@
 				otherscount++;
 				$(otherswrapper).append('<tr><td> ' + otherscount.toString()
 					   + ' </td>' 
-					   + '<td><input type="text" name="otherschool" placeholder="ex. Don Bosco School"/></td>'
-					   + '<td><input type="text" name="otherfrom" placeholder="ex. 2000" /></td>'
-					   + '<td><input type="text" name="otherto" placeholder="ex. 2012" /></td>'
-					   + '<td><input type="text" name="otherawards" placeholder="ex. Perfect Attendance"/></td>'
+					   + '<td><input type="text" name="otherschool" placeholder="ex. Don Bosco School" /></td>'
+					   + '<td><input type="text" name="otherfrom" placeholder="ex. 2000"  /></td>'
+					   + '<td><input type="text" name="otherto" placeholder="ex. 2012"  /></td>'
+					   + '<td><input type="text" name="otherawards" placeholder="ex. Perfect Attendance" /></td>'
 					   + '<td><button class="removeother">Remove other school info</button></td></tr>');
 			});
 			
@@ -208,8 +202,8 @@
 				    licensecount++;
 					$(licensewrapper).append('<tr><td> ' + licensecount.toString()
 					   + ' </td>' 
-					   + '<td><input type="text" name="license" placeholder="License/Exam Name"/></td>'
-					   + '<td><input type="text" name="licensepercentage" placeholder="Percentage Result"/></td>'
+					   + '<td><input type="text" name="license" placeholder="License/Exam Name" /></td>'
+					   + '<td><input type="text" name="licensepercentage" placeholder="Percentage Result" /></td>'
 					   + '<td><button class="removelicense">Remove license/exam info</button></td></tr>'
 					   );
 			});
@@ -224,19 +218,37 @@
 				 			  $(document).on("click", ".addemployment", function(e){
 			      e.preventDefault();
 				  employmentcount++;
-				  $(employmentwrapper).append('<tr><td>' + employmentcount.toString() + '</td>'
-				     + '<td><input type="text" name="jobtitle" placeholder="Job Title"/></td>'
-					 + '<td><input type="text" name="jobemploydate" placeholder="Date of Employment"/></td>'
-					 + '<td><input type="text" name="jobbegsal" placeholder="Starting Salary"/></td>'
-					 + '<td><input type="text" name="jobendsal" placeholder="Ending Salary"/></td>'
-					 + '<td><input type="text" name="jobemployer" placeholder="Employer\'s Name"/></td>'
-					 + '<td><input type="text" name="jobaddress" placeholder="Employer\'s Address"/></td>'
-					 + '<td><input type="text" name="jobtelno" placeholder="Employer\'s Contact Number"/></td>'
-					 + '<td><input type="text" name="jobsupname" placeholder="Supervisor Name"/></td>'
-					 + '<td><input type="text" name="jobsupno" placeholder="Supervisor Contact Number"/></td>'
-					 + '<td><input type="text" name="jobreason" placeholder="Reason for Leaving"/></td>'
+				  $(employmentwrapper).append(
+				     '<tr><td>#</td>'
+					 + '<td>Job Title</td>'
+					 + '<td>Date of Employment</td>'
+					 + '<td>Starting Salary</td>'
+					 + '<td>Ending Salary</td></tr>'
+					 + '<tr><td>' + employmentcount.toString() + '</td>'
+					 + '<td><input type="text" name="jobtitle" placeholder="Job Title" /></td>'
+					 + '<td><input type="text" name="jobemploydate" placeholder="Date of Employment" /></td>'
+					 + '<td><input type="text" name="jobbegsal" placeholder="Starting Salary" /></td>'
+					 + '<td><input type="text" name="jobendsal" placeholder="Ending Salary" /></td></tr>'
+					 + '<tr><td></td>'
+					 + '<td>Employer\'s Name</td>'
+					 + '<td>Employer\'s Address</td>'
+					 + '<td>Employer\'s Contact Number</td></tr>'
+					 + '<tr><td></td>'
+					 + '<td><input type="text" name="jobemployer" placeholder="Employer\'s Name" /></td>'
+					 + '<td><input type="text" name="jobaddress" placeholder="Employer\'s Address" /></td>'
+					 + '<td><input type="text" name="jobtelno" placeholder="Employer\'s Contact Number" /></td></tr>'
+					 + '<tr><td></td>'
+					 + '<td>Supervisor\'s Name</td>'
+					 + '<td>Supervisor\'s Contact Number</td>'
+					 + '<td>Reason For Leaving</td>'
+					 + '<td></td></tr>'
+					 + '<tr><td></td>'
+					 + '<td><input type="text" name="jobsupname" placeholder="Supervisor Name" /></td>'
+					 + '<td><input type="text" name="jobsupno" placeholder="Supervisor Contact Number" /></td>'
+					 + '<td><input type="text" name="jobreason" placeholder="Reason for Leaving" /></td>'
 					 + '<td><button class="removeemployment">Remove job history</button></td></tr>'
 				  );
+				  
 			  });
 			  
 			  $(document).on("click", ".removeemployment", function(e){
@@ -249,9 +261,9 @@
 			      e.preventDefault();
 				  criminaloffensecount++;
 				  $(criminaloffensewrapper).append('<tr><td>' + criminaloffensecount.toString() + '</td>'
-				     + '<td><input type="text" name="offensename" placeholder="Criminal Offense"/></td>'
-					 + '<td><input type="text" name="offensedate" placeholder="Date of Offence"/></td>'
-					 + '<td><input type="text" name="offenceplace" placeholder="Place of Offence"/></td>'
+				     + '<td><input type="text" name="offensename" placeholder="Criminal Offense" /></td>'
+					 + '<td><input type="text" name="offensedate" placeholder="Date of Offence" /></td>'
+					 + '<td><input type="text" name="offenceplace" placeholder="Place of Offence" /></td>'
 					 + '<td><button class="removecriminaloffense">Remove criminal offense history</button></td></tr>'
 				  );
 			 });
@@ -261,10 +273,10 @@
 				$(this).parent().parent().remove();
 			 });
 			 
-				 $('.tab-section').hide();
-	$('#tabs a').bind('click', function(e){
-		$('#tabs a.current').removeClass('current');
-		$('.tab-section:visible').hide();
+				 $('.tabSection').hide();
+	$('.tabs a').bind('click', function(e){
+		$('.tabs a.current').removeClass('current');
+		$('.tabSection:visible').hide();
 		$(this.hash).show();
 		$(this).addClass('current');
 		e.preventDefault();
@@ -273,7 +285,8 @@
 	 </script>
    </head>
    <body>
-        <ul id="tabs">
+
+        <ul class="tabs">
     <li><a href="#personalinfo">Personal Information</a></li>
     <li><a href="#family">Family Relations</a></li>
     <li><a href="#emergencycontact">Emergency Contact</a></li>
@@ -281,34 +294,33 @@
     <li><a href="#emphistory">Employment History</a></li>
 	<li><a href="#crimes">Past Criminal Offenses</a></li>
 </ul>
-        
-		<div id="personalinfo" class="tab-section">
-	        Last Name: <input type="text" name="lastname" placeholder="Last Name"/><br/>
-		First Name: <input type="text" name="firstname" placeholder="First Name"/><br/>
-		Middle Name: <input type="text" name="middlename" placeholder="Middle Name"/><br/>
-		Position Applied For / Expected Salary: <input type="text" name="posal" placeholder="Position Applied For/Expected 
-Salary"/><br/>
-		Address: <input type="text" name="empaddress" placeholder="Address"/><br/>
-		Birthday: <input type="text" name="birthday" placeholder="Birthday"/><br/>
-		Birthplace: <input type="text" name="birthplace" placeholder="Birth Place"/><br/>
-		Home Phone: <input type="text" name="homephone" placeholder="Home Phone"/><br/>
-		Mobile Number: <input type="text" name="mobileno" placeholder="Mobile Number"/><br/>
-		Email Address:<input type="text" name="emailadd" placeholder="Email Address"/><br/>
-		SSS #: <input type="text" name="sssno" placeholder="SSS #"/><br/>
-		TIN #: <input type="text" name="tinno" placeholder="TIN #"/><br/>
-		PHIC #: <input type="text" name="phicno" placeholder="PHIC #"/><br/>
-		PAG-IBIG #: <input type="text" name="pagibigno" placeholder="PAG-IBIG #"/><br/>
+        <form>
+		<DIV id="personalinfo" class="tabSection">
+	        Last Name: <input type="text" name="lastname" placeholder="Last Name" required /><br/>
+		First Name: <input type="text" name="firstname" placeholder="First Name" required /><br/>
+		Middle Name: <input type="text" name="middlename" placeholder="Middle Name" required /><br/>
+		Position Applied For / Expected Salary: <input type="text" name="posal" placeholder="Position Applied For/Expected Salary" /><br/>
+		Address: <input type="text" name="empaddress" placeholder="Address" required /><br/>
+		Birthday: <input type="date" name="birthday" placeholder="Birthday" required /><br/>
+		Birthplace: <input type="text" name="birthplace" placeholder="Birth Place" required /><br/>
+		Home Phone: <input type="number" name="homephone" placeholder="Home Phone" /><br/>
+		Mobile Number: <input type="number" name="mobileno" placeholder="Mobile Number" /><br/>
+		Email Address:<input type="text" name="emailadd" placeholder="Email Address" /><br/>
+		SSS #: <input type="number" name="sssno" placeholder="SSS #" /><br/>
+		TIN #: <input type="number" name="tinno" placeholder="TIN #" /><br/>
+		PHIC #: <input type="number" name="phicno" placeholder="PHIC #" /><br/>
+		PAG-IBIG #: <input type="number" name="pagibigno" placeholder="PAG-IBIG #" /><br/>
 		Civil Status: <!--<input type="text" name="civilstatus" placeholder="Civil Status"/>-->
                    <select name="civilstatus">
                      <option value="s">Single</option>
                      <option value="m">Married</option>
-                     <option value="d">Divorced</option>
+                     <option value="d">DIVorced</option>
                      <option value="w">Widowed</option>
                    </select><br/>
-		Citizenship: <input type="text" name="citizenship" placeholder="Citizenship"/><br/>
-		Religion: <input type="text" name="religion" placeholder="Religion"/><br/><br/>
-       </div>
-		<div id="family" class="tab-section">
+		Citizenship: <input type="text" name="citizenship" placeholder="Citizenship" /><br/>
+		Religion: <input type="text" name="religion" placeholder="Religion" /><br/><br/>
+       </DIV>
+		<DIV id="family" class="tabSection">
                 <span id="headers">Parents</span><br/>
                 <table>
                    <tr>
@@ -319,15 +331,15 @@ Salary"/><br/>
                    </tr>
                    <tr>
                      <td>Father</td>
-                     <td><input type="text" name="fathername" placeholder="Father's Name"/></td>
-                     <td><input type="text" name="fatherage" placeholder="Age"/></td>
-                     <td><input type="text" name="fatheroccupation" placeholder="Occupation"/><br/></td>
+                     <td><input type="text" name="fathername" placeholder="Father's Name" /></td>
+                     <td><input type="number" name="fatherage" placeholder="Age" /></td>
+                     <td><input type="text" name="fatheroccupation" placeholder="Occupation" /><br/></td>
                    </tr>
                    <tr>
                      <td>Mother</td>
-                     <td><input type="text" name="mothername" placeholder="Mother's Maiden Name"/></td>
-                     <td><input type="text" name="motherage" placeholder="Age"/></td>
-                     <td><input type="text" name="motheroccupation" placeholder="Occupation"/></td>
+                     <td><input type="text" name="mothername" placeholder="Mother's Maiden Name" /></td>
+                     <td><input type="number" name="motherage" placeholder="Age" /></td>
+                     <td><input type="text" name="motheroccupation" placeholder="Occupation" /></td>
                    </tr>
                 </table><br/><br/>
 
@@ -343,21 +355,19 @@ Salary"/><br/>
 			  </tr>
 			  <tr>
 			     <td>1</td>
-			     <td><input type="text" name="siblingname" placeholder="ex. Virma Lopez"/></td>
-		         <td><input type="text" name="siblingage" placeholder="ex. 14"/></td>
-		         <td><input type="text" name="siblingoccupation" placeholder="ex. Student"/></td>
-		         <td><input type="text" name="siblingcompany" placeholder="ex. Binan, Laguna"/></td>
+			     <td><input type="text" name="siblingname" placeholder="ex. Virma Lopez" /></td>
+		         <td><input type="number" name="siblingage" placeholder="ex. 14" /></td>
+		         <td><input type="text" name="siblingoccupation" placeholder="ex. Student" /></td>
+		         <td><input type="text" name="siblingcompany" placeholder="ex. Binan, Laguna" /></td>
 		         <td><button class="addsibling">Add sibling info</button></td>
 			  </tr>
 		    </table><br/><br/>
 
-                <div class="tohide">
-		Spouse's Name: <input type="text" name="spousename" placeholder="Name of Spouse"/><br/>
-		Spouse's Contact Number: <input type="text" name="spousecontact" placeholder="Contact Number"/><br/>
-		Spourse's Occupation/Employer: <input type="text" name="spouseoccupation" 
-
-placeholder="Occupation/Employer"/><br/><br/>
-                </div>
+                <DIV class="tohide">
+		Spouse's Name: <input type="text" name="spousename" placeholder="Name of Spouse" /><br/>
+		Spouse's Contact Number: <input type="text" name="spousecontact" placeholder="Contact Number" /><br/>
+		Spourse's Occupation/Employer: <input type="text" name="spouseoccupation" placeholder="Occupation/Employer" /><br/><br/>
+                </DIV>
 
                 <span id="headers">Children</span><br/>
 		<table name="children">
@@ -371,24 +381,24 @@ placeholder="Occupation/Employer"/><br/><br/>
 			  </tr>
 			  <tr>
 			     <td>1</td>
-			     <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez"/></td>
-		         <td><input type="text" name="childrengage" placeholder="ex. 14"/></td>
-		         <td><input type="text" name="childrenyear" placeholder="ex. II"/></td>
-		         <td><input type="text" name="childschool" placeholder="ex. Binan, Laguna"/></td>
+			     <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez" /></td>
+		         <td><input type="text" name="childrengage" placeholder="ex. 14" /></td>
+		         <td><input type="text" name="childrenyear" placeholder="ex. II" /></td>
+		         <td><input type="text" name="childschool" placeholder="ex. Binan, Laguna" /></td>
 		         <td><button class="addchild">Add child info</button></td>
 			  </tr>
 		    </table><br/><br/>
-       </div>
+       </DIV>
 	   
-	   <div id="emergencycontact" class="tab-section">
+	   <DIV id="emergencycontact" class="tabSection">
 		Emergency Contact's Name: <input type="text" name="emergencyname" placeholder="Person to notify in case of 
-emergency"/><br/>
-		Relationship with Emergency Contact: <input type="text" name="emergencyrel" placeholder="Relationship"/><br/>
-		Emergency Contact's Address: <input type="text" name="emergencyaddress" placeholder="Address"/><br/>
-		Emergency Contact's Number: <input type="text" name="emergencynumber" placeholder="Contact Number"/><br/><br/>
-	  </div>
+emergency" /><br/>
+		Relationship with Emergency Contact: <input type="text" name="emergencyrel" placeholder="Relationship" /><br/>
+		Emergency Contact's Address: <input type="text" name="emergencyaddress" placeholder="Address" /><br/>
+		Emergency Contact's Number: <input type="number" name="emergencynumber" placeholder="Contact Number" /><br/><br/>
+	  </DIV>
 	  
-	  <div id="edhistory" class="tab-section">
+	  <DIV id="edhistory" class="tabSection">
 	  <span id="headers">Elementary</span><br/>
 	  <table name="elementary">
 		   <tr>
@@ -400,10 +410,10 @@ emergency"/><br/>
 		   </tr>
 		   <tr>
 		     <td>1</td>
-			 <td><input type="text" name="elemschool" placeholder="ex. Don Bosco School"/></td>
-			 <td><input type="text" name="elemfrom" placeholder="ex. 2000"/></td>
-			 <td><input type="text" name="elemto" placeholder="ex. 2012"/></td>
-			 <td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance Award"/></td>
+			 <td><input type="text" name="elemschool" placeholder="ex. Don Bosco School" required /></td>
+			 <td><input type="date" name="elemfrom" placeholder="ex. 2000" required /></td>
+			 <td><input type="date" name="elemto" placeholder="ex. 2012" required /></td>
+			 <td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance Award" /></td>
 			 <td><button class="addelem">Add elementary school</button></td>
 		   </tr>
 		</table><br/><br/>
@@ -419,10 +429,10 @@ emergency"/><br/>
 		   </tr>
 		   <tr>
 		     <td>1</td>
-			 <td><input type="text" name="highschool" placeholder="Name of School"/></td>
-			 <td><input type="text" name="highschoolfrom" placeholder="Year Start"/></td>
-			 <td><input type="text" name="highschoolto" placeholder="Year End"/></td>
-			 <td><input type="text" name="highschoolawards" placeholder="Degree Taken/Highest Attainment/Awards"/></td>
+			 <td><input type="text" name="highschool" placeholder="Name of School" required /></td>
+			 <td><input type="date" name="highschoolfrom" placeholder="Year Start" required /></td>
+			 <td><input type="date" name="highschoolto" placeholder="Year End" required /></td>
+			 <td><input type="text" name="highschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
 			 <td><button class="addhighschool">Add high school</button></td>
 		   </tr>
 	    </table><br/><br/>
@@ -438,13 +448,13 @@ emergency"/><br/>
 		   </tr>
 		   <tr>
 		     <td>1</td>
-			 <td><input type="text" name="college" placeholder="Name of School"/></td>
-			 <td><input type="text" name="collegefrom" placeholder="Year Start"/></td>
-			 <td><input type="text" name="collegeto" placeholder="Year End"/></td>
-			 <td><input type="text" name="collegeawards" placeholder="Degree Taken/Highest Attainment/Awards"/></td>
+			 <td><input type="text" name="college" placeholder="Name of School" required /></td>
+			 <td><input type="date" name="collegefrom" placeholder="Year Start" required /></td>
+			 <td><input type="date" name="collegeto" placeholder="Year End" required /></td>
+			 <td><input type="text" name="collegeawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
 			 <td><button class="addcollege">Add college</button></td>
 		   </tr>
-	    </table><br/><br/>
+	    </table><br /><br/>
 		
 		<span id="headers">Vocational</span><br/>
 		<table name="vocational">
@@ -457,11 +467,11 @@ emergency"/><br/>
 		   </tr>
 		   <tr>
 		     <td>1</td>
-			 <td><input type="text" name="vocationalschool" placeholder="Name of School"/></td>
-			 <td><input type="text" name="vocationalschoolfrom" placeholder="Year Start"/></td>
-			 <td><input type="text" name="vocationalschoolto" placeholder="Year End"/></td>
+			 <td><input type="text" name="vocationalschool" placeholder="Name of School" /></td>
+			 <td><input type="date" name="vocationalschoolfrom" placeholder="Year Start" /></td>
+			 <td><input type="date" name="vocationalschoolto" placeholder="Year End" /></td>
 			 <td><input type="text" name="vocationalschoolawards" placeholder="Degree Taken/Highest 
-Attainment/Awards"/></td>
+Attainment/Awards" /></td>
 			 <td><button class="addvocational">Add vocational school</button></td>
 		   </tr>
 	    </table><br/><br/>
@@ -477,11 +487,11 @@ Attainment/Awards"/></td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
-			 <td><input type="text" name="masteralschool" placeholder="Name of School"/></td>
-			 <td><input type="text" name="masteralschoolfrom" placeholder="Year Start"/></td>
-			 <td><input type="text" name="masteralschoolto" placeholder="Year End"/></td>
+			 <td><input type="text" name="masteralschool" placeholder="Name of School" /></td>
+			 <td><input type="date" name="masteralschoolfrom" placeholder="Year Start" /></td>
+			 <td><input type="date" name="masteralschoolto" placeholder="Year End" /></td>
 			 <td><input type="text" name="masteralschoolawards" placeholder="Degree Taken/Highest 
-Attainment/Awards"/></td>
+Attainment/Awards" /></td>
 			 <td><button class="addmasteral">Add masteral school</button></td>
 		   </tr>
 	    </table><br/><br/>
@@ -497,10 +507,10 @@ Attainment/Awards"/></td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
-			 <td><input type="text" name="otherschool" placeholder="Name of School"/></td>
-			 <td><input type="text" name="otherfrom" placeholder="Year Start"/></td>
-			 <td><input type="text" name="otherto" placeholder="Year End"/></td>
-			 <td><input type="text" name="otherawards" placeholder="Degree Taken/Highest Attainment/Awards"/></td>
+			 <td><input type="text" name="otherschool" placeholder="Name of School" /></td>
+			 <td><input type="date" name="otherfrom" placeholder="Year Start" /></td>
+			 <td><input type="date" name="otherto" placeholder="Year End" /></td>
+			 <td><input type="text" name="otherawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
 			 <td><button class="addother">Add other school</button></td>
 		   </tr>
 	    </table><br/><br/>
@@ -514,14 +524,14 @@ Attainment/Awards"/></td>
 		   </tr>
 		   <tr>
 		      <td>1</td>
-			  <td><input type="text" name="license" placeholder="License/Exam Taken/Percentage"/></td>
-			  <td><input type="text" name="licensepercentage" placeholder="Percentage Result"/></td>
+			  <td><input type="text" name="license" placeholder="License/Exam Taken" /></td>
+			  <td><input type="number" name="licensepercentage" placeholder="Percentage Result" /></td>
 			  <td><button class="addlicense">Add license/exam info</button></td>
 		   </tr>
 		</table><br/><br/>
-	  </div>
+	  </DIV>
 	  
-	  <div id="emphistory" class="tab-section">
+	  <DIV id="emphistory" class="tabSection">
 	  <span id="headers">Employment History</span><br/>
 		<span>Note: Begin with present or most recent job.</span><br/><br/>
 		<table name="employment">
@@ -531,38 +541,51 @@ Attainment/Awards"/></td>
 			  <td>Date of Employment</td>
 			  <td>Starting Salary</td>
 			  <td>Ending Salary</td>
-			  <td>Employer's Name</td>
-			  <td>Employer's Address</td>
-			  <td>Employer's Contact Number</td>
-			  <td>Supervisor's Name</td>
-			  <td>Supervisor's Contact Number</td>
-			  <td>Reason for Leaving</td>
 		   </tr>
 		   <tr>
 		      <td>1</td>
-			  <td><input type="text" name="jobtitle" placeholder="Job Title"/></td>
-			  <td><input type="text" name="jobemploydate" placeholder="Date of Employment"/></td>
-			  <td><input type="text" name="jobbegsal" placeholder="Starting Salary"/></td>
-			  <td><input type="text" name="jobendsal" placeholder="Ending Salary"/></td>
-			  <td><input type="text" name="jobemployer" placeholder="Employer"/></td>
-			  <td><input type="text" name="jobaddress" placeholder="Employer Address"/></td>
-			  <td><input type="text" name="jobtelno" placeholder="Employer Telephone Number"/></td>
-			  <td><input type="text" name="jobsupname" placeholder="Supervisor Name"/></td>
-			  <td><input type="text" name="jobsupno" placeholder="Supervisor Number"/></td>
-			  <td><input type="text" name="jobreason" placeholder="Reason for Leaving"/></td>
+			  <td><input type="text" name="jobtitle" placeholder="Job Title" /></td>
+			  <td><input type="date" name="jobemploydate" placeholder="Date of Employment" /></td>
+			  <td><input type="number" name="jobbegsal" placeholder="Starting Salary" /></td>
+			  <td><input type="number" name="jobendsal" placeholder="Ending Salary" /></td>
+		  </tr>
+		   <tr>
+		      <td></td>
+			  <td>Employer's Name</td>
+			  <td>Employer's Address</td>
+			  <td>Employer's Contact Number</td>
+		   </tr>
+		   <tr>
+		      <td></td>
+			  <td><input type="text" name="jobemployer" placeholder="Employer" /></td>
+			  <td><input type="text" name="jobaddress" placeholder="Employer Address" /></td>
+			  <td><input type="number" name="jobtelno" placeholder="Employer Telephone Number" /></td>
+		  </tr>
+		   <tr>
+		      <td></td>
+			  <td>Supervisor's Name</td>
+			  <td>Supervisor's Contact Number</td>
+			  <td>Reason for Leaving</td>
+			  <td></td>
+		   </tr>
+		  <tr>
+		      <td></td>
+			  <td><input type="text" name="jobsupname" placeholder="Supervisor Name" /></td>
+			  <td><input type="number" name="jobsupno" placeholder="Supervisor Number" /></td>
+			  <td><input type="text" name="jobreason" placeholder="Reason for Leaving" /></td>
 			  <td><button class="addemployment">Add job history</button></td>
 		   </tr>
 		</table><br/>
-	  </div>
+	  </DIV>
 	  
-	  <div id="crimes" class="tab-section">
+	  <DIV id="crimes" class="tabSection">
 	  <span>Has the employee ever been convicted of a criminal offense?</span>
 		<select name="convicted">
 		   <option>No</option>
 		   <option value="y">Yes</option>
-		</select><br/>
-		<div class="tohide">
-		<span id="header">Past criminal offenses</span><br/>
+		</select><br/><br/>
+		<DIV class="tohide">
+		<span id="headers">Past criminal offenses</span><br/>
 		<table name="criminaloffense">
 		   <tr>
 		      <td>#</td>
@@ -572,18 +595,19 @@ Attainment/Awards"/></td>
 		   </tr>
 		   <tr>
 		      <td>1</td>
-			  <td><input type="text" name="offensename" placeholder="Criminal Offense"/></td>
-			  <td><input type="text" name="offensedate" placeholder="Date of Offence"/></td>
-			  <td><input type="text" name="offenceplace" placeholder="Place of Offence"/></td>
+			  <td><input type="text" name="offensename" placeholder="Criminal Offense" /></td>
+			  <td><input type="text" name="offensedate" placeholder="Date of Offence" /></td>
+			  <td><input type="text" name="offenceplace" placeholder="Place of Offence" /></td>
 			  <td><button class="addcriminaloffense">Add criminal offense history</button></td>
 		   </tr>
 		</table>
-	    </div>
-	  </div>
-	  
-	  <div class= "footer">
+	    </DIV>
+	  </DIV>
+	     <input type="submit" value="Submit Employee Information" /><br/></br>
+	  </form>
+	  <DIV class= "footer">
 			<hr width="75%"/>
 			EQUILIBRIUM INTERTRADE CORP.
-		</div>
+		</DIV>
    </body>
 </html>

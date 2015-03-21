@@ -27,6 +27,20 @@ public class modelEmployeeAuditTrail {
         approverEntryNum = 0;
     }
     
+    public modelEmployeeAuditTrail(int empAuditTrailID, String fieldChanged, String editFrom, String editTo,
+                                    int editorEntryNum, int editedEntryNum, Timestamp timestamp,
+                                    boolean isApproved, int approverEntryNum){
+        this.empAuditTrailID = empAuditTrailID;
+        this.fieldChanged = fieldChanged;
+        this.editFrom = editFrom;
+        this.editTo = editTo;
+        this.editorEntryNum = editorEntryNum;
+        this.editedEntryNum = editedEntryNum;
+        this.timestamp = timestamp;
+        isApproved = isApproved;
+        approverEntryNum = approverEntryNum;
+    }
+    
     public int getEmpAuditTrailID() {
         return empAuditTrailID;
     }

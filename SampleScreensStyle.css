@@ -28,9 +28,9 @@ body{
 }
 
 table{
- font-family: Arial, sans-serif;
+ font-family: Verdana, sans-serif;
  font-size: 13;
- color: white;
+ color: black;
 }
 
 input[type=text]{
@@ -69,11 +69,7 @@ opacity: 0.85;
 			font-family: "Arial";
 		}
 
-input[name=empaddress]{
- width: 90%;
-}
-
-#tabs {
+.tabs {
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
@@ -83,7 +79,7 @@ input[name=empaddress]{
 	z-index: 1;
 }
 
-#tabs li {
+.tabs li {
 	display: block;
 	list-style: none;
 	margin: 0;
@@ -93,7 +89,7 @@ input[name=empaddress]{
 	border-radius: 5px 5px 0px 0px;
 }
 
-#tabs li a {
+.tabs li a {
 	display: block;
 	padding: 2px 10px;
 	border: 2px solid #817bfc;
@@ -102,14 +98,14 @@ input[name=empaddress]{
 	text-decoration: none;
 }
 
-.tab-section {
+.tabSection {
 	background:#d4efff;
 	padding: 10px;
 	border: 2px solid #817bfc;
 	border-radius: 5px;
 }
 
-#tabs li a.current {
+.tabs li a.current {
 	background: #d4efff;
 	color: #000;
 	border-bottom: 2px solid #d4efff;

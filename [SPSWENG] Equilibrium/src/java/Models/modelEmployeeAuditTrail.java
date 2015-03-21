@@ -37,8 +37,8 @@ public class modelEmployeeAuditTrail {
         this.editorEntryNum = editorEntryNum;
         this.editedEntryNum = editedEntryNum;
         this.timestamp = timestamp;
-        isApproved = isApproved;
-        approverEntryNum = approverEntryNum;
+        this.isApproved = isApproved;
+        this.approverEntryNum = approverEntryNum;
     }
     
     public int getEmpAuditTrailID() {

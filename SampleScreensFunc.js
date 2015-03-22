@@ -21,7 +21,7 @@ $(document).ready(function(){
 			  var otherswrapper = $('table[name=others]');
 			  var licensewrapper = $('table[name=license]');
 			  var employmentwrapper = $('table[name=employment]');
-			  var criminaloffensewrapper = $('table[name=criminaloffense]');			
+			  var criminaloffensewrapper = $('table[name=criminaloffense]');
                                  
               $(tohide).hide();
 			  $('select[name=civilstatus]').change(function(){
@@ -210,14 +210,15 @@ $(document).ready(function(){
 				 
 				 			  $(document).on("click", ".addemployment", function(e){
 			      e.preventDefault();
+				  var rowCount = $('table[name=employment] tr').length;
 				  employmentcount++;
 				  $(employmentwrapper).append(
 				     '<tr>'
 					 +'	<td>#</td>'
-					 + '	<td>Job Title</td>'
+					 + '	<td width="300px">Job Title</td>'
 					 + '	<td>Date of Employment</td>'
-					 + '	<td>Starting Salary</td>'
-					 + '	<td>Ending Salary</td>'
+					 + '	<td width="300px">Starting Salary</td>'
+					 + '	<td width="300px">Ending Salary</td>'
 					 + '	<td><button class="removeemployment">Remove job history</button></td>'
 					 + '</tr>'
 					 + '<tr>'
@@ -229,9 +230,9 @@ $(document).ready(function(){
 					 + '</tr>'
 					 + '<tr>'
 					 + '	<td></td>'
-					 + '	<td>Employer\'s Name</td>'
-					 + '	<td>Employer\'s Address</td>'
-					 + '	<td>Employer\'s Contact Number</td>'
+					 + '	<td width="400px">Employer\'s Name</td>'
+					 + '	<td width="400px">Employer\'s Address</td>'
+					 + '	<td width="400px">Employer\'s Contact Number</td>'
 					 + '</tr>'
 					 + '<tr>'
 					 + '	<td></td>'
@@ -241,9 +242,9 @@ $(document).ready(function(){
 					 + '</tr>'
 					 + '<tr>'
 					 + '	<td></td>'
-					 + '	<td>Supervisor\'s Name</td>'
-					 + '	<td>Supervisor\'s Contact Number</td>'
-					 + '	<td>Reason For Leaving</td>'
+					 + '	<td width="400px">Supervisor\'s Name</td>'
+					 + '	<td width="400px">Supervisor\'s Contact Number</td>'
+					 + '	<td width="400px">Reason For Leaving</td>'
 					 + '	<td></td>'
 					 + '</tr>'
 					 + '<tr>'
@@ -257,11 +258,15 @@ $(document).ready(function(){
 			  });
 			  
 			  $(document).on("click", ".removeemployment", function(e){
-			       e.preventDefault();
+			           var toremove = $(this).parent().parent();
+				   var rowCount = $('table[name=employment] tr').length;
+			           e.preventDefault();
 				   employmentcount--;
-				   //alert("Will implement this later. :(");
-				   var toremove = $(this).parent().parent();
-				   $(toremove).nextUntil("input[name=jobreason]").remove();
+				   $(toremove).next().next().next().next().next().remove();
+				   $(toremove).next().next().next().next().remove();
+				   $(toremove).next().next().next().remove();
+				   $(toremove).next().next().remove();
+				   $(toremove).next().remove();
 				   $(toremove).remove();
 			  });
 			  

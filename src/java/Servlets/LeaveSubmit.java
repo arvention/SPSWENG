@@ -6,6 +6,7 @@
 package Equilibrium_Servlet;
 
 import Equilibrium_Classes.Database;
+import Equilibrium_Classes.EmailNotifier;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -34,6 +35,7 @@ public class LeaveSubmit extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -78,7 +80,8 @@ public class LeaveSubmit extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        Database ed = Database.getInstance();
+        Database db = Database.getInstance();
+        EmailNotifier en = EmailNotifier.getInstance();
 
         Date startDate = null;
         Date endDate = null;
@@ -112,7 +115,7 @@ public class LeaveSubmit extends HttpServlet {
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
-            } else if(!ed.checkEmpID(empIDNum)){
+            } else if(!db.checkEmpID(empIDNum)){
                 errorFlags.add(false);
                 errorFlags.add(false);
                 errorFlags.add(true);
@@ -123,11 +126,15 @@ public class LeaveSubmit extends HttpServlet {
                 String leaveType = request.getParameter("leaveType");
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
-                ed.addLeaveForm(leaveType, ed.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
+                db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
                 reqDispatcher = request.getRequestDispatcher("leavesuccess.html");
+                
+                //send an email to the manager
+                en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate);
             }
             reqDispatcher.forward(request, response);
         }
+        
     }
 
     /**

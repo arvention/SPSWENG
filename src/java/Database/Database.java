@@ -34,29 +34,84 @@ public class Database {
     }
 
 // - FUNCTIONS -------------------------------------------------------------------------------
-    public int getManager(int idNumber) {
-        int managerID = -1;
-
+    public int getManager(int entryNum) {
+        int manEntryNum = -1;
+        
         try {
-            sql = "SELECT managerID FROM employee"
-                    + " WHERE idNumber = " + idNumber;
+            sql = "SELECT E2.entryNum FROM employee E1, employee E2"
+                    + " WHERE E1.entryNum = " + entryNum + " AND E1.managerEntryNum = E2.entryNum";
             rs = stmt.executeQuery(sql);
 
+            if(rs.next())
+                manEntryNum = rs.getInt("entryNum");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         // -- if returned is -1, manager is not found
-        return managerID;
+        return manEntryNum;
     }
+    
+    public String getFirstName(int entryNum){
+        String firstName = "";
 
-    public String getEmailAddress(int idNumber) {
+        try {
+            sql = "SELECT firstName FROM employee"
+                    + " WHERE entryNum = " + entryNum;
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+                firstName = rs.getString("firstName");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return firstName;
+    }
+    
+    public String getLastName(int entryNum){
+        String lastName = "";
+
+        try {
+            sql = "SELECT lastName FROM employee"
+                    + " WHERE entryNum = " + entryNum;
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+                lastName = rs.getString("lastName");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lastName;
+    }
+    
+    public int getIDNumber(int entryNum){
+        int empID = 0;
+
+        try {
+            sql = "SELECT employeeID FROM employee"
+                    + " WHERE entryNum = " + entryNum;
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+                empID = rs.getInt("employeeID");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return empID;
+    }
+    
+    public String getEmailAddress(int entryNum) {
         String emailAddress = "";
 
         try {
             sql = "SELECT emailAddress FROM employee"
-                    + " WHERE idNumber = " + idNumber;
+                    + " WHERE entryNum = " + entryNum;
             rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+            {
+                emailAddress = rs.getString("emailAddress");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

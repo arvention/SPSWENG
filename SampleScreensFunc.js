@@ -259,7 +259,6 @@ $(document).ready(function(){
 			  
 			  $(document).on("click", ".removeemployment", function(e){
 			           var toremove = $(this).parent().parent();
-				   var rowCount = $('table[name=employment] tr').length;
 			           e.preventDefault();
 				   employmentcount--;
 				   $(toremove).next().next().next().next().next().remove();

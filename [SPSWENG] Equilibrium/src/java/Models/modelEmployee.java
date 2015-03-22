@@ -30,7 +30,7 @@ public class modelEmployee {
     private String emailAddress;
     private String employeeType;
     private int managerEntryNum;
-
+    
     public modelEmployee(int entryNum, int employeeID, String lastName, String firstName, String middleName,
                         String address, Date birthday, String birthplace, Long mobileNumber, String SSSNumber,
                         String TINNumber, String PHSCNumber, String PAGIBIGNumber, String civilStatus, 

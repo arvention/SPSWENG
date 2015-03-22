@@ -1,5 +1,6 @@
 package Database;
 
+import Models.modelEmployee;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -172,5 +173,58 @@ public class Database {
         }
         
         return entryNum;
+    }
+    
+    public modelEmployee getEmployeeAccount(String username, String userpassword){
+        
+        sql = "SELECT * FROM employee" 
+            + " WHERE employeeID = " + username + " AND password = " + userpassword + ";";
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                int entryNum = rs.getInt("entryNum");
+                int employeeID = rs.getInt("employeeID");
+                String password = rs.getString("password");
+                String lastName = rs.getString("lastName");
+                String firstName = rs.getString("firstName");
+                String middleName = rs.getString("middleName");
+                String address = rs.getString("address");
+                Date birthday = rs.getDate("birthday");
+                String birthplace = rs.getString("birthplace");
+                long mobileNumber = rs.getLong("mobileNumber");
+                String SSSNumber = rs.getString("SSSNumber");
+                String TINNumber = rs.getString("TINNumber");
+                String PHSCNumber = rs.getString("PHSCNumber");
+                String PAGIBIGNumber = rs.getString("PAGIBIGNumber");
+                String civilStatus = rs.getString("civilStatus");
+                String citizenship = rs.getString("citizenship");
+                String religion = rs.getString("religion");
+                Date hireDate = rs.getDate("hireDate");
+                String band = rs.getString("band");
+                int salary = rs.getInt("salary");
+                int departmentID = rs.getInt("departmentID");
+                int positionID = rs.getInt("positionID");
+                boolean isDeleted = rs.getBoolean("isDeleted");
+                String emailAddress = rs.getString("emailAddress");
+                String employeeType = rs.getString("EmployeeType");
+                int managerEntryNum = rs.getInt("managerEntryNum");
+                
+                modelEmployee modelEmployee = new modelEmployee(entryNum, employeeID, lastName, 
+                                                                firstName, middleName,address, 
+                                                                birthday, birthplace, mobileNumber, 
+                                                                SSSNumber, TINNumber, PHSCNumber, 
+                                                                PAGIBIGNumber, civilStatus, citizenship, 
+                                                                religion, hireDate, band, salary,
+                                                                departmentID, positionID, isDeleted, 
+                                                                emailAddress, employeeType, managerEntryNum);
+                return modelEmployee;                                             
+            }
+            else return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

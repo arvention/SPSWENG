@@ -6,6 +6,7 @@
 package Servlets;
 
 import Database.Database;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -80,6 +81,13 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         Database database = Database.getInstance();
         
+        modelEmployee modelEmployee = database.getEmployeeAccount(username, password);
+        if(modelEmployee != null){
+            
+        }
+        else{
+            
+        }
     }
 
     /**

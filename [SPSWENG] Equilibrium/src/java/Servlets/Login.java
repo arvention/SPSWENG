@@ -9,6 +9,7 @@ import Database.Database;
 import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -83,10 +84,28 @@ public class Login extends HttpServlet {
         
         modelEmployee modelEmployee = database.getEmployeeAccount(username, password);
         if(modelEmployee != null){
-            
+            request.setAttribute("name", modelEmployee.getFirstName() + " " + modelEmployee.getLastName());
+            if(modelEmployee.getEmployeeType().equalsIgnoreCase("Employee")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-Employee.jsp");
+                view.forward(request, response);
+            }
+            else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Hr Head")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-HrHead.jsp");
+                view.forward(request, response);
+            }
+            else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Hr Employee")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-HrEmployee.jsp");
+                view.forward(request, response);
+            }
+            else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Manager")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-Manager.jsp");
+                view.forward(request, response);
+            }
         }
         else{
-            
+            request.setAttribute("error", "Invalid Username/Password");
+            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+            view.forward(request, response);
         }
     }
 

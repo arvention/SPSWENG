@@ -1,9 +1,10 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Home - Equilibrium</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Home - EQuilibrium</title>
         
         <link rel = "shortcut icon" href="eq logo.ico"/>
         <link href = "css/Homepage-Employee.css" rel = "stylesheet" />
@@ -12,7 +13,7 @@
          <div class = "pageTop">
             <img class="compLogo" src="img/eqnavlogo.png">
             <hr width = "75%" SIZE = "1"/>
-            <p> Welcome, FirstName M LastName </p>
+            <p> Welcome, ${name} </p>
         </div>
         <div class = "pageMid">
             <a href="leaveapplication.html"><button id="login" class="selectButton"> Apply for a Leave</button></a>

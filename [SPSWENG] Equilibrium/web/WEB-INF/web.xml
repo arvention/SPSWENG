@@ -5,7 +5,7 @@
         <servlet-class>Servlets.LeaveSubmit</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Login</servlet-name>
+        <servlet-name>Homepage</servlet-name>
         <servlet-class>Servlets.Login</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -13,8 +13,8 @@
         <url-pattern>/LeaveSubmit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <servlet-name>Homepage</servlet-name>
+        <url-pattern>/Homepage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

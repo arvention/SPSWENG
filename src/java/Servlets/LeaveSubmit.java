@@ -127,7 +127,7 @@ public class LeaveSubmit extends HttpServlet {
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
                 db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
-                reqDispatcher = request.getRequestDispatcher("leavesuccess.html");
+                reqDispatcher = request.getRequestDispatcher("LeaveSuccess.html");
                 
                 //send an email to the manager
                 en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate);

@@ -1,19 +1,17 @@
 body{
-    background-color: #E8E8E8;
+    background-color: #D63333;
     margin: 50px 0px;
     padding: 0px;
     text-align: center;
 }
 div.background{
-    background-color: #E8E8E8;
+    background-color: #D63333;
 }
 div.header{
     border-style: solid;
-    border-color: #E8E8E8;
     width: 100%;
     position: absolute;
     font-family: sans-serif;
-    background-color: #E8E8E8;
     text-align:center;
 }
 div.content{

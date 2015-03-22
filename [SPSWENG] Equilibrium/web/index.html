@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>EQuilibrium</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href = "css/LoginPage.css" rel = "stylesheet" />
+
+        <script src = "js/LoginPage.js"></script>
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body bgcolor= "#E8E8E8">
+        <DIV class = "pageTop"></div>
+        <DIV class = "pageMid" align="center"><IMG class ="compLogo" src = "img/eqlogobig.png"></div>
+        <form action ="homepage.html">
+            <DIV class = "loginForm" align = "center">
+                <p></p>
+                <input type="text" style="margin-top: 30px" class= "inputBox" placeholder="Username" id="username" required/>
+                <input type="password" class= "inputBox" placeholder="Password" id="password" required/>
+            </div> 
+            <div id="button-buttons" align="center">
+                <input type="submit" id="login" class="loginButton" value="Login"/></div>
+        </form>
+        <DIV class = "pageBottom" style="margin-bottom: 3px"><hr width ="50%"/></br> EQUILIBRIUM INTERTRADE CORP.</div>
     </body>
 </html>

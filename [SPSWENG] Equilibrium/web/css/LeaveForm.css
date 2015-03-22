@@ -4,11 +4,9 @@ body{
     padding: 0px;
     text-align: center;
 }
-
 div.background{
     background-color: #E8E8E8;
 }
-
 div.header{
     border-style: solid;
     border-color: #E8E8E8;
@@ -18,7 +16,6 @@ div.header{
     background-color: #E8E8E8;
     text-align:center;
 }
-
 div.content{
     font-family: sans-serif;
     width: 500px;
@@ -29,15 +26,14 @@ div.content{
     padding-bottom: 35px;
     border: 1px dashed #333;
     color: White;
-    background-color: #D63333;
+    background-color: red;
     border-radius: 10px;
     border-style: solid;
     border-width: 40px;
-    border-color: #D63333;
+    border-color: red;
     text-align: left;
-    opacity: 0.85;
+    opacity: 0.55;
 }
-
 .submitButton{
     font-size: 20px;
     width: 45%;
@@ -48,12 +44,10 @@ div.content{
     float: left;
     cursor:hand;
 }
-
 .submitButton:hover{
     opacity: .80;
     border: 1px solid white;
 }
-
 .back{
     font-size: 20px;
     width: 45%;
@@ -64,12 +58,10 @@ div.content{
     float: right;
     cursor: hand;
 }
-
 .back:hover{
     opacity: .80;
     border: 1px solid white;
 }
-
 div.footer{
     width: 100%;
     height: 43px;
@@ -79,6 +71,6 @@ div.footer{
 
     text-align:center;
     color: #808080;
-    font-size: 11px;
+    font-size: 11;
     font-family: "Arial";
 }

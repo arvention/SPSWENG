@@ -6,7 +6,7 @@
 package Servlets;
 
 import Database.EmailNotifier;
-import Equilibrium_Classes.Database;
+import Database.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;

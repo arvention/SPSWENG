@@ -1,4 +1,4 @@
-package Equilibrium_Classes;
+package Database;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -14,18 +14,19 @@ public class Database {
     private Statement stmt;
     private ResultSet rs;
     private static Database databaseInstance = new Database();
-
+    
     private Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "admin";
+            String uPass = "jetisjet";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("FAILED TO GET CONNECTION WHYY");
         }
     }
 
@@ -33,6 +34,10 @@ public class Database {
         return databaseInstance;
     }
 
+    public Connection getConnection(){
+        return this.con;
+    }
+    
 // - FUNCTIONS -------------------------------------------------------------------------------
     public int getManager(int entryNum) {
         int manEntryNum = -1;

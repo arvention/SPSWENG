@@ -17,32 +17,34 @@
 	       <li><a href="#crimes">Past Criminal Offenses</a></li>
         </ul>
 		    <DIV id="personalinfo" class="tab-section">
-			<table class="personal">
-			    <tr>
-				    <td>LASTNAME</td>
-					<td>FIRSTNAME</td>
+			<table name="one">
+			<tr>
+				    <td>LAST NAME</td>
+					<td>FIRST NAME</td>
 					<td>MIDDLE NAME</td>
 					<td>Position Applied For / Expected Salary :</td>
-					<td></td>
 				</tr>
 				<tr>
-				   <td><input type="text" name="lastname" placeholder="Last Name" required /></td>
-				   <td><input type="text" name="firstname" placeholder="First Name" required /></td>
-				   <td><input type="text" name="middlename" placeholder="Middle Name" required /></td>
-				   <td><input type="text" name="posal" placeholder="Position Applied For/Expected Salary" /></td>
-				   <td></td>
+				   <td class="three-hundred"><input type="text" name="lastname" placeholder="Last Name" required /></td>
+				   <td class="three-hundred"><input type="text" name="firstname" placeholder="First Name" required /></td>
+				   <td class="three-hundred"><input type="text" name="middlename" placeholder="Middle Name" required /></td>
+				   <td class="three-hundred"><input type="text" name="posal" placeholder="Position Applied For/Expected Salary" /></td>
 				</tr>
+			</table>
+			<table name="two">
 				<tr>
 				   <td>Address:</td>
 				</tr>
 				<tr>
-				   <td><input type="text" name="block/street" placeholder="Block/Street" required /></td>
-				   <td><input type="text" name="subdivision" placeholder="Subdivision" required /></td>
-				   <td><input type="text" name="barangay" placeholder="Barangay" required /></td>
-				   <td><input type="text" name="city" placeholder="City" required /></td>
-				   <td><input type="text" name="province" placeholder="Province" required /></td>
+				   <td class="three-hundred"><input type="text" name="block/street" placeholder="Block/Street" required /></td>
+				   <td class="three-hundred"><input type="text" name="subdivision" placeholder="Subdivision" required /></td>
+				   <td class="three-hundred"><input type="text" name="barangay" placeholder="Barangay" required /></td>
+				   <td class="three-hundred"><input type="text" name="city" placeholder="City" required /></td>
+				   <td class="three-hundred"><input type="text" name="province" placeholder="Province" required /></td>
 				   <td></td>
 				</tr>
+			</table>
+			<table name="three">
 				<tr>
 				   <td>Birthday :</td>
 				   <td>Birthplace</td>
@@ -53,10 +55,12 @@
 				<tr>
 				   <td><input type="date" name="birthday" placeholder="Birthday" required /></td>
 				   <td><input type="text" name="birthplace" placeholder="Birth Place" required /></td>
-				   <td><input type="number" name="homephone" placeholder="Home Phone" /></td>
-				   <td><input type="number" name="mobileno" placeholder="Mobile Number" /></td>
-				   <td><input type="text" name="emailadd" placeholder="Email Address" /></td>
+				   <td class="two-fifty"><input type="number" name="homephone" placeholder="Home Phone" /></td>
+				   <td class="two-fifty"><input type="number" name="mobileno" placeholder="Mobile Number" /></td>
+				   <td class="three-hundred"><input type="text" name="emailadd" placeholder="Email Address" /></td>
 				</tr>
+			</table>
+			<table name="four">
 				<tr>
 				   <td>SSS # :</td>
 				   <td>TIN #: </td>
@@ -65,28 +69,27 @@
 				   <td></td>
 				</tr>
 				<tr>
-				    <td><input type="number" name="sssno" placeholder="SSS #" /></td>
-					<td><input type="number" name="tinno" placeholder="TIN #" /></td>
-					<td><input type="number" name="phicno" placeholder="PHIC #" /></td>
-					<td><input type="number" name="pagibigno" placeholder="PAG-IBIG #" /></td>
-					<td></td>
+				    <td class="three-ten"><input type="number" name="sssno" placeholder="SSS #" /></td>
+					<td class="three-ten"><input type="number" name="tinno" placeholder="TIN #" /></td>
+					<td class="three-ten"><input type="number" name="phicno" placeholder="PHIC #" /></td>
+					<td class="three-ten"><input type="number" name="pagibigno" placeholder="PAG-IBIG #" /></td>
 				</tr>
+				</table>
+				<table name="five">
 				<tr>
 				   <td>Civil Status : </td>
 				   <td>Citizenship :</td>
-				   <td>Religion :</td>
-				   <td></td>
-				   <td></td>
+				   <td>Religion :</td>  
 				</tr>
 				<tr>
-				   <td><select name="civilstatus">
+				   <td width="100px"><select name="civilstatus">
                            <option value="s">Single</option>
                            <option value="m">Married</option>
                            <option value="d">Divorced</option>
                            <option value="w">Widowed</option>
                       </select></td>
-					  <td><input type="text" name="citizenship" placeholder="Citizenship" /></td>
-					  <td><input type="text" name="religion" placeholder="Religion" /></td>
+					  <td width="525px"><input type="text" name="citizenship" placeholder="Citizenship" /></td>
+					  <td width="525px"><input type="text" name="religion" placeholder="Religion" /></td>
 					  <td></td>
 					  <td></td>
 				</tr>
@@ -97,9 +100,9 @@
                 <table>
                    <tr>
                      <td></td>
-                     <td>Name</td>
-                     <td>Age</td>
-                     <td>Occupation</td>
+                     <td>Name:</td>
+                     <td>Age:</td>
+                     <td>Occupation:</td>
                    </tr>
                    <tr>
                      <td>Father</td>
@@ -119,10 +122,10 @@
 		        <table name="siblings">
 		           <tr>
 			         <td>#</td>
-				     <td>Name of Sibling</td>
+				     <td class="three-hundred">Name of Sibling</td>
 				     <td>Age</td>
-				     <td>Occupation</td>
-				     <td>Company/Location</td>
+				     <td class="three-hundred">Occupation</td>
+				     <td class="three-hundred">Company/Location</td>
 				     <td></td>
 			       </tr>
 			       <tr>
@@ -136,19 +139,29 @@
 		        </table><br/><br/>
 
                 <DIV class="tohide">
-		             Spouse's Name: <input type="text" name="spousename" placeholder="Name of Spouse" /><br/>
-		             Spouse's Contact Number: <input type="text" name="spousecontact" placeholder="Contact Number" /><br/>
-		             Spouse's Occupation/Employer: <input type="text" name="spouseoccupation" placeholder="Occupation/Employer" /><br/><br/>
-                </DIV>
+				    <table>
+					    <tr>
+						   <td>Spouse's Name:</td>
+						   <td><input type="text" name="spousename" placeholder="Name of Spouse" /></td>
+						</tr>
+						<tr>
+						    <td>Spouse's Contact Number:</td>
+ 							<td><input type="text" name="spousecontact" placeholder="Contact Number" /></td>
+					   </tr>
+					   <tr>
+					         <td>Spouse's Occupation/Employer:</td>
+							 <td><input type="text" name="spouseoccupation" placeholder="Occupation/Employer" /></td>
+					   </tr>
+                    </table><br/><br/>
 
                 <span class="headers">Children</span><br/>
 		        <table name="children">
 		           <tr>
 			         <td>#</td>
-				     <td>Name of Child</td>
+				     <td class="three-hundred">Name of Child</td>
 				     <td>Age</td>
-				     <td>Grade/Year</td>
-				     <td>School/Location</td>
+				     <td class="three-hundred">Grade/Year</td>
+				     <td class="three-hundred">School/Location</td>
 				     <td></td>
 			       </tr>
 			       <tr>
@@ -160,13 +173,28 @@
 		             <td><button class="addchild">Add child info</button></td>
 			       </tr>
 		        </table><br/><br/>
+				</DIV>
             </DIV>
 	   
 	        <DIV id="emergencycontact" class="tab-section">
-		           Emergency Contact's Name: <input type="text" name="emergencyname" placeholder="Person to notify in case of emergency" /><br/>
-		           Relationship with Emergency Contact: <input type="text" name="emergencyrel" placeholder="Relationship" /><br/>
-		           Emergency Contact's Address: <input type="text" name="emergencyaddress" placeholder="Address" /><br/>
-		           Emergency Contact's Number: <input type="number" name="emergencynumber" placeholder="Contact Number" /><br/><br/>
+			      <table>
+				     <tr>
+					   <td>Emergency Contact's Name</td>
+					   <td><input type="text" name="emergencyname" placeholder="Person to notify in case of emergency" /></td>
+					 </tr>
+					 <tr>
+					    <td>Relationship with Emergency Contact:</td>
+						<td><input type="text" name="emergencyrel" placeholder="Relationship" /></td>
+					 </tr>
+					 <tr>
+					    <td>Emergency Contact's Address:</td>
+						<td><input type="text" name="emergencyaddress" placeholder="Address" /></td>
+					 </tr>
+					 <tr>
+					    <td>Emergency Contact's Number:</td>
+						<td><input type="number" name="emergencynumber" placeholder="Contact Number" /></td>
+					 </tr>
+				  </table>
 	        </DIV>
 	  
 	        <DIV id="edhistory" class="tab-section">
@@ -174,10 +202,10 @@
 	           <table name="elementary">
 		   <tr>
 		      <td>#</td>
-			  <td>Name of School</td>
+			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
-			  <td>Awards</td>
+			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
@@ -193,10 +221,10 @@
 		<table name="highschool">
 		   <tr>
 		      <td>#</td>
-			  <td>Name of School</td>
+			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
-			  <td>Awards</td>
+			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
@@ -212,10 +240,10 @@
 		<table name="college">
 		   <tr>
 		      <td>#</td>
-			  <td>Name of School</td>
+			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
-			  <td>Awards</td>
+			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
@@ -231,10 +259,10 @@
 		<table name="vocational">
 		   <tr>
 		      <td>#</td>
-			  <td>Name of School</td>
+			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
-			  <td>Awards</td>
+			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
@@ -250,10 +278,10 @@
 		<table name="masteral">
 		   <tr>
 		      <td>#</td>
-			  <td>Name of School</td>
+			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
-			  <td>Awards</td>
+			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
@@ -270,10 +298,10 @@ Attainment/Awards" /></td>
 		<table name="others">
 		   <tr>
 		      <td>#</td>
-			  <td>Name of School</td>
+			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
-			  <td>Awards</td>
+			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
 		     <td>1</td>
@@ -289,7 +317,7 @@ Attainment/Awards" /></td>
 		<table name="license">
 		   <tr>
 		      <td>#</td>
-			  <td>License/Exam Taken</td>
+			  <td width="1000px">License/Exam Taken</td>
 			  <td>Percentage</td>
 		   </tr>
 		   <tr>
@@ -307,10 +335,10 @@ Attainment/Awards" /></td>
 		<table name="employment">
 		   <tr>
 		      <td>#</td>
-			  <td>Job Title</td>
+			  <td class="three-hundred">Job Title</td>
 			  <td>Date of Employment</td>
-			  <td>Starting Salary</td>
-			  <td>Ending Salary</td>
+			  <td class="three-hundred">Starting Salary</td>
+			  <td class="three-hundred">Ending Salary</td>
 		   </tr>
 		   <tr>
 		      <td>1</td>
@@ -321,9 +349,9 @@ Attainment/Awards" /></td>
 		  </tr>
 		   <tr>
 		      <td></td>
-			  <td>Employer's Name</td>
-			  <td>Employer's Address</td>
-			  <td>Employer's Contact Number</td>
+			  <td class="three-hundred">Employer's Name</td>
+			  <td class="three-hundred">Employer's Address</td>
+			  <td class="three-hundred">Employer's Contact Number</td>
 		   </tr>
 		   <tr>
 		      <td></td>
@@ -333,9 +361,9 @@ Attainment/Awards" /></td>
 		  </tr>
 		   <tr>
 		      <td></td>
-			  <td>Supervisor's Name</td>
-			  <td>Supervisor's Contact Number</td>
-			  <td>Reason for Leaving</td>
+			  <td class="three-hundred">Supervisor's Name</td>
+			  <td class="three-hundred">Supervisor's Contact Number</td>
+			  <td class="three-hundred">Reason for Leaving</td>
 			  <td></td>
 		   </tr>
 		  <tr>
@@ -349,19 +377,24 @@ Attainment/Awards" /></td>
 	  </DIV>
 	  
 	  <DIV id="crimes" class="tab-section">
-	  <span>Has the employee ever been convicted of a criminal offense?</span>
-		<select name="convicted">
+	   <table>
+	      <tr>
+		    <td>Has the employee ever been convicted of a criminal offense?</td>
+			<td><select name="convicted">
 		   <option>No</option>
 		   <option value="y">Yes</option>
-		</select><br/><br/>
+		</select></td>
+	      </tr>
+	   </table>
+		<br/><br/>
 		<DIV class="tohide">
 		<span class="headers">Past criminal offenses</span><br/>
 		<table name="criminaloffense">
 		   <tr>
 		      <td>#</td>
-			  <td>Criminal Offense</td>
-			  <td>Date of Offense</td>
-			  <td>Place of Offence</td>
+			  <td class="four-hundred">Criminal Offense</td>
+			  <td class="four-hundred">Date of Offense</td>
+			  <td class="four-hundred">Place of Offence</td>
 		   </tr>
 		   <tr>
 		      <td>1</td>

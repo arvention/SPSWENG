@@ -1,4 +1,4 @@
-package Equilibrium_Classes;
+package Database;
 
 import java.sql.Connection;
 import java.sql.Date;

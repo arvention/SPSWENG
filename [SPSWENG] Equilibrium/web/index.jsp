@@ -1,3 +1,5 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,11 +14,11 @@
     <body bgcolor= "#E8E8E8">
         <DIV class = "pageTop"></div>
         <DIV class = "pageMid" align="center"><IMG class ="compLogo" src = "img/eqlogobig.png"></div>
-        <form action ="homepage.html">
+        <form action ="Login" method = "post">
             <DIV class = "loginForm" align = "center">
                 <p></p>
-                <input type="text" style="margin-top: 30px" class= "inputBox" placeholder="Username" id="username" required/>
-                <input type="password" class= "inputBox" placeholder="Password" id="password" required/>
+                <input type="text" name = "username" style="margin-top: 30px" class= "inputBox" placeholder="Username" id="username" required/>
+                <input type="password" name = "password" class= "inputBox" placeholder="Password" id="password" required/>
                <div id = "status"></div>
             </div> 
             <div id="button-buttons" align="center">

@@ -1,4 +1,4 @@
- $(function(){
+$(document).ready(function(){
  var siblingcount =1;
 			  var childcount = 1;
               var elemcount =1;
@@ -259,10 +259,10 @@
 			  $(document).on("click", ".removeemployment", function(e){
 			       e.preventDefault();
 				   employmentcount--;
-				   alert("Will implement this later. :(");
-				   /*var toremove = $(this).parent().parent();
+				   //alert("Will implement this later. :(");
+				   var toremove = $(this).parent().parent();
 				   $(toremove).nextUntil("input[name=jobreason]").remove();
-				   $(toremove).remove();*/
+				   $(toremove).remove();
 			  });
 			  
 			 $(document).on("click", ".addcriminaloffense", function(e){
@@ -281,10 +281,10 @@
 				$(this).parent().parent().remove();
 			 });
 			 
-			$('.tabSection').hide();
+			$('.tab-section').hide();
 	        $('.tabs a').bind('click', function(e){
 		             $('.tabs a.current').removeClass('current');
-		             $('.tabSection:visible').hide();
+		             $('.tab-section:visible').hide();
 		             $(this.hash).show();
 		             $(this).addClass('current');
 		             e.preventDefault();

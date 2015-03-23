@@ -1,5 +1,5 @@
 button{
-  background-color: #E80000;
+  background-color: red;
   border-color: black;
   color: white;
   border-radius: 2px;
@@ -8,6 +8,7 @@ button{
   padding-right: 10px;
   font-family: Arial, sans-serif;
   font-size: 12;
+  opacity: .55;
 }
 
 button:hover{
@@ -17,7 +18,7 @@ button:hover{
 
 body{
  background-color: #E8E8E8;
-			margin: 50px 0px;
+ margin: 50px 0px;
 			padding-left: 100px;
 			padding-right: 100px;
  font-family: Arial, sans-serif;
@@ -32,7 +33,7 @@ table{
 input[type=submit]{
     position: relative;
 	left: 85%;
-	background-color: #E80000;
+	background-color: red;
   border-color: black;
   color: white;
   border-radius: 2px;
@@ -41,6 +42,10 @@ input[type=submit]{
   padding-right: 10px;
   font-family: Arial, sans-serif;
   font-size: 12;
+  opacity: .55;
+  position: relative;
+  up: 500px;
+  left: 1100px;
 }
 
 input[type=submit]:hover{
@@ -66,22 +71,23 @@ select{
 
 DIV.footer{
 			width: 100%;
-			height: 43px;
-			position: relative;
-			top: 5%;
-			left: 0;
-		   z-score: 1;
+			position: fixed;
+                        top: 90%;
+                        left: 0%;
+                        height: 500px;
 			text-align:center;
 			color: #808080;
 			font-size: 11;
 			font-family: "Arial";
+                        background-color: white;
 		}
 		
 DIV.tab-section {
-	background:#E8E8E8;
+	background-color: white;
 	padding: 10px;
 	border: 2px solid #A7A4A4;
 	border-radius: 5px;
+	opacity: .85;
 }
 
 .headers{
@@ -118,6 +124,7 @@ DIV.tab-section {
 	color: black;
 	font-family: "Verdana";
 	font-size: 14px;
+	background-color: white;
 }
 
 .tabs li a:visited{
@@ -153,4 +160,8 @@ DIV.tab-section {
 
 .four-hundred{
   width: 400px;
+}
+
+text{
+	border: solid black;
 }

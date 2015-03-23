@@ -74,6 +74,12 @@
                         {
                 %>
                             <h4><hr/>Employee ID not found.</h4>
+                <%
+                        }
+                        else if(errorFlags.get(3))
+                        {
+                %>
+                            <h4><hr/>Failed to send request. Please try again.</h4>
                 <%        
                         }
                     }

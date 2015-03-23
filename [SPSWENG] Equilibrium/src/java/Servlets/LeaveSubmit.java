@@ -104,13 +104,15 @@ public class LeaveSubmit extends HttpServlet {
             if (endDate.before(startDate)) {
                 errorFlags.add(true);
                 errorFlags.add(false);
-                errorFlags.add(false);                
+                errorFlags.add(false);     
+                errorFlags.add(false);           
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
             } else if (getDateDiff(startDate, endDate) > (int) Float.parseFloat(request.getParameter("dayCount"))) {
                 errorFlags.add(false);
                 errorFlags.add(true);
+                errorFlags.add(false);
                 errorFlags.add(false);
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
@@ -119,6 +121,7 @@ public class LeaveSubmit extends HttpServlet {
                 errorFlags.add(false);
                 errorFlags.add(false);
                 errorFlags.add(true);
+                errorFlags.add(false);
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
@@ -131,11 +134,17 @@ public class LeaveSubmit extends HttpServlet {
                 String leaveType = request.getParameter("leaveType");
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
-                db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
-                reqDispatcher = request.getRequestDispatcher("LeaveSuccess.html");
-                
                 //send an email to the manager
-                en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate, duration);
+                if(en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate, duration))
+                {
+                    errorFlags.add(false);
+                    db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
+                    reqDispatcher = request.getRequestDispatcher("LeaveSuccess.html");
+                }
+                else{
+                    errorFlags.add(true);
+                    reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
+                }
             }
             reqDispatcher.forward(request, response);
         }

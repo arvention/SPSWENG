@@ -5,7 +5,6 @@
  */
 package Database;
 
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -47,10 +46,10 @@ public class EmailNotifier {
         return emailInstance;
     }
 
-    public boolean sendMemo(String to){
-        
-        boolean issend= true;
-        
+    public boolean sendMemo(String to) {
+
+        boolean issend = true;
+
         try {
             // Create a default MimeMessage object.
             Message message = new MimeMessage(session);
@@ -66,7 +65,7 @@ public class EmailNotifier {
             message.setSubject("Memo");
 
             // Now set the actual message
-            message.setText("Hi "+ ","+ "You received a memo from your superior. ");
+            message.setText("Hi " + "," + "You received a memo from your superior. ");
 
             // Send message
             Transport transport = session.getTransport("smtps");
@@ -75,19 +74,19 @@ public class EmailNotifier {
             transport.close();
         } catch (MessagingException mex) {
             mex.printStackTrace();
-            issend=false;
+            issend = false;
         }
-        
+
         return issend;
     }
-    
-    
-    public void sendLeaveRequest(int empEntryNum, String leaveType, Date startDate, Date endDate, float dateCount) {
+
+    public boolean sendLeaveRequest(int empEntryNum, String leaveType, Date startDate, Date endDate, float dateCount) {
+        boolean isSent = true;
         System.out.println("EMP NUM = " + empEntryNum);
-        
+
         int manEntryNum = db.getManager(empEntryNum);
         to = db.getEmailAddress(manEntryNum);
-        
+
         String manName = db.getFirstName(manEntryNum);
         String empName = db.getFirstName(empEntryNum) + " " + db.getLastName(empEntryNum);
         int empID = db.getIDNumber(empEntryNum);
@@ -98,12 +97,12 @@ public class EmailNotifier {
         int startYear = cal.get(Calendar.YEAR);
         int startMonth = cal.get(Calendar.MONTH) + 1;
         int startDay = cal.get(Calendar.DAY_OF_MONTH);
-        
+
         cal.setTime(endDate);
         int endYear = cal.get(Calendar.YEAR);
         int endMonth = cal.get(Calendar.MONTH) + 1;
         int endDay = cal.get(Calendar.DAY_OF_MONTH);
-        
+
         try {
             // Create a default MimeMessage object.
             Message message = new MimeMessage(session);
@@ -133,6 +132,9 @@ public class EmailNotifier {
             transport.close();
         } catch (MessagingException mex) {
             mex.printStackTrace();
+            isSent = false;
         }
+        
+        return isSent;
     }
 }

@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@
          <div class = "pageTop">
             <img class="compLogo" src="img/eqnavlogo.png">
             <hr width = "75%" SIZE = "1"/>
-            <p> Welcome, ${name} </p>
+            <p> Welcome, ${employee.getFirstName()} ${employee.getLastName()} </p>
         </div>
         <div class = "pageMid">
             <a href="leaveapplication.html"><button id="login" class="selectButton"> Apply for a Leave</button></a>

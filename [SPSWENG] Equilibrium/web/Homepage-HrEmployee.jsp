@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@
         <div class = "pageTop">
             <IMG class="compLogo" src="img/eqnavlogo.png" />
             <hr width = "75%" SIZE = "1"/>
-            <p> Welcome, ${name} </p>
+            <p> Welcome, ${employee.getFirstName()} ${employee.getLastName()}  </p>
         </div>
         <div class = "pageMid">
             <a href="viewemp.html"><button id="login" class="selectButton">Manage Employee Records</button></a>

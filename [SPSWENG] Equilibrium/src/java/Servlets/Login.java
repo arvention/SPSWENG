@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -82,9 +83,12 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         Database database = Database.getInstance();
         
+        HttpSession session = request.getSession();
+        
         modelEmployee modelEmployee = database.getEmployeeAccount(username, password);
+        session.setAttribute("employee", modelEmployee);
+        
         if(modelEmployee != null){
-            request.setAttribute("name", modelEmployee.getFirstName() + " " + modelEmployee.getLastName());
             if(modelEmployee.getEmployeeType().equalsIgnoreCase("Employee")){
                 RequestDispatcher view = request.getRequestDispatcher("Homepage-Employee.jsp");
                 view.forward(request, response);

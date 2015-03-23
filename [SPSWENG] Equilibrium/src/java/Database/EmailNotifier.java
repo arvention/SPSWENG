@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
+package Equilibrium_Classes;
 
 
 import java.util.Calendar;
@@ -82,13 +82,12 @@ public class EmailNotifier {
     }
     
     
-    public void sendLeaveRequest(int empEntryNum, String leaveType, Date startDate, Date endDate) {
+    public void sendLeaveRequest(int empEntryNum, String leaveType, Date startDate, Date endDate, float dateCount) {
         System.out.println("EMP NUM = " + empEntryNum);
         
         int manEntryNum = db.getManager(empEntryNum);
         to = db.getEmailAddress(manEntryNum);
         
-        System.out.println("MANAGER NUM = " + manEntryNum + "\nEMAIL = " + to);
         String manName = db.getFirstName(manEntryNum);
         String empName = db.getFirstName(empEntryNum) + " " + db.getLastName(empEntryNum);
         int empID = db.getIDNumber(empEntryNum);
@@ -124,7 +123,8 @@ public class EmailNotifier {
                     + "\n\nYour employee, " + empName + ", with the ID Number, " + empID + ", has submitted a leave request with the following details: \n"
                     + "\n- Leave Type: " + leaveType + "\n"
                     + "- Start Date: " + startMonth + " - " + startDay + " - " + startYear + "\n"
-                    + "- End Date: " + endMonth + " - " + endDay + " - " + endYear + "\n");
+                    + "- End Date: " + endMonth + " - " + endDay + " - " + endYear + "\n"
+                    + "- Number of Days: " + dateCount);
 
             // Send message
             Transport transport = session.getTransport("smtps");

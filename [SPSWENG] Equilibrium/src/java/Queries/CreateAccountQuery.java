@@ -82,10 +82,10 @@ public class CreateAccountQuery {
             rs = stmt.executeQuery(sql);
           
             while(rs.next()){
-               
+               //fname mname
                 System.out.println(rs.getInt(1)+" HOHOHO");
-                bean.addResult( rs.getInt(1) , rs.getString(3) ,rs.getString(5) , rs.getString(4),rs.getInt(2));
-          
+                bean.addResult( rs.getInt(1) , rs.getString(4) ,rs.getString(5) , rs.getString(3),rs.getInt(2));
+                
             }
             
         } catch(SQLException e){

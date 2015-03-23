@@ -36,10 +36,11 @@
 		<span class="idnum"><%=result.getempid() %></span><br>
 		<span class="accStatus">No Account</span>
 		<select required name="type">
-			<option value="sm"> Senior Manager </option>
-			<option value="m"> Manager </option>
-			<option value ="hr"> HR Employee </option>
-			<option selected value="e"> Employee </option>
+			<option value="seniormanager"> Senior Manager </option>
+			<option value="manager"> Manager </option>
+                        <option value="hrhead"> HR Head </option>
+			<option value ="hremployee"> HR Employee </option>
+			<option selected value="employee"> Employee </option>
                         <input type="hidden"  name="entry" value="<%=result.getentrynum()%>">
                       <input type ="submit" value="Add Account">  
                       

@@ -9,10 +9,12 @@
         <title>Leave Application</title>
 
         <!-- Bootstrap -->
+        <!--
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/jquery-ui.min.css" rel="stylesheet">
+        -->
         <link rel="stylesheet" type="text/css" 	media="all" href="css/LeaveForm.css" />
-
+        
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/jquery-ui.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

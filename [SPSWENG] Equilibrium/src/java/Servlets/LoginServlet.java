@@ -3,19 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Servlets;
 
+import Database.Database;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thursday
+ * @author Arren Antioquia
  */
 public class LoginServlet extends HttpServlet {
 
@@ -71,7 +74,42 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        Database database = Database.getInstance();
+        
+        HttpSession session = request.getSession();
+        
+        modelEmployee modelEmployee = database.getEmployeeAccount(username, password);
+        session.setAttribute("employee", modelEmployee);
+        
+        if(modelEmployee != null){
+            if(modelEmployee.getEmployeeType().equalsIgnoreCase("Employee")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-Employee.jsp");
+                view.forward(request, response);
+            }
+            else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Hr Head")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-HrHead.jsp");
+                view.forward(request, response);
+            }
+            else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Hr Employee")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-HrEmployee.jsp");
+                view.forward(request, response);
+            }
+            else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Manager")){
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-Manager.jsp");
+                view.forward(request, response);
+            }
+        }
+        else{
+            request.setAttribute("error", "Invalid Username/Password");
+            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+            view.forward(request, response);
+        }
     }
 
     /**

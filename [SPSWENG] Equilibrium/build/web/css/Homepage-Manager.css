@@ -1,0 +1,56 @@
+DIV.pageTop{
+    margin-top: 3px;
+    height:200px;
+    text-align: center;
+}
+
+DIV.pageMid{
+    height: 350px;
+    text-align: center;
+}
+
+DIV.pageBot{
+    margin-top: 3px;
+    text-align:center;
+    color: #808080;
+    font-size: 11px;
+    font-family: "Arial";
+}
+
+DIV.buttonDiv{
+    margin-right:auto;
+    margin-left: auto;
+    width: 1050px;
+    height: 360px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+IMG.compLogo{
+    width: 100px;
+    height: auto;
+}
+
+.buttonDividerLine{
+    border-left:1px solid black;
+    height: 300px;
+    width: 50px;
+}
+
+.selectButton{
+    position:relative;
+    width: 220px;
+    height: 45px;
+    background-color: #E80000;
+    color: white;
+    cursor: hand;	
+    border: 1px solid rgba(0,0,0,0.1);
+    margin: 0 auto;	
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.selectButton:hover{
+    opacity: 0.75;
+    border: 1.5px solid black;	
+}

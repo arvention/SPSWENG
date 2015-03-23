@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Leave Approval - EQuilibrium</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel ="shortcut icon" href="eq logo.ico"/>
+        <link href = "css/bootstrap.min.css" rel = "stylesheet" />
+        <link href = "css/jquery-ui.min.css" rel = "stylesheet" />
+        <link href = "css/ApproveLeave.css" rel = "stylesheet" />
+
+	<script src = "js/jquery.min.js"></script>
+	<script src = "js/jquery-ui.min.js"></script>
+	<script src ="js/bootstrap.min.js"></script>
+	<script src = "js/ApproveLeave.js"></script>
+    </head>
+    <body>
+        <div class= "header">
+        </div>
+        <div class= "content" align="center">
+            <div class="titleText"> <h4>Good day! You have a pending leave request:</h4></div>
+            <div class="table">
+                <table width="100%" onclick="handleClick(event)" border="1">
+                    <tr>
+                        <th colspan="2">Leave Approval</th>
+                    </tr>
+                    <tr>
+                        <td>Type of Request</td>
+                        <td>Name of Employee</td>
+                    </tr>
+                    <tr></tr>
+                </table>
+            </div><br/><br/>
+            <form>
+                <input class="submitButton" type="submit" value="Approve" name="bApprove"/>
+                <input class="back" type="submit" value="Decline" name="bDecline"/>
+            </form>
+        </div>
+        <div class= "footer">
+            <hr width="75%"/>
+            EQUILIBRIUM INTERTRADE CORP.
+        </div>
+    </body>
+</html>

@@ -21,19 +21,25 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "jetisjet";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("UNABLE TO CONNECT HELPPPP");
         }
     }
 
     public static Database getInstance() {
         return databaseInstance;
     }
-
+    
+    public Connection getConnection(){
+        return this.con;
+    }
+    
+    
 // - FUNCTIONS -------------------------------------------------------------------------------
     public int getManager(int entryNum) {
         int manEntryNum = -1;

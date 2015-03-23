@@ -1,0 +1,47 @@
+.memoForm{
+    background-color: white;
+    border-radius: 16px;
+    width:750px;
+    height: 450px;
+    opacity: 0.55;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.memoText{
+    margin-left: 125px;
+    margin-top: 20px;
+    font-color: black;
+    border: 1px solid black;
+    font-family: Arial;
+    padding-left: 4px;
+}
+
+.titleText{
+    font-size: 35px;
+    font-family: Arial;
+    font-weight: bold;
+    color: red;
+    opacity: .85;
+}
+
+.contentText{
+    font-size: 17px;
+    font-family: Arial;
+    color: red;
+    margin-left: 125px;
+    margin-top: 8px;
+}
+
+DIV.pageBottom{
+    padding-top: 130px;
+    text-align:center;
+    color: #808080;
+    font-size: 11px;
+    font-family: "Arial";
+}
+
+a{
+    color:red;
+    opacity: .80;
+}

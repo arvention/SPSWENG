@@ -7,7 +7,6 @@
    </head>
    <body>
         <form>
-		    <input type="submit" value="Submit Employee Information" />
 			<ul class="tabs">
            <li><a href="#personalinfo">Personal Information</a></li>
            <li><a href="#family">Family Relations</a></li>
@@ -121,7 +120,7 @@
                 <span class="headers">Siblings</span><br/>                
 		        <table name="siblings">
 		           <tr>
-			         <td>#</td>
+			         
 				     <td class="three-hundred">Name of Sibling</td>
 				     <td>Age</td>
 				     <td class="three-hundred">Occupation</td>
@@ -129,12 +128,12 @@
 				     <td></td>
 			       </tr>
 			       <tr>
-			         <td>1</td>
+			         
 			         <td><input type="text" name="siblingname" placeholder="ex. Virma Lopez" /></td>
 		             <td><input type="number" name="siblingage" placeholder="ex. 14" /></td>
 		             <td><input type="text" name="siblingoccupation" placeholder="ex. Student" /></td>
 		             <td><input type="text" name="siblingcompany" placeholder="ex. Binan, Laguna" /></td>
-		             <td><button class="addsibling">Add sibling info</button></td>
+		             <td><button class="addsibling">+</button></td>
 			       </tr>
 		        </table><br/><br/>
 
@@ -157,7 +156,7 @@
                 <span class="headers">Children</span><br/>
 		        <table name="children">
 		           <tr>
-			         <td>#</td>
+			         
 				     <td class="three-hundred">Name of Child</td>
 				     <td>Age</td>
 				     <td class="three-hundred">Grade/Year</td>
@@ -165,12 +164,12 @@
 				     <td></td>
 			       </tr>
 			       <tr>
-			         <td>1</td>
+			         
 			         <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez" /></td>
 		             <td><input type="text" name="childrengage" placeholder="ex. 14" /></td>
 		             <td><input type="text" name="childrenyear" placeholder="ex. II" /></td>
 		             <td><input type="text" name="childschool" placeholder="ex. Binan, Laguna" /></td>
-		             <td><button class="addchild">Add child info</button></td>
+		             <td><button class="addchild">+</button></td>
 			       </tr>
 		        </table><br/><br/>
 				</DIV>
@@ -201,130 +200,129 @@
 	           <span class="headers">Elementary</span><br/>
 	           <table name="elementary">
 		   <tr>
-		      <td>#</td>
+		      
 			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
 			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
-		     <td>1</td>
+
 			 <td><input type="text" name="elemschool" placeholder="ex. Don Bosco School" required /></td>
 			 <td><input type="date" name="elemfrom" placeholder="ex. 2000" required /></td>
 			 <td><input type="date" name="elemto" placeholder="ex. 2012" required /></td>
 			 <td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance Award" /></td>
-			 <td><button class="addelem">Add elementary school</button></td>
+			 <td><button class="addelem">+</button></td>
 		   </tr>
 		</table><br/><br/>
 		
 		<span class="headers">High School</span><br/>
 		<table name="highschool">
 		   <tr>
-		      <td>#</td>
+
 			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
 			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
-		     <td>1</td>
+
 			 <td><input type="text" name="highschool" placeholder="Name of School" required /></td>
 			 <td><input type="date" name="highschoolfrom" placeholder="Year Start" required /></td>
 			 <td><input type="date" name="highschoolto" placeholder="Year End" required /></td>
 			 <td><input type="text" name="highschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addhighschool">Add high school</button></td>
+			 <td><button class="addhighschool">+</button></td>
 		   </tr>
 	    </table><br/><br/>
 		
 		<span class="headers">College</span><br/>
 		<table name="college">
 		   <tr>
-		      <td>#</td>
+
 			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
 			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
-		     <td>1</td>
+
 			 <td><input type="text" name="college" placeholder="Name of School" required /></td>
 			 <td><input type="date" name="collegefrom" placeholder="Year Start" required /></td>
 			 <td><input type="date" name="collegeto" placeholder="Year End" required /></td>
 			 <td><input type="text" name="collegeawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addcollege">Add college</button></td>
+			 <td><button class="addcollege">+</button></td>
 		   </tr>
 	    </table><br /><br/>
 		
 		<span class="headers">Vocational</span><br/>
 		<table name="vocational">
 		   <tr>
-		      <td>#</td>
+
 			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
 			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
-		     <td>1</td>
+
 			 <td><input type="text" name="vocationalschool" placeholder="Name of School" /></td>
 			 <td><input type="date" name="vocationalschoolfrom" placeholder="Year Start" /></td>
 			 <td><input type="date" name="vocationalschoolto" placeholder="Year End" /></td>
 			 <td><input type="text" name="vocationalschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addvocational">Add vocational school</button></td>
+			 <td><button class="addvocational">+</button></td>
 		   </tr>
 	    </table><br/><br/>
 		
 		<span class="headers">Masteral</span><br/>
 		<table name="masteral">
 		   <tr>
-		      <td>#</td>
+
 			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
 			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
-		     <td>1</td>
+
 			 <td><input type="text" name="masteralschool" placeholder="Name of School" /></td>
 			 <td><input type="date" name="masteralschoolfrom" placeholder="Year Start" /></td>
 			 <td><input type="date" name="masteralschoolto" placeholder="Year End" /></td>
-			 <td><input type="text" name="masteralschoolawards" placeholder="Degree Taken/Highest 
-Attainment/Awards" /></td>
-			 <td><button class="addmasteral">Add masteral school</button></td>
+			 <td><input type="text" name="masteralschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
+			 <td><button class="addmasteral">+</button></td>
 		   </tr>
 	    </table><br/><br/>
 		
 		<span class="headers">Others</span><br/>
 		<table name="others">
 		   <tr>
-		      <td>#</td>
+
 			  <td class="three-hundred">Name of School</td>
 			  <td>From</td>
 			  <td>To</td>
 			  <td class="five-hundred">Awards</td>
 		   </tr>
 		   <tr>
-		     <td>1</td>
+
 			 <td><input type="text" name="otherschool" placeholder="Name of School" /></td>
 			 <td><input type="date" name="otherfrom" placeholder="Year Start" /></td>
 			 <td><input type="date" name="otherto" placeholder="Year End" /></td>
 			 <td><input type="text" name="otherawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addother">Add other school</button></td>
+			 <td><button class="addother">+</button></td>
 		   </tr>
 	    </table><br/><br/>
 		
 		<span class="headers">Licenses/Exams</span><br/>
 		<table name="license">
 		   <tr>
-		      <td>#</td>
+
 			  <td width="1000px">License/Exam Taken</td>
 			  <td>Percentage</td>
 		   </tr>
 		   <tr>
-		      <td>1</td>
+
 			  <td><input type="text" name="license" placeholder="License/Exam Taken" /></td>
 			  <td><input type="number" name="licensepercentage" placeholder="Percentage Result" /></td>
-			  <td><button class="addlicense">Add license/exam info</button></td>
+			  <td><button class="addlicense">+</button></td>
 		   </tr>
 		</table><br/><br/>
 	  </DIV>
@@ -334,14 +332,14 @@ Attainment/Awards" /></td>
 		<span>Note: Begin with present or most recent job.</span><br/><br/>
 		<table name="employment">
 		   <tr>
-		      <td>#</td>
+
 			  <td class="three-hundred">Job Title</td>
 			  <td>Date of Employment</td>
 			  <td class="three-hundred">Starting Salary</td>
 			  <td class="three-hundred">Ending Salary</td>
 		   </tr>
 		   <tr>
-		      <td>1</td>
+
 			  <td><input type="text" name="jobtitle" placeholder="Job Title" /></td>
 			  <td><input type="date" name="jobemploydate" placeholder="Date of Employment" /></td>
 			  <td><input type="number" name="jobbegsal" placeholder="Starting Salary" /></td>
@@ -371,7 +369,7 @@ Attainment/Awards" /></td>
 			  <td><input type="text" name="jobsupname" placeholder="Supervisor Name" /></td>
 			  <td><input type="number" name="jobsupno" placeholder="Supervisor Number" /></td>
 			  <td><input type="text" name="jobreason" placeholder="Reason for Leaving" /></td>
-			  <td><button class="addemployment">Add job history</button></td>
+			  <td><button class="addemployment">+</button></td>
 		   </tr>
 		</table><br/>
 	  </DIV>
@@ -391,25 +389,26 @@ Attainment/Awards" /></td>
 		<span class="headers">Past criminal offenses</span><br/>
 		<table name="criminaloffense">
 		   <tr>
-		      <td>#</td>
+
 			  <td class="four-hundred">Criminal Offense</td>
 			  <td class="four-hundred">Date of Offense</td>
 			  <td class="four-hundred">Place of Offence</td>
 		   </tr>
 		   <tr>
-		      <td>1</td>
+
 			  <td><input type="text" name="offensename" placeholder="Criminal Offense" /></td>
 			  <td><input type="text" name="offensedate" placeholder="Date of Offence" /></td>
 			  <td><input type="text" name="offenceplace" placeholder="Place of Offence" /></td>
-			  <td><button class="addcriminaloffense">Add criminal offense history</button></td>
+			  <td><button class="addcriminaloffense">+</button></td>
 		   </tr>
 		</table>
 	    </DIV>
 	  </DIV>
-	     <br/></br>
+	     <br/><input type="submit" value="Submit" />
 	  </form>
+          <br/><br/>
 	  <DIV class= "footer">
-			<hr width="75%"/>
+			<br/><hr width="75%"/>
 			EQUILIBRIUM INTERTRADE CORP.
 	   </DIV>
 	   

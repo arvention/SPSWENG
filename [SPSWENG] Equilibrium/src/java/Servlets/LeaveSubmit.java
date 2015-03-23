@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
+package Equilibrium_Servlet;
 
-import Database.EmailNotifier;
-import Database.Database;
+import Equilibrium_Classes.Database;
+import Equilibrium_Classes.EmailNotifier;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -123,6 +123,11 @@ public class LeaveSubmit extends HttpServlet {
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
             }else {
+                errorFlags.add(false);
+                errorFlags.add(false);
+                errorFlags.add(false);
+                
+                reqSession.setAttribute("errorFlags", errorFlags);
                 String leaveType = request.getParameter("leaveType");
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
@@ -130,7 +135,7 @@ public class LeaveSubmit extends HttpServlet {
                 reqDispatcher = request.getRequestDispatcher("LeaveSuccess.html");
                 
                 //send an email to the manager
-                en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate);
+                en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate, duration);
             }
             reqDispatcher.forward(request, response);
         }

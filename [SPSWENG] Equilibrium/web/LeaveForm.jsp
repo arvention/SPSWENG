@@ -72,9 +72,9 @@
                             }
                         }
                     %>
-
+                <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
             </form>
-            <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
+            
             <%
                 modelEmployee modelEmployee = (modelEmployee) reqSession.getAttribute("employee");
             %>

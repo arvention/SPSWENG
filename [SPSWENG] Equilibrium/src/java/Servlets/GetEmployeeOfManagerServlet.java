@@ -7,6 +7,7 @@
 package Servlets;
 
 import AddAccountBeans.searchEmployeeBean;
+import Models.modelEmployee;
 import Queries.SaveMemoQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,13 +62,14 @@ public class GetEmployeeOfManagerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession session = request.getSession();
+        modelEmployee modelEmployee = (modelEmployee) session.getAttribute("employee");
+        
         SaveMemoQuery GA = new SaveMemoQuery();
-        searchEmployeeBean result = GA.GetAllEmployeeManager(4); 
-        HttpSession session= request.getSession();
+        searchEmployeeBean result = GA.GetAllEmployeeManager(modelEmployee.getEntryNum()); 
+        
         session.setAttribute("ManagerEmployee", result);
         response.sendRedirect("FileMemo/memo.jsp");
-        
-        
     }
 
     /**

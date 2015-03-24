@@ -71,7 +71,7 @@ public class GetEmployeeOfManagerServlet extends HttpServlet {
         //System.out.println(modelEmployee.getEntryNum()+"HEREEE");
         
         
-        searchEmployeeBean result = GA.GetAllEmployeeManager(emp.getEmployeeID()); 
+        searchEmployeeBean result = GA.GetAllEmployeeManager(emp.getEntryNum()); 
         
         
         session.setAttribute("ManagerEmployee", result);

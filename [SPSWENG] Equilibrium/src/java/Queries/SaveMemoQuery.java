@@ -33,6 +33,7 @@ public class SaveMemoQuery {
             stmt = Database.getInstance().getConnection().createStatement();
             rs = stmt.executeQuery(sql);  
             while(rs.next()){
+                System.out.println("RESULT IS FOUND!!!");
                 bean.addResult( rs.getInt(1) , rs.getString(3) ,rs.getString(5) , rs.getString(4),rs.getInt(2));
             }
             

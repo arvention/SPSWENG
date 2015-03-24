@@ -240,4 +240,180 @@ public class Database {
         }
         return null;
     }
+    
+
+    // -- RELATIVE -------------------------------------------------------------
+    // -- parent ---------
+    public void addRelative(String name, String relation, int empEntryNum, int age, String occupation) {
+        int maxRelative = 1;
+
+        sql = "SELECT MAX(relativeID) FROM relative";
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                maxRelative = rs.getInt("MAX(relativeID)") + 1;
+            }
+
+            sql = "INSERT INTO relative(relativeID, name, relation, empEntryNum, age, occupation)"
+                    + " VALUES(" + maxRelative + ", '" + name + "', '" + relation + "', " + empEntryNum
+                    + ", " + age + ", '" + occupation + "')";
+
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // -- spouse / emergency --------
+    public void addRelative(String name, String relation, int empEntryNum, String occloc, long contactNum) {
+        int maxRelative = 1;
+
+        sql = "SELECT MAX(relativeID) FROM relative";
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                maxRelative = rs.getInt("MAX(relativeID)") + 1;
+            }
+
+            if (relation.equals("Spouse")) {
+                sql = "INSERT INTO relative(relativeID, name, relation, empEntryNum, occupation, contactNum)"
+                        + " VALUES(" + maxRelative + ", '" + name + "', '" + relation + "', " + empEntryNum
+                        + ", '" + occloc + "', " + contactNum + ")";
+            } else {
+                sql = "INSERT INTO relative(relativeID, name, relation, empEntryNum, occupationLocation, contactNum)"
+                        + " VALUES(" + maxRelative + ", '" + name + "', '" + relation + "', " + empEntryNum
+                        + ", '" + occloc + "', " + contactNum + ")";
+            }
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // -- sibling / children ------------
+    public void addRelative(String name, String relation, int empEntryNum, int age, String occupation, String location) {
+        int maxRelative = 1;
+
+        sql = "SELECT MAX(relativeID) FROM relative";
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                maxRelative = rs.getInt("MAX(relativeID)") + 1;
+            }
+
+            sql = "INSERT INTO relative(relativeID, name, relation, empEntryNum, age, occupation, occupationLocation)"
+                    + " VALUES(" + maxRelative + ", '" + name + "', '" + relation + "', " + empEntryNum
+                    + ", " + age + ", '" + occupation + "', '" + location + "')";
+
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // -- CRIMINAL OFFENSE ------------------------------------
+    public void addOffense(int empEntryNum, String criminalOffense, Date dateOfOffense, String placeOfOffense) {
+        int maxOffense = 1;
+        sql = "SELECT MAX(criminalOffenseHistoryID) FROM criminal_offense_history";
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                maxOffense = rs.getInt("MAX(criminalOffenseHistoryID)") + 1;
+            }
+
+            sql = "INSERT INTO criminal_offense_history"
+                    + " VALUES(" + maxOffense + ", " + empEntryNum + ", '" + criminalOffense + "', '" + dateOfOffense + "', '" + placeOfOffense + "')";
+
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //-- BIO DATA ---------------------------------------------------------------------------------------
+    public void addInfo(String lastName, String firstName, String middleName, String address, Date birthDay,
+                            String birthplace, long mobileNumber, String SSSNumber, String TINNumber, String PHICNumber, 
+                            String PAGIBIGNumber, String civilStatus, String citizenship, String religion, 
+                            int salary, String emailAddress, int homePhone){
+        int maxEntry = 1;
+        
+        sql = "SELECT MAX(entryNum) FROM employee";
+        
+        try{
+            rs = stmt.executeQuery(sql);
+            if(rs.next())
+            {
+                maxEntry = rs.getInt("MAX(entryNum)") + 1;
+            }
+            
+            sql = "INSERT INTO employee(entryNum, lastName, firstName, middleName, address, birthDay, birthplace, mobileNumber, SSSNumber, TINNumber"
+                    + ", PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, isDeleted, emailAddress, homePhone)"
+                    + " VALUES("+ maxEntry + ", '" + lastName + "', '" + firstName + "', '" + middleName + "', '" + address + "', '" + birthDay + "', '" + birthplace + 
+                    "', " + mobileNumber + ", '" + SSSNumber + "', '" + TINNumber + "', '" + PHICNumber + "', '" + PAGIBIGNumber + "', '" + civilStatus + "', '" + citizenship
+                    + "', '" + religion + "', " + salary + ", '0', '" + emailAddress + "', " + homePhone + ")";
+            
+            stmt.executeUpdate(sql);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    //-- EDUCATION -------------------------------------------------------------------
+    public void addEducation(int empEntryNum, String level, String schoolName, int schoolFromYear, int schoolToYear, String award)
+    {
+        int maxEducation = 1;
+        
+        sql = "SELECT MAX(educationHistoryID) FROM education_history";
+        try{
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+            {
+                maxEducation = rs.getInt("MAX(educationHistoryID)") + 1;
+            }
+            
+            sql = "INSERT INTO education_history"
+                    + " VALUES(" + maxEducation + ", " + empEntryNum + ", '" + level + "', '" + schoolName + "', " + schoolFromYear
+                    + ", " + schoolToYear + ", '" + award + "')";
+            
+            stmt.executeUpdate(sql);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    //-- EMPLOYMENT -------------------------------------------------------------------
+    public void addEmployment(int empEntryNum, String jobTitle, Date dateOfEmployment, int startingSalary, int endingSalary,
+                                String employerName, String employerAddress, long employerContactNum, String supervisorName,
+                                long supervisorContactNum, String reasonForLeaving){
+        int maxEmployment = 1;
+        
+        sql = "SELECT MAX(employmentHistoryID) FROM employment_history";
+        
+        try{
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+            {
+                maxEmployment = rs.getInt("MAX(employmentHistoryID)") + 1;
+            }
+            
+            sql = "INSERT INTO employment_history"
+                    + " VALUES(" + maxEmployment + ", " + empEntryNum + ", '" + jobTitle + "', '" + dateOfEmployment + "', " + startingSalary
+                    + ", " + endingSalary + ", '" + employerName + "', '" + employerAddress + "', " + employerContactNum + ", '" + supervisorName
+                    + "', " + supervisorContactNum + ", '" + reasonForLeaving + "')";
+            
+            stmt.executeUpdate(sql);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

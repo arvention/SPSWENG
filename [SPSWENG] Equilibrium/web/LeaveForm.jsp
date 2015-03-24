@@ -1,3 +1,4 @@
+<%@page import="Models.modelEmployee"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -14,17 +15,16 @@
         <link href="css/jquery-ui.min.css" rel="stylesheet">
         -->
         <link rel="stylesheet" type="text/css" 	media="all" href="css/LeaveForm.css" />
-        
+
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/jquery-ui.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
         <script>
-                $("#datepicker").datepicker({
-                    changeMonth: true;
+                    $("#datepicker").datepicker({
+            changeMonth: true;
                     changeYear: true;
-                });            
-        </script>
+            });        </script>
         <script type = "text/javascript" src = "js/LeaveForm.js"></script>
     </head>
 
@@ -54,33 +54,44 @@
                 </h4>
                 <%
                     HttpSession reqSession = request.getSession();
-                    ArrayList<Boolean> errorFlags = (ArrayList)reqSession.getAttribute("errorFlags");
-                    
-                    if(errorFlags != null)
-                    {
-                        if(errorFlags.get(0))
-                        {
+                    ArrayList<Boolean> errorFlags = (ArrayList) reqSession.getAttribute("errorFlags");
+
+                    if (errorFlags != null) {
+                        if (errorFlags.get(0)) {
                 %>
-                            <h4><hr/>Invalid Input! The end date is earlier than the start date.</h4>
-                <%
+                <h4><hr/>Invalid Input! The end date is earlier than the start date.</h4>
+                    <%
+                    } else if (errorFlags.get(1)) {
+                    %>
+                <h4><hr/>Invalid Input! The number of days of leave doesn't match the duration between the start and end date.</h4>
+                    <%
+                    } else if (errorFlags.get(2)) {
+                    %>
+                <h4><hr/>Employee ID not found.</h4>
+                    <%
+                            }
                         }
-                        else if(errorFlags.get(1))
-                        {
-                %>
-                            <h4><hr/>Invalid Input! The number of days of leave doesn't match the duration between the start and end date.</h4>
-                <%
-                        }
-                        else if(errorFlags.get(2))
-                        {
-                %>
-                            <h4><hr/>Employee ID not found.</h4>
-                <%        
-                        }
-                    }
-                %>
-                <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
-                <a href="homepage.html"><input class="back" type="submit" value="Back" name="bBack"/></a>
+                    %>
+
             </form>
+            <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
+            <%
+                modelEmployee modelEmployee = (modelEmployee) reqSession.getAttribute("employee");
+            %>
+            <%
+                if (modelEmployee.getEmployeeType().equalsIgnoreCase("Employee")) {
+            %>
+            <a href="Homepage-Employee.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
+                <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("HR Head")) {
+                %>
+            <a href="Homepage-HrHead.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
+                <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("HR Employee")) {
+                %>
+            <a href="Homepage-HrEmployee.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
+                <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("Manager")) {
+                %>
+            <a href="Homepage-Manager.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
+                <%}%>
         </div>
 
         <div class= "footer">

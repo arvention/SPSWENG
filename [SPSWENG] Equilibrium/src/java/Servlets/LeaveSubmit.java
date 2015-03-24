@@ -136,7 +136,7 @@ public class LeaveSubmit extends HttpServlet {
                 modelEmployee modelEmployee = (modelEmployee)reqSession.getAttribute("employee");
                 System.out.println("ENTRYNUM: " + modelEmployee.getEntryNum());
                 db.addLeaveForm(leaveType, modelEmployee.getEntryNum(), new java.sql.Date(startDate.getTime()), duration);
-                reqDispatcher = request.getRequestDispatcher("LeaveSuccess.html");
+                reqDispatcher = request.getRequestDispatcher("LeaveSuccess.jsp");
                 
                 //send an email to the manager
                 //en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate, duration);

@@ -35,6 +35,7 @@
 		</select></div>
 		<textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."required ></textarea>
 		<input type="submit" class="submitButton"/> </form>
+                <h6>${errors}</h6>
 	</div>
 	
 	

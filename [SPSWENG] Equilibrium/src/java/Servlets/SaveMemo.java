@@ -11,6 +11,7 @@ import Database.EmailNotifier;
 import Queries.SaveMemoQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -79,22 +80,29 @@ public class SaveMemo extends HttpServlet {
          int intid = Integer.parseInt(id.trim());
          String memo= request.getParameter("memoNote");
          
-         if(memo.length() >= 44){
+         if(memo.length() >= 99){
              System.out.println("Oh no too much characters");
-             response.sendRedirect("FileMemo/memo.jsp");
+               request.setAttribute("errors", "Too much characters");
+            // response.sendRedirect("FileMemo/memo.jsp");
+           
+            RequestDispatcher view = request.getRequestDispatcher("FileMemo/memo.jsp");
+            view.forward(request, response);
          }
          
+         else{
          SaveMemoQuery SM = new SaveMemoQuery();
          SM.SaveDisciplinary(intid, memo);
          String to = SM.getEmail(intid);
         System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
-      
+         request.removeAttribute("muchchar");
          
          
          EmailNotifier email = EmailNotifier.getInstance();
          System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
          System.out.println("EMAIL SENT: "+ email.sendMemo(to) );
          response.sendRedirect("FileMemo/MemoFiled.html");
+         }
+         
          
         }
     

@@ -7,6 +7,7 @@ package Servlets;
 
 import Database.Database;
 import Database.EmailNotifier;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -96,7 +97,7 @@ public class LeaveSubmit extends HttpServlet {
         HttpSession reqSession = request.getSession();
         RequestDispatcher reqDispatcher = null;
         ArrayList<Boolean> errorFlags = new ArrayList<>();
-        int empIDNum = Integer.parseInt(request.getParameter("idNum"));
+        //int empIDNum = Integer.parseInt(request.getParameter("idNum"));
         
         System.out.println("start: " + startDate + " end: " + endDate + " | "+ getDateDiff(startDate, endDate) + " vs " + (int) Float.parseFloat(request.getParameter("dayCount")));
         
@@ -115,13 +116,13 @@ public class LeaveSubmit extends HttpServlet {
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
-            } else if(!db.checkEmpID(empIDNum)){
+            /*} else if(!db.checkEmpID(empIDNum)){
                 errorFlags.add(false);
                 errorFlags.add(false);
                 errorFlags.add(true);
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
-                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
+                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");*/
             }else {
                 errorFlags.add(false);
                 errorFlags.add(false);
@@ -131,11 +132,15 @@ public class LeaveSubmit extends HttpServlet {
                 String leaveType = request.getParameter("leaveType");
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
-                db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
+                //db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
+                modelEmployee modelEmployee = (modelEmployee)reqSession.getAttribute("employee");
+                System.out.println("ENTRYNUM: " + modelEmployee.getEntryNum());
+                db.addLeaveForm(leaveType, modelEmployee.getEntryNum(), new java.sql.Date(startDate.getTime()), duration);
                 reqDispatcher = request.getRequestDispatcher("LeaveSuccess.html");
                 
                 //send an email to the manager
-                en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate, duration);
+                //en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate, duration);
+                en.sendLeaveRequest(modelEmployee.getEntryNum(), leaveType, startDate, endDate, duration);
             }
             reqDispatcher.forward(request, response);
         }

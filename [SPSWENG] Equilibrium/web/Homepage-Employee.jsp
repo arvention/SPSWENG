@@ -15,7 +15,7 @@
             <p> Welcome, ${employee.getFirstName()} ${employee.getLastName()} </p>
         </div>
         <div class = "pageMid">
-            <a href="leaveapplication.html"><button id="login" class="selectButton"> Apply for a Leave</button></a>
+            <a href="LeaveForm.jsp"><button id="login" class="selectButton"> Apply for a Leave</button></a>
         </div>
         <div class ="pageBot">
             <hr width = "75%" SIZE = "1" />EQUILIBRIUM INTERTRADE CORP.</div>

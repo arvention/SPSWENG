@@ -34,7 +34,7 @@
         </div>
         <div align="center" class="content">
             <form id = "leave_form" action = "LeaveSubmit" method = "post"><br>
-                <h4>ID Number: <input type="number" name = "idNum" required></h4>
+                <!--h4>ID Number: <input type="number" name = "idNum" required></h4-->
                 <h4>Type of Leave:
                     <select name= "leaveType" required>
                         <option value= "Sick">Sick</option>

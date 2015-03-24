@@ -63,10 +63,16 @@ public class GetEmployeeOfManagerServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        modelEmployee modelEmployee = (modelEmployee) session.getAttribute("employee");
+        modelEmployee emp = (modelEmployee) session.getAttribute("employee");
+        System.out.println("DUDE DA ID IS "+ emp.getEmployeeID());
+        
         
         SaveMemoQuery GA = new SaveMemoQuery();
-        searchEmployeeBean result = GA.GetAllEmployeeManager(modelEmployee.getEntryNum()); 
+        //System.out.println(modelEmployee.getEntryNum()+"HEREEE");
+        
+        
+        searchEmployeeBean result = GA.GetAllEmployeeManager(emp.getEmployeeID()); 
+        
         
         session.setAttribute("ManagerEmployee", result);
         response.sendRedirect("FileMemo/memo.jsp");

@@ -6,6 +6,8 @@
 
 package Servlets;
 
+import Helper.PasswordGenerator;
+import Queries.CreateAccountQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -86,8 +88,22 @@ public class GetEmployeeServlet extends HttpServlet {
         int entrynum = Integer.parseInt(request.getParameter("entry").trim());
         HttpSession session= request.getSession();
         session.setAttribute("entrynum", entrynum);
-        session.setAttribute("type",type); 
-        response.sendRedirect("CreateAccount/inputpass.html");
+        session.setAttribute("type",type);
+        
+       String pas = PasswordGenerator.getInstance().getPassword();
+       
+        
+        CreateAccountQuery CA = new CreateAccountQuery();
+        CA.savePassword(entrynum, pas, type);
+        CA.saveType(entrynum, type);
+        
+        response.sendRedirect("CreateAccount/useraccountcreated.html");
+        
+        
+        
+       // response.sendRedirect("CreateAccount/inputpass.html");
+        
+        
         
     }
 

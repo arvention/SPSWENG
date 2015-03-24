@@ -76,19 +76,15 @@ public class SavePasswordServlet extends HttpServlet {
         
         
        
-         HttpSession session= request.getSession();
+        HttpSession session= request.getSession();
        System.out.println("WHOOOH THIS INE IS "+ session.getAttribute("entrynum"));
        
        
-      
-        
         String ent =  ""+session.getAttribute("entrynum");
         int entry = Integer.parseInt(ent);
         
         
         String type = (String) session.getAttribute("type");
-        
-        
         String password = request.getParameter("password");
         
         

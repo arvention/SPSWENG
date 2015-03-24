@@ -1,416 +1,417 @@
 <html>
-   <head>
-     <title>Employee BioData - Personal Information</title>
-	 <link rel="stylesheet" type="text/css" media="all" href="SampleScreensStyle.css"/>
-	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	 <script src="SampleScreensFunc.js"></script>
-   </head>
-   <body>
-        <form>
-			<ul class="tabs">
-           <li><a href="#personalinfo">Personal Information</a></li>
-           <li><a href="#family">Family Relations</a></li>
-           <li><a href="#emergencycontact">Emergency Contact</a></li>
-           <li><a href="#edhistory">Education History</a></li>
-           <li><a href="#emphistory">Employment History</a></li>
-	       <li><a href="#crimes">Past Criminal Offenses</a></li>
-        </ul>
-		    <DIV id="personalinfo" class="tab-section">
-			<table name="one">
-			<tr>
-				    <td>LAST NAME</td>
-					<td>FIRST NAME</td>
-					<td>MIDDLE NAME</td>
-					<td>Position Applied For / Expected Salary :</td>
-				</tr>
-				<tr>
-				   <td class="three-hundred"><input type="text" name="lastname" placeholder="Last Name" required /></td>
-				   <td class="three-hundred"><input type="text" name="firstname" placeholder="First Name" required /></td>
-				   <td class="three-hundred"><input type="text" name="middlename" placeholder="Middle Name" required /></td>
-				   <td class="three-hundred"><input type="text" name="posal" placeholder="Position Applied For/Expected Salary" /></td>
-				</tr>
-			</table>
-			<table name="two">
-				<tr>
-				   <td>Address:</td>
-				</tr>
-				<tr>
-				   <td class="three-hundred"><input type="text" name="block/street" placeholder="Block/Street" required /></td>
-				   <td class="three-hundred"><input type="text" name="subdivision" placeholder="Subdivision" required /></td>
-				   <td class="three-hundred"><input type="text" name="barangay" placeholder="Barangay" required /></td>
-				   <td class="three-hundred"><input type="text" name="city" placeholder="City" required /></td>
-				   <td class="three-hundred"><input type="text" name="province" placeholder="Province" required /></td>
-				   <td></td>
-				</tr>
-			</table>
-			<table name="three">
-				<tr>
-				   <td>Birthday :</td>
-				   <td>Birthplace</td>
-				   <td>Home Phone :</td>
-				   <td>Mobile No :</td>
-				   <td>Email Add :</td>
-				</tr>
-				<tr>
-				   <td><input type="date" name="birthday" placeholder="Birthday" required /></td>
-				   <td><input type="text" name="birthplace" placeholder="Birth Place" required /></td>
-				   <td class="two-fifty"><input type="number" name="homephone" placeholder="Home Phone" /></td>
-				   <td class="two-fifty"><input type="number" name="mobileno" placeholder="Mobile Number" /></td>
-				   <td class="three-hundred"><input type="text" name="emailadd" placeholder="Email Address" /></td>
-				</tr>
-			</table>
-			<table name="four">
-				<tr>
-				   <td>SSS # :</td>
-				   <td>TIN #: </td>
-				   <td>PHIC # :</td>
-				   <td>PAGIBIG # :</td>
-				   <td></td>
-				</tr>
-				<tr>
-				    <td class="three-ten"><input type="number" name="sssno" placeholder="SSS #" /></td>
-					<td class="three-ten"><input type="number" name="tinno" placeholder="TIN #" /></td>
-					<td class="three-ten"><input type="number" name="phicno" placeholder="PHIC #" /></td>
-					<td class="three-ten"><input type="number" name="pagibigno" placeholder="PAG-IBIG #" /></td>
-				</tr>
-				</table>
-				<table name="five">
-				<tr>
-				   <td>Civil Status : </td>
-				   <td>Citizenship :</td>
-				   <td>Religion :</td>  
-				</tr>
-				<tr>
-				   <td width="100px"><select name="civilstatus">
-                           <option value="s">Single</option>
-                           <option value="m">Married</option>
-                           <option value="d">Divorced</option>
-                           <option value="w">Widowed</option>
-                      </select></td>
-					  <td width="525px"><input type="text" name="citizenship" placeholder="Citizenship" /></td>
-					  <td width="525px"><input type="text" name="religion" placeholder="Religion" /></td>
-					  <td></td>
-					  <td></td>
-				</tr>
-			</table>
+    <head>
+        <title>Employee BioData - Personal Information</title>
+        <link rel="stylesheet" type="text/css" media="all" href="css/SampleScreensStyle.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/SampleScreensFunc.js"></script>
+    </head>
+    <body>
+        <form action = "EnterBioData" method = "post">
+            <ul class="tabs">
+                <li><a href="#personalinfo">Personal Information</a></li>
+                <li><a href="#family">Family Relations</a></li>
+                <li><a href="#emergencycontact">Emergency Contact</a></li>
+                <li><a href="#edhistory">Education History</a></li>
+                <li><a href="#emphistory">Employment History</a></li>
+                <li><a href="#crimes">Past Criminal Offenses</a></li>
+            </ul>
+            <DIV id="personalinfo" class="tab-section">
+                <table name="one">
+                    <tr>
+                        <td>LAST NAME</td>
+                        <td>FIRST NAME</td>
+                        <td>MIDDLE NAME</td>
+                        <td>Position Applied For / Expected Salary :</td>
+                    </tr>
+                    <tr>
+                        <td class="three-hundred"><input type="text" name="lastname" placeholder="Last Name" required /></td>
+                        <td class="three-hundred"><input type="text" name="firstname" placeholder="First Name" required /></td>
+                        <td class="three-hundred"><input type="text" name="middlename" placeholder="Middle Name" required /></td>
+                        <td class="three-hundred"><input type="text" name="posal" placeholder="Position Applied For/Expected Salary" /></td>
+                    </tr>
+                </table>
+                <table name="two">
+                    <tr>
+                        <td>Address:</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="three-hundred"><input type="text" name="block/street" placeholder="Block/Street" required /></td>
+                        <td class="three-hundred"><input type="text" name="subdivision" placeholder="Subdivision" required /></td>
+                        <td class="three-hundred"><input type="text" name="barangay" placeholder="Barangay" required /></td>
+                        <td class="three-hundred"><input type="text" name="city" placeholder="City" required /></td>
+                        <td class="three-hundred"><input type="text" name="province" placeholder="Province" required /></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table name="three">
+                    <tr>
+                        <td>Birthday :</td>
+                        <td>Birthplace</td>
+                        <td>Home Phone :</td>
+                        <td>Mobile No :</td>
+                        <td>Email Add :</td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" name="birthday" required /></td>
+                        <td><input type="text" name="birthplace" placeholder="Birth Place" required /></td>
+                        <td class="two-fifty"><input type="number" name="homephone" placeholder="Home Phone" /></td>
+                        <td class="two-fifty"><input type="number" name="mobileno" placeholder="Mobile Number" /></td>
+                        <td class="three-hundred"><input type="text" name="emailadd" placeholder="Email Address" /></td>
+                    </tr>
+                </table>
+                <table name="four">
+                    <tr>
+                        <td>SSS # :</td>
+                        <td>TIN #: </td>
+                        <td>PHIC # :</td>
+                        <td>PAGIBIG # :</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="three-ten"><input type="number" name="sssno" placeholder="SSS #" /></td>
+                        <td class="three-ten"><input type="number" name="tinno" placeholder="TIN #" /></td>
+                        <td class="three-ten"><input type="number" name="phicno" placeholder="PHIC #" /></td>
+                        <td class="three-ten"><input type="number" name="pagibigno" placeholder="PAG-IBIG #" /></td>
+                    </tr>
+                </table>
+                <table name="five">
+                    <tr>
+                        <td>Civil Status : </td>
+                        <td>Citizenship :</td>
+                        <td>Religion :</td>  
+                    </tr>
+                    <tr>
+                        <td width="100px"><select name="civilstatus">
+                                <option value="s">Single</option>
+                                <option value="m">Married</option>
+                                <option value="d">Divorced</option>
+                                <option value="w">Widowed</option>
+                            </select></td>
+                        <td width="525px"><input type="text" name="citizenship" placeholder="Citizenship" /></td>
+                        <td width="525px"><input type="text" name="religion" placeholder="Religion" /></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
             </DIV>
-			
-		    <DIV id="family" class="tab-section">
+
+            <DIV id="family" class="tab-section">
                 <table>
-                   <tr>
-                     <td></td>
-                     <td>Name:</td>
-                     <td>Age:</td>
-                     <td>Occupation:</td>
-                   </tr>
-                   <tr>
-                     <td>Father</td>
-                     <td><input type="text" name="fathername" placeholder="Father's Name" /></td>
-                     <td><input type="number" name="fatherage" placeholder="Age" /></td>
-                     <td><input type="text" name="fatheroccupation" placeholder="Occupation" /><br/></td>
-                   </tr>
-                   <tr>
-                     <td>Mother</td>
-                     <td><input type="text" name="mothername" placeholder="Mother's Maiden Name" /></td>
-                     <td><input type="number" name="motherage" placeholder="Age" /></td>
-                     <td><input type="text" name="motheroccupation" placeholder="Occupation" /></td>
-                   </tr>
+                    <tr>
+                        <td></td>
+                        <td>Name:</td>
+                        <td>Age:</td>
+                        <td>Occupation:</td>
+                    </tr>
+                    <tr>
+                        <td>Father</td>
+                        <td><input type="text" name="fathername" placeholder="Father's Name" /></td>
+                        <td><input type="number" name="fatherage" placeholder="Age" /></td>
+                        <td><input type="text" name="fatheroccupation" placeholder="Occupation" /><br/></td>
+                    </tr>
+                    <tr>
+                        <td>Mother</td>
+                        <td><input type="text" name="mothername" placeholder="Mother's Name" /></td>
+                        <td><input type="number" name="motherage" placeholder="Age" /></td>
+                        <td><input type="text" name="motheroccupation" placeholder="Occupation" /></td>
+                    </tr>
                 </table><br/><br/>
 
                 <span class="headers">Siblings</span><br/>                
-		        <table name="siblings">
-		           <tr>
-			         
-				     <td class="three-hundred">Name of Sibling</td>
-				     <td>Age</td>
-				     <td class="three-hundred">Occupation</td>
-				     <td class="three-hundred">Company/Location</td>
-				     <td></td>
-			       </tr>
-			       <tr>
-			         
-			         <td><input type="text" name="siblingname" placeholder="ex. Virma Lopez" /></td>
-		             <td><input type="number" name="siblingage" placeholder="ex. 14" /></td>
-		             <td><input type="text" name="siblingoccupation" placeholder="ex. Student" /></td>
-		             <td><input type="text" name="siblingcompany" placeholder="ex. Binan, Laguna" /></td>
-		             <td><button class="addsibling">+</button></td>
-			       </tr>
-		        </table><br/><br/>
+                <table name="siblings">
+                    <tr>
+
+                        <td class="three-hundred">Name of Sibling</td>
+                        <td>Age</td>
+                        <td class="three-hundred">Occupation</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="text" name="siblingname" placeholder="ex. Virma Lopez" /></td>
+                        <td><input type="number" name="siblingage" placeholder="ex. 14" /></td>
+                        <td><input type="text" name="siblingoccupation" placeholder="ex. Student" /></td>
+                        <td><button class="addsibling">+</button></td>
+                    </tr>
+                </table><br/><br/>
 
                 <DIV class="tohide">
-				    <table>
-					    <tr>
-						   <td>Spouse's Name:</td>
-						   <td><input type="text" name="spousename" placeholder="Name of Spouse" /></td>
-						</tr>
-						<tr>
-						    <td>Spouse's Contact Number:</td>
- 							<td><input type="text" name="spousecontact" placeholder="Contact Number" /></td>
-					   </tr>
-					   <tr>
-					         <td>Spouse's Occupation/Employer:</td>
-							 <td><input type="text" name="spouseoccupation" placeholder="Occupation/Employer" /></td>
-					   </tr>
+                    <table>
+                        <tr>
+                            <td>Spouse's Name:</td>
+                            <td><input type="text" name="spousename" placeholder="Name of Spouse" /></td>
+                        </tr>
+                        <tr>
+                            <td>Spouse's Contact Number:</td>
+                            <td><input type="text" name="spousecontact" placeholder="Contact Number" /></td>
+                        </tr>
+                        <tr>
+                            <td>Spouse's Occupation/Employer:</td>
+                            <td><input type="text" name="spouseoccupation" placeholder="Occupation/Employer" /></td>
+                        </tr>
                     </table><br/><br/>
 
-                <span class="headers">Children</span><br/>
-		        <table name="children">
-		           <tr>
-			         
-				     <td class="three-hundred">Name of Child</td>
-				     <td>Age</td>
-				     <td class="three-hundred">Grade/Year</td>
-				     <td class="three-hundred">School/Location</td>
-				     <td></td>
-			       </tr>
-			       <tr>
-			         
-			         <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez" /></td>
-		             <td><input type="text" name="childrengage" placeholder="ex. 14" /></td>
-		             <td><input type="text" name="childrenyear" placeholder="ex. II" /></td>
-		             <td><input type="text" name="childschool" placeholder="ex. Binan, Laguna" /></td>
-		             <td><button class="addchild">+</button></td>
-			       </tr>
-		        </table><br/><br/>
-				</DIV>
+                    <span class="headers">Children</span><br/>
+                    <table name="children">
+                        <tr>
+
+                            <td class="three-hundred">Name of Child</td>
+                            <td>Age</td>
+                            <td class="three-hundred">Occupation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+
+                            <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez" /></td>
+                            <td><input type="text" name="childrengage" placeholder="ex. 14" /></td>
+                            <td><input type="text" name="childrenyear" placeholder="ex. Student" /></td>
+                            <td><button class="addchild">+</button></td>
+                        </tr>
+                    </table><br/><br/>
+                </DIV>
             </DIV>
-	   
-	        <DIV id="emergencycontact" class="tab-section">
-			      <table>
-				     <tr>
-					   <td>Emergency Contact's Name</td>
-					   <td><input type="text" name="emergencyname" placeholder="Person to notify in case of emergency" /></td>
-					 </tr>
-					 <tr>
-					    <td>Relationship with Emergency Contact:</td>
-						<td><input type="text" name="emergencyrel" placeholder="Relationship" /></td>
-					 </tr>
-					 <tr>
-					    <td>Emergency Contact's Address:</td>
-						<td><input type="text" name="emergencyaddress" placeholder="Address" /></td>
-					 </tr>
-					 <tr>
-					    <td>Emergency Contact's Number:</td>
-						<td><input type="number" name="emergencynumber" placeholder="Contact Number" /></td>
-					 </tr>
-				  </table>
-	        </DIV>
-	  
-	        <DIV id="edhistory" class="tab-section">
-	           <span class="headers">Elementary</span><br/>
-	           <table name="elementary">
-		   <tr>
-		      
-			  <td class="three-hundred">Name of School</td>
-			  <td>From</td>
-			  <td>To</td>
-			  <td class="five-hundred">Awards</td>
-		   </tr>
-		   <tr>
 
-			 <td><input type="text" name="elemschool" placeholder="ex. Don Bosco School" required /></td>
-			 <td><input type="date" name="elemfrom" placeholder="ex. 2000" required /></td>
-			 <td><input type="date" name="elemto" placeholder="ex. 2012" required /></td>
-			 <td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance Award" /></td>
-			 <td><button class="addelem">+</button></td>
-		   </tr>
-		</table><br/><br/>
-		
-		<span class="headers">High School</span><br/>
-		<table name="highschool">
-		   <tr>
+            <DIV id="emergencycontact" class="tab-section">
+                <table>
+                    <tr>
+                        <td>Emergency Contact's Name</td>
+                        <td><input type="text" name="emergencyname" placeholder="Person to notify in case of emergency" /></td>
+                    </tr>
+                    <tr>
+                        <td>Relationship with Emergency Contact:</td>
+                        <td><input type="text" name="emergencyrel" placeholder="Relationship" /></td>
+                    </tr>
+                    <tr>
+                        <td>Emergency Contact's Address:</td>
+                        <td><input type="text" name="emergencyaddress" placeholder="Address" /></td>
+                    </tr>
+                    <tr>
+                        <td>Emergency Contact's Number:</td>
+                        <td><input type="number" name="emergencynumber" placeholder="Contact Number" /></td>
+                    </tr>
+                </table>
+            </DIV>
 
-			  <td class="three-hundred">Name of School</td>
-			  <td>From</td>
-			  <td>To</td>
-			  <td class="five-hundred">Awards</td>
-		   </tr>
-		   <tr>
+            <DIV id="edhistory" class="tab-section">
+                <span class="headers">Elementary</span><br/>
+                <table name="elementary">
+                    <tr>
 
-			 <td><input type="text" name="highschool" placeholder="Name of School" required /></td>
-			 <td><input type="date" name="highschoolfrom" placeholder="Year Start" required /></td>
-			 <td><input type="date" name="highschoolto" placeholder="Year End" required /></td>
-			 <td><input type="text" name="highschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addhighschool">+</button></td>
-		   </tr>
-	    </table><br/><br/>
-		
-		<span class="headers">College</span><br/>
-		<table name="college">
-		   <tr>
+                        <td class="three-hundred">Name of School</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td class="five-hundred">Awards</td>
+                    </tr>
+                    <tr>
 
-			  <td class="three-hundred">Name of School</td>
-			  <td>From</td>
-			  <td>To</td>
-			  <td class="five-hundred">Awards</td>
-		   </tr>
-		   <tr>
+                        <td><input type="text" name="elemschool" placeholder="ex. Don Bosco School" required /></td>
+                        <td><input type="date" name="elemfrom" placeholder="ex. 2000" required /></td>
+                        <td><input type="date" name="elemto" placeholder="ex. 2012" required /></td>
+                        <td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance Award" /></td>
+                        <td><button class="addelem">+</button></td>
+                    </tr>
+                </table><br/><br/>
 
-			 <td><input type="text" name="college" placeholder="Name of School" required /></td>
-			 <td><input type="date" name="collegefrom" placeholder="Year Start" required /></td>
-			 <td><input type="date" name="collegeto" placeholder="Year End" required /></td>
-			 <td><input type="text" name="collegeawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addcollege">+</button></td>
-		   </tr>
-	    </table><br /><br/>
-		
-		<span class="headers">Vocational</span><br/>
-		<table name="vocational">
-		   <tr>
+                <span class="headers">High School</span><br/>
+                <table name="highschool">
+                    <tr>
 
-			  <td class="three-hundred">Name of School</td>
-			  <td>From</td>
-			  <td>To</td>
-			  <td class="five-hundred">Awards</td>
-		   </tr>
-		   <tr>
+                        <td class="three-hundred">Name of School</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td class="five-hundred">Awards</td>
+                    </tr>
+                    <tr>
 
-			 <td><input type="text" name="vocationalschool" placeholder="Name of School" /></td>
-			 <td><input type="date" name="vocationalschoolfrom" placeholder="Year Start" /></td>
-			 <td><input type="date" name="vocationalschoolto" placeholder="Year End" /></td>
-			 <td><input type="text" name="vocationalschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addvocational">+</button></td>
-		   </tr>
-	    </table><br/><br/>
-		
-		<span class="headers">Masteral</span><br/>
-		<table name="masteral">
-		   <tr>
+                        <td><input type="text" name="highschool" placeholder="Name of School" required /></td>
+                        <td><input type="date" name="highschoolfrom" required /></td>
+                        <td><input type="date" name="highschoolto" required /></td>
+                        <td><input type="text" name="highschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
+                        <td><button class="addhighschool">+</button></td>
+                    </tr>
+                </table><br/><br/>
 
-			  <td class="three-hundred">Name of School</td>
-			  <td>From</td>
-			  <td>To</td>
-			  <td class="five-hundred">Awards</td>
-		   </tr>
-		   <tr>
+                <span class="headers">College</span><br/>
+                <table name="college">
+                    <tr>
 
-			 <td><input type="text" name="masteralschool" placeholder="Name of School" /></td>
-			 <td><input type="date" name="masteralschoolfrom" placeholder="Year Start" /></td>
-			 <td><input type="date" name="masteralschoolto" placeholder="Year End" /></td>
-			 <td><input type="text" name="masteralschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addmasteral">+</button></td>
-		   </tr>
-	    </table><br/><br/>
-		
-		<span class="headers">Others</span><br/>
-		<table name="others">
-		   <tr>
+                        <td class="three-hundred">Name of School</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td class="five-hundred">Awards</td>
+                    </tr>
+                    <tr>
 
-			  <td class="three-hundred">Name of School</td>
-			  <td>From</td>
-			  <td>To</td>
-			  <td class="five-hundred">Awards</td>
-		   </tr>
-		   <tr>
+                        <td><input type="text" name="college" placeholder="Name of School" required /></td>
+                        <td><input type="date" name="collegefrom" required /></td>
+                        <td><input type="date" name="collegeto" required /></td>
+                        <td><input type="text" name="collegeawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
+                        <td><button class="addcollege">+</button></td>
+                    </tr>
+                </table><br /><br/>
 
-			 <td><input type="text" name="otherschool" placeholder="Name of School" /></td>
-			 <td><input type="date" name="otherfrom" placeholder="Year Start" /></td>
-			 <td><input type="date" name="otherto" placeholder="Year End" /></td>
-			 <td><input type="text" name="otherawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
-			 <td><button class="addother">+</button></td>
-		   </tr>
-	    </table><br/><br/>
-		
-		<span class="headers">Licenses/Exams</span><br/>
-		<table name="license">
-		   <tr>
+                <span class="headers">Vocational</span><br/>
+                <table name="vocational"> 
+                    <tr>
 
-			  <td width="1000px">License/Exam Taken</td>
-			  <td>Percentage</td>
-		   </tr>
-		   <tr>
+                        <td class="three-hundred">Name of School</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td class="five-hundred">Awards</td>
+                    </tr>
+                    <tr>
 
-			  <td><input type="text" name="license" placeholder="License/Exam Taken" /></td>
-			  <td><input type="number" name="licensepercentage" placeholder="Percentage Result" /></td>
-			  <td><button class="addlicense">+</button></td>
-		   </tr>
-		</table><br/><br/>
-	  </DIV>
-	  
-	  <DIV id="emphistory" class="tab-section">
-	  <span class="headers">Employment History</span><br/>
-		<span>Note: Begin with present or most recent job.</span><br/><br/>
-		<table name="employment">
-		   <tr>
+                        <td><input type="text" name="vocationalschool" placeholder="Name of School" /></td>
+                        <td><input type="date" name="vocationalschoolfrom" placeholder="Year Start" /></td>
+                        <td><input type="date" name="vocationalschoolto" placeholder="Year End" /></td>
+                        <td><input type="text" name="vocationalschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
+                        <td><button class="addvocational">+</button></td>
+                    </tr>
+                </table><br/><br/>
 
-			  <td class="three-hundred">Job Title</td>
-			  <td>Date of Employment</td>
-			  <td class="three-hundred">Starting Salary</td>
-			  <td class="three-hundred">Ending Salary</td>
-		   </tr>
-		   <tr>
+                <span class="headers">Masteral</span><br/>
+                <table name="masteral">
+                    <tr>
 
-			  <td><input type="text" name="jobtitle" placeholder="Job Title" /></td>
-			  <td><input type="date" name="jobemploydate" placeholder="Date of Employment" /></td>
-			  <td><input type="number" name="jobbegsal" placeholder="Starting Salary" /></td>
-			  <td><input type="number" name="jobendsal" placeholder="Ending Salary" /></td>
-		  </tr>
-		   <tr>
-		      <td></td>
-			  <td class="three-hundred">Employer's Name</td>
-			  <td class="three-hundred">Employer's Address</td>
-			  <td class="three-hundred">Employer's Contact Number</td>
-		   </tr>
-		   <tr>
-		      <td></td>
-			  <td><input type="text" name="jobemployer" placeholder="Employer" /></td>
-			  <td><input type="text" name="jobaddress" placeholder="Employer Address" /></td>
-			  <td><input type="number" name="jobtelno" placeholder="Employer Telephone Number" /></td>
-		  </tr>
-		   <tr>
-		      <td></td>
-			  <td class="three-hundred">Supervisor's Name</td>
-			  <td class="three-hundred">Supervisor's Contact Number</td>
-			  <td class="three-hundred">Reason for Leaving</td>
-			  <td></td>
-		   </tr>
-		  <tr>
-		      <td></td>
-			  <td><input type="text" name="jobsupname" placeholder="Supervisor Name" /></td>
-			  <td><input type="number" name="jobsupno" placeholder="Supervisor Number" /></td>
-			  <td><input type="text" name="jobreason" placeholder="Reason for Leaving" /></td>
-			  <td><button class="addemployment">+</button></td>
-		   </tr>
-		</table><br/>
-	  </DIV>
-	  
-	  <DIV id="crimes" class="tab-section">
-	   <table>
-	      <tr>
-		    <td>Has the employee ever been convicted of a criminal offense?</td>
-			<td><select name="convicted">
-		   <option>No</option>
-		   <option value="y">Yes</option>
-		</select></td>
-	      </tr>
-	   </table>
-		<br/><br/>
-		<DIV class="tohide">
-		<span class="headers">Past criminal offenses</span><br/>
-		<table name="criminaloffense">
-		   <tr>
+                        <td class="three-hundred">Name of School</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td class="five-hundred">Awards</td>
+                    </tr>
+                    <tr>
 
-			  <td class="four-hundred">Criminal Offense</td>
-			  <td class="four-hundred">Date of Offense</td>
-			  <td class="four-hundred">Place of Offence</td>
-		   </tr>
-		   <tr>
+                        <td><input type="text" name="masteralschool" placeholder="Name of School" /></td>
+                        <td><input type="date" name="masteralschoolfrom" placeholder="Year Start" /></td>
+                        <td><input type="date" name="masteralschoolto" placeholder="Year End" /></td>
+                        <td><input type="text" name="masteralschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
+                        <td><button class="addmasteral">+</button></td>
+                    </tr>
+                </table><br/><br/>
 
-			  <td><input type="text" name="offensename" placeholder="Criminal Offense" /></td>
-			  <td><input type="text" name="offensedate" placeholder="Date of Offence" /></td>
-			  <td><input type="text" name="offenceplace" placeholder="Place of Offence" /></td>
-			  <td><button class="addcriminaloffense">+</button></td>
-		   </tr>
-		</table>
-	    </DIV>
-	  </DIV>
-	     <br/><input type="submit" value="Submit" />
-	  </form>
-          <br/><br/>
-	  <DIV class= "footer">
-			<br/><hr width="75%"/>
-			EQUILIBRIUM INTERTRADE CORP.
-	   </DIV>
-	   
-   </body>
+                <span class="headers">Others</span><br/>
+                <table name="others">
+                    <tr>
+
+                        <td class="three-hundred">Name of School</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td class="five-hundred">Awards</td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="text" name="otherschool" placeholder="Name of School" /></td>
+                        <td><input type="date" name="otherfrom" placeholder="Year Start" /></td>
+                        <td><input type="date" name="otherto" placeholder="Year End" /></td>
+                        <td><input type="text" name="otherawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
+                        <td><button class="addother">+</button></td>
+                    </tr>
+                </table><br/><br/>
+
+                <span class="headers">Licenses/Exams</span><br/>
+                <table name="license">
+                    <tr>
+
+                        <td width="1000px">License/Exam Taken</td>
+                        <td>Percentage</td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="text" name="license" placeholder="License/Exam Taken" /></td>
+                        <td><input type="number" name="licensepercentage" placeholder="Percentage Result" /></td>
+                        <td><button class="addlicense">+</button></td>
+                    </tr>
+                </table><br/><br/>
+            </DIV>
+
+            <DIV id="emphistory" class="tab-section">
+                <span class="headers">Employment History</span><br/>
+                <span>Note: Begin with present or most recent job.</span><br/><br/>
+                <table name="employment">
+                    <tr>
+
+                        <td class="three-hundred">Job Title</td>
+                        <td>Date of Employment</td>
+                        <td class="three-hundred">Starting Salary</td>
+                        <td class="three-hundred">Ending Salary</td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="text" name="jobtitle" placeholder="Job Title" /></td>
+                        <td><input type="date" name="jobemploydate" placeholder="Date of Employment" /></td>
+                        <td><input type="number" name="jobbegsal" placeholder="Starting Salary" /></td>
+                        <td><input type="number" name="jobendsal" placeholder="Ending Salary" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="three-hundred">Employer's Name</td>
+                        <td class="three-hundred">Employer's Address</td>
+                        <td class="three-hundred">Employer's Contact Number</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" name="jobemployer" placeholder="Employer" /></td>
+                        <td><input type="text" name="jobaddress" placeholder="Employer Address" /></td>
+                        <td><input type="number" name="jobtelno" placeholder="Employer Telephone Number" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="three-hundred">Supervisor's Name</td>
+                        <td class="three-hundred">Supervisor's Contact Number</td>
+                        <td class="three-hundred">Reason for Leaving</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" name="jobsupname" placeholder="Supervisor Name" /></td>
+                        <td><input type="number" name="jobsupno" placeholder="Supervisor Number" /></td>
+                        <td><input type="text" name="jobreason" placeholder="Reason for Leaving" /></td>
+                        <td><button class="addemployment">+</button></td>
+                    </tr>
+                </table><br/>
+            </DIV>
+
+            <DIV id="crimes" class="tab-section">
+                <table>
+                    <tr>
+                        <td>Has the employee ever been convicted of a criminal offense?</td>
+                        <td><select name="convicted">
+                                <option>No</option>
+                                <option value="y">Yes</option>
+                            </select></td>
+                    </tr>
+                </table>
+                <br/><br/>
+                <DIV class="tohide">
+                    <span class="headers">Past criminal offenses</span><br/>
+                    <table name="criminaloffense">
+                        <tr>
+
+                            <td class="four-hundred">Criminal Offense</td>
+                            <td class="four-hundred">Date of Offense</td>
+                            <td class="four-hundred">Place of Offence</td>
+                        </tr>
+                        <tr>
+
+                            <td><input type="text" name="offensename" placeholder="Criminal Offense" /></td>
+                            <td><input type="text" name="offensedate" placeholder="Date of Offence" /></td>
+                            <td><input type="text" name="offenceplace" placeholder="Place of Offence" /></td>
+                            <td><button class="addcriminaloffense">+</button></td>
+                        </tr>
+                    </table>
+                </DIV>
+            </DIV>
+            <br/><input type="submit" value="Submit" />
+        </form>
+        <br/><br/>
+        <DIV class= "footer">
+            <br/><hr width="75%"/>
+            EQUILIBRIUM INTERTRADE CORP.
+        </DIV>
+
+    </body>
 </html>

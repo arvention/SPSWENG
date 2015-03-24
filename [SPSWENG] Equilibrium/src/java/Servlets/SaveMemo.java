@@ -78,6 +78,12 @@ public class SaveMemo extends HttpServlet {
          String id = request.getParameter("listEmployees");
          int intid = Integer.parseInt(id.trim());
          String memo= request.getParameter("memoNote");
+         
+         if(memo.length() >= 44){
+             System.out.println("Oh no too much characters");
+             response.sendRedirect("FileMemo/memo.jsp");
+         }
+         
          SaveMemoQuery SM = new SaveMemoQuery();
          SM.SaveDisciplinary(intid, memo);
          String to = SM.getEmail(intid);

@@ -9,6 +9,7 @@
 	<div class = "acctForm" align="center">
 		<br/><br/><br/><br/>
 		<div class="titleText">User Account has been Created!</div><br/>
+                <div class="titleText">${response}</div><br/>
 		<a href="searchEmployeeAccount.html">
 		 Create another account</a> <br/>
 		<a href="../Homepage-HrHead.html">Homepage </a>

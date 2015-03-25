@@ -6,6 +6,8 @@
 
 package Servlets;
 
+import Database.Database;
+import Database.EmailNotifier;
 import Helper.PasswordGenerator;
 import Queries.CreateAccountQuery;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -97,7 +100,19 @@ public class GetEmployeeServlet extends HttpServlet {
         CA.savePassword(entrynum, pas, type);
         CA.saveType(entrynum, type);
         
-        response.sendRedirect("CreateAccount/useraccountcreated.html");
+       String email = Database.getInstance().getEmailAddress(entrynum);
+       if( EmailNotifier.getInstance().sendEmail(email ,"Good day! \n Your password is "+ pas , "Password")){
+           request.setAttribute("response",new String("Password sent to "+ email));
+           
+       }else request.setAttribute("response", new String("Failed to send password to "+ email));
+        
+        RequestDispatcher view = request.getRequestDispatcher("CreateAccount/useraccountcreated.jsp");
+        view.forward(request, response);
+        
+        
+        
+ 
+       // response.sendRedirect("CreateAccount/useraccountcreated.jsp");
         
         
         

@@ -7,7 +7,7 @@
         <title>EQuilibrium</title>
         
         <link href = "css/LoginPage.css" rel = "stylesheet" />
-
+        
         <script src = "js/LoginPage.js"></script>
     </head>
     <body bgcolor= "#E8E8E8">

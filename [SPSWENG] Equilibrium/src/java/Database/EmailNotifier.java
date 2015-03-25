@@ -47,7 +47,7 @@ public class EmailNotifier {
         return emailInstance;
     }
 
-    public boolean sendMemo(String to){
+    public boolean sendEmail(String to, String body, String subject  ){
         
         boolean issend= true;
         
@@ -63,11 +63,11 @@ public class EmailNotifier {
                     new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("Memo");
+            message.setSubject(subject);
 
             // Now set the actual message
-            message.setText("Hi "+ ","+ "You received a memo from your superior. ");
-
+            message.setText(body);
+            
             // Send message
             Transport transport = session.getTransport("smtps");
             transport.connect("smtp.gmail.com", username, password);

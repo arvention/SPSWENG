@@ -13,7 +13,7 @@
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="titleText">Memo has been filed!</div><br/>
             <div class="titleText">${response}</div><br/>
-            <a href="homepage.html">Click here to return to home page...</a>
+            <a href="Homepage-Manager.jsp">Click here to return to home page...</a>
         </div>
         <div class = "pageBottom" style="margin-bottom: 3px"><hr width ="75%"/></br> 
             EQUILIBRIUM INTERTRADE CORP.

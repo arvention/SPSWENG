@@ -29,13 +29,23 @@
                  <option value="<%=emp.getempid()%>" > <%=emp.getlastname()%>, <%=emp.getfirstname()%>  </option>
                 <%
                      }
+                     
+                String error =null;
+                error =  (String) session.getAttribute("error");
+                   
+                if(error==null){
+                     error="";
+                }
+                   
+                System.out.println(error +"ERROR ISSSS");       
+                     
                  %>
                 
 	
 		</select></div>
 		<textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."required ></textarea>
 		<input type="submit" class="submitButton"/> </form>
-                <h6>${errors}</h6>
+                <h6><%=error%></h6>
 	</div>
 	
 	

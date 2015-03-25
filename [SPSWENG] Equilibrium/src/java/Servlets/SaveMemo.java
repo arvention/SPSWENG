@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -79,28 +80,41 @@ public class SaveMemo extends HttpServlet {
          String id = request.getParameter("listEmployees");
          int intid = Integer.parseInt(id.trim());
          String memo= request.getParameter("memoNote");
-         
+         HttpSession session = request.getSession();
          if(memo.length() >= 99){
              System.out.println("Oh no too much characters");
-               request.setAttribute("errors", "Too much characters");
-            // response.sendRedirect("FileMemo/memo.jsp");
+               //request.setAttribute("errors", "Too much characters");
+            
+               
+               
+               session.setAttribute("error", new String("Max characters reach"));
+               response.sendRedirect("FileMemo/memo.jsp");
            
-            RequestDispatcher view = request.getRequestDispatcher("FileMemo/memo.jsp");
-            view.forward(request, response);
+          //  RequestDispatcher view = request.getRequestDispatcher("FileMemo/memo.jsp");
+          //  view.forward(request, response);
          }
          
          else{
          SaveMemoQuery SM = new SaveMemoQuery();
          SM.SaveDisciplinary(intid, memo);
          String to = SM.getEmail(intid);
-        System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
-         request.removeAttribute("muchchar");
+         System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
          
          
+         session.removeAttribute("error");
          EmailNotifier email = EmailNotifier.getInstance();
          System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
-         System.out.println("EMAIL SENT: "+ email.sendMemo(to) );
-         response.sendRedirect("FileMemo/MemoFiled.html");
+         if( email.sendEmail(to, "Hello, you receiced a memo from your superior \n" + memo, "Memo")){
+            request.setAttribute("response", new String("Notification Email sent to "+ to)); 
+             
+         }else request.setAttribute("response", new String("Failed to send Notification Email to "+ to)); 
+         //response.sendRedirect("FileMemo/MemoFiled.jsp");
+        
+        
+        RequestDispatcher view = request.getRequestDispatcher("FileMemo/MemoFiled.jsp");
+        view.forward(request, response);
+        
+         
          }
          
          

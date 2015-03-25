@@ -6,9 +6,12 @@
 
 package Servlets;
 
+import Database.Database;
+import Database.EmailNotifier;
 import Queries.CreateAccountQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -86,13 +89,19 @@ public class SavePasswordServlet extends HttpServlet {
         
         String type = (String) session.getAttribute("type");
         String password = request.getParameter("password");
-        
-        
         CreateAccountQuery CA = new CreateAccountQuery();
         CA.savePassword(entry, password, type);
         CA.saveType(entry, type);
+        String email = Database.getInstance().getEmailAddress(entry);
+       if( EmailNotifier.getInstance().sendEmail(email ,"Good day! \n Your password is "+ password , "Password")){
+           request.setAttribute("response",new String("Password sent to "+ email));
+           
+       }else request.setAttribute("response", new String("Failed to send password to "+ email));
         
-        response.sendRedirect("CreateAccount/useraccountcreated.html");
+        //response.sendRedirect("CreateAccount/useraccountcreated.html");
+        //RequestDispatcher view = request.getRequestDispatcher("CreateAccount/useraccountcreated.jsp");
+        //view.forward(request, response);
+        
         
     }
 

@@ -1,3 +1,11 @@
+<%-- 
+    Document   : EmployeeData
+    Created on : 03 26, 15, 12:27:50 AM
+    Author     : Arces
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Employee BioData - Personal Information</title>
@@ -18,12 +26,14 @@
             <DIV id="personalinfo" class="tab-section">
                 <table name="one">
                     <tr>
-                        <td>LAST NAME</td>
-                        <td>FIRST NAME</td>
-                        <td>MIDDLE NAME</td>
+                        <td>Employee ID</td>
+                        <td>Last Name</td>
+                        <td>First Name</td>
+                        <td>Middle Name</td>
                         <td>Expected Salary :</td>
                     </tr>
                     <tr>
+                        <td class="three-hundred"><input type="number" min = "0" name="employeeID" placeholder="Employee ID" required /></td>
                         <td class="three-hundred"><input type="text" maxlength = 20 name="lastname" placeholder="Last Name" required /></td>
                         <td class="three-hundred"><input type="text" maxlength = 20 name="firstname" placeholder="First Name" required /></td>
                         <td class="three-hundred"><input type="text" maxlength = 20 name="middlename" placeholder="Middle Name" required /></td>
@@ -61,10 +71,10 @@
                 </table>
                 <table name="four">
                     <tr>
-                        <td>SSS # :</td>
+                        <td>SSS #:</td>
                         <td>TIN #: </td>
-                        <td>PHIC # :</td>
-                        <td>PAGIBIG # :</td>
+                        <td>PHIC #:</td>
+                        <td>PAGIBIG #:</td>
                         <td></td>
                     </tr>
                     <tr>
@@ -76,19 +86,19 @@
                 </table>
                 <table name="five">
                     <tr>
-                        <td>Civil Status : </td>
-                        <td>Citizenship :</td>
-                        <td>Religion :</td>  
+                        <td>Civil Status: </td>
+                        <td>Citizenship:</td>
+                        <td>Religion:</td>  
                     </tr>
                     <tr>
-                        <td width="100px"><select name="civilstatus">
+                        <td width="150px"><select name="civilstatus">
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                                 <option value="Divorced">Divorced</option>
                                 <option value="Widowed">Widowed</option>
                             </select></td>
-                        <td width="525px"><input type="text" maxlength = 20 name="citizenship" placeholder="Citizenship" required/></td>
-                        <td width="525px"><input type="text" maxlength = 20 name="religion" placeholder="Religion" required/></td>
+                        <td><input type="text" maxlength = 20 name="citizenship" placeholder="Citizenship" required/></td>
+                        <td><input type="text" maxlength = 20 name="religion" placeholder="Religion" required/></td>
                         <td></td>
                         <td></td>
                     </tr>

@@ -14,14 +14,14 @@ $(document).ready(function() {
 
     $(tohide).hide();
     $('select[name=civilstatus]').change(function() {
-        if ($('select[name=civilstatus]').find(':selected').val() === "s")
+        if ($('select[name=civilstatus]').find(':selected').val() === "Single")
             $(tohide).hide();
         else
             $(tohide).show();
     });
 
     $('select[name=convicted]').change(function() {
-        if ($('select[name=convicted]').find(':selected').val() === "y")
+        if ($('select[name=convicted]').find(':selected').val() === "Yes")
             $(tohide).show();
         else
             $(tohide).hide();
@@ -31,10 +31,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(siblingwrapper).append(
-                '<tr><td><input type="text" name="siblingname" placeholder="ex. Virma Lopez"  /></td>'
-                + '<td><input type="number" name="siblingage" placeholder="ex. 14"  /></td>'
-                + '<td><input type="text" name="siblingoccupation" placeholder="ex. Student"  /></td>'
-                + '<td><input type="text" name="siblinglocation" placeholder="ex. Binan, Laguna"  /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="siblingname" placeholder="ex. Virma Lopez"  /></td>'
+                + '<td><input type="number" min = "0" max = "999" step = "1" name="siblingage" placeholder="ex. 14"  /></td>'
+                + '<td><input type="text" maxlength = 20 name="siblingoccupation" placeholder="ex. Student"  /></td>'
+                + '<td><input type="text" maxlength = 100 name="siblinglocation" placeholder="ex. Binan, Laguna"  /></td>'
                 + '<td><button class="removesibling">-</button></td></tr>'
                 );
     });
@@ -49,10 +49,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(childwrapper).append(
-                '<tr><td><input type="text" name="childrenname" placeholder="Name of Child" /></td>'
-                + '<td><input type="number" name="childrenage" placeholder="Age" /></td>'
-                + '<td><input type="text" name="childrenoccupation" placeholder="Occupation of Child" /></td>'
-                + '<td><input type="text" name="childrenlocation" placeholder="School/Location" /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="childrenname" placeholder="Name of Child" /></td>'
+                + '<td><input type="number" min = "0" max = "999" step = "1" name="childrenage" placeholder="Age" /></td>'
+                + '<td><input type="text" maxlength = 20 name="childrenoccupation" placeholder="Occupation of Child" /></td>'
+                + '<td><input type="text" maxlength = 100 name="childrenlocation" placeholder="School/Location" /></td>'
                 + '<td><button class="removechild">-</button></td></tr>'
                 );
     });
@@ -67,10 +67,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(elemwrapper).append(
-                '<tr><td><input type="text" name="elemschool" placeholder="ex. Don Bosco School" required /></td>'
-                + '<td><input type="number" name="elemfrom" placeholder="ex. 2000" required /></td>'
-                + '<td><input type="number" name="elemto" placeholder="ex. 2012" required /></td>'
-                + '<td><input type="text" name="elemawards" placeholder="ex. Perfect Attendance" /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="elemschool" placeholder="ex. Don Bosco School" required /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="elemfrom" placeholder="ex. 2000" required /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="elemto" placeholder="ex. 2012" required /></td>'
+                + '<td><input type="text" maxlength = 45 name="elemawards" placeholder="ex. Perfect Attendance" /></td>'
                 + '<td><button class="removeelem">-</button></td></tr>'
                 );
     });
@@ -85,10 +85,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(highschoolwrapper).append(
-                '<tr><td><input type="text" name="highschool" placeholder="ex. Don Bosco School" required /></td>'
-                + '<td><input type="number" name="highschoolfrom" placeholder="ex. 2000" required /></td>'
-                + '<td><input type="number" name="highschooltoelemto" placeholder="ex. 2012" required /></td>'
-                + '<td><input type="text" name="highschoolawards" placeholder="ex. Perfect Attendance" /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="highschool" placeholder="ex. Don Bosco School" required /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="highschoolfrom" placeholder="ex. 2000" required /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="highschooltoelemto" placeholder="ex. 2012" required /></td>'
+                + '<td><input type="text" maxlength = 45 name="highschoolawards" placeholder="ex. Perfect Attendance" /></td>'
                 + '<td><button class="removehighschool">-</button></td></tr>'
                 );
     });
@@ -103,10 +103,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(collegewrapper).append(
-                '<tr><td><input type="text" name="college" placeholder="ex. Don Bosco School" required /></td>'
-                + '<td><input type="number" name="collegefrom" placeholder="ex. 2000" required /></td>'
-                + '<td><input type="number" name="collegeto" placeholder="ex. 2012" required /></td>'
-                + '<td><input type="text" name="collegewards" placeholder="ex. Perfect Attendance" /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="college" placeholder="ex. Don Bosco School" required /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="collegefrom" placeholder="ex. 2000" required /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="collegeto" placeholder="ex. 2012" required /></td>'
+                + '<td><input type="text" maxlength = 45 name="collegewards" placeholder="ex. Perfect Attendance" /></td>'
                 + '<td><button class="removecollege">-</button></td></tr>'
                 );
     });
@@ -121,10 +121,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(vocationalwrapper).append(
-                '<tr><td><input type="text" name="vocationalschool" placeholder="ex. Don Bosco School" /></td>'
-                + '<td><input type="number" name="vocataionalschoolfrom" placeholder="ex. 2000"  /></td>'
-                + '<td><input type="number" name="vocationalschoolto" placeholder="ex. 2012"  /></td>'
-                + '<td><input type="text" name="vocationalschoolawards" placeholder="ex. Perfect Attendance"  /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="vocationalschool" placeholder="ex. Don Bosco School" /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="vocataionalschoolfrom" placeholder="ex. 2000"  /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="vocationalschoolto" placeholder="ex. 2012"  /></td>'
+                + '<td><input type="text" maxlength = 45 name="vocationalschoolawards" placeholder="ex. Perfect Attendance"  /></td>'
                 + '<td><button class="removevocational">-</button></td></tr>'
                 );
     });
@@ -139,10 +139,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(masteralwrapper).append(
-                '<tr><td><input type="text" name="masteralschool" placeholder="ex. Don Bosco School" /></td>'
-                + '<td><input type="number" name="masteralschoolfrom" placeholder="ex. 2000"  /></td>'
-                + '<td><input type="number" name="masteralschoolto" placeholder="ex. 2012"  /></td>'
-                + '<td><input type="text" name="masteralschoolawards" placeholder="ex. Perfect Attendance"  /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="masteralschool" placeholder="ex. Don Bosco School" /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="masteralschoolfrom" placeholder="ex. 2000"  /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="masteralschoolto" placeholder="ex. 2012"  /></td>'
+                + '<td><input type="text" maxlength = 45 name="masteralschoolawards" placeholder="ex. Perfect Attendance"  /></td>'
                 + '<td><button class="removemasteral">-</button></td></tr>'
                 );
     });
@@ -157,10 +157,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(otherswrapper).append(
-                '<tr><td><input type="text" name="otherschool" placeholder="ex. Don Bosco School" /></td>'
-                + '<td><input type="number" name="otherfrom" placeholder="ex. 2000"  /></td>'
-                + '<td><input type="number" name="otherto" placeholder="ex. 2012"  /></td>'
-                + '<td><input type="text" name="otherawards" placeholder="ex. Perfect Attendance" /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="otherschool" placeholder="ex. Don Bosco School" /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="otherfrom" placeholder="ex. 2000"  /></td>'
+                + '<td><input type="number" min = "1000" max = "9999" step = "1" name="otherto" placeholder="ex. 2012"  /></td>'
+                + '<td><input type="text" maxlength = 45 name="otherawards" placeholder="ex. Perfect Attendance" /></td>'
                 + '<td><button class="removeother">-</button></td></tr>');
     });
 
@@ -198,10 +198,10 @@ $(document).ready(function() {
 
                 + '</tr>'
                 + '<tr>'
-                + '	<td><input type="text" name="jobtitle" placeholder="Job Title" /></td>'
+                + '	<td><input type="text" maxlength = 20 name="jobtitle" placeholder="Job Title" /></td>'
                 + '	<td><input type="date" name="jobemploydate" placeholder="Date of Employment" /></td>'
-                + '	<td><input type="number" name="jobbegsal" placeholder="Starting Salary" /></td>'
-                + '	<td><input type="number" name="jobendsal" placeholder="Ending Salary" /></td>'
+                + '	<td><input type="number" min = "0" max = "9999999" step = "1" name="jobbegsal" placeholder="Starting Salary" /></td>'
+                + '	<td><input type="number" min = "0" max = "9999999" step = "1" name="jobendsal" placeholder="Ending Salary" /></td>'
                 + '</tr>'
                 + '<tr>'
                 + '	<td></td>'
@@ -211,9 +211,9 @@ $(document).ready(function() {
                 + '</tr>'
                 + '<tr>'
                 + '	<td></td>'
-                + '	<td><input type="text" name="jobemployer" placeholder="Employer\'s Name" /></td>'
-                + '	<td><input type="text" name="jobaddress" placeholder="Employer\'s Address" /></td>'
-                + '	<td><input type="number" name="jobtelno" placeholder="Employer\'s Contact Number" /></td>'
+                + '	<td><input type="text" maxlength = 45 name="jobemployer" placeholder="Employer\'s Name" /></td>'
+                + '	<td><input type="text" maxlength = 100 name="jobaddress" placeholder="Employer\'s Address" /></td>'
+                + '	<td><input type="number" min = "0" max = "99999999999" step = "1" name="jobtelno" placeholder="Employer\'s Contact Number" /></td>'
                 + '</tr>'
                 + '<tr>'
                 + '	<td></td>'
@@ -224,9 +224,9 @@ $(document).ready(function() {
                 + '</tr>'
                 + '<tr>'
                 + '	<td></td>'
-                + '	<td><input type="text" name="jobsupname" placeholder="Supervisor Name" /></td>'
-                + '	<td><input type="number" name="jobsupno" placeholder="Supervisor Contact Number" /></td>'
-                + '	<td><input type="text" name="jobreason" placeholder="Reason for Leaving" /></td>'
+                + '	<td><input type="text" maxlength = 45 name="jobsupname" placeholder="Supervisor Name" /></td>'
+                + '	<td><input type="number" min = "0" max = "99999999999" step = "1" name="jobsupno" placeholder="Supervisor Contact Number" /></td>'
+                + '	<td><input type="text" maxlength = 256 name="jobreason" placeholder="Reason for Leaving" /></td>'
                 + '	<td><button class="removeemployment">-</button></td>'
                 + '</tr>'
                 );
@@ -250,9 +250,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(criminaloffensewrapper).append(
-                '<tr><td><input type="text" name="offensename" placeholder="Criminal Offense" /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="offensename" placeholder="Criminal Offense" /></td>'
                 + '<td><input type="date" name="offensedate" placeholder="Date of Offense" /></td>'
-                + '<td><input type="text" name="offenseplace" placeholder="Place of Offense" /></td>'
+                + '<td><input type="text" maxlength = 100 name="offenseplace" placeholder="Place of Offense" /></td>'
                 + '<td><button class="removecriminaloffense">-</button></td></tr>'
                 );
     });

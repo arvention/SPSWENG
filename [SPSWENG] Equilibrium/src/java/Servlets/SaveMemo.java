@@ -81,12 +81,9 @@ public class SaveMemo extends HttpServlet {
          int intid = Integer.parseInt(id.trim());
          String memo= request.getParameter("memoNote");
          HttpSession session = request.getSession();
-         if(memo.length() >= 99){
+         if(memo.length() >= 2999){
              System.out.println("Oh no too much characters");
                //request.setAttribute("errors", "Too much characters");
-            
-               
-               
                session.setAttribute("error", new String("Max characters reach"));
                response.sendRedirect("FileMemo/memo.jsp");
            

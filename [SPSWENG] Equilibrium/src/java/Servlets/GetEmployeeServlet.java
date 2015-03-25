@@ -102,9 +102,9 @@ public class GetEmployeeServlet extends HttpServlet {
         
        String email = Database.getInstance().getEmailAddress(entrynum);
        if( EmailNotifier.getInstance().sendEmail(email ,"Good day! \n Your password is "+ pas , "Password")){
-           request.setAttribute("response",new String("Password sent to "+ email));
+           request.setAttribute("response",new String("Password sent to "+ email+"||"+ "Password: "+ pas));
            
-       }else request.setAttribute("response", new String("Failed to send password to "+ email));
+       }else request.setAttribute("response", new String("Failed to send password to "+ email+"||"+ "Password: "+ pas));
         
         RequestDispatcher view = request.getRequestDispatcher("CreateAccount/useraccountcreated.jsp");
         view.forward(request, response);

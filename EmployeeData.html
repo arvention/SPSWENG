@@ -14,6 +14,7 @@
            <li><a href="#edhistory">Education History</a></li>
            <li><a href="#emphistory">Employment History</a></li>
 	       <li><a href="#crimes">Past Criminal Offenses</a></li>
+		   <li><a href="#others">Other Pertinent Information</a></li>
         </ul>
 		    <DIV id="personalinfo" class="tab-section">
 			<table name="one">
@@ -164,7 +165,6 @@
 				     <td></td>
 			       </tr>
 			       <tr>
-			         
 			         <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez" /></td>
 		             <td><input type="text" name="childrengage" placeholder="ex. 14" /></td>
 		             <td><input type="text" name="childrenyear" placeholder="ex. II" /></td>
@@ -404,7 +404,24 @@
 		</table>
 	    </DIV>
 	  </DIV>
-	     <br/><input type="submit" value="Submit" />
+		 <DIV id="others" class="tab-section">
+		    <table name="awards">
+			   <tr>
+			      <td>Note: Add entries that are not indicated in any of the previous sections of this form but is pertinent to the employee record.</td>
+			   </tr>
+			   <tr>
+			      <td>Name of Award/Certification</td>
+				  <td>Date Received</td>
+				  <td>Description of Award/Certification</td>
+			   </tr>
+			   <tr>
+			      <td><input type="text" name="infoname" placeholder="Award/Certification Title" /></td>
+		          <td><input type="date" name="infodate" placeholder="Date recieved by employee" /></td>
+		          <td><input type="text" name="infodescription" placeholder="Describe the award/certification" /></td>
+		          <td><button class="addotherinfo">+</button></td>			   
+			</table>
+		 </DIV>
+		 <br/><input type="submit" value="Submit" />
 	  </form>
           <br/><br/>
 	  <DIV class= "footer">

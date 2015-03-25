@@ -11,6 +11,7 @@ $(document).ready(function(){
 			  var licensewrapper = $('table[name=license]');
 			  var employmentwrapper = $('table[name=employment]');
 			  var criminaloffensewrapper = $('table[name=criminaloffense]');
+			  var otherinfowrapper = $('table[name=awards]');
                                  
                          $(tohide).hide();
 			  $('select[name=civilstatus]').change(function(){
@@ -260,6 +261,21 @@ $(document).ready(function(){
 			    e.preventDefault();
 
 				$(this).parent().parent().remove();
+			 });
+			 
+			 $(document).on("click", ".addotherinfo", function(e){
+			    e.preventDefault();
+				$(otherinfowrapper).append(
+				   '<tr><td><input type="text" name="infoname" placeholder="Award/Certification Title" /></td>'
+				   + '<td><input type="date" name="infodate" placeholder="Date recieved by employee" /></td>'
+				   + '<td><input type="text" name="infodescription" placeholder="Descrbe the award/certification" /></td>'
+				   + '<td><button class="deleteotherinfo">-</button></td></tr>'
+				);
+			 });
+			 
+			 $(document).on("click", ".deleteotherinfo", function(e){
+			     e.preventDefault();
+				 $(this).parent().parent().remove();
 			 });
 			 
 			$('.tab-section').hide();

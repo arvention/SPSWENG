@@ -85,22 +85,26 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         modelEmployee modelEmployee = database.getEmployeeAccount(username, password);
-        session.setAttribute("employee", modelEmployee);
+        
         
         if(modelEmployee != null){
             if(modelEmployee.getEmployeeType().equalsIgnoreCase("Employee")){
+                session.setAttribute("employee", modelEmployee);
                 RequestDispatcher view = request.getRequestDispatcher("Homepage-Employee.jsp");
                 view.forward(request, response);
             }
             else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Hr Head")){
+                session.setAttribute("employee", modelEmployee);
                 RequestDispatcher view = request.getRequestDispatcher("Homepage-HrHead.jsp");
                 view.forward(request, response);
             }
             else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Hr Employee")){
+                session.setAttribute("employee", modelEmployee);
                 RequestDispatcher view = request.getRequestDispatcher("Homepage-HrEmployee.jsp");
                 view.forward(request, response);
             }
             else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Manager")){
+                session.setAttribute("employee", modelEmployee);
                 RequestDispatcher view = request.getRequestDispatcher("Homepage-Manager.jsp");
                 view.forward(request, response);
             }

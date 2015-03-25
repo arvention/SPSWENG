@@ -21,7 +21,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "jetisjet";
+            String uPass = "password";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -205,7 +205,7 @@ public class Database {
                     long mobileNumber = rs.getLong("mobileNumber");
                     String SSSNumber = rs.getString("SSSNumber");
                     String TINNumber = rs.getString("TINNumber");
-                    String PHSCNumber = rs.getString("PHSCNumber");
+                    String PHICNumber = rs.getString("PHICNumber");
                     String PAGIBIGNumber = rs.getString("PAGIBIGNumber");
                     String civilStatus = rs.getString("civilStatus");
                     String citizenship = rs.getString("citizenship");
@@ -223,7 +223,7 @@ public class Database {
                     modelEmployee modelEmployee = new modelEmployee(entryNum, employeeID, lastName,
                                                                     firstName, middleName, address,
                                                                     birthday, birthplace, mobileNumber,
-                                                                    SSSNumber, TINNumber, PHSCNumber,
+                                                                    SSSNumber, TINNumber, PHICNumber,
                                                                     PAGIBIGNumber, civilStatus, citizenship,
                                                                     religion, hireDate, band, salary,
                                                                     departmentID, positionID, isDeleted,

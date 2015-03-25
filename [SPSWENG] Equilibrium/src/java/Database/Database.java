@@ -21,7 +21,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "admin";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -146,7 +146,26 @@ public class Database {
             e.printStackTrace();
         }
     }
-
+    
+    //-- LEAVE COUNT --------------------------------------------
+    public float getApprovedLeaveCount(int empID){
+        float approveCount = 0;
+        
+        sql = "SELECT SUM(duration) FROM leave_form" +
+                " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved = true";
+        
+        try{
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+                approveCount = rs.getFloat("SUM(duration)");
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return approveCount;
+    }
+    
     public boolean checkEmpID(int empID) {
         boolean isFound = false;
 

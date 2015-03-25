@@ -24,7 +24,7 @@
                     $("#datepicker").datepicker({
             changeMonth: true;
                     changeYear: true;
-            });        </script>
+            });</script>
         <script type = "text/javascript" src = "js/LeaveForm.js"></script>
     </head>
 
@@ -67,14 +67,14 @@
                     <%
                     } else if (errorFlags.get(2)) {
                     %>
-                <h4><hr/>Employee ID not found.</h4>
+                <h4><hr/>Sorry, your request exceeds the number of leaves that you can have.</h4>
                     <%
                             }
                         }
                     %>
                 <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
             </form>
-            
+
             <%
                 modelEmployee modelEmployee = (modelEmployee) reqSession.getAttribute("employee");
             %>

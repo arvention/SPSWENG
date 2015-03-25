@@ -26,6 +26,7 @@ import javax.servlet.http.HttpSession;
  * @author Arces
  */
 public class LeaveSubmit extends HttpServlet {
+    private final int maxLeave = 15;   
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -98,9 +99,11 @@ public class LeaveSubmit extends HttpServlet {
         RequestDispatcher reqDispatcher = null;
         ArrayList<Boolean> errorFlags = new ArrayList<>();
         //int empIDNum = Integer.parseInt(request.getParameter("idNum"));
+        float dayCount = Float.parseFloat(request.getParameter("dayCount"));
+        modelEmployee modelEmployee = (modelEmployee)reqSession.getAttribute("employee");
         
         System.out.println("start: " + startDate + " end: " + endDate + " | "+ getDateDiff(startDate, endDate) + " vs " + (int) Float.parseFloat(request.getParameter("dayCount")));
-        
+        System.out.println("TEST VS: " + (maxLeave - (db.getApprovedLeaveCount(modelEmployee.getEmployeeID()) + dayCount)));
         if (endDate != null && startDate != null) {
             if (endDate.before(startDate)) {
                 errorFlags.add(true);
@@ -109,20 +112,20 @@ public class LeaveSubmit extends HttpServlet {
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
-            } else if (getDateDiff(startDate, endDate) > (int) Float.parseFloat(request.getParameter("dayCount"))) {
+            } else if (getDateDiff(startDate, endDate) != (int) Math.ceil(dayCount)) {
                 errorFlags.add(false);
                 errorFlags.add(true);
                 errorFlags.add(false);
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
-            /*} else if(!db.checkEmpID(empIDNum)){
+            } else if(maxLeave - (db.getApprovedLeaveCount(modelEmployee.getEmployeeID()) + dayCount) < 0){
                 errorFlags.add(false);
                 errorFlags.add(false);
                 errorFlags.add(true);
                 
                 reqSession.setAttribute("errorFlags", errorFlags);
-                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");*/
+                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
             }else {
                 errorFlags.add(false);
                 errorFlags.add(false);
@@ -133,7 +136,6 @@ public class LeaveSubmit extends HttpServlet {
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
                 //db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
-                modelEmployee modelEmployee = (modelEmployee)reqSession.getAttribute("employee");
                 System.out.println("ENTRYNUM: " + modelEmployee.getEntryNum());
                 db.addLeaveForm(leaveType, modelEmployee.getEntryNum(), new java.sql.Date(startDate.getTime()), duration);
                 reqDispatcher = request.getRequestDispatcher("LeaveSuccess.jsp");
@@ -162,6 +164,6 @@ public class LeaveSubmit extends HttpServlet {
     public int getDateDiff(Date startDate, Date endDate) {
         int dateDiff = (int)(endDate.getTime() - startDate.getTime())/(1000 * 60 * 60 * 24);
         
-        return dateDiff;
+        return dateDiff + 1;
     }
 }

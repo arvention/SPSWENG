@@ -19,28 +19,26 @@ $(document).ready(function() {
     $("input[name='dayCount']").change(function() {
         var tempDate = new Date($("input[name='startDate']").val());
         var dayCount = $("input[name='dayCount']").val();
-        
-        if(dayCount >= 1.5)
-        {
-            dayCount = Math.ceil(dayCount);
-            if(dayCount >= 2)
-                dayCount--;
-            tempDate.setDate(tempDate.getDate() + dayCount);
 
-            var tempMonth;
-            var tempDay;
+        dayCount = Math.ceil(dayCount);
 
-            if (tempDate.getMonth() + 1 < 10)
-                tempMonth = "-0" + (tempDate.getMonth() + 1);
-            else
-                tempMonth = "-" + (tempDate.getMonth() + 1);
+        dayCount--;
+        tempDate.setDate(tempDate.getDate() + dayCount);
 
-            if (tempDate.getDate() < 10)
-                tempDay = "-0" + tempDate.getDate();
-            else
-                tempDay = "-" + tempDate.getDate();
+        var tempMonth;
+        var tempDay;
 
-            $("input[name='endDate']").val(tempDate.getFullYear() + tempMonth + tempDay);
-        }
+        if (tempDate.getMonth() + 1 < 10)
+            tempMonth = "-0" + (tempDate.getMonth() + 1);
+        else
+            tempMonth = "-" + (tempDate.getMonth() + 1);
+
+        if (tempDate.getDate() < 10)
+            tempDay = "-0" + tempDate.getDate();
+        else
+            tempDay = "-" + tempDate.getDate();
+
+        $("input[name='endDate']").val(tempDate.getFullYear() + tempMonth + tempDay);
+
     });
 });

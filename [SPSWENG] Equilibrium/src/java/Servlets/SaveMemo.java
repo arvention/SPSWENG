@@ -81,7 +81,7 @@ public class SaveMemo extends HttpServlet {
          int intid = Integer.parseInt(id.trim());
          String memo= request.getParameter("memoNote");
          HttpSession session = request.getSession();
-         if(memo.length() >= 2500){
+        if(memo.length() >= 2500){
              System.out.println("Oh no too much characters");
                //request.setAttribute("errors", "Too much characters");
             

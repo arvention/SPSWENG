@@ -81,15 +81,23 @@ public class EnterBioData extends HttpServlet {
 
         //--- variables ----------------------
         Database db = Database.getInstance();
+        RequestDispatcher view = null;
+        int empEntryNum = 0;
 
         //--- functions ----------------------
-        addInfo(db, request);
-        addRelatives(db, request);
-        addEducationHistory(db, request);
-        addEmploymentHistory(db,request);
-        addCriminalOffenses(db, request); 
-        
-        RequestDispatcher view = request.getRequestDispatcher("BiodataFiled.html");
+        if (!checkSchoolYears(request)) {
+            empEntryNum = addInfo(empEntryNum, db, request);
+            addEducationHistory(empEntryNum, db, request);
+            addRelatives(empEntryNum, db, request);
+            addEmploymentHistory(empEntryNum, db, request);
+            addCriminalOffenses(empEntryNum, db, request);
+
+            request.getSession().setAttribute("isEarlier", false);
+            view = request.getRequestDispatcher("BiodataFiled.html");
+        } else {
+            request.getSession().setAttribute("isEarlier", true);
+            view = request.getRequestDispatcher("EmployeeData.jsp");
+        }
         view.forward(request, response);
     }
 
@@ -103,7 +111,8 @@ public class EnterBioData extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void addInfo(Database db, HttpServletRequest request) {
+    public int addInfo(int empEntryNum, Database db, HttpServletRequest request) {
+        int employeeID = Integer.parseInt(request.getParameter("employeeID"));
         String lastName = request.getParameter("lastname");
         String firstName = request.getParameter("firstname");
         String middleName = request.getParameter("middlename");
@@ -130,10 +139,10 @@ public class EnterBioData extends HttpServlet {
             e.printStackTrace();
         }
 
-        db.addInfo(lastName, firstName, middleName, address, new java.sql.Date(birthDay.getTime()), birthplace, mobileNumber, SSSNumber, TINNumber, PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, emailAddress, homePhone);
+        return db.addInfo(employeeID, lastName, firstName, middleName, address, new java.sql.Date(birthDay.getTime()), birthplace, mobileNumber, SSSNumber, TINNumber, PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, emailAddress, homePhone);
     }
 
-    public void addRelatives(Database db, HttpServletRequest request) {
+    public void addRelatives(int empEntryNum, Database db, HttpServletRequest request) {
         String relativeName, relativeOcc, relativeRelation, relativeLocation;
         int relativeAge;
         long relativeContact;
@@ -146,7 +155,7 @@ public class EnterBioData extends HttpServlet {
             relativeAge = Integer.parseInt(request.getParameter("fatherage"));
             relativeOcc = request.getParameter("fatheroccupation");
             relativeRelation = "father";
-            db.addRelative(relativeName, relativeRelation, 1234, relativeAge, relativeOcc);
+            db.addRelative(relativeName, relativeRelation, empEntryNum, relativeAge, relativeOcc);
         }
         //-- get mother ------------------------
         if (!request.getParameter("mothername").equals("") && !request.getParameter("motherage").equals("") && !request.getParameter("motheroccupation").equals("")) {
@@ -154,7 +163,7 @@ public class EnterBioData extends HttpServlet {
             relativeAge = Integer.parseInt(request.getParameter("motherage"));
             relativeOcc = request.getParameter("motheroccupation");
             relativeRelation = "mother";
-            db.addRelative(relativeName, relativeRelation, 1234, relativeAge, relativeOcc);
+            db.addRelative(relativeName, relativeRelation, empEntryNum, relativeAge, relativeOcc);
         }
         //-- get siblings ----------------------
         if (request.getParameterValues("siblingname") != null && request.getParameterValues("siblingage") != null && request.getParameterValues("siblingoccupation") != null && request.getParameterValues("siblinglocation") != null) {
@@ -166,7 +175,7 @@ public class EnterBioData extends HttpServlet {
 
             for (int i = 0; i < relativesName.length; i++) {
                 if (!relativesName[i].equals("") && !relativesAge[i].equals("") && !relativesOcc[i].equals("") && !relativesLocation[i].equals("")) {
-                    db.addRelative(relativesName[i], relativeRelation, 1234, Integer.parseInt(relativesAge[i]), relativesOcc[i], relativesLocation[i]);
+                    db.addRelative(relativesName[i], relativeRelation, empEntryNum, Integer.parseInt(relativesAge[i]), relativesOcc[i], relativesLocation[i]);
                 }
             }
         }
@@ -180,7 +189,7 @@ public class EnterBioData extends HttpServlet {
                 relativeContact = Long.parseLong(request.getParameter("spousecontact"));
                 relativeOcc = request.getParameter("spouseoccupation");
 
-                db.addRelative(relativeName, relativeRelation, 1234, relativeOcc, relativeContact);
+                db.addRelative(relativeName, relativeRelation, empEntryNum, relativeOcc, relativeContact);
             }
 
             //-- get children ------------------------------
@@ -193,7 +202,7 @@ public class EnterBioData extends HttpServlet {
 
                 for (int i = 0; i < relativesName.length; i++) {
                     if (!relativesName[i].equals("") && !relativesAge[i].equals("") && !relativesOcc[i].equals("") && !relativesLocation[i].equals("")) {
-                        db.addRelative(relativesName[i], relativeRelation, 1234, Integer.parseInt(relativesAge[i]), relativesOcc[i], relativesLocation[i]);
+                        db.addRelative(relativesName[i], relativeRelation, empEntryNum, Integer.parseInt(relativesAge[i]), relativesOcc[i], relativesLocation[i]);
                     }
                 }
             }
@@ -206,11 +215,11 @@ public class EnterBioData extends HttpServlet {
             relativeLocation = request.getParameter("emergencyaddress");
             relativeContact = Long.parseLong(request.getParameter("emergencynumber"));
 
-            db.addRelative(relativeName, relativeRelation, 1234, relativeLocation, relativeContact);
+            db.addRelative(relativeName, relativeRelation, empEntryNum, relativeLocation, relativeContact);
         }
     }
 
-    public void addCriminalOffenses(Database db, HttpServletRequest request) {
+    public void addCriminalOffenses(int empEntryNum, Database db, HttpServletRequest request) {
         String isConvicted = request.getParameter("convicted");
         if (isConvicted.equals("Yes")) {
             String[] offenseNames = request.getParameterValues("offensename");
@@ -222,7 +231,7 @@ public class EnterBioData extends HttpServlet {
                     if (!offenseNames[i].equals("") && !offenseDates[i].equals("") && !offensePlaces[i].equals("")) {
                         try {
                             Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(offenseDates[i]);
-                            db.addOffense(1234, offenseNames[i], new java.sql.Date(tempDate.getTime()), offensePlaces[i]);
+                            db.addOffense(empEntryNum, offenseNames[i], new java.sql.Date(tempDate.getTime()), offensePlaces[i]);
                         } catch (ParseException ex) {
                             ex.printStackTrace();
                         }
@@ -232,7 +241,7 @@ public class EnterBioData extends HttpServlet {
         }
     }
 
-    public void addEmploymentHistory(Database db, HttpServletRequest request) {
+    public void addEmploymentHistory(int empEntryNum, Database db, HttpServletRequest request) {
         String[] jobTitles = request.getParameterValues("jobtitle");
         String[] jobEmployDates = request.getParameterValues("jobemploydate");
         String[] jobStartSals = request.getParameterValues("jobbegsal");
@@ -250,11 +259,11 @@ public class EnterBioData extends HttpServlet {
                 if (!jobTitles[i].equals("") && !jobEmployDates[i].equals("") && !jobStartSals[i].equals("") && !jobEndSals[i].equals("")
                         && !jobEmployers[i].equals("") && !jobAddresses[i].equals("") && !jobTelNos[i].equals("") && !jobSups[i].equals("")
                         && !jobSupNos[i].equals("") && !jobReasons[i].equals("")) {
-                    
+
                     try {
                         Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(jobEmployDates[i]);
-                        db.addEmployment(1234, jobTitles[i], new java.sql.Date(tempDate.getTime()), Integer.parseInt(jobStartSals[i]),
-                                Integer.parseInt(jobEndSals[i]), jobEmployers[i], jobAddresses[i], Long.parseLong(jobTelNos[i]), jobSups[i], 
+                        db.addEmployment(empEntryNum, jobTitles[i], new java.sql.Date(tempDate.getTime()), Integer.parseInt(jobStartSals[i]),
+                                Integer.parseInt(jobEndSals[i]), jobEmployers[i], jobAddresses[i], Long.parseLong(jobTelNos[i]), jobSups[i],
                                 Long.parseLong(jobSupNos[i]), jobReasons[i]);
                     } catch (ParseException ex) {
                         ex.printStackTrace();
@@ -264,8 +273,9 @@ public class EnterBioData extends HttpServlet {
         }
     }
 
-    public void addEducationHistory(Database db, HttpServletRequest request) {
+    public void addEducationHistory(int empEntryNum, Database db, HttpServletRequest request) {
         String[] schoolNames, schoolAwards, schoolFromYear, schoolToYear;
+
         //-- get elementary ------------------------------------------------
         schoolNames = request.getParameterValues("elemschool");
         schoolAwards = request.getParameterValues("elemawards");
@@ -275,79 +285,186 @@ public class EnterBioData extends HttpServlet {
         if (schoolNames != null && schoolFromYear != null && schoolToYear != null) {
             for (int i = 0; i < schoolNames.length; i++) {
                 if (!schoolNames[i].equals("") && !schoolFromYear[i].equals("") && !schoolToYear[i].equals("")) {
-                    db.addEducation(1234, "Elementary", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
+                    db.addEducation(empEntryNum, "Elementary", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
                 }
             }
         }
 
         //-- get high school ------------------------------------------------
         schoolNames = request.getParameterValues("highschool");
-        schoolAwards = request.getParameterValues("highschoolfrom");
-        schoolFromYear = request.getParameterValues("highschoolto");
-        schoolToYear = request.getParameterValues("highschoolawards");
+        schoolAwards = request.getParameterValues("highschoolawards");
+        schoolFromYear = request.getParameterValues("highschoolfrom");
+        schoolToYear = request.getParameterValues("highschoolto");
 
         if (schoolNames != null && schoolFromYear != null && schoolToYear != null) {
             for (int i = 0; i < schoolNames.length; i++) {
                 if (!schoolNames[i].equals("") && !schoolFromYear[i].equals("") && !schoolToYear[i].equals("")) {
-                    db.addEducation(1234, "High School", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
+                    db.addEducation(empEntryNum, "High School", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
                 }
             }
         }
 
         //-- get College ------------------------------------------------
         schoolNames = request.getParameterValues("college");
-        schoolAwards = request.getParameterValues("collegefrom");
-        schoolFromYear = request.getParameterValues("collegeto");
-        schoolToYear = request.getParameterValues("collegeawards");
+        schoolAwards = request.getParameterValues("collegeawards");
+        schoolFromYear = request.getParameterValues("collegefrom");
+        schoolToYear = request.getParameterValues("collegeto");
 
-        if (schoolNames != null && schoolFromYear != null && schoolToYear != null) {
+        if (schoolNames != null && schoolFromYear != null && schoolToYear
+                != null) {
             for (int i = 0; i < schoolNames.length; i++) {
                 if (!schoolNames[i].equals("") && !schoolFromYear[i].equals("") && !schoolToYear[i].equals("")) {
-                    db.addEducation(1234, "College", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
+                    db.addEducation(empEntryNum, "College", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
                 }
             }
         }
 
         //-- get vocational ------------------------------------------------
         schoolNames = request.getParameterValues("vocationalschool");
-        schoolAwards = request.getParameterValues("vocationalschoolfrom");
-        schoolFromYear = request.getParameterValues("vocationalschoolto");
-        schoolToYear = request.getParameterValues("vocationalschoolawards");
+        schoolAwards = request.getParameterValues("vocationalschoolawards");
+        schoolFromYear = request.getParameterValues("vocationalschoolfrom");
+        schoolToYear = request.getParameterValues("vocationalschoolto");
 
         if (schoolNames != null && schoolFromYear != null && schoolToYear != null) {
             for (int i = 0; i < schoolNames.length; i++) {
                 if (!schoolNames[i].equals("") && !schoolFromYear[i].equals("") && !schoolToYear[i].equals("")) {
-                    db.addEducation(1234, "Vocational", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
+                    db.addEducation(empEntryNum, "Vocational", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
                 }
             }
         }
 
         //-- get masteral ------------------------------------------------
         schoolNames = request.getParameterValues("masteralschool");
-        schoolAwards = request.getParameterValues("masteralschoolfrom");
-        schoolFromYear = request.getParameterValues("masteralschoolto");
-        schoolToYear = request.getParameterValues("masteralschoolawards");
+        schoolAwards = request.getParameterValues("masteralschoolawards");
+        schoolFromYear = request.getParameterValues("masteralschoolfrom");
+        schoolToYear = request.getParameterValues("masteralschoolto");
 
         if (schoolNames != null && schoolFromYear != null && schoolToYear != null) {
             for (int i = 0; i < schoolNames.length; i++) {
                 if (!schoolNames[i].equals("") && !schoolFromYear[i].equals("") && !schoolToYear[i].equals("")) {
-                    db.addEducation(1234, "Masteral", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
+                    db.addEducation(empEntryNum, "Masteral", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
                 }
             }
         }
-
         //-- get others ------------------------------------------------
         schoolNames = request.getParameterValues("otherschool");
-        schoolAwards = request.getParameterValues("otherfrom");
-        schoolFromYear = request.getParameterValues("otherto");
-        schoolToYear = request.getParameterValues("otherawards");
+        schoolAwards = request.getParameterValues("otherawards");
+        schoolFromYear = request.getParameterValues("otherfrom");
+        schoolToYear = request.getParameterValues("otherto");
 
         if (schoolNames != null && schoolFromYear != null && schoolToYear != null) {
             for (int i = 0; i < schoolNames.length; i++) {
                 if (!schoolNames[i].equals("") && !schoolFromYear[i].equals("") && !schoolToYear[i].equals("")) {
-                    db.addEducation(1234, "Others", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
+                    db.addEducation(empEntryNum, "Others", schoolNames[i], Integer.parseInt(schoolFromYear[i]), Integer.parseInt(schoolToYear[i]), schoolAwards[i]);
                 }
             }
         }
+    }
+    
+    public void addLicenseExam(int empEntryNum, Database db, HttpServletRequest request){
+        String[] licenseNames, licensePercentages;
+        
+        licenseNames = request.getParameterValues("license");
+        licensePercentages = request.getParameterValues("licensepercentage");
+        
+        if(licenseNames != null && licensePercentages != null)
+        {
+            for(int i = 0; i < licenseNames.length; i++)
+            {
+                if(!licenseNames[i].equals("") && !licensePercentages[i].equals(""))
+                {
+                    db.addLicense(licenseNames[i], empEntryNum, Integer.parseInt(licensePercentages[i]));
+                }
+            }
+        }
+    }
+    
+    public boolean checkSchoolYears(HttpServletRequest request) {
+        boolean isEarlier = false;
+
+        String[] startDates, endDates;
+
+        //check elementaryDates
+        startDates = request.getParameterValues("elemfrom");
+        endDates = request.getParameterValues("elemto");
+
+        if (startDates != null && endDates != null) {
+            for (int i = 0; i < startDates.length && !isEarlier; i++) {
+                if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                    isEarlier = true;
+                }
+            }
+        }
+
+        if (!isEarlier) {
+            //check highschoolDates
+            startDates = request.getParameterValues("highschoolfrom");
+            endDates = request.getParameterValues("highschoolto");
+
+            if (startDates != null && endDates != null) {
+                for (int i = 0; i < startDates.length && !isEarlier; i++) {
+                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                        isEarlier = true;
+                    }
+                }
+            }
+        }
+
+        if (!isEarlier) {
+            //check collegeDates
+            startDates = request.getParameterValues("collegefrom");
+            endDates = request.getParameterValues("collegeto");
+
+            if (startDates != null && endDates != null) {
+                for (int i = 0; i < startDates.length && !isEarlier; i++) {
+                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                        isEarlier = true;
+                    }
+                }
+            }
+        }
+
+        if (!isEarlier) {
+            //check vocationalDates
+            startDates = request.getParameterValues("vocationalschoolfrom");
+            endDates = request.getParameterValues("vocationalschoolto");
+
+            if (startDates != null && endDates != null) {
+                for (int i = 0; i < startDates.length && !isEarlier; i++) {
+                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                        isEarlier = true;
+                    }
+                }
+            }
+        }
+
+        if (!isEarlier) {
+            //check masteralDates
+            startDates = request.getParameterValues("masteralschoolfrom");
+            endDates = request.getParameterValues("masteralschoolto");
+
+            if (startDates != null && endDates != null) {
+                for (int i = 0; i < startDates.length && !isEarlier; i++) {
+                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                        isEarlier = true;
+                    }
+                }
+            }
+        }
+
+        if (!isEarlier) {
+            //check otherDates
+            startDates = request.getParameterValues("otherfrom");
+            endDates = request.getParameterValues("otherto");
+
+            if (startDates != null && endDates != null) {
+                for (int i = 0; i < startDates.length && !isEarlier; i++) {
+                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                        isEarlier = true;
+                    }
+                }
+            }
+        }
+        return isEarlier;
     }
 }

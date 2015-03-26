@@ -34,7 +34,7 @@
                         <td>Expected Salary :</td>
                     </tr>
                     <tr>
-                        <td class="three-hundred"><input type="number" min = "0" name="employeeID" placeholder="Employee ID" required /></td>
+                        <td class="three-hundred"><input type="number" min = "0" max = "99999999999" name="employeeID" placeholder="Employee ID" required /></td>
                         <td class="three-hundred"><input type="text" maxlength = 20 name="lastname" placeholder="Last Name" required /></td>
                         <td class="three-hundred"><input type="text" maxlength = 20 name="firstname" placeholder="First Name" required /></td>
                         <td class="three-hundred"><input type="text" maxlength = 20 name="middlename" placeholder="Middle Name" required /></td>
@@ -205,6 +205,16 @@
                 </table>
             </DIV>
             <DIV id="edhistory" class="tab-section">
+                <%
+                    Boolean isEarlier = (Boolean) request.getSession().getAttribute("isEarlier");
+                    if (isEarlier != null) {
+                        if (isEarlier) {
+                %>
+                <span class="headers"><font color = "red" size = "2px">* Error: an end of a school year is earlier than the starting year</font></span><br/><br/>
+                <%
+                        }
+                    }
+                %>
                 <span class="headers">Elementary</span><br/>
                 <table name="elementary">
                     <tr>
@@ -215,7 +225,6 @@
                         <td class="five-hundred">Awards</td>
                     </tr>
                     <tr>
-
                         <td><input type="text" maxlength = 45 name="elemschool" placeholder="ex. Don Bosco School" required /></td>
                         <td><input type="number" min = "1000" max = "9999" step = "1" name="elemfrom" placeholder="ex. 2000" required /></td>
                         <td><input type="number" min = "1000" max = "9999" step = "1" name="elemto" placeholder="ex. 2012" required /></td>

@@ -380,7 +380,7 @@ public class Database {
     }
 
     //-- BIO DATA ---------------------------------------------------------------------------------------
-    public void addInfo(String lastName, String firstName, String middleName, String address, Date birthDay,
+    public int addInfo(int employeeID, String lastName, String firstName, String middleName, String address, Date birthDay,
                             String birthplace, long mobileNumber, String SSSNumber, String TINNumber, String PHICNumber, 
                             String PAGIBIGNumber, String civilStatus, String citizenship, String religion, 
                             int salary, String emailAddress, int homePhone){
@@ -395,9 +395,9 @@ public class Database {
                 maxEntry = rs.getInt("MAX(entryNum)") + 1;
             }
             
-            sql = "INSERT INTO employee(entryNum, lastName, firstName, middleName, address, birthDay, birthplace, mobileNumber, SSSNumber, TINNumber"
+            sql = "INSERT INTO employee(entryNum, employeeID, lastName, firstName, middleName, address, birthDay, birthplace, mobileNumber, SSSNumber, TINNumber"
                     + ", PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, isDeleted, emailAddress, homePhone)"
-                    + " VALUES("+ maxEntry + ", '" + lastName + "', '" + firstName + "', '" + middleName + "', '" + address + "', '" + birthDay + "', '" + birthplace + 
+                    + " VALUES("+ maxEntry + ", " + employeeID + ", '" + lastName + "', '" + firstName + "', '" + middleName + "', '" + address + "', '" + birthDay + "', '" + birthplace + 
                     "', " + mobileNumber + ", '" + SSSNumber + "', '" + TINNumber + "', '" + PHICNumber + "', '" + PAGIBIGNumber + "', '" + civilStatus + "', '" + citizenship
                     + "', '" + religion + "', " + salary + ", '0', '" + emailAddress + "', " + homePhone + ")";
             
@@ -405,6 +405,8 @@ public class Database {
         }catch(SQLException e){
             e.printStackTrace();
         }
+        
+        return maxEntry;
     }
     
     //-- EDUCATION -------------------------------------------------------------------
@@ -451,6 +453,28 @@ public class Database {
                     + " VALUES(" + maxEmployment + ", " + empEntryNum + ", '" + jobTitle + "', '" + dateOfEmployment + "', " + startingSalary
                     + ", " + endingSalary + ", '" + employerName + "', '" + employerAddress + "', " + employerContactNum + ", '" + supervisorName
                     + "', " + supervisorContactNum + ", '" + reasonForLeaving + "')";
+            
+            stmt.executeUpdate(sql);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    //-- LICENSE ----------------------------------------------------------------------
+    public void addLicense(String licenseName, int empEntryNum, int percentage){
+        int maxLicense = 1;
+        
+        sql = "SELECT MAX(licenseID) FROM license";
+        try{
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+            {
+                maxLicense = rs.getInt("MAX(licenseID)") + 1;
+            }
+            
+            sql = "INSERT INTO license"
+                    + " VALUES(" + maxLicense + ", '" + licenseName + "', " + empEntryNum + ", " + percentage + ")";
             
             stmt.executeUpdate(sql);
         } catch(SQLException e){

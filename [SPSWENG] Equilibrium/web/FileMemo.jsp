@@ -1,6 +1,6 @@
 <%@page import="Bean.EmployeeBean"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="AddAccountBeans.searchEmployeeBean"%>
+<%@page import="Bean.searchEmployeeBean"%>
 <html>
     <head>
         <link rel="shortcut icon" href="img/eq logo.ico"/>

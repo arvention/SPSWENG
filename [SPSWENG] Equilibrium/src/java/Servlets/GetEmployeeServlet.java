@@ -87,8 +87,8 @@ public class GetEmployeeServlet extends HttpServlet {
         String lname =db.getLastName(entryNum);
 
         String email = db.getEmailAddress(entryNum);
-        if (EmailNotifier.getInstance().sendEmail(email, "Good day! Welcome to Equilibrium, "+fname+" "+lname+".\n"
-                + "An account has been created for you by the Human Resources department. Your password is " + password
+        if (EmailNotifier.getInstance().sendEmail(email, "Welcome to Equilibrium, "+fname+" "+lname+".\n"
+                + "An account has been created by the Human Resources department, for you.\nYour password is " + password
                 +"\nThank you!", "[Password]")) {
             request.setAttribute("response", new String("Password is sent to " + email));
 

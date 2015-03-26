@@ -107,9 +107,9 @@ public class SaveMemo extends HttpServlet {
         
          
          
-         if( email.sendEmail(to,"Greetings,"+fname+" "+lname+"\nPlease be informed that you have received a memo from your superior, \n\n"
-                 + "Containing : \n\n" + memo, 
-                 "[Disciplinary Memo]You received a disciplinary memo.")){
+         if( email.sendEmail(to,"Greetings, "+fname+" "+lname+"\nPlease be informed that you have received a memo from your superior. \n\n"
+                 + "According to the memo : \n\n" + memo, 
+                 "[Disciplinary Memo] You received a disciplinary memo")){
             request.setAttribute("response", new String("Notification Email sent to "+ to)); 
              
          }else request.setAttribute("response", new String("Failed to send Notification Email to "+ to)); 

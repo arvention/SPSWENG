@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="shortcut icon" href="eq logo.ico"/>
+        <link rel="shortcut icon" href="img/eq logo.ico"/>
         <title> Memo Form - Equilibrium </title>
 
         <link rel="stylesheet" type="text/css" 	media="all" href="css/LeaveSuccess.css" />

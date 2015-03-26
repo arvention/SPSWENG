@@ -51,11 +51,11 @@ div.content{
     color: white;
     float: left;
     border: 2px solid;
-    cursor: hand;
 }
 
 .submitButton:hover{
     opacity: .80;
+    cursor: pointer;
     border: 1px solid white;
 }
 

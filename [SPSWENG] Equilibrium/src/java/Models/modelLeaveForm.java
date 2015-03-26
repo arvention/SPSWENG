@@ -12,29 +12,6 @@ public class modelLeaveForm {
     private boolean isApproved;
     private int approverEntryNum;
 
-    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum,
-                        Date startDate, float duration){
-        this.leaveID = leaveID;
-        this.leaveType = leaveType;
-        this.empEntryNum = empEntryNum;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.isApproved = false;
-        this.approverEntryNum = 0;
-    }
-    
-    public modelLeaveForm(int leaveID, String leaveType, int empEntryNum,
-                        Date startDate, float duration, boolean isApproved,
-                        int approverEntryNum){
-        this.leaveID = leaveID;
-        this.leaveType = leaveType;
-        this.empEntryNum = empEntryNum;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.isApproved = isApproved;
-        this.approverEntryNum = approverEntryNum;
-    }
-    
     public int getLeaveID() {
         return leaveID;
     }
@@ -90,6 +67,4 @@ public class modelLeaveForm {
     public void setApproverEntryNum(int approverEntryNum) {
         this.approverEntryNum = approverEntryNum;
     }
-    
-    
 }

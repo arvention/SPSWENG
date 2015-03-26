@@ -5,12 +5,6 @@ public class modelBranch {
     private int branchID;
     private String name;
     private String address;
-
-    public modelBranch(int branchID, String name, String address){
-        this.branchID = branchID;
-        this.name = name;
-        this.address = address;
-    }
     
     public int getBranchID() {
         return branchID;

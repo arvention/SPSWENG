@@ -9,16 +9,6 @@ public class modelRelative {
     private int age;
     private String occupation;
 
-    public modelRelative(int relativeID, String name, String relation,
-                        int empEntryNum, int age, String occupation){
-        this.relativeID = relativeID;
-        this.name = name;
-        this.relation = relation;
-        this.empEntryNum = empEntryNum;
-        this.age = age;
-        this.occupation = occupation;
-    }
-    
     public int getRelativeID() {
         return relativeID;
     }

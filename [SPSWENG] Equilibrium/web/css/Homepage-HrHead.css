@@ -53,4 +53,5 @@ IMG.compLogo{
 .selectButton:hover{
     opacity: 0.75;
     border: 1.5px solid black;
+    cursor: pointer;
 }

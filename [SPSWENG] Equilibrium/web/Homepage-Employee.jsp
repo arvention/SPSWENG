@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home - EQuilibrium</title>
         
-        <link rel = "shortcut icon" href="eq logo.ico"/>
+        <link rel = "shortcut icon" href="img/eq logo.ico"/>
         <link href = "css/Homepage-Employee.css" rel = "stylesheet" />
     </head>
     <body bgcolor ="#E8E8E8">

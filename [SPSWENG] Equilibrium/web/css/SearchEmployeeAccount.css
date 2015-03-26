@@ -62,7 +62,7 @@ DIV.pageBottom{
 }
 
 .submitButton:hover{
-    cursor:hand;
+    cursor:pointer;
 }
 
 a{

@@ -13,10 +13,11 @@ public class modelEmployee {
     private String address;
     private Date birthday;
     private String birthplace;
+    private int homePhone;
     private Long mobileNumber;
     private String SSSNumber;
     private String TINNumber;
-    private String PHSCNumber;
+    private String PHICNumber;
     private String PAGIBIGNumber;
     private String civilStatus;
     private String citizenship;
@@ -25,79 +26,11 @@ public class modelEmployee {
     private String band;
     private int salary;
     private int departmentID;
-    private int positionID;
+    private String positionName;
     private boolean isDeleted;
     private String emailAddress;
     private String employeeType;
     private int managerEntryNum;
-
-    public modelEmployee(int entryNum, int employeeID, String lastName, String firstName, String middleName,
-                        String address, Date birthday, String birthplace, Long mobileNumber, String SSSNumber,
-                        String TINNumber, String PHSCNumber, String PAGIBIGNumber, String civilStatus, 
-                        String citizenship, String religion, Date hireDate, String band, int salary,
-                        int departmentID, int positionID, boolean isDeleted, String emailAddress,
-                        String employeeType, int managerEntryNum){
-        this.entryNum = entryNum;
-        this.employeeID = employeeID;
-        this.password = "";
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.address = address;
-        this.birthday = birthday;
-        this.birthplace = birthplace;
-        this.mobileNumber = mobileNumber;
-        this.SSSNumber = SSSNumber;
-        this.TINNumber = TINNumber;
-        this.PHSCNumber = PHSCNumber;
-        this.PAGIBIGNumber = PAGIBIGNumber;
-        this.civilStatus = civilStatus;
-        this.citizenship = citizenship;
-        this.religion = religion;
-        this.hireDate = hireDate;
-        this.band = band;
-        this.salary = salary;
-        this.departmentID = departmentID;
-        this.positionID = positionID;
-        this.isDeleted = isDeleted;
-        this.emailAddress = emailAddress;
-        this.employeeType = employeeType;
-        this.managerEntryNum = managerEntryNum;
-    }
-    
-    public modelEmployee(int entryNum, int employeeID, String password, String lastName, String firstName, String middleName,
-                        String address, Date birthday, String birthplace, Long mobileNumber, String SSSNumber,
-                        String TINNumber, String PHSCNumber, String PAGIBIGNumber, String civilStatus, 
-                        String citizenship, String religion, Date hireDate, String band, int salary,
-                        int departmentID, int positionID, boolean isDeleted, String emailAddress,
-                        String employeeType, int managerEntryNum){
-        this.entryNum = entryNum;
-        this.employeeID = employeeID;
-        this.password = password;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.address = address;
-        this.birthday = birthday;
-        this.birthplace = birthplace;
-        this.mobileNumber = mobileNumber;
-        this.SSSNumber = SSSNumber;
-        this.TINNumber = TINNumber;
-        this.PHSCNumber = PHSCNumber;
-        this.PAGIBIGNumber = PAGIBIGNumber;
-        this.civilStatus = civilStatus;
-        this.citizenship = citizenship;
-        this.religion = religion;
-        this.hireDate = hireDate;
-        this.band = band;
-        this.salary = salary;
-        this.departmentID = departmentID;
-        this.positionID = positionID;
-        this.isDeleted = isDeleted;
-        this.emailAddress = emailAddress;
-        this.employeeType = employeeType;
-        this.managerEntryNum = managerEntryNum;
-    }
     
     public int getEntryNum() {
         return entryNum;
@@ -171,6 +104,14 @@ public class modelEmployee {
         this.birthplace = birthplace;
     }
 
+    public int getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(int homePhone) {
+        this.homePhone = homePhone;
+    }
+
     public Long getMobileNumber() {
         return mobileNumber;
     }
@@ -195,14 +136,14 @@ public class modelEmployee {
         this.TINNumber = TINNumber;
     }
 
-    public String getPHSCNumber() {
-        return PHSCNumber;
+    public String getPHICNumber() {
+        return PHICNumber;
     }
 
-    public void setPHSCNumber(String PHSCNumber) {
-        this.PHSCNumber = PHSCNumber;
+    public void setPHICNumber(String PHICNumber) {
+        this.PHICNumber = PHICNumber;
     }
-    
+
     public String getPAGIBIGNumber() {
         return PAGIBIGNumber;
     }
@@ -267,12 +208,12 @@ public class modelEmployee {
         this.departmentID = departmentID;
     }
 
-    public int getPositionID() {
-        return positionID;
+    public String getPositionName() {
+        return positionName;
     }
 
-    public void setPositionID(int positionID) {
-        this.positionID = positionID;
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
     }
 
     public boolean isIsDeleted() {
@@ -306,4 +247,5 @@ public class modelEmployee {
     public void setManagerEntryNum(int managerEntryNum) {
         this.managerEntryNum = managerEntryNum;
     }
+   
 }

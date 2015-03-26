@@ -9,6 +9,7 @@
 <html>
     <head>
         <title>Employee BioData - Personal Information</title>
+        <link rel ="shortcut icon" href="img/eq logo.ico">
         <link rel="stylesheet" type="text/css" media="all" href="css/SampleScreensStyle.css"/>
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/SampleScreensFunc.js"></script>

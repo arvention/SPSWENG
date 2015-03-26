@@ -15,62 +15,6 @@ public class modelRecord {
     private String disciplinaryComment;
     private int disciplinaryDuration;
 
-    public modelRecord(int recordID, String recordType, int empEntryNum, Date date){
-        this.recordID = recordID;
-        this.recordType = recordType;
-        this.empEntryNum = empEntryNum;
-        this.date = date;
-        this.awardName = "";
-        this.evaluationScore = 0;
-        this.evaluatorEntryNum = 0;
-        this.disciplinaryRecordType = "";
-        this.disciplinaryComment = "";
-        this.disciplinaryDuration = 0;
-    }
-    
-    public modelRecord(int recordID, String recordType, int empEntryNum, Date date,
-                    String awardName){
-        this.recordID = recordID;
-        this.recordType = recordType;
-        this.empEntryNum = empEntryNum;
-        this.date = date;
-        this.awardName = awardName;
-        this.evaluationScore = 0;
-        this.evaluatorEntryNum = 0;
-        this.disciplinaryRecordType = "";
-        this.disciplinaryComment = "";
-        this.disciplinaryDuration = 0;
-    }
-    
-    public modelRecord(int recordID, String recordType, int empEntryNum, Date date,
-                    int evaluationScore, int evaluatorEntryNum){
-        this.recordID = recordID;
-        this.recordType = recordType;
-        this.empEntryNum = empEntryNum;
-        this.date = date;
-        this.awardName = "";
-        this.evaluationScore = evaluationScore;
-        this.evaluatorEntryNum = evaluatorEntryNum;
-        this.disciplinaryRecordType = "";
-        this.disciplinaryComment = "";
-        this.disciplinaryDuration = 0;
-    }
-    
-    public modelRecord(int recordID, String recordType, int empEntryNum, Date date,
-                        String disciplinaryRecordType, String disciplinaryComment,
-                        int disciplinaryDuration){
-        this.recordID = recordID;
-        this.recordType = recordType;
-        this.empEntryNum = empEntryNum;
-        this.date = date;
-        this.awardName = "";
-        this.evaluationScore = 0;
-        this.evaluatorEntryNum = 0;
-        this.disciplinaryRecordType = disciplinaryRecordType;
-        this.disciplinaryComment = disciplinaryComment;
-        this.disciplinaryDuration = disciplinaryDuration;
-    }
-    
     public int getRecordID() {
         return recordID;
     }

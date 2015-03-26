@@ -11,7 +11,7 @@
 .memoText{
     margin-left: 125px;
     margin-top: 20px;
-    font-color: black;
+    color: black;
     border: 1px solid black;
     font-family: Arial;
     padding-left: 4px;
@@ -22,12 +22,12 @@
     height: 25px;
     margin-top: 8px;
     margin-left: 440px;
-    cursor: hand;
     color: black;
 }
 
 .submitButton:hover{
     border: 1.5px solid white;
+    cursor: pointer;
 }
 
 .titleText{

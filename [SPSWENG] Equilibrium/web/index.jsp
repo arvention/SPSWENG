@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>EQuilibrium</title>
-        
+        <link rel ="shortcut icon" href="img/eq logo.ico">
         <link href = "css/LoginPage.css" rel = "stylesheet" />
         
         <script src = "js/LoginPage.js"></script>

@@ -54,6 +54,7 @@ IMG.compLogo{
     color:#F0F0F0;
     opacity: .50;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 .inputBox{

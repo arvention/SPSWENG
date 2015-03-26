@@ -9,17 +9,6 @@ public class modelEducationHistory {
     private int yearFrom;
     private int yearTo;
     private String award;
-
-    public modelEducationHistory(int educationHistoryID, int empEntryNum, String level, 
-                                String schoolName, int yearFrom, int yearTo, String award){
-        this.educationHistoryID = educationHistoryID;
-        this.empEntryNum = empEntryNum;
-        this.level = level;
-        this.schoolName = schoolName;
-        this.yearFrom = yearFrom;
-        this.yearTo = yearTo;
-        this.award = award;
-    }
     
     public int getEducationHistoryID() {
         return educationHistoryID;

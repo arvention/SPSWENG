@@ -17,24 +17,6 @@ public class modelEmploymentHistory {
     private long supervisorContactNum;
     private String reasonForLeaving;
 
-    public modelEmploymentHistory(int employmentHistoryID, int empEntryNum, String jobTitle, Date dateOfEmployment,
-                                int startingSalary, int endingSalary, String employerName, String employerAddress,
-                                long employerContactNum, String supervisorName, long supervisorContactNum, 
-                                String reasonForLeaving){
-        this.employmentHistoryID = employmentHistoryID;
-        this.empEntryNum = empEntryNum;
-        this.jobTitle = jobTitle;
-        this.dateOfEmployment = dateOfEmployment;
-        this.startingSalary = startingSalary;
-        this.endingSalary = endingSalary;
-        this.employerName = employerName;
-        this.employerAddress = employerAddress;
-        this.employerContactNum = employerContactNum;
-        this.supervisorName = supervisorName;
-        this.supervisorContactNum = supervisorContactNum;
-        this.reasonForLeaving = reasonForLeaving;
-    }
-    
     public int getEmploymentHistoryID() {
         return employmentHistoryID;
     }

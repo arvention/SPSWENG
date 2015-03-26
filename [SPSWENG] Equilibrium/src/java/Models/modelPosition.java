@@ -4,11 +4,6 @@ package Models;
 public class modelPosition {
     private int positionID;
     private String name;
-
-    public modelPosition(int positionID, String name){
-        this.positionID = positionID;
-        this.name = name;
-    }
     
     public int getPositionID() {
         return positionID;

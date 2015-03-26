@@ -42,11 +42,12 @@ div.content{
     border-color: black;
     color: white;
     float: left;
-    cursor:hand;
+    
 }
 .submitButton:hover{
     opacity: .80;
     border: 1px solid white;
+    cursor: pointer;
 }
 .back{
     font-size: 20px;
@@ -56,11 +57,11 @@ div.content{
     border-color: black;
     color: white;
     float: right;
-    cursor: hand;
 }
 .back:hover{
     opacity: .80;
     border: 1px solid white;
+    cursor: pointer;
 }
 div.footer{
     width: 100%;

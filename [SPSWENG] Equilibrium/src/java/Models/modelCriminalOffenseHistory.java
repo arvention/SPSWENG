@@ -9,14 +9,6 @@ public class modelCriminalOffenseHistory {
     private String criminalOffense;
     private Date dateOfOffense;
     private String placeOfOffense;
-
-    public modelCriminalOffenseHistory(int criminalOffenseHistoryID, int empEntryNum, String criminalOffense, Date dateOfOffense, String placeOfOffense){
-        this.criminalOffenseHistoryID = criminalOffenseHistoryID;
-        this.empEntryNum = empEntryNum;
-        this.criminalOffense = criminalOffense;
-        this.dateOfOffense = dateOfOffense;
-        this.placeOfOffense = placeOfOffense;
-    }
     
     public int getCriminalOffenseHistoryID() {
         return criminalOffenseHistoryID;

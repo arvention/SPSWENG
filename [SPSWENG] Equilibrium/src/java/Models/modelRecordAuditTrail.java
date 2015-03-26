@@ -12,29 +12,6 @@ public class modelRecordAuditTrail {
     private boolean isApproved;
     private int approverEntryNum;
 
-    public modelRecordAuditTrail(int recAuditTrailID, int recordID, int editorEntryNum,
-                                int editedEntryNum, Timestamp timestamp){
-        this.recAuditTrailID = recAuditTrailID;
-        this.recordID = recordID;
-        this.editorEntryNum = editorEntryNum;
-        this.editedEntryNum = editedEntryNum;
-        this.timestamp = timestamp;
-        this.isApproved = false;
-        this.approverEntryNum = 0;
-    }
-    
-    public modelRecordAuditTrail(int recAuditTrailID, int recordID, int editorEntryNum,
-                                int editedEntryNum, Timestamp timestamp, boolean isApproved,
-                                int approverEntryNum){
-        this.recAuditTrailID = recAuditTrailID;
-        this.recordID = recordID;
-        this.editorEntryNum = editorEntryNum;
-        this.editedEntryNum = editedEntryNum;
-        this.timestamp = timestamp;
-        this.isApproved = isApproved;
-        this.approverEntryNum = approverEntryNum;
-    }
-    
     public int getRecAuditTrailID() {
         return recAuditTrailID;
     }

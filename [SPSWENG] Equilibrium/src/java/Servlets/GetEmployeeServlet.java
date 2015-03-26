@@ -83,10 +83,14 @@ public class GetEmployeeServlet extends HttpServlet {
         
         db.changePassword(entryNum, password);
         db.changeEmployeeType(entryNum, type);
+        String fname =db.getFirstName(entryNum);
+        String lname =db.getLastName(entryNum);
 
         String email = db.getEmailAddress(entryNum);
-        if (EmailNotifier.getInstance().sendEmail(email, "Good day! \n Your password is " + password, "Password")) {
-            request.setAttribute("response", new String("Password sent to " + email));
+        if (EmailNotifier.getInstance().sendEmail(email, "Good day! Welcome to Equilibrium, "+fname+" "+lname+".\n"
+                + "An account has been created for you by the Human Resources department. Your password is " + password
+                +"\nThank you!", "[Password]")) {
+            request.setAttribute("response", new String("Password is sent to " + email));
 
         } else {
             request.setAttribute("response", new String("Failed to send password to " + email));

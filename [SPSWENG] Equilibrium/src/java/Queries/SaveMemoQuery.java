@@ -61,6 +61,9 @@ public class SaveMemoQuery {
         
     }
     
+    
+    
+    
     public String getEmail(int id){
         String result=null;
         String sql ="select employeeID, emailAddress  from employee where employeeID="+ id;
@@ -79,6 +82,38 @@ public class SaveMemoQuery {
         return result;
     }
     
+     public String getfname(int id){
+        String result=null;
+        String sql ="select employeeID, firstName from employee where employeeID="+ id;
+         try{
+          //  stmt = EquilibriumDatabase.getConnection().createStatement();
+               stmt = Database.getInstance().getConnection().createStatement();
+            rs = stmt.executeQuery(sql);  
+            rs.next();
+            result = rs.getString(2);
+            
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+     
+         public String getlname(int id){
+        String result=null;
+        String sql ="select employeeID, lastName from employee where employeeID="+ id;
+         try{
+          //  stmt = EquilibriumDatabase.getConnection().createStatement();
+               stmt = Database.getInstance().getConnection().createStatement();
+            rs = stmt.executeQuery(sql);  
+            rs.next();
+            result = rs.getString(2);
+            
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+     
     
     
 }

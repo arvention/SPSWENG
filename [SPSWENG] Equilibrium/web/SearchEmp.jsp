@@ -22,7 +22,7 @@
                     %>
                     <div class="result">
                         <form action ="SaveAccount" method="POST" >
-                            <span class="name"> <%=result.getLastName()%> ,  <%=result.getFirstName()%> </span><br>
+                            <span class="name"> <%=result.getLastName()%>, <%=result.getFirstName()%> </span><br>
                             <span class="idnum"><%=result.getEmployeeID() %></span><br>
                             <span class="accStatus">No Account</span>
                             <select required name="type">

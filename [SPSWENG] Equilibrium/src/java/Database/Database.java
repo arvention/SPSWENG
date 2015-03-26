@@ -76,6 +76,42 @@ public class Database {
         }
         return firstName;
     }
+    
+    public String getFirstNameEmpID(int employeeID) {
+        String firstName = "";
+
+        try {
+            sql = "SELECT firstName FROM employee"
+                    + " WHERE employeeID = " + employeeID;
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                firstName = rs.getString("firstName");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return firstName;
+    }
+    
+      public String getLastNameEmpID(int employeeID) {
+        String firstName = "";
+
+        try {
+            sql = "SELECT lastName FROM employee"
+                    + " WHERE employeeID = " + employeeID;
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                firstName = rs.getString("firstName");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return firstName;
+    }
+    
+    
 
     public String getLastName(int entryNum) {
         String lastName = "";

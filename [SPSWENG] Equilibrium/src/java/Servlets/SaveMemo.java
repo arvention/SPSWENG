@@ -81,12 +81,10 @@ public class SaveMemo extends HttpServlet {
          int intid = Integer.parseInt(id.trim());
          String memo= request.getParameter("memoNote");
          HttpSession session = request.getSession();
-         if(memo.length() >= 99){
+         if(memo.length() >= 2500){
              System.out.println("Oh no too much characters");
                //request.setAttribute("errors", "Too much characters");
             
-               
-               
                session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
                response.sendRedirect("FileMemo.jsp");
            
@@ -100,14 +98,16 @@ public class SaveMemo extends HttpServlet {
          String to = SM.getEmail(intid);
          System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
          
-         
+         String fname =SM.getfname(intid);
+         String lname = SM.getlname(intid);
          session.removeAttribute("error");
          EmailNotifier email = EmailNotifier.getInstance();
          System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
          
+        
          
          
-         if( email.sendEmail(to, "Greetings!Please be informed that you have received a memo from your superior, \n\n"
+         if( email.sendEmail(to,"Greetings,"+fname+" "+lname+"\nPlease be informed that you have received a memo from your superior, \n\n"
                  + "Containing : \n\n" + memo, 
                  "[Disciplinary Memo]You received a disciplinary memo.")){
             request.setAttribute("response", new String("Notification Email sent to "+ to)); 

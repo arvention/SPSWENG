@@ -15,8 +15,7 @@
             <p> Welcome, ${employee.getFirstName()} ${employee.getLastName()}  </p>
         </div>
         <div class = "pageMid">
-            <a href="viewemp.html"><button id="login" class="selectButton">View Employee Records</button></a>
-            <button id="login" class="selectButton">Request for Documents</button>
+            <button id="login" class="selectButton">View Employee Records</button>
             <button id="login" class="selectButton">Manage Leaves</button>
              <a href="GetEmployeeOfManagerServlet"><button id="login" class="selectButton">Give Memo</button></a>
         </div>

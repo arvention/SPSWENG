@@ -5,14 +5,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link rel ="shortcut icon" href="img/eq logo.ico"/>
+        <link rel="shortcut icon" href="img/eq logo.ico"/>
         <link href = "css/MemoFiled.css" rel = "stylesheet" />
     </head>
     <body bgcolor=#E8E8E8>
         <div class = "memoForm" align="center">
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="titleText">Memo has been filed!</div><br/>
-            <a href="homepage.html">Click here to return to home page...</a>
+            <div class="titleText">${response}</div><br/>
+            <a href="Homepage-Manager.jsp">Click here to return to home page...</a>
         </div>
         <div class = "pageBottom" style="margin-bottom: 3px"><hr width ="75%"/></br> 
             EQUILIBRIUM INTERTRADE CORP.

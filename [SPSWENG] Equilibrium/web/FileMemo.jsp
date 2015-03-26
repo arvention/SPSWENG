@@ -5,7 +5,7 @@
     <head>
         <link rel="shortcut icon" href="img/eq logo.ico"/>
         <title> Memo Form - Equilibrium </title>
-        <link href = "../css/FileMemo.css" rel = "stylesheet" />
+        <link href = "css/FileMemo.css" rel = "stylesheet" />
 
 
     </head>
@@ -15,7 +15,7 @@
             <text class= "titleText"> File a Memo </text>
             <br/>
 
-            <form action="../SaveMemo" method="POST">
+            <form action="SaveMemo" method="POST">
                 <div class = "contentText">
                     Memo addressed to:
                     <select required name="listEmployees">

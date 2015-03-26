@@ -82,7 +82,7 @@ public class GetSearchResultServlet extends HttpServlet {
           searchEmployeeBean bean =  CA.getSearchResults(search);
           HttpSession session= request.getSession();
           session.setAttribute("search",bean);
-          response.sendRedirect("CreateAccount/SearchEmp.jsp");
+          response.sendRedirect("SearchEmp.jsp");
         
     }
 

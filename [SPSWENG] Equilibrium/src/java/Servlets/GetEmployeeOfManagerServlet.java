@@ -73,7 +73,7 @@ public class GetEmployeeOfManagerServlet extends HttpServlet {
         
         searchEmployeeBean result = GA.GetAllEmployeeManager(emp.getEntryNum()); 
         session.setAttribute("ManagerEmployee", result);
-        response.sendRedirect("FileMemo/memo.jsp");
+        response.sendRedirect("FileMemo.jsp");
     }
 
     /**

@@ -106,7 +106,7 @@ public class GetEmployeeServlet extends HttpServlet {
            
        }else request.setAttribute("response", new String("Failed to send password to "+ email));
         
-        RequestDispatcher view = request.getRequestDispatcher("CreateAccount/useraccountcreated.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("UserAccountCreated.jsp");
         view.forward(request, response);
         
         

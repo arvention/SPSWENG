@@ -88,7 +88,7 @@ public class SaveMemo extends HttpServlet {
                
                
                session.setAttribute("error", new String("Max characters reach"));
-               response.sendRedirect("FileMemo/memo.jsp");
+               response.sendRedirect("FileMemo.jsp");
            
           //  RequestDispatcher view = request.getRequestDispatcher("FileMemo/memo.jsp");
           //  view.forward(request, response);
@@ -111,7 +111,7 @@ public class SaveMemo extends HttpServlet {
          //response.sendRedirect("FileMemo/MemoFiled.jsp");
         
         
-        RequestDispatcher view = request.getRequestDispatcher("FileMemo/MemoFiled.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("FileMemoSuccess.jsp");
         view.forward(request, response);
         
          

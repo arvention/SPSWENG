@@ -154,7 +154,7 @@ CREATE TABLE `employee` (
   `isDeleted` binary(1) NOT NULL,
   `emailAddress` varchar(45) NOT NULL,
   `employeeType` varchar(12) DEFAULT NULL,
-  `managerEntryNum` int(11) DEFAULT '0',
+  `managerEntryNum` int(11) DEFAULT NULL,
   PRIMARY KEY (`entryNum`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -165,7 +165,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,1234,'password','Employee','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','0','arrenmatthew@gmail.com','Employee',4),(2,1235,'password','Hr Head','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Hr Head',4),(3,1236,'password','Hr Employee','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Hr Employee',10),(4,1237,'password','Manager','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Manager',10),(5,1238,'n2klel','Lastname','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Employee',10),(6,1239,'123','Lastname','Arren ','Arren','arren','1997-05-14','Binan',NULL,9278871577,'281','91','91','917','Single','Fil','Roman Catholic','2015-12-19','bAN1',1000,10,'10','0','arrenmatthew@gmail.com','hrhead',10);
+INSERT INTO `employee` VALUES (1,1234,'password','Employee','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','0','arrenmatthew@gmail.com','Employee',4),(2,1235,'password','Hr Head','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Hr Head',4),(3,1236,'password','Hr Employee','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Hr Employee',10),(4,1237,'password','Manager','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Manager',10),(5,1238,'n2klel','Lastname','Arren','Arren','arren','1997-05-14','Binan',NULL,9278871577,'2981','2931','19281','2198','Single','Fil','Roman Catholic','2015-05-15','Band1',100000,10,'10','?','arrenmatthew@gmail.com','Employee',10),(6,1239,'mlllj7','Lastname','Arren ','Arren','arren','1997-05-14','Binan',NULL,9278871577,'281','91','91','917','Single','Fil','Roman Catholic','2015-12-19','bAN1',1000,10,'10','0','arrenmatthew@gmail.com','HR Employee',10),(7,4321,'nbo1dm','Lastname','Arren ','Arren','arren','1997-05-14','Binan',NULL,9278871577,'281','91','91','917','Single','Fil','Roman Catholic','2015-12-19','bAN1',1000,10,'10','?','arrenmatthew@gmail.com','Employee',4);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +184,7 @@ CREATE TABLE `employee_audit_trail` (
   `editorEntryNum` int(11) NOT NULL,
   `editedEntryNum` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `isApproved` binary(1) DEFAULT NULL,
+  `isApproved` binary(1) DEFAULT '0',
   `approverEntryNum` int(11) DEFAULT NULL,
   PRIMARY KEY (`empAuditTrailID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -258,7 +258,7 @@ CREATE TABLE `leave_form` (
 
 LOCK TABLES `leave_form` WRITE;
 /*!40000 ALTER TABLE `leave_form` DISABLE KEYS */;
-INSERT INTO `leave_form` VALUES (1,'Sick',1,'2015-03-23',3,'0',0),(2,'Sick',1234,'2015-03-24',3,'0',0),(3,'Sick',1234,'2015-03-24',3,'0',0),(4,'Sick',1,'2015-03-24',4,'0',0),(5,'Sick',1,'2015-03-24',2,'0',0),(6,'Sick',1,'2015-03-24',1.5,'0',0),(7,'Sick',1,'2015-03-24',1,'0',0),(8,'Sick',1,'2015-03-24',6,'0',0),(9,'Sick',1,'2015-03-24',1,'0',0),(10,'Sick',1,'2015-03-24',1,'0',0);
+INSERT INTO `leave_form` VALUES (1,'Sick',1,'2015-03-23',3,'0',0),(2,'Sick',1234,'2015-03-24',3,'0',0),(3,'Sick',1234,'2015-03-24',3,'0',0),(4,'Sick',1,'2015-03-24',4,'0',0),(5,'Sick',1,'2015-03-24',2,'0',0),(6,'Sick',1,'2015-03-24',1.5,'0',0),(7,'Sick',1,'2015-03-24',1,'0',0),(8,'Sick',1,'2015-03-24',6,'0',0),(9,'Sick',1,'2015-03-24',1,'0',0),(10,'Sick',1,'2015-03-24',1,'0',0),(11,'Sick',1,'2015-03-26',4.5,'0',NULL),(12,'Sick',1,'2015-03-26',5.5,'0',NULL),(13,'Sick',1,'2015-03-26',0.5,'0',NULL),(14,'Sick',1,'2015-03-26',1.5,'0',NULL),(15,'Bereavement',1,'2015-03-26',0.5,'0',NULL),(16,'Bereavement',1,'2015-03-26',0.5,'0',NULL),(17,'Sick',1,'2015-03-26',4.5,'0',NULL),(18,'Sick',1,'2015-03-26',3.5,'0',NULL),(19,'Sick',1,'2015-03-26',3.5,'0',NULL),(20,'Emergency',1,'2015-03-26',2.5,'0',NULL);
 /*!40000 ALTER TABLE `leave_form` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,6 +271,7 @@ DROP TABLE IF EXISTS `license`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `license` (
   `licenseID` int(11) NOT NULL,
+  `licenseName` varchar(45) NOT NULL,
   `empEntryNum` int(11) NOT NULL,
   `percentage` int(11) NOT NULL,
   PRIMARY KEY (`licenseID`)
@@ -385,4 +386,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-26 10:02:22
+-- Dump completed on 2015-03-26 18:52:57

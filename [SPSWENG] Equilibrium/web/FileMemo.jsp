@@ -1,6 +1,5 @@
-<%@page import="Bean.EmployeeBean"%>
+<%@page import="Models.modelEmployee"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Bean.searchEmployeeBean"%>
 <html>
     <head>
         <link rel="shortcut icon" href="img/eq logo.ico"/>
@@ -21,13 +20,11 @@
                     <select required name="listEmployees">
 
                         <%
-                            searchEmployeeBean bean = (searchEmployeeBean) session.getAttribute("ManagerEmployee");
-                            ArrayList<EmployeeBean> list = bean.getSearchResult();
-
-                            for (EmployeeBean emp : list) {
-
+                            ArrayList<modelEmployee> modelEmployees  = (ArrayList<modelEmployee>)session.getAttribute("ManagerEmployee");
+                            for(modelEmployee employee : modelEmployees){
+                            
                         %>
-                        <option value="<%=emp.getempid()%>" > <%=emp.getlastname()%>, <%=emp.getfirstname()%>  </option>
+                        <option value="<%=employee.getEntryNum()%>" > <%=employee.getLastName()%>, <%=employee.getFirstName()%>  </option>
                         <%
                             }
 

@@ -22,7 +22,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "jetisjet";
+            String uPass = "password";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -509,6 +509,18 @@ public class Database {
         }
     }
     
+    public void saveDisciplinary(int empEntryNum, String memo) {
+        
+        sql = "INSERT INTO record(recordType,empEntryNum, disciplinaryComment) "
+               + "VALUES ( 'memo', '"+ empEntryNum + " ', '"+ memo +"')";
+
+        try {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public ArrayList<modelEmployee> getSearchResult(String search){
         ArrayList<modelEmployee> modelEmployees = new ArrayList<>();
         
@@ -575,6 +587,80 @@ public class Database {
                 String employeeType = rs.getString("employeeType");
                     modelEmployee.setEmployeeType(employeeType);
                 int managerEntryNum = rs.getInt("managerEntryNum");
+                    modelEmployee.setManagerEntryNum(managerEntryNum);
+                    
+                modelEmployees.add(modelEmployee);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return modelEmployees;
+    }
+    
+    public ArrayList<modelEmployee> getEmployeeOfManager(int managerEntryNum){
+        ArrayList<modelEmployee> modelEmployees = new ArrayList<>();
+        
+        sql=  "select * from employee where managerEntryNum = "+ managerEntryNum;
+        
+        try{
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                modelEmployee modelEmployee = new modelEmployee();
+                
+                int entryNum = rs.getInt("entryNum");
+                    modelEmployee.setEntryNum(entryNum);
+                int employeeID = rs.getInt("employeeID");
+                    modelEmployee.setEmployeeID(employeeID);
+                String password = rs.getString("password");
+                    modelEmployee.setPassword(password);
+                String lastName = rs.getString("lastName");
+                    modelEmployee.setLastName(lastName);
+                String firstName = rs.getString("firstName");
+                    modelEmployee.setFirstName(firstName);
+                String middleName = rs.getString("middleName");
+                    modelEmployee.setMiddleName(middleName);
+                String address = rs.getString("address");
+                    modelEmployee.setAddress(address);
+                Date birthday = rs.getDate("birthday");
+                    modelEmployee.setBirthday(birthday);
+                String birthplace = rs.getString("birthplace");
+                    modelEmployee.setBirthplace(birthplace);
+                int homePhone = rs.getInt("homePhone");
+                    modelEmployee.setHomePhone(homePhone);
+                long mobileNumber = rs.getLong("mobileNumber");
+                    modelEmployee.setMobileNumber(mobileNumber);
+                String SSSNumber = rs.getString("SSSNumber");
+                    modelEmployee.setSSSNumber(SSSNumber);
+                String TINNumber = rs.getString("TINNumber");
+                    modelEmployee.setTINNumber(TINNumber);
+                String PHICNumber = rs.getString("PHICNumber");
+                    modelEmployee.setPHICNumber(PHICNumber);
+                String PAGIBIGNumber = rs.getString("PAGIBIGNumber");
+                    modelEmployee.setPAGIBIGNumber(PAGIBIGNumber);
+                String civilStatus = rs.getString("civilStatus");
+                    modelEmployee.setCivilStatus(civilStatus);
+                String citizenship = rs.getString("citizenship");
+                    modelEmployee.setCitizenship(citizenship);
+                String religion = rs.getString("religion");
+                    modelEmployee.setReligion(religion);
+                Date hireDate = rs.getDate("hireDate");
+                    modelEmployee.setHireDate(hireDate);
+                String band = rs.getString("band");
+                    modelEmployee.setBand(band);
+                int salary = rs.getInt("salary");  
+                    modelEmployee.setSalary(salary);
+                int departmentID = rs.getInt("departmentID");
+                    modelEmployee.setDepartmentID(departmentID);
+                String positionName = rs.getString("positionName");
+                    modelEmployee.setPositionName(positionName);
+                boolean isDeleted = rs.getBoolean("isDeleted");
+                    modelEmployee.setIsDeleted(isDeleted);
+                String emailAddress = rs.getString("emailAddress");
+                    modelEmployee.setEmailAddress(emailAddress);
+                String employeeType = rs.getString("employeeType");
+                    modelEmployee.setEmployeeType(employeeType);
                     modelEmployee.setManagerEntryNum(managerEntryNum);
                     
                 modelEmployees.add(modelEmployee);

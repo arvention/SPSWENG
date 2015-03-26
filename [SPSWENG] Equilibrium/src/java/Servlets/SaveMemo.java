@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Servlets;
 
-import Bean.EmployeeBean;
+import Database.Database;
 import Database.EmailNotifier;
-import Queries.SaveMemoQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -41,7 +39,7 @@ public class SaveMemo extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SaveMemo</title>");            
+            out.println("<title>Servlet SaveMemo</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SaveMemo at " + request.getContextPath() + "</h1>");
@@ -76,55 +74,43 @@ public class SaveMemo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         String id = request.getParameter("listEmployees");
-         int intid = Integer.parseInt(id.trim());
-         String memo= request.getParameter("memoNote");
-         HttpSession session = request.getSession();
-        if(memo.length() >= 2500){
-             System.out.println("Oh no too much characters");
-               //request.setAttribute("errors", "Too much characters");
-            
-               session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
-               response.sendRedirect("FileMemo.jsp");
-           
-          //  RequestDispatcher view = request.getRequestDispatcher("FileMemo/memo.jsp");
-          //  view.forward(request, response);
-         }
-         
-         else{
-         SaveMemoQuery SM = new SaveMemoQuery();
-         SM.SaveDisciplinary(intid, memo);
-         String to = SM.getEmail(intid);
-         System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
-         
-         String fname =SM.getfname(intid);
-         String lname = SM.getlname(intid);
-         session.removeAttribute("error");
-         EmailNotifier email = EmailNotifier.getInstance();
-         System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
-         
-        
-         
-         
-         if( email.sendEmail(to,"Greetings, "+fname+" "+lname+"\nPlease be informed that you have received a memo from your superior. \n\n"
-                 + "According to the memo : \n\n" + memo, 
-                 "[Disciplinary Memo] You received a disciplinary memo")){
-            request.setAttribute("response", new String("Notification Email sent to "+ to)); 
-             
-         }else request.setAttribute("response", new String("Failed to send Notification Email to "+ to)); 
-         //response.sendRedirect("FileMemo/MemoFiled.jsp");
-        
-        
-        RequestDispatcher view = request.getRequestDispatcher("FileMemoSuccess.jsp");
-        view.forward(request, response);
-        
-         
-         }
-         
-         
+
+        String id = request.getParameter("listEmployees");
+        int intid = Integer.parseInt(id.trim());
+        String memo = request.getParameter("memoNote");
+        HttpSession session = request.getSession();
+        if (memo.length() >= 2500) {
+            System.out.println("Oh no too much characters");
+
+            session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
+            response.sendRedirect("FileMemo.jsp");
+        } else {
+            Database db = Database.getInstance();
+            db.saveDisciplinary(intid, memo);
+            String to = db.getEmailAddress(intid);
+            String fname = db.getFirstName(intid);
+            String lname = db.getLastName(intid);
+
+            System.out.println("HEREEEE SENDING EMAIL TO: " + to);
+            session.removeAttribute("error");
+            EmailNotifier email = EmailNotifier.getInstance();
+            System.out.println("HEREEEE SENDING EMAIL TO: " + to);
+
+            if (email.sendEmail(to, "Greetings, " + fname + " " + lname + "\nPlease be informed that you have received a memo from your superior. \n\n"
+                    + "According to the memo : \n\n" + memo,
+                    "[Disciplinary Memo] You received a disciplinary memo")) {
+                request.setAttribute("response", new String("Notification Email sent to " + to));
+
+            } else {
+                request.setAttribute("response", new String("Failed to send Notification Email to " + to));
+            }
+
+            RequestDispatcher view = request.getRequestDispatcher("FileMemoSuccess.jsp");
+            view.forward(request, response);
+
         }
-    
+
+    }
 
     /**
      * Returns a short description of the servlet.
@@ -134,10 +120,7 @@ public class SaveMemo extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    
-}
-    
-    
-    
-    
+
+    }
+
 }

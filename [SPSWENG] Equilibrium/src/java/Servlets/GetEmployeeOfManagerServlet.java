@@ -6,11 +6,11 @@
 
 package Servlets;
 
-import Bean.searchEmployeeBean;
+import Database.Database;
 import Models.modelEmployee;
-import Queries.SaveMemoQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -67,12 +67,10 @@ public class GetEmployeeOfManagerServlet extends HttpServlet {
         System.out.println("DUDE DA ID IS "+ emp.getEmployeeID());
         
         
-        SaveMemoQuery GA = new SaveMemoQuery();
-        //System.out.println(modelEmployee.getEntryNum()+"HEREEE");
-        
-        
-        searchEmployeeBean result = GA.GetAllEmployeeManager(emp.getEntryNum()); 
-        session.setAttribute("ManagerEmployee", result);
+        Database db = Database.getInstance();
+        ArrayList<modelEmployee> employees = db.getEmployeeOfManager(emp.getEntryNum());
+
+        session.setAttribute("ManagerEmployee", employees);
         response.sendRedirect("FileMemo.jsp");
     }
 

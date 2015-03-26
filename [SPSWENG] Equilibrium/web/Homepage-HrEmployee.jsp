@@ -17,6 +17,7 @@
         <div class = "pageMid">
             <a href="viewemp.html"><button id="login" class="selectButton">Manage Employee Records</button></a>
             <a href="LeaveForm.jsp"><button id="login" class="selectButton">Apply for a Leave</button></a>
+            <a href="EmployeeData.jsp"><button id="login" class="selectButton">Create New Employee Data</button></a>
         </div>
         <div class ="pageBot">
             <hr width = "75%" SIZE = "1" />EQUILIBRIUM INTERTRADE CORP.

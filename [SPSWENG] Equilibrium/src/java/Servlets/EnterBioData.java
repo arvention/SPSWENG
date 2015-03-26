@@ -88,6 +88,7 @@ public class EnterBioData extends HttpServlet {
         if (!checkSchoolYears(request)) {
             empEntryNum = addInfo(empEntryNum, db, request);
             addEducationHistory(empEntryNum, db, request);
+            addLicenseExam(empEntryNum, db, request);
             addRelatives(empEntryNum, db, request);
             addEmploymentHistory(empEntryNum, db, request);
             addCriminalOffenses(empEntryNum, db, request);
@@ -431,8 +432,11 @@ public class EnterBioData extends HttpServlet {
 
             if (startDates != null && endDates != null) {
                 for (int i = 0; i < startDates.length && !isEarlier; i++) {
-                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
-                        isEarlier = true;
+                    if(!startDates[i].equals("") && !endDates[i].equals(""))
+                    {
+                        if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                            isEarlier = true;
+                        }
                     }
                 }
             }
@@ -445,8 +449,11 @@ public class EnterBioData extends HttpServlet {
 
             if (startDates != null && endDates != null) {
                 for (int i = 0; i < startDates.length && !isEarlier; i++) {
-                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
-                        isEarlier = true;
+                    if(!startDates[i].equals("") && !endDates[i].equals(""))
+                    {
+                        if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                            isEarlier = true;
+                        }
                     }
                 }
             }
@@ -459,8 +466,11 @@ public class EnterBioData extends HttpServlet {
 
             if (startDates != null && endDates != null) {
                 for (int i = 0; i < startDates.length && !isEarlier; i++) {
-                    if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
-                        isEarlier = true;
+                    if(!startDates[i].equals("") && !endDates[i].equals(""))
+                    {
+                        if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
+                            isEarlier = true;
+                        }
                     }
                 }
             }

@@ -1,3 +1,30 @@
+function validateForm(){
+    var educationInputs = document.getElementsByClassName("educationinput");
+    var infoInputs = document.getElementsByClassName("infoinput");
+    var isEducationEmpty = false;
+    var isInfoEmpty = false;
+    
+    for(var i = 0; i < infoInputs.length && !isInfoEmpty; i++){
+        if(infoInputs[i].value === "")
+            isInfoEmpty = true;
+    }
+    
+    for(var i = 0; i < educationInputs.length && !isEducationEmpty; i++){
+        if(educationInputs[i].value === "")
+            isEducationEmpty = true;
+    }
+    
+    if(isInfoEmpty){
+        alert("Please fill up the personal information of the employee");
+        return false;
+    }
+    else if(isEducationEmpty){
+        alert("Please fill up the education history (until college level is required)");
+        return false;
+    }
+    return true;
+}
+
 $(document).ready(function() {
     var siblingwrapper = $('table[name=siblings]');
     var childwrapper = $('table[name=children]');
@@ -175,7 +202,7 @@ $(document).ready(function() {
 
         $(licensewrapper).append(
                 '<tr><td><input type="text" name="license" placeholder="License/Exam Name" /></td>'
-                + '<td><input type="text" name="licensepercentage" placeholder="Percentage Result" /></td>'
+                + '<td><input type="number" min = "0" max = "100" name="licensepercentage" placeholder="Percentage" /></td>'
                 + '<td><button class="removelicense">-</button></td></tr>'
                 );
     });

@@ -15,7 +15,7 @@
         <script src="js/SampleScreensFunc.js"></script>
     </head>
     <body>
-        <form action = "EnterBioData" method = "post">
+        <form action = "EnterBioData"  onsubmit = "return validateForm()" method = "post">
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
                 <li><a href="#family">Family Relations</a></li>
@@ -34,11 +34,11 @@
                         <td>Expected Salary :</td>
                     </tr>
                     <tr>
-                        <td class="three-hundred"><input type="number" min = "0" max = "99999999999" name="employeeID" placeholder="Employee ID" required /></td>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="lastname" placeholder="Last Name" required /></td>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="firstname" placeholder="First Name" required /></td>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="middlename" placeholder="Middle Name" required /></td>
-                        <td class="three-hundred"><input type="number" step = "1" min = "0" max = "9999999" name="salary" placeholder="Expected Salary" required/></td>
+                        <td class="three-hundred"><input type="number" class = "infoinput" min = "0" max = "99999999999" name="employeeID" placeholder="Employee ID"  /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="lastname" placeholder="Last Name"  /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="firstname" placeholder="First Name"  /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="middlename" placeholder="Middle Name"  /></td>
+                        <td class="three-hundred"><input type="number" class = "infoinput" step = "1" min = "0" max = "9999999" name="salary" placeholder="Expected Salary" /></td>
                     </tr>
                 </table>
                 <table name="two">
@@ -46,11 +46,11 @@
                         <td>Address:</td>
                     </tr>
                     <tr>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="block" placeholder="Block/Street" required /></td>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="subdivision" placeholder="Subdivision" required /></td>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="barangay" placeholder="Barangay" required /></td>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="city" placeholder="City" required /></td>
-                        <td class="three-hundred"><input type="text" maxlength = 20 name="province" placeholder="Province" required /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="block" placeholder="Block/Street" /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="subdivision" placeholder="Subdivision"  /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="barangay" placeholder="Barangay" /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="city" placeholder="City"  /></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="province" placeholder="Province"  /></td>
                         <td></td>
                     </tr>
                 </table>
@@ -63,11 +63,11 @@
                         <td>Email Add :</td>
                     </tr>
                     <tr>
-                        <td><input type="date" name="birthday" placeholder="Birthday" required /></td>
-                        <td><input type="text" maxlength = 20 name="birthplace" placeholder="Birth Place" required /></td>
+                        <td><input type="date" name="birthday" class = "infoinput" placeholder="Birthday" /></td>
+                        <td><input type="text" maxlength = 20 class = "infoinput" name="birthplace" placeholder="Birth Place" /></td>
                         <td class="two-fifty"><input type="number" step = "1" min = "0" max = "999999999" name="homephone" placeholder="Home Phone" /></td>
-                        <td class="two-fifty"><input type="number" step = "1" min = "0" max = "99999999999" name="mobileno" placeholder="Mobile Number" required/></td>
-                        <td class="three-hundred"><input type="text" maxlength = 45 name="emailadd" placeholder="Email Address" required/></td>
+                        <td class="two-fifty"><input type="number" class = "infoinput" step = "1" min = "0" max = "99999999999" name="mobileno" placeholder="Mobile Number"/></td>
+                        <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 45 name="emailadd" placeholder="Email Address"/></td>
                     </tr>
                 </table>
                 <table name="four">
@@ -79,10 +79,10 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="three-ten"><input type="text" maxlength = 12 name="sssno" placeholder="Ex. 01-2345678-9" required/></td>
-                        <td class="three-ten"><input type="text" maxlength = 16 name="tinno" placeholder="Ex. 999-999-999-999X" required/></td>
-                        <td class="three-ten"><input type="text" maxlength = 14 name="phicno" placeholder="Ex. 01-234567890-1" required/></td>
-                        <td class="three-ten"><input type="text" maxlength = 14 name="pagibigno" placeholder="Ex. 1234-5678-9101" required/></td>
+                        <td class="three-ten"><input type="text" class = "infoinput" maxlength = 12 name="sssno" placeholder="Ex. 01-2345678-9" /></td>
+                        <td class="three-ten"><input type="text" class = "infoinput" maxlength = 16 name="tinno" placeholder="Ex. 999-999-999-999X" /></td>
+                        <td class="three-ten"><input type="text" class = "infoinput" maxlength = 14 name="phicno" placeholder="Ex. 01-234567890-1" /></td>
+                        <td class="three-ten"><input type="text" class = "infoinput" maxlength = 14 name="pagibigno" placeholder="Ex. 1234-5678-9101" /></td>
                     </tr>
                 </table>
                 <table name="five">
@@ -98,8 +98,8 @@
                                 <option value="Divorced">Divorced</option>
                                 <option value="Widowed">Widowed</option>
                             </select></td>
-                        <td><input type="text" maxlength = 20 name="citizenship" placeholder="Citizenship" required/></td>
-                        <td><input type="text" maxlength = 20 name="religion" placeholder="Religion" required/></td>
+                        <td><input type="text" class = "infoinput" maxlength = 20 name="citizenship" placeholder="Citizenship" /></td>
+                        <td><input type="text" class = "infoinput" maxlength = 20 name="religion" placeholder="Religion" /></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -225,9 +225,9 @@
                         <td class="five-hundred">Awards</td>
                     </tr>
                     <tr>
-                        <td><input type="text" maxlength = 45 name="elemschool" placeholder="ex. Don Bosco School" required /></td>
-                        <td><input type="number" min = "1000" max = "9999" step = "1" name="elemfrom" placeholder="ex. 2000" required /></td>
-                        <td><input type="number" min = "1000" max = "9999" step = "1" name="elemto" placeholder="ex. 2012" required /></td>
+                        <td><input type="text" class = "educationinput" maxlength = 45 name="elemschool" placeholder="ex. Don Bosco School" /></td>
+                        <td><input type="number" class = "educationinput" min = "1000" max = "9999" step = "1" name="elemfrom" placeholder="ex. 2000" /></td>
+                        <td><input type="number" class = "educationinput" min = "1000" max = "9999" step = "1" name="elemto" placeholder="ex. 2012" /></td>
                         <td><input type="text" maxlength = 45 name="elemawards" placeholder="ex. Perfect Attendance Award" /></td>
                         <td><button class="addelem">+</button></td>
                     </tr>
@@ -244,9 +244,9 @@
                     </tr>
                     <tr>
 
-                        <td><input type="text" maxlength = 45 name="highschool" placeholder="Name of School" required /></td>
-                        <td><input type="number" min = "1000" max = "9999" step = "1" name="highschoolfrom" placeholder="Year Start" required /></td>
-                        <td><input type="number" min = "1000" max = "9999" step = "1" name="highschoolto" placeholder="Year End" required /></td>
+                        <td><input type="text" class = "educationinput" maxlength = 45 name="highschool" placeholder="Name of School" /></td>
+                        <td><input type="number" class = "educationinput" min = "1000" max = "9999" step = "1" name="highschoolfrom" placeholder="Year Start" /></td>
+                        <td><input type="number" class = "educationinput" min = "1000" max = "9999" step = "1" name="highschoolto" placeholder="Year End" /></td>
                         <td><input type="text" maxlength = 45 name="highschoolawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
                         <td><button class="addhighschool">+</button></td>
                     </tr>
@@ -263,9 +263,9 @@
                     </tr>
                     <tr>
 
-                        <td><input type="text" maxlength = 45 name="college" placeholder="Name of School" required /></td>
-                        <td><input type="number" min = "1000" max = "9999" step = "1" name="collegefrom" placeholder="Year Start" required /></td>
-                        <td><input type="number" min = "1000" max = "9999" step = "1" name="collegeto" placeholder="Year End" required /></td>
+                        <td><input type="text" class = "educationinput" maxlength = 45 name="college" placeholder="Name of School" /></td>
+                        <td><input type="number" class = "educationinput" min = "1000" max = "9999" step = "1" name="collegefrom" placeholder="Year Start" /></td>
+                        <td><input type="number" class = "educationinput" min = "1000" max = "9999" step = "1" name="collegeto" placeholder="Year End" /></td>
                         <td><input type="text" maxlength = 45 name="collegeawards" placeholder="Degree Taken/Highest Attainment/Awards" /></td>
                         <td><button class="addcollege">+</button></td>
                     </tr>
@@ -338,7 +338,7 @@
                     <tr>
 
                         <td><input type="text" name="license" placeholder="License/Exam Taken" /></td>
-                        <td><input type="number" name="licensepercentage" placeholder="Percentage Result" /></td>
+                        <td><input type="number" min = "0" max = "100" name="licensepercentage" placeholder="Percentage" /></td>
                         <td><button class="addlicense">+</button></td>
                     </tr>
                 </table><br/><br/>

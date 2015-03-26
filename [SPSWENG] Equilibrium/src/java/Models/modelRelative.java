@@ -8,6 +8,8 @@ public class modelRelative {
     private int empEntryNum;
     private int age;
     private String occupation;
+    private String occupationLocation;
+    private long contactNum;
 
     public int getRelativeID() {
         return relativeID;
@@ -56,4 +58,21 @@ public class modelRelative {
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
+
+    public String getOccupationLocation() {
+        return occupationLocation;
+    }
+
+    public void setOccupationLocation(String occupationLocation) {
+        this.occupationLocation = occupationLocation;
+    }
+
+    public long getContactNum() {
+        return contactNum;
+    }
+
+    public void setContactNum(long contactNum) {
+        this.contactNum = contactNum;
+    }
+    
 }

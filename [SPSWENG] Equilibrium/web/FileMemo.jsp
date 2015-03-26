@@ -45,8 +45,9 @@
 
                     </select>
                     <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."required ></textarea>
+                    <h4><font color = "red"><%=error%></font></h4>
                     <input type="submit" class="submitButton"/></div> </form>
-            <h6><%=error%></h6>
+                    
         </div>
 
 

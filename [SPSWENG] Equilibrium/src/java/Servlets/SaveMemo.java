@@ -87,7 +87,7 @@ public class SaveMemo extends HttpServlet {
             
                
                
-               session.setAttribute("error", new String("Max characters reach"));
+               session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
                response.sendRedirect("FileMemo.jsp");
            
           //  RequestDispatcher view = request.getRequestDispatcher("FileMemo/memo.jsp");
@@ -104,7 +104,7 @@ public class SaveMemo extends HttpServlet {
          session.removeAttribute("error");
          EmailNotifier email = EmailNotifier.getInstance();
          System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
-         if( email.sendEmail(to, "Hello, you receiced a memo from your superior \n" + memo, "Memo")){
+         if( email.sendEmail(to, "Hello, you have received a memo from your superior \n" + memo, "Memo")){
             request.setAttribute("response", new String("Notification Email sent to "+ to)); 
              
          }else request.setAttribute("response", new String("Failed to send Notification Email to "+ to)); 

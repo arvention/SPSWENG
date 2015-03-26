@@ -127,11 +127,7 @@ public class LeaveSubmit extends HttpServlet {
                 reqSession.setAttribute("errorFlags", errorFlags);
                 reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
             }else {
-                errorFlags.add(false);
-                errorFlags.add(false);
-                errorFlags.add(false);
-                
-                reqSession.setAttribute("errorFlags", errorFlags);
+                reqSession.removeAttribute("errorFlags");
                 String leaveType = request.getParameter("leaveType");
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 

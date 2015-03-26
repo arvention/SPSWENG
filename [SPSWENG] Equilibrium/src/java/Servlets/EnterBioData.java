@@ -92,7 +92,7 @@ public class EnterBioData extends HttpServlet {
             addEmploymentHistory(empEntryNum, db, request);
             addCriminalOffenses(empEntryNum, db, request);
 
-            request.getSession().setAttribute("isEarlier", false);
+            request.getSession().removeAttribute("isEarlier");
             view = request.getRequestDispatcher("BiodataFiled.html");
         } else {
             request.getSession().setAttribute("isEarlier", true);

@@ -104,7 +104,12 @@ public class SaveMemo extends HttpServlet {
          session.removeAttribute("error");
          EmailNotifier email = EmailNotifier.getInstance();
          System.out.println("HEREEEE SENDING EMAIL TO: "+ to);
-         if( email.sendEmail(to, "Hello, you have received a memo from your superior \n" + memo, "Memo")){
+         
+         
+         
+         if( email.sendEmail(to, "Greetings!Please be informed that you have received a memo from your superior, \n\n"
+                 + "Containing : \n\n" + memo, 
+                 "[Disciplinary Memo]You received a disciplinary memo.")){
             request.setAttribute("response", new String("Notification Email sent to "+ to)); 
              
          }else request.setAttribute("response", new String("Failed to send Notification Email to "+ to)); 

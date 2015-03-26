@@ -6,7 +6,7 @@
 
 package Queries;
 
-import AddAccountBeans.searchEmployeeBean;
+import Bean.searchEmployeeBean;
 import Database.Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;

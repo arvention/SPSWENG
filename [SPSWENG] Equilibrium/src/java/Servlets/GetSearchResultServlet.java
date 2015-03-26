@@ -7,10 +7,11 @@
 package Servlets;
 
 
-import AddAccountBeans.searchEmployeeBean;
-import Queries.CreateAccountQuery;
+import Database.Database;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -77,11 +78,11 @@ public class GetSearchResultServlet extends HttpServlet {
             throws ServletException, IOException {
         
           String search = request.getParameter("search");
+          Database db = Database.getInstance();
           
-          CreateAccountQuery  CA = new CreateAccountQuery();
-          searchEmployeeBean bean =  CA.getSearchResults(search);
+          ArrayList<modelEmployee> modelEmployees = db.getSearchResult(search);
           HttpSession session= request.getSession();
-          session.setAttribute("search",bean);
+          session.setAttribute("searchResult",modelEmployees);
           response.sendRedirect("SearchEmp.jsp");
         
     }

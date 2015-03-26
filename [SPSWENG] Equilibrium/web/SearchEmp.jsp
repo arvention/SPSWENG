@@ -1,8 +1,6 @@
-<%@page import="AddAccountBeans.searchEmployeeBean"%>
-<%@page import="Bean.EmployeeBean"%>
-<%@page import="Bean.EmployeeBean"%>
-<%@page import="java.util.ArrayList"%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Models.modelEmployee"%>
 
 <html>
     <head>
@@ -14,19 +12,18 @@
             <div id="box">
                 <div id="results">
                     <%
-                        searchEmployeeBean bean  =(searchEmployeeBean) session.getAttribute("search");
-                        ArrayList< EmployeeBean > collection = bean.getSearchResult();
-
-                        if(collection.size() ==0){
+                        ArrayList<modelEmployee> modelEmployees  = (ArrayList<modelEmployee>)session.getAttribute("searchResult");
+                        
+                        if(modelEmployees.size() ==0){
                     %> 
                     <h1> NO SEARCH RESULTS </h1>
                     <% }else
-                        for(EmployeeBean result : collection ){
+                        for(modelEmployee result : modelEmployees ){
                     %>
                     <div class="result">
                         <form action ="SaveAccount" method="POST" >
-                            <span class="name"> <%=result.getlastname()%> ,  <%=result.getfirstname()%> </span><br>
-                            <span class="idnum"><%=result.getempid() %></span><br>
+                            <span class="name"> <%=result.getLastName()%> ,  <%=result.getFirstName()%> </span><br>
+                            <span class="idnum"><%=result.getEmployeeID() %></span><br>
                             <span class="accStatus">No Account</span>
                             <select required name="type">
                                 <option value="Senior Manager"> Senior Manager </option>
@@ -34,7 +31,7 @@
                                 <option value="HR Head"> HR Head </option>
                                 <option value ="HR Employee"> HR Employee </option>
                                 <option selected value="Employee"> Employee </option>
-                                <input type="hidden"  name="entry" value="<%=result.getentrynum()%>">
+                                <input type="hidden"  name="entry" value="<%=result.getEntryNum()%>">
                                 <input type ="submit" value="Add Account">
                             </select>
                         <form>

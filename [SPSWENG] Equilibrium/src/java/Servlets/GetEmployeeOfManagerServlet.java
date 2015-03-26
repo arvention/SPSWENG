@@ -6,7 +6,7 @@
 
 package Servlets;
 
-import AddAccountBeans.searchEmployeeBean;
+import Bean.searchEmployeeBean;
 import Models.modelEmployee;
 import Queries.SaveMemoQuery;
 import java.io.IOException;

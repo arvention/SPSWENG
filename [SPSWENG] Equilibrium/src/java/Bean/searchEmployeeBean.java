@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package AddAccountBeans;
+package Bean;
 
-import Bean.EmployeeBean;
+
 import java.util.ArrayList;
 
 /**

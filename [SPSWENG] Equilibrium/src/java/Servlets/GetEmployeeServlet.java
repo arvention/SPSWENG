@@ -90,6 +90,7 @@ public class GetEmployeeServlet extends HttpServlet {
         if (EmailNotifier.getInstance().sendEmail(email, "Welcome to Equilibrium, "+fname+" "+lname+".\n"
                 + "An account has been created by the Human Resources department, for you.\nYour password is " + password
                 +"\nThank you!", "[Password]")) {
+          
             request.setAttribute("response", new String("Password is sent to " + email));
 
         } else {

@@ -76,6 +76,27 @@ public class Database {
         }
         return firstName;
     }
+    
+    
+    public boolean isValidID(int id) {
+        String firstName = "";
+        boolean valid = true;
+        try {
+            //sql = "SELECT firstName FROM employee"
+             //       + " WHERE entryNum = " + entryNum;
+            
+            sql ="select employeeID from employee where employeeID = " + id;  
+            
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                valid= false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return valid;
+    }
   
     public String getLastName(int entryNum) {
         String lastName = "";

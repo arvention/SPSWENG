@@ -4,7 +4,7 @@
 <html>
     <head>
         <link rel="shortcut icon" href="img/eq logo.ico"/>
-        <title> Memo Form - Equilibrium </title>
+        <title> Leave Filed Successful - Equilibrium </title>
 
         <link rel="stylesheet" type="text/css" 	media="all" href="css/LeaveSuccess.css" />
     </head>

@@ -81,9 +81,17 @@ public class EnterBioData extends HttpServlet {
         Database db = Database.getInstance();
         RequestDispatcher view = null;
         int empEntryNum = 0;
-
+        String empid = request.getParameter("employeeID");
+        int intid = Integer.parseInt(empid.trim());
+        
+        
         //--- functions ----------------------
-        if (!checkSchoolYears(request)) {
+        if(!(db.isValidID(intid))){
+            request.getSession().setAttribute("isSameID", true);
+            view = request.getRequestDispatcher("EmployeeData.jsp");
+        }
+        
+        else if (!checkSchoolYears(request)) {
             empEntryNum = addInfo(empEntryNum, db, request);
             addEducationHistory(empEntryNum, db, request);
             addLicenseExam(empEntryNum, db, request);
@@ -97,6 +105,12 @@ public class EnterBioData extends HttpServlet {
             request.getSession().setAttribute("isEarlier", true);
             view = request.getRequestDispatcher("EmployeeData.jsp");
         }
+        
+        
+        
+        
+        
+        
         view.forward(request, response);
     }
 

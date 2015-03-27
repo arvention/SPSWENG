@@ -25,6 +25,20 @@
                 <li><a href="#crimes">Past Criminal Offenses</a></li>
             </ul>
             <DIV id="personalinfo" class="tab-section">
+                
+                  <%
+                    Boolean isSameID = (Boolean) request.getSession().getAttribute("isSameID");
+                    if (isSameID != null) {
+                        if (isSameID) {
+                %>
+                <span class="headers"><font color = "red" size = "2px">* Error Employee ID already exists</font></span><br/><br/>
+                <%
+                        }
+                    }
+                %>
+                
+                
+                
                 <table name="one">
                     <tr>
                         <td>Employee ID</td>

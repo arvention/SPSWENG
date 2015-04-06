@@ -48,10 +48,16 @@ $(document).ready(function() {
     });
 
     $('select[name=convicted]').change(function() {
-        if ($('select[name=convicted]').find(':selected').val() === "Yes")
+        if ($('select[name=convicted]').find(':selected').val() === "Yes"){
+		    $('input[name=offensename]').prop("required", true);
+			$('input[name=offensedate]').prop("required", true);
             $(tohide).show();
-        else
+	    }
+        else{
+		   $('input[name=offensename]').prop("required", false);
+			$('input[name=offensedate]').prop("required", false);
             $(tohide).hide();
+	    }
     });
 
     $(document).on("click", ".addsibling", function(e) {
@@ -68,8 +74,11 @@ $(document).ready(function() {
 
     $(document).on("click", ".removesibling", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
     });
 
     $(document).on("click", ".addchild", function(e) {
@@ -86,8 +95,11 @@ $(document).ready(function() {
 
     $(document).on("click", ".removechild", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
     });
 
     $(document).on("click", ".addelem", function(e) {
@@ -104,8 +116,11 @@ $(document).ready(function() {
 
     $(document).on("click", ".removeelem", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
     });
 
     $(document).on("click", ".addhighschool", function(e) {
@@ -140,8 +155,11 @@ $(document).ready(function() {
 
     $(document).on("click", ".removecollege", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
     });
 
     $(document).on("click", ".addvocational", function(e) {
@@ -176,8 +194,11 @@ $(document).ready(function() {
 
     $(document).on("click", ".removemasteral", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
     });
 
     $(document).on("click", ".addother", function(e) {
@@ -193,8 +214,11 @@ $(document).ready(function() {
 
     $(document).on("click", ".removeother", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
     });
 
     $(document).on("click", ".addlicense", function(e) {
@@ -209,15 +233,24 @@ $(document).ready(function() {
 
     $(document).on("click", ".removelicense", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
     });
 
     $(document).on("click", ".addemployment", function(e) {
         e.preventDefault();
 
         $(employmentwrapper).append(
-                '<tr>'
+		        '<tr>'
+				+ '<td><hr></td>'
+				+ '<td><hr></td>'
+				+ '<td><hr></td>'
+				+ '<td><hr></td>'
+				+ '</tr>'
+                + '<tr>'
                 + '	<td width="300px" class="here">Job Title</td>'
                 + '	<td>Date of Employment</td>'
                 + '	<td width="300px">Starting Salary</td>'
@@ -264,13 +297,17 @@ $(document).ready(function() {
         e.preventDefault();
 
         //$(toremove).nextUntil("input[name=jobreason]").remove();
-        $(toremove).prev().prev().prev().prev().prev().remove();
-        $(toremove).prev().prev().prev().prev().remove();
-        $(toremove).prev().prev().prev().remove();
-        $(toremove).prev().prev().remove();
-        $(toremove).prev().remove();
-        $(toremove).remove();
-
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(toremove).prev().prev().prev().prev().prev().prev().remove();
+				$(toremove).prev().prev().prev().prev().prev().remove();
+				$(toremove).prev().prev().prev().prev().remove();
+				$(toremove).prev().prev().prev().remove();
+				$(toremove).prev().prev().remove();
+				$(toremove).prev().remove();
+				$(toremove).remove();
+		}
     });
 
     $(document).on("click", ".addcriminaloffense", function(e) {
@@ -285,8 +322,12 @@ $(document).ready(function() {
     });
     $(document).on("click", ".removecriminaloffense", function(e) {
         e.preventDefault();
-
-        $(this).parent().parent().remove();
+		var c = confirm("Do you want to remove this row of data?");
+        if (c){
+				alert("Removing one row of data.");
+				$(this).parent().parent().remove();
+		}
+        
     });
 
     $('.tab-section').hide();

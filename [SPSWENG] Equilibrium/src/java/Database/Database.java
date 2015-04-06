@@ -22,7 +22,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "jetisjet";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -692,4 +692,40 @@ public class Database {
         
         return modelEmployees;
     }
+    
+    // Search Suggestions
+    
+     public String getSuggestions(String word) {
+
+        sql = "select firstName, lastName,middleName, employeeID "+
+               "from employee "+
+               "where firstName like '%"+word+"%' or  lastName like '%A%' or employeeID like '%"+word+"%'";
+        
+          
+        int counter = 0;
+        String people = null;
+        try {
+
+           
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            
+            if (rs.next()) {
+                people = rs.getString("firstName") + " " + rs.getString("lastName");
+            }
+
+            while (rs.next() && counter < 5) {
+                people = people + "\n" + rs.getString("firstName") + " " + rs.getString("lastName");
+                counter++;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return people;
+     }
+    
+    
+
 }

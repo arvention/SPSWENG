@@ -726,6 +726,30 @@ public class Database {
         return people;
      }
     
-    
+    //Verify Password
+     public boolean isUserPassword(int id,String password){
+         
+     String sql ="select employeeID, password  from employee where employeeID = "+ id;
+     boolean isPassword=false;    
+     
+     try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                if(rs.getString(2).equals(password)){
+                    isPassword=true;
+                }     
+            }
 
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+     
+     return isPassword;
+         
+     }
+     
 }

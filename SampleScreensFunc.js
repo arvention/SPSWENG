@@ -38,6 +38,7 @@ $(document).ready(function() {
     var licensewrapper = $('table[name=license]');
     var employmentwrapper = $('table[name=employment]');
     var criminaloffensewrapper = $('table[name=criminaloffense]');
+	var miscfilewrapper = $('table[name=miscellaneous]');
 
     $(tohide).hide();
     $('select[name=civilstatus]').change(function() {
@@ -329,6 +330,24 @@ $(document).ready(function() {
 		}
         
     });
+	
+	$(document).on("click", ".addmiscfile", function(e){
+		e.preventDefault();
+		$(miscfilewrapper).append(
+		    '<tr><td><input type="text" name="filename" placeholder="File Name here" /></td>'
+			+ '<td><button name="attachfile">Attach File</button></td>'
+			+ '<td><button class="removemiscfile">-</button></td></tr>'
+		);
+	});
+	
+	$(document).on("click", ".removemiscfile", function(e){
+		e.preventDefault();
+		var c = confirm("Do you want to remove this row of data?");
+		if (c){
+			alert("Removing one row of data.")'
+			$(this).parent().parent().remove();
+		}
+	});
 
     $('.tab-section').hide();
     $('.tabs a').bind('click', function(e) {

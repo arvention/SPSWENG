@@ -4,7 +4,11 @@ $(document).ready(function() {
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
+        console.log("HEHE");
     //initialize dates to today
+    if(day < 10)
+        day = "0" + day;
+    
     if (month < 10)
     {
         $("input[name='startDate']").val(year + "-0" + month + "-" + day);

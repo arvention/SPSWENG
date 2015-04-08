@@ -7,17 +7,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel = "shortcut icon" href="img/eq logo.ico"/>
+	<link rel="stylesheet" type="text/css" href="css/navbar.css">
         <title>Leave Application</title>
 
         <!-- Bootstrap -->
-        <!--
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/jquery-ui.min.css" rel="stylesheet">
-        -->
+
         <link rel="stylesheet" type="text/css" 	media="all" href="css/LeaveForm.css" />
 
         <script src="js/jquery-1.11.2.min.js"></script>
-        <script src="js/jquery-ui.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
         <script>
@@ -29,6 +28,14 @@
     </head>
 
     <body>
+        <div class= "nav">
+            <ul>
+                <li><a href= "#">Log Out</a></li>
+                <li><a href= "#">Announcements</a></li>
+                <li><a href= "#">Home</a></li>
+                <li><img class= "logo" src= "eqboyz.png"/></li>
+            </ul>
+        </div>
         <div class= "header">
             <h3>Leave Form Application</h3>
         </div>
@@ -36,7 +43,7 @@
             <form id = "leave_form" action = "LeaveSubmit" method = "post"><br>
                 <!--h4>ID Number: <input type="number" name = "idNum" required></h4-->
                 <h4>Type of Leave:
-                    <select name= "leaveType" required>
+                    <select name= "leaveType" required class = "form-input">
                         <option value= "Sick">Sick</option>
                         <option value= "Vacation">Vacation</option>
                         <option value= "Emergency">Emergency</option>
@@ -44,7 +51,7 @@
                         <option value= "Paternity">Paternity</option>
                         <option value= "Bereavement">Bereavement</option>
                     </select></h4>
-                <h4>Days of Leave: <input type="number" min="0.5" max="15" name = "dayCount" step="0.5" required></h4><br/>
+                <h4>Days of Leave: <input class = "form-input" type="number" min="0.5" max="15" name = "dayCount" step="0.5" required></h4><br/>
                 <h4>
                     Inclusive Dates:
 

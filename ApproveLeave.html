@@ -1,5 +1,6 @@
 <html lang="en">
   <head>
+	<link rel="stylesheet" type="text/css" href="navbar.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +12,7 @@
   <style>
 		body{
 			background-color: #E8E8E8;
-			margin: 50px 0px;
+			margin: 0px;
 			padding: 0px;
 			text-align: center;
 		}
@@ -35,7 +36,7 @@
 		div.content{
 			font-family: sans-serif;
 			width: 500px;
-			margin: 0px auto;
+			margin: 85px auto;
 			padding: 15px;
 			border: 1px dashed #333;
 			color: white;
@@ -46,7 +47,7 @@
 			border: 2px, solid;
 			border-radius: 25px;
 			opacity: 0.65;
-			height: 180;
+			height: 300;
 		}
 		.submitButton{
 			font-size: 20px;
@@ -117,29 +118,37 @@
 	</script>
 	
 	<body>
-		<div class= "header">
+		<div class="nav">
+		<ul>
+			<li><a href="#">Log Out</a></li>
+			<li><a href="#">Home</a></li>
+			<li><img class="logo" src="eqboyz.png"/></li>
+		</ul>
 		</div>
-		<div class= "content" align="center">
-		<h4><div class="titleText">Good day! You have a pending leave request:</div></h4>
-		<div class="table">
-			<table width="100%" onclick="handleClick(event)" border="1">
-					<tr>
-					<th colspan="2">Leave Approval</th>
-					</tr>
-					<tr>
-						<td>Type of Request</td>
-						<td>Name of Employee</td>
-					</tr>
-					<tr></tr>
-			</table>
-		</div><br/><br/>
-		<input class="submitButton" input type="submit" value="Approve" name="bApprove"/>
-		<input class="back" input type="submit" value="Decline" name="bDecline"/>
-		</div>
-		<div class= "footer">
-			<hr width="75%"/>
-			EQUILIBRIUM INTERTRADE CORP.
-		</div>
-		
-  </body>
+		<form>
+			<div class= "header">
+			</div>
+			<div class= "content" align="center">
+			<h4><div class="titleText">Good day! You have a pending leave request:</div></h4>
+			<div class="table">
+				<table width="100%" onclick="handleClick(event)" border="1">
+						<tr>
+						<th colspan="2">Leave Approval</th>
+						</tr>
+						<tr>
+							<td>Type of Request</td>
+							<td>Name of Employee</td>
+						</tr>
+						<tr></tr>
+				</table>
+			</div><br/><br/>
+			<input class="submitButton" input type="submit" value="Approve" name="bApprove"/>
+			<input class="back" input type="submit" value="Decline" name="bDecline"/>
+			</div>
+			</form>
+			<div class= "footer">
+				<hr width="75%"/>
+				EQUILIBRIUM INTERTRADE CORP.
+			</div>
+	</body>
 </html>

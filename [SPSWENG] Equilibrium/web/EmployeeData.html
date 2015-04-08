@@ -6,8 +6,17 @@
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/SampleScreensFunc.js"></script>
     </head>
-   <body>
-	    
+<body>
+	   <DIV class= "nav">
+	        <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
+			<ul>
+				<li><a href= "#">Log Out</a></li>
+				<li><a href= "#">Announcements</a></li>
+				<li><a href= "#">Home</a></li>
+				<li><img class= "logo" src= "eqboyz.png"/></li>
+			</ul>
+		</DIV>
+		<DIV class="content">
         <form action = "EnterBioData" method = "post">
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
@@ -405,9 +414,7 @@
 			<DIV id="softcopy" class="tab-section">
 			    <table name="miscellaneous">
 				      <tr>
-					     <td>File</td>
-						 <td></td>
-						 <td></td>
+					     <td width = "1000px">Attach soft copies of files that is pertinent to this employee record (e.g. awards, memos, certifications).</td.>
 					  </tr>
 					  <tr>
 					      <td><input type="text" name="filename" placeholder="File Name here" /></td>
@@ -418,6 +425,7 @@
 			</DIV>
             <br/><input type="submit" value="Submit" />
         </form>
+		</DIV>
         <br/><br/>
         <DIV class= "footer">
             <br/><hr width="75%"/>

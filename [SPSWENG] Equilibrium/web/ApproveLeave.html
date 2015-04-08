@@ -1,42 +1,152 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Leave Approval - EQuilibrium</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link rel="shortcut icon" href="img/eq logo.ico"/>
-        <link href = "css/bootstrap.min.css" rel = "stylesheet" />
-        <link href = "css/jquery-ui.min.css" rel = "stylesheet" />
-        <link href = "css/ApproveLeave.css" rel = "stylesheet" />
+        <link rel="stylesheet" type="text/css" href="navbar.css">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Leave Approval</title>
 
-	<script src = "js/jquery.min.js"></script>
-	<script src = "js/jquery-ui.min.js"></script>
-	<script src ="js/bootstrap.min.js"></script>
-	<script src = "js/ApproveLeave.js"></script>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/jquery-ui.min.css" rel="stylesheet">
+        <style>
+            body{
+                background-color: #E8E8E8;
+                margin: 0px;
+                padding: 0px;
+                text-align: center;
+            }
+            div.background{
+                background-color: #E8E8E8;
+            }
+            div.header{
+                text-align: center;
+                border-style: solid;
+                border-color: #E8E8E8;
+                width: 100%;
+                position: absolute;
+                font-family: sans-serif;
+                background-color: #E8E8E8;
+            }
+            div.titleText{
+                font-size: 22;
+                font-family: sans-serif;
+                color: #D63333;
+            }
+            div.content{
+                font-family: sans-serif;
+                width: 500px;
+                margin: 85px auto;
+                padding: 15px;
+                border: 1px dashed #333;
+                background-color: white;
+                border-style: solid;
+                border-width: 40px;
+                border-color: white;
+                border: 2px solid;
+                border-radius: 25px;
+                opacity: 0.55;
+                height: 300px;
+                color: #D63333;
+            }
+            .submitButton{
+                font-size: 20px;
+                width: 45%;
+                padding: 5px;
+                background-color: white;
+                border-color: white;
+                color: #D63333;
+                float: left;
+                border: 2px solid;
+                cursor: pointer;
+            }
+            .submitButton:hover{
+                opacity: .80;
+                border: 1px solid white;
+            }
+            .back{
+                font-size: 20px;
+                width: 45%;
+                padding: 5px;
+                background-color: white;
+                border-color: white;
+                color: #D63333;
+                float: right;
+                border: 2px solid;
+            }
+            .back:hover{
+                opacity: .80;
+                border: 1px solid white;
+                cursor: pointer;
+            }
+            div.footer{
+                width: 100%;
+                height: 43px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+
+                text-align:center;
+                color: #808080;
+                font-size: 11px;
+                font-family: "Arial";
+            }
+            div.table{
+                border: 2px solid;
+                border-radius: 25px;
+                padding: 10px 40px;
+                width: 300px;
+            }
+            table, th{
+                text-align: center;
+                color: #D63333;
+            }
+        </style>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+                    $("#datepicker").datepicker({
+            changeMonth: true;
+                    changeYear: true;
+            });
+                    function handleClick(event){
+
+                    }
+        </script>
     </head>
+
     <body>
-        <div class= "header">
+        <div class="nav">
+            <ul>
+                <li><a href="#">Log Out</a></li>
+                <li><a href="#">Home</a></li>
+                <li><img class="logo" src="eqboyz.png"/></li>
+            </ul>
         </div>
-        <div class= "content" align="center">
-            <div class="titleText"> <h4>Good day! You have a pending leave request:</h4></div>
-            <div class="table">
-                <table width="100%" onclick="handleClick(event)" border="1">
-                    <tr>
-                        <th colspan="2">Leave Approval</th>
-                    </tr>
-                    <tr>
-                        <td>Type of Request</td>
-                        <td>Name of Employee</td>
-                    </tr>
-                    <tr></tr>
-                </table>
-            </div><br/><br/>
-            <form>
+        <form>
+            <div class= "header">
+            </div>
+            <div class= "content" align="center">
+                <div class="titleText"><h4>Good day! You have a pending leave request:</h4></div>
+                <div class="table">
+                    <table width="100%" onclick="handleClick(event)" border="1">
+                        <tr>
+                            <th colspan="2">Leave Approval</th>
+                        </tr>
+                        <tr>
+                            <td>Type of Request</td>
+                            <td>Name of Employee</td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                </div><br/><br/>
                 <input class="submitButton" type="submit" value="Approve" name="bApprove"/>
                 <input class="back" type="submit" value="Decline" name="bDecline"/>
-            </form>
-        </div>
+            </div>
+        </form>
         <div class= "footer">
             <hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.

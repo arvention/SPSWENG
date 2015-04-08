@@ -33,7 +33,7 @@
                 <li><a href= "#">Log Out</a></li>
                 <li><a href= "#">Announcements</a></li>
                 <li><a href= "#">Home</a></li>
-                <li><img class= "logo" src= "eqboyz.png"/></li>
+                <li><img class= "logo" src= "img/eqboyz.png"/></li>
             </ul>
         </div>
         <div class= "header">

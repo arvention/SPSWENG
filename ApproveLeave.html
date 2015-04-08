@@ -1,0 +1,154 @@
+<html lang="en">
+  <head>
+	<link rel="stylesheet" type="text/css" href="navbar.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leave Approval</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/jquery-ui.min.css" rel="stylesheet">
+  <style>
+		body{
+			background-color: #E8E8E8;
+			margin: 0px;
+			padding: 0px;
+			text-align: center;
+		}
+		div.background{
+			background-color: #E8E8E8;
+		}
+		div.header{
+			text-align: center;
+			border-style: solid;
+			border-color: #E8E8E8;
+			width: 100%;
+			position absolute;
+			font-family: sans-serif;
+			background-color: #E8E8E8;
+		}
+		div.titleText{
+			font-size: 22;
+			font-family: sans-serif;
+			color: white;
+		}
+		div.content{
+			font-family: sans-serif;
+			width: 500px;
+			margin: 85px auto;
+			padding: 15px;
+			border: 1px dashed #333;
+			color: white;
+			background-color: #D63333;
+			border-style: solid;
+			border-width: 40px;
+			border-color: #D63333;
+			border: 2px, solid;
+			border-radius: 25px;
+			opacity: 0.65;
+			height: 300;
+		}
+		.submitButton{
+			font-size: 20px;
+			width: 45%;
+			padding: 5px;
+			background-color: black;
+			border-color: black;
+			color: white;
+			float: left;
+			border: 2px, solid;
+			cursor: hand;
+		}
+		.submitButton:hover{
+			opacity: .80;
+			border: 1px solid white;
+		}
+		.back{
+			font-size: 20px;
+			width: 45%;
+			padding: 5px;
+			background-color: black;
+			border-color: black;
+			color: white;
+			float: right;
+			border: 2px, solid;
+		}
+		.back:hover{
+			opacity: .80;
+			border: 1px solid white;
+			cursor: hand;
+		}
+		div.footer{
+			width: 100%;
+			height: 43px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		
+			text-align:center;
+			color: #808080;
+			font-size: 11;
+			font-family: "Arial";
+		}
+		div.table{
+			border: 2px, solid;
+			border-radius: 25px;
+			padding: 10px, 40px;
+			width: 300px;
+		}
+		table, th{
+			text-align: center;
+			color: white;
+		}
+  </style>
+  </head>
+    <script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="js/bootstrap.min.js"></script>
+   <script>
+		$("#datepicker").datepicker({
+			changeMonth: true;
+			changeYear: true;
+		});
+		function handleClick(event){
+			
+		}
+	</script>
+	
+	<body>
+		<div class="nav">
+		<ul>
+			<li><a href="#">Log Out</a></li>
+			<li><a href="#">Home</a></li>
+			<li><img class="logo" src="eqboyz.png"/></li>
+		</ul>
+		</div>
+		<form>
+			<div class= "header">
+			</div>
+			<div class= "content" align="center">
+			<h4><div class="titleText">Good day! You have a pending leave request:</div></h4>
+			<div class="table">
+				<table width="100%" onclick="handleClick(event)" border="1">
+						<tr>
+						<th colspan="2">Leave Approval</th>
+						</tr>
+						<tr>
+							<td>Type of Request</td>
+							<td>Name of Employee</td>
+						</tr>
+						<tr></tr>
+				</table>
+			</div><br/><br/>
+			<input class="submitButton" input type="submit" value="Approve" name="bApprove"/>
+			<input class="back" input type="submit" value="Decline" name="bDecline"/>
+			</div>
+			</form>
+			<div class= "footer">
+				<hr width="75%"/>
+				EQUILIBRIUM INTERTRADE CORP.
+			</div>
+	</body>
+</html>

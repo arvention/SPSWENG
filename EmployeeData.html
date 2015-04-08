@@ -4,10 +4,20 @@
         <link rel="shortcut icon" href="img/eq logo.ico">
         <link rel="stylesheet" type="text/css" media="all" href="css/SampleScreensStyle.css"/>
         <script src="js/jquery-1.11.2.js"></script>
-        <script src="SampleScreensFunc.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/jquery-ui.min.css" rel="stylesheet">
+        <script src="js/SampleScreensFunc.js"></script>
     </head>
-    <body>
-	    
+   <body>
+	    <DIV class= "nav">
+			<ul>
+				<li><a href= "#">Log Out</a></li>
+				<li><a href= "#">Announcements</a></li>
+				<li><a href= "#">Home</a></li>
+				<li><img class= "logo" src= "eqboyz.png"/></li>
+			</ul>
+		</DIV>
+		<DIV class="content">
         <form action = "EnterBioData" method = "post">
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
@@ -405,7 +415,10 @@
 			<DIV id="softcopy" class="tab-section">
 			    <table name="miscellaneous">
 				      <tr>
-					     <td>File</td>
+					     <td>Attach files 
+					  </tr>
+				      <tr>
+					     <td>File </td>
 						 <td></td>
 						 <td></td>
 					  </tr>
@@ -418,6 +431,7 @@
 			</DIV>
             <br/><input type="submit" value="Submit" />
         </form>
+		</DIV>
         <br/><br/>
         <DIV class= "footer">
             <br/><hr width="75%"/>

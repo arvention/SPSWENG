@@ -344,7 +344,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var c = confirm("Do you want to remove this row of data?");
 		if (c){
-			alert("Removing one row of data.")'
+			alert("Removing one row of data.");
 			$(this).parent().parent().remove();
 		}
 	});

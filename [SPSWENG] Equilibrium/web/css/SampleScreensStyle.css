@@ -18,9 +18,6 @@ button:hover{
 
 body{
     background-color: #E8E8E8;
-    margin: 50px 0px;
-    padding-left: 100px;
-    padding-right: 100px;
     font-family: Arial, sans-serif;
 }
 
@@ -99,7 +96,49 @@ DIV.tab-section {
     opacity: .85;
 }
 
-DIV.navbar{
+DIV.content{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 100px;
+	padding-right: 100px;
+	position: absolute;
+	top: 20%;
+	z-score: -1;
+}
+DIV.nav{
+	padding-top:0px;
+	background: #D63333;
+	opacity: 0.55;
+	/*display: block;*/
+	width: 100%;
+	height: 60px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-score: 2;
+}
+.nav ul{
+	padding: 0;
+	margin: 0;
+}
+.nav ul li{
+	list-style: none;
+}
+.nav ul li a{
+	float: right;
+	padding: 20px 30px;
+	color: black;
+	text-decoration: none;
+	display: block;
+	font-size: 125%;
+}
+.nav ul li a:hover{
+	color: white;
+}
+.logo{
+	float: left;
+	width: 175;
+	height: 65;
 }
 
 .headers{

@@ -15,6 +15,16 @@
         <script src="js/SampleScreensFunc.js"></script>
     </head>
     <body>
+        <DIV class= "nav">
+	        <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
+			<ul>
+				<li><a href= "#">Log Out</a></li>
+				<li><a href= "#">Announcements</a></li>
+				<li><a href= "#">Home</a></li>
+				<li><img class= "logo" src= "eqboyz.png"/></li>
+			</ul>
+		</DIV>
+		<DIV class="content">
         <form action = "EnterBioData"  onsubmit = "return validateForm()" method = "post">
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
@@ -435,6 +445,7 @@
             </DIV>
             <br/><input type="submit" value="Submit" />
         </form>
+        </DIV>
         <br/><br/>
         <DIV class= "footer">
             <br/><hr width="75%"/>

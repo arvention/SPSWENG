@@ -127,6 +127,20 @@
                         <td></td>
                         <td></td>
                     </tr>
+                    <tr>
+			<td>Band :</td>
+                        <td width="325px">Department :</td>
+                        <td width="325px">Current Position: </td>
+                        <td>Hire Date :</td>
+                        <td width="325px">Manager :</td>
+		    </tr>
+		    <tr>
+                        <td><input type="number" step = "1" min = "1" max = "9" name="employeeband" placeholder="1" required/></td>
+			<td><input type="text" maxlength = 45 name="empdep" placeholder="Current Department" required/></td>
+                        <td><input type="text" maxlength = 45 name="empposition" placeholder="Current Position" required/></td>
+                        <td><input type="date" name="hiredate" placeholder="Hire Date" required /></td>
+			<td><input type="text" maxlength = 45 name="emphead" placeholder="Department Head/Employee's Manager" required/></td>
+		    </tr>
                 </table>
             </DIV>
             <DIV id="family" class="tab-section">

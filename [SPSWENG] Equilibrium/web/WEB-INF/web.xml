@@ -36,6 +36,10 @@
         <servlet-name>ChangePasswordServlet</servlet-name>
         <servlet-class>Servlets.ChangePasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Servlets.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

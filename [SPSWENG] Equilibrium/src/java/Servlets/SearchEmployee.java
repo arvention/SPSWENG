@@ -6,19 +6,22 @@
 
 package Servlets;
 
-import Database.Database;
+import ClassHelpers.SearchResult;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Thursday
  */
-public class AutoCompleteServlet extends HttpServlet {
+public class SearchEmployee extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +40,10 @@ public class AutoCompleteServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AutoCompleteServlet</title>");            
+            out.println("<title>Servlet SearchEmployee</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AutoCompleteServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchEmployee at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,15 +61,15 @@ public class AutoCompleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //processRequest(request, response);
         
-        String keyword = request.getParameter("keyword");
-        String suggestions = Database.getInstance().getSuggestions(keyword);
-        response.setContentType("text/plain");  
-        response.setCharacterEncoding("UTF-8"); 
-        response.getWriter().write(suggestions); 
+        String search = request.getParameter("searchbox");
         
-        
- 
+        SearchResult SR = new SearchResult(Database.Database.getInstance().getSearchResult(search));
+         HttpSession session = request.getSession();
+         session.setAttribute("searchresult", SR);
+         
+         response.sendRedirect("searchresult.jsp");
     }
 
     /**

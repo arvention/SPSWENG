@@ -545,9 +545,9 @@ public class Database {
     public ArrayList<modelEmployee> getSearchResult(String search){
         ArrayList<modelEmployee> modelEmployees = new ArrayList<>();
         
-        sql = "select *  from employee "
-                + "where lastName = '" + search + "'"
-                + "and password is null";
+      String sql = "select * from employee "+
+                   "WHERE CONCAT(lastName,' ',firstName) LIKE '%"+search+"%'"+
+                    "or CONCAT(firstName,' ',lastName) LIKE '%"+search+"%'";
         
         try{
             rs = stmt.executeQuery(sql);
@@ -751,5 +751,12 @@ public class Database {
      return isPassword;
          
      }
+     
+     
+     
+     
+     
+     
+     
      
 }

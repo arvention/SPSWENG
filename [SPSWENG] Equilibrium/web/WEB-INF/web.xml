@@ -40,6 +40,10 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>Servlets.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchEmployee</servlet-name>
+        <servlet-class>Servlets.SearchEmployee</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchEmployee</servlet-name>
+        <url-pattern>/SearchEmployee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

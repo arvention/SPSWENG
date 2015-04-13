@@ -6,6 +6,15 @@
     <head>
 	<link rel="shortcut icon" href="img/eq logo.ico"/>
 	<link rel="stylesheet" type="text/css" media="all" href="css/SearchEmployee.css"/>    
+    
+    <%
+      
+      
+        
+       
+     %>   
+    
+    
     </head>
     <body>
         <DIV class ="pageTop">

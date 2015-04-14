@@ -224,6 +224,84 @@ public class Database {
         return entryNum;
     }
 
+    public modelEmployee getEmployee(String id){
+        
+          sql = "SELECT * FROM employee"
+                + " WHERE employeeID = " + id;
+    
+           modelEmployee modelEmployee=null;
+            try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+        
+                    modelEmployee = new modelEmployee();
+                    int entryNum = rs.getInt("entryNum");
+                        modelEmployee.setEntryNum(entryNum);
+                    int employeeID = rs.getInt("employeeID");
+                        modelEmployee.setEmployeeID(employeeID);
+                    String password = rs.getString("password");
+                        modelEmployee.setPassword(password);
+                    String lastName = rs.getString("lastName");
+                        modelEmployee.setLastName(lastName);
+                    String firstName = rs.getString("firstName");
+                        modelEmployee.setFirstName(firstName);
+                    String middleName = rs.getString("middleName");
+                        modelEmployee.setMiddleName(middleName);
+                    String address = rs.getString("address");
+                        modelEmployee.setAddress(address);
+                    Date birthday = rs.getDate("birthday");
+                        modelEmployee.setBirthday(birthday);
+                    String birthplace = rs.getString("birthplace");
+                        modelEmployee.setBirthplace(birthplace);
+                    int homePhone = rs.getInt("homePhone");
+                        modelEmployee.setHomePhone(homePhone);
+                    long mobileNumber = rs.getLong("mobileNumber");
+                        modelEmployee.setMobileNumber(mobileNumber);
+                    String SSSNumber = rs.getString("SSSNumber");
+                        modelEmployee.setSSSNumber(SSSNumber);
+                    String TINNumber = rs.getString("TINNumber");
+                        modelEmployee.setTINNumber(TINNumber);
+                    String PHICNumber = rs.getString("PHICNumber");
+                        modelEmployee.setPHICNumber(PHICNumber);
+                    String PAGIBIGNumber = rs.getString("PAGIBIGNumber");
+                        modelEmployee.setPAGIBIGNumber(PAGIBIGNumber);
+                    String civilStatus = rs.getString("civilStatus");
+                        modelEmployee.setCivilStatus(civilStatus);
+                    String citizenship = rs.getString("citizenship");
+                        modelEmployee.setCitizenship(citizenship);
+                    String religion = rs.getString("religion");
+                        modelEmployee.setReligion(religion);
+                    Date hireDate = rs.getDate("hireDate");
+                        modelEmployee.setHireDate(hireDate);
+                    String band = rs.getString("band");
+                        modelEmployee.setBand(band);
+                    int salary = rs.getInt("salary");  
+                        modelEmployee.setSalary(salary);
+                    int departmentID = rs.getInt("departmentID");
+                        modelEmployee.setDepartmentID(departmentID);
+                    String positionName = rs.getString("positionName");
+                        modelEmployee.setPositionName(positionName);
+                    boolean isDeleted = rs.getBoolean("isDeleted");
+                        modelEmployee.setIsDeleted(isDeleted);
+                    String emailAddress = rs.getString("emailAddress");
+                        modelEmployee.setEmailAddress(emailAddress);
+                    String employeeType = rs.getString("employeeType");
+                        modelEmployee.setEmployeeType(employeeType);
+                    int managerEntryNum = rs.getInt("managerEntryNum");
+                        modelEmployee.setManagerEntryNum(managerEntryNum);      
+                    return modelEmployee;
+                
+            }
+  
+        }catch(Exception e){
+            System.out.println("error getting employee");
+        }
+            
+        return modelEmployee;   
+    }         
+    
+    
     public modelEmployee getEmployeeAccount(String username, String userpassword) {
 
         sql = "SELECT * FROM employee"

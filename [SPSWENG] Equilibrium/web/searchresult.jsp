@@ -15,10 +15,10 @@
         <script>
         $(document).ready(function(){
           $(".filememo").click(function() {
-            $(this).parent();
-            var id = $(this).closest("div").attr("id");  
-              console.log(id);
-              
+           
+            var id = $(this).closest("div").attr("val");   
+              $("#numberofid").val(id);
+              $("#go").submit();
           });   
         });
         </script>
@@ -31,10 +31,15 @@
 	<div id="box">
 	<div id="results">
         
+        <form id="go" method="POST" action="SelectEmployeeServlet">
+        <input id ="numberofid" name="idnumber" type="hidden" value="">
+        <input name="type"type="hidden" value="file">
+        </form>   
+            
         <%for(modelEmployee e: me ){  
             
         %>    
-	<div class="result">
+	<div class="result" val="<%=e.getEmployeeID()%>">
 		<span class="name"><%=e.getLastName()%>, <%=e.getFirstName()%></span><br>
 		<span class="idnum"><%=e.getEmployeeID()%></span><br>
 		
@@ -46,12 +51,15 @@
 		<option> HR Employee </option>
 		<option selected> Employee </option>
 		</select>
+                
                 <button class="addAccount">Add Account</button>
+                
                 <%}else{%>
                 <span class="accStatus">Has Account</span>
                 <%}%>
 		<button class="addAccount">Add Award</button>
-		<button class="filememo">File Memo</button>
+                <button class="filememo">File Memo</button>
+                
 	</div>
          <%}%>   
             

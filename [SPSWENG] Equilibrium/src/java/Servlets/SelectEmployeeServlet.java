@@ -82,7 +82,7 @@ public class SelectEmployeeServlet extends HttpServlet {
         
         if(request.getParameter("type").equals("file")){
             
-            response.sendRedirect( );
+            response.sendRedirect("fileMemo.jsp");
             
         }
         

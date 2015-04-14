@@ -1,14 +1,17 @@
 package Database;
 
 import Models.modelEmployee;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import javax.servlet.annotation.MultipartConfig;
+@MultipartConfig(maxFileSize = 16177215)  
 public class Database {
 
     private Connection con;
@@ -608,16 +611,65 @@ public class Database {
         }
     }
     
-    public void saveDisciplinary(int empEntryNum, String memo) {
+    public int getMaxRecordID(){
         
-        sql = "INSERT INTO record(recordType,empEntryNum, disciplinaryComment) "
-               + "VALUES ( 'memo', '"+ empEntryNum + " ', '"+ memo +"')";
-
+        String sql = "select max(recordID) from record";
+        int max=0;
+          try{
+            rs = stmt.executeQuery(sql);
+            if(rs.next())
+            max= rs.getInt(1);
+       
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return max;
+    }
+    
+    
+    public void saveDisciplinaryFile(int id, String filename, InputStream is){
+        
+        String sql = "INSERT INTO disciplinarymemo (memoID , file, filename) values (?, ?, ?)";
+        
         try {
-            stmt.executeUpdate(sql);
+            
+             PreparedStatement statement = con.prepareStatement(sql);
+             statement.setInt(1, id);
+             statement.setBlob(2, is);
+             statement.setString(3, filename);
+             statement.executeUpdate();
+            //stmt.executeUpdate(sql);
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        
+    }
+    
+    public int saveDisciplinary(int empEntryNum, String memo,String type) {
+              
+        String sql = "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment) VALUES (?, ?, ?, ?, ?)";
+        
+        int max = getMaxRecordID();
+        
+        try {
+            
+             PreparedStatement statement = con.prepareStatement(sql);
+             statement.setInt(1, max);
+             statement.setString(2, "memo");
+             statement.setInt(3, empEntryNum);
+             statement.setString(4,type); 
+             statement.setString(5, memo);
+             statement.executeUpdate();
+            //stmt.executeUpdate(sql);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return max;
     }
     
     public ArrayList<modelEmployee> getSearchResult(String search){

@@ -3,23 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package Servlets;
 
 import Database.Database;
 import Database.EmailNotifier;
+import Models.modelEmployee;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Thursday
  */
+@MultipartConfig(maxFileSize = 16177215)  
 public class SaveMemo extends HttpServlet {
 
     /**
@@ -74,41 +81,42 @@ public class SaveMemo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String id = request.getParameter("listEmployees");
-        int intid = Integer.parseInt(id.trim());
-        String memo = request.getParameter("memoNote");
         HttpSession session = request.getSession();
+        modelEmployee employee = (modelEmployee) session.getAttribute("selectedemployee");
+        
+        String typeofmemo = request.getParameter("listTypeMemo");
+        int intid = employee.getEntryNum();
+        String memo = request.getParameter("memoNote");
+         InputStream inputStream = null;
+        
         if (memo.length() >= 2500) {
             System.out.println("Oh no too much characters");
-
             session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
             response.sendRedirect("FileMemo.jsp");
         } else {
             Database db = Database.getInstance();
-            db.saveDisciplinary(intid, memo);
-            String to = db.getEmailAddress(intid);
-            String fname = db.getFirstName(intid);
-            String lname = db.getLastName(intid);
-
-            System.out.println("HEREEEE SENDING EMAIL TO: " + to);
-            session.removeAttribute("error");
-            EmailNotifier email = EmailNotifier.getInstance();
-            System.out.println("HEREEEE SENDING EMAIL TO: " + to);
-
-            if (email.sendEmail(to, "Greetings, " + fname + " " + lname + "\nPlease be informed that you have received a memo from your superior. \n\n"
-                    + "According to the memo : \n\n" + memo,
-                    "[Disciplinary Memo] You received a disciplinary memo")) {
-                request.setAttribute("response", new String("Notification Email sent to " + to));
-
-            } else {
-                request.setAttribute("response", new String("Failed to send Notification Email to " + to));
-            }
-
+           int max = db.saveDisciplinary(intid, memo,typeofmemo);    
+           
+           /*stuff for getting file
+           */
+           Part filePart = request.getPart("filename");
+           System.out.println("WHAT THEEEEE HEEEK");
+           String nameoffile =  filePart.getSubmittedFileName();
+           
+           System.out.println("THE FILE IS "+nameoffile);
+           inputStream = filePart.getInputStream();
+            
+           if(filePart != null){
+             db.saveDisciplinaryFile(max, nameoffile , inputStream);
+           
+           }
+         //till here
+           
+           session.removeAttribute("error");
             RequestDispatcher view = request.getRequestDispatcher("FileMemoSuccess.jsp");
             view.forward(request, response);
-
         }
+        
 
     }
 

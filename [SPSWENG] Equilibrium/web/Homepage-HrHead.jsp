@@ -15,10 +15,10 @@
             <p> Welcome, ${employee.getFirstName()} ${employee.getLastName()} </p>
         </div>
         <div class = "pageMid">
-            <button id="login" class="selectButton"> Manage Employee Records</button>
-            <a href="SearchEmployeeAccount.html"><button id="login" class="selectButton"> Create Account</button></a>
-            <button id="login" class="selectButton"> View Request for Edit</button>
-            <button id="login" class="selectButton"> Manage Leaves</button>
+            <button id="login" class="selectButton"> Manage Employee Records</button></br></br>
+            <a href="SearchEmployeeAccount.html"><button id="login" class="selectButton"> Create Account</button></a></br></br>
+            <button id="login" class="selectButton"> View Request for Edit</button></br></br>
+            <button id="login" class="selectButton"> Manage Leaves</button></br></br>
         </div>
         <div class ="pageBot">
             <hr width = "75%" SIZE = "1"/>EQUILIBRIUM INTERTRADE CORP.</div>

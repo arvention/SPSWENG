@@ -19,9 +19,7 @@
 			</ul>
 		</DIV>	
 			   <DIV class="notifications">
-			        <DIV class="contentannounce">
-						<p>This is a sample paragraph inside Notifications.</p>
-				     </DIV>
+					<p>This is a sample paragraph inside Notifications.</p>
 			   </DIV>
 	           <DIV class="footer">
 			<br/><hr width="75%"/>

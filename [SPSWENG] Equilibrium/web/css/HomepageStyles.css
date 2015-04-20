@@ -68,6 +68,7 @@ DIV.notifications{
 	border-color: white;
 	text-align: left;
 	opacity: 0.55;
+	overflow: auto;
 }
 
 DIV.contentannounce{
@@ -183,4 +184,5 @@ DIV.trail{
 	border-color: white;
 	text-align: left;
 	opacity: 0.55;
+	overflow: auto;
 }

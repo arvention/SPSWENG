@@ -16,7 +16,7 @@
 				<li><a href= "changePassword.jsp">Change Password</a></li>
 				<li><a href="#">Employees</a></li>
 				<li><a href= "#">File a Leave</a></li>
-				<li><a href= "#">Generate Report</a></li>
+				<li><a href= "#"><input class="report" type="button" value="Generate Report"/></a></li>
 				<li><img class= "logo" src= "img/eqboyz.png"/></li>
 			</ul>
 		</DIV>	

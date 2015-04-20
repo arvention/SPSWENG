@@ -2,24 +2,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home - EQuilibrium</title>
-        
-        <link rel = "shortcut icon" href="img/eq logo.ico"/>
-        <link href = "css/Homepage-Manager.css" rel = "stylesheet" />
+        <title>Home - Equilibrium</title>
+        <link rel="shortcut icon" href="img/eq logo.ico">
+        <link rel="stylesheet" type="text/css" media="all" href="css/HomepageStyles.css"/>
+        <script src="js/jquery-1.11.2.js"></script>
+		<script src="js/HomepageFunc.js"></script>
     </head>
-    <body bgcolor ="#E8E8E8">
-        <div class = "pageTop">
-            <IMG class="compLogo" src="img/eqnavlogo.png">
-            <hr width = "75%" SIZE = "1"/>
-            <p> Welcome, ${employee.getFirstName()} ${employee.getLastName()}  </p>
-        </div>
-        <div class = "pageMid">
-            <button id="login" class="selectButton">View Employee Records</button>
-            <button id="login" class="selectButton">Manage Leaves</button>
-             <a href="GetEmployeeOfManagerServlet"><button id="login" class="selectButton">Give Memo</button></a>
-        </div>
-        <div class ="pageBot">
-            <hr width = "75%" SIZE = "1"/>EQUILIBRIUM INTERTRADE CORP.</div>
+    <body>
+	   <DIV class= "nav">
+	        <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
+			<ul>
+				<li><a href= "#">Log Out</a></li>
+				<li><a href= "#">Change Password</a></li>
+				<li><a href= "#">File a Leave</a></li>
+				<li><img class= "logo" src= "eqboyz.png"/></li>
+			</ul>
+		</DIV>	
+			   <DIV class="notifications">
+			        <DIV class="contentannounce">
+						<p>This is a sample paragraph inside Notifications.</p>
+				     </DIV>
+			   </DIV>
+	           <DIV class="footer">
+			<br/><hr width="75%"/>
+		        EQUILIBRIUM INTERTRADE CORP.
+        	   </DIV>
+	   
     </body>
 </html>

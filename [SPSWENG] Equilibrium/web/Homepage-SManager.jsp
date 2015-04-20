@@ -13,7 +13,7 @@
 	        <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
 			<ul>
 				<li><a href= "#">Log Out</a></li>
-				<li><a href= "#">Change Password</a></li>
+				<li><a href="#">Change Password</a></li>
 				<li><a href= "#">File a Leave</a></li>
 				<li><img class= "logo" src= "eqboyz.png"/></li>
 			</ul>
@@ -22,6 +22,9 @@
 			        <DIV class="contentannounce">
 						<p>This is a sample paragraph inside Notifications.</p>
 				     </DIV>
+		<DIV class="searchMan">
+			Search for an Employee: <input type="search"/>
+		</DIV>
 			   </DIV>
 	           <DIV class="footer">
 			<br/><hr width="75%"/>

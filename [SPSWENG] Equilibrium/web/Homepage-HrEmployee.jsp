@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Home - Equilibrium</title>
-<<<<<<< HEAD
+
         
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -18,9 +18,12 @@
         $(document).ready(function(){
         var sugg = [];
         var search;
+        alert("son of a");
+        
          $("#search").keyup(function() {
            search = $("#search").val();
            search= search.trim();
+           console.log("HEREE");
            $.get('AutoCompleteServlet', {keyword: search}, function(responseText) {
                         console.log("BITCH PLS");
                         console.log(responseText);
@@ -58,7 +61,8 @@
 		</DIV>
 		<DIV class="search">
                     <form method ="GET" action="SearchEmployee">
-			Search for an Employee: <input name="searchbox" id="search" type="search"/>
+			Search for an Employee: <input name="searchbox" id="search" type="search" placeholder="Enter Employee Name
+                                                       "/>
                      </form>   
 		</DIV>
 		<DIV class="footer">
@@ -90,14 +94,12 @@
         <DIV class="trail">
             <p>This is a sample content in Audit Trail</p>
         </DIV>
-        <DIV class="search">
-            Search for an Employee: <input type="search"/>
-        </DIV>
+
         <DIV class="footer">
             <br/><hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.
         </DIV>
 
->>>>>>> origin/DEV5
+
     </body>
 </html>

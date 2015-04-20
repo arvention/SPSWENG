@@ -26,7 +26,8 @@ import javax.servlet.http.HttpSession;
  * @author Arces
  */
 public class LeaveSubmit extends HttpServlet {
-    private final int maxLeave = 15;   
+
+    private final int maxLeave = 15;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,7 +38,6 @@ public class LeaveSubmit extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -80,7 +80,7 @@ public class LeaveSubmit extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=UTF-8");
 
         Database db = Database.getInstance();
         EmailNotifier en = EmailNotifier.getInstance();
@@ -97,52 +97,27 @@ public class LeaveSubmit extends HttpServlet {
 
         HttpSession reqSession = request.getSession();
         RequestDispatcher reqDispatcher = null;
-        ArrayList<Boolean> errorFlags = new ArrayList<>();
-        //int empIDNum = Integer.parseInt(request.getParameter("idNum"));
         float dayCount = Float.parseFloat(request.getParameter("dayCount"));
-        modelEmployee modelEmployee = (modelEmployee)reqSession.getAttribute("employee");
-        
-        System.out.println("start: " + startDate + " end: " + endDate + " | "+ getDateDiff(startDate, endDate) + " vs " + (int) Float.parseFloat(request.getParameter("dayCount")));
-        System.out.println("TEST VS: " + (maxLeave - (db.getApprovedLeaveCount(modelEmployee.getEmployeeID()) + dayCount)));
+        modelEmployee modelEmployee = (modelEmployee) reqSession.getAttribute("employee");
+
         if (endDate != null && startDate != null) {
             if (endDate.before(startDate)) {
-                errorFlags.add(true);
-                errorFlags.add(false);
-                errorFlags.add(false);                
-                
-                reqSession.setAttribute("errorFlags", errorFlags);
-                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
+                response.getWriter().write("<h4>The end date should not be earlier than the start date.</h4>");
             } else if (getDateDiff(startDate, endDate) != (int) Math.ceil(dayCount)) {
-                errorFlags.add(false);
-                errorFlags.add(true);
-                errorFlags.add(false);
-                
-                reqSession.setAttribute("errorFlags", errorFlags);
-                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
-            } else if(maxLeave - (db.getApprovedLeaveCount(modelEmployee.getEmployeeID()) + dayCount) < 0){
-                errorFlags.add(false);
-                errorFlags.add(false);
-                errorFlags.add(true);
-                
-                reqSession.setAttribute("errorFlags", errorFlags);
-                reqDispatcher = request.getRequestDispatcher("LeaveForm.jsp");
-            }else {
-                reqSession.removeAttribute("errorFlags");
+                response.getWriter().write("<h4>The number of days of leave doesn't match the duration between the start and end date.</h4>");
+            } else if (maxLeave - (db.getApprovedLeaveCount(modelEmployee.getEmployeeID()) + dayCount) < 0) {
+                response.getWriter().write("<h4>Sorry, your request exceeds the number of leaves that you can have.</h4>");
+            } else {
                 String leaveType = request.getParameter("leaveType");
                 float duration = Float.parseFloat(request.getParameter("dayCount"));
                 
-                //db.addLeaveForm(leaveType, db.getEntryNum(empIDNum), new java.sql.Date(startDate.getTime()), duration);
-                System.out.println("ENTRYNUM: " + modelEmployee.getEntryNum());
                 db.addLeaveForm(leaveType, modelEmployee.getEntryNum(), new java.sql.Date(startDate.getTime()), duration);
-                reqDispatcher = request.getRequestDispatcher("LeaveSuccess.jsp");
-                
+
                 //send an email to the manager
-                //en.sendLeaveRequest(db.getEntryNum(empIDNum), leaveType, startDate, endDate, duration);
                 en.sendLeaveRequest(modelEmployee.getEntryNum(), leaveType, startDate, endDate, duration);
             }
-            reqDispatcher.forward(request, response);
         }
-        
+
     }
 
     /**
@@ -155,11 +130,10 @@ public class LeaveSubmit extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
     // -- function/s ----------------------------------------
     public int getDateDiff(Date startDate, Date endDate) {
-        int dateDiff = (int)(endDate.getTime() - startDate.getTime())/(1000 * 60 * 60 * 24);
-        
+        int dateDiff = (int) (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
+
         return dateDiff + 1;
     }
 }

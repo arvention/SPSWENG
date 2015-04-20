@@ -654,6 +654,7 @@ public class Database {
         String sql = "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment) VALUES (?, ?, ?, ?, ?)";
         
         int max = getMaxRecordID();
+        max++;
         
         try {
             

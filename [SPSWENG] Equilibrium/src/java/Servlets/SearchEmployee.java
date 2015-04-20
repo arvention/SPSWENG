@@ -64,7 +64,7 @@ public class SearchEmployee extends HttpServlet {
         //processRequest(request, response);
         
         String search = request.getParameter("searchbox");
-        
+        search= search.trim();
         SearchResult SR = new SearchResult(Database.Database.getInstance().getSearchResult(search));
          HttpSession session = request.getSession();
          session.setAttribute("searchresult", SR);

@@ -83,6 +83,8 @@ public class SaveMemo extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         modelEmployee employee = (modelEmployee) session.getAttribute("selectedemployee");
+        Part filePart = request.getPart("filename");
+        
         
         String typeofmemo = request.getParameter("listTypeMemo");
         int intid = employee.getEntryNum();
@@ -93,29 +95,34 @@ public class SaveMemo extends HttpServlet {
             System.out.println("Oh no too much characters");
             session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
             response.sendRedirect("FileMemo.jsp");
-        } else {
-            Database db = Database.getInstance();
+        }
+        if(filePart != null){
+            
+            System.out.println("File Size is "+ filePart.getSize());
+            if(filePart.getSize() >  10847412){
+                session.setAttribute("error", new String("* Maximum File Size Reached."));
+                response.sendRedirect("FileMemo.jsp");
+            }
+            
+            
+        }
+        
+        
+           Database db = Database.getInstance();
            int max = db.saveDisciplinary(intid, memo,typeofmemo);    
            
            /*stuff for getting file
            */
-           Part filePart = request.getPart("filename");
-           System.out.println("WHAT THEEEEE HEEEK");
-           String nameoffile =  filePart.getSubmittedFileName();
-           
-           System.out.println("THE FILE IS "+nameoffile);
-           inputStream = filePart.getInputStream();
-            
            if(filePart != null){
+             String nameoffile =  filePart.getSubmittedFileName();
+             inputStream = filePart.getInputStream();
              db.saveDisciplinaryFile(max, nameoffile , inputStream);
-           
            }
          //till here
-           
-           session.removeAttribute("error");
+            session.removeAttribute("error");
             RequestDispatcher view = request.getRequestDispatcher("FileMemoSuccess.jsp");
             view.forward(request, response);
-        }
+        
         
 
     }

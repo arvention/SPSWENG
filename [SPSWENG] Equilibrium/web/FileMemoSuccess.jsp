@@ -1,3 +1,4 @@
+<%@page import="Models.modelEmployee"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +14,20 @@
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="titleText">Memo has been filed!</div><br/>
             <div class="titleText">${response}</div><br/>
-            <a href="Homepage-Manager.jsp">Click here to return to home page...</a>
+           
+            <%   
+            modelEmployee me =(modelEmployee) session.getAttribute("employee");
+            
+            
+            if(me.getEmployeeType().equals("Hr Employee")){
+            %>
+            <a href="Homepage-HrEmployee.jsp">Click here to return to home page...</a>
+        
+            <% 
+            }else{
+            %>
+          <a href="Homepage-HrHead.jsp">Click here to return to home page...</a>
+            <%}%>    
         </div>
         <div class = "pageBottom" style="margin-bottom: 3px"><hr width ="75%"/></br> 
             EQUILIBRIUM INTERTRADE CORP.

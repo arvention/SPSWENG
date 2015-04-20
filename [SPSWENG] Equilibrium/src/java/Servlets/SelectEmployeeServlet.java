@@ -81,9 +81,8 @@ public class SelectEmployeeServlet extends HttpServlet {
         session.setAttribute("selectedemployee", employee);
         
         if(request.getParameter("type").equals("file")){
-            
-            response.sendRedirect("fileMemo.jsp");
-            
+         
+        response.sendRedirect("FileMemo.jsp");    
         }
         
     }

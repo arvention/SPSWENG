@@ -4,6 +4,9 @@
     <head>
         <title>Home - Equilibrium</title>
         <link rel="shortcut icon" href="img/eq logo.ico">
+        <link rel="stylesheet" type="text/css" media="all" href="css/HomepageStyles.css"/>
+        <script src="js/jquery-1.11.2.js"></script>
+		<script src="js/HomepageFunc.js"></script>
     </head>
     <body>
 	   <DIV class= "nav">

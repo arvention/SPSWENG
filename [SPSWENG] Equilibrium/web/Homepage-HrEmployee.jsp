@@ -17,7 +17,7 @@
 				<li><a href="#">Employees</a></li>
 				<li><a href= "#">File a Leave</a></li>
 				<li><a href= "#">Generate Report</a></li>
-				<li><img class= "logo" src= "eqboyz.png"/></li>
+				<li><img class= "logo" src= "img/eqboyz.png"/></li>
 			</ul>
 		</DIV>	
 		<DIV class="notifications">

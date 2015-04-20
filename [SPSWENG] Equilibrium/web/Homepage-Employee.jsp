@@ -15,7 +15,7 @@
 				<li><a href= "#">Log Out</a></li>
 				<li><a href= "#">Change Password</a></li>
 				<li><a href= "#">File a Leave</a></li>
-				<li><img class= "logo" src= "eqboyz.png"/></li>
+				<li><img class= "logo" src= "img/eqboyz.png"/></li>
 			</ul>
 		</DIV>	
 			   <DIV class="notifications">

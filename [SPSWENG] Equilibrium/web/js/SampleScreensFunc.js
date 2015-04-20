@@ -1,25 +1,49 @@
-function validateForm(){
-    var educationInputs = document.getElementsByClassName("educationinput");
-    var infoInputs = document.getElementsByClassName("infoinput");
-    var isEducationEmpty = false;
-    var isInfoEmpty = false;
-    
-    for(var i = 0; i < infoInputs.length && !isInfoEmpty; i++){
-        if(infoInputs[i].value === "")
-            isInfoEmpty = true;
-    }
-    
-    for(var i = 0; i < educationInputs.length && !isEducationEmpty; i++){
-        if(educationInputs[i].value === "")
-            isEducationEmpty = true;
-    }
-    
-    if(isInfoEmpty){
-        alert("Please fill up the personal information of the employee");
-        return false;
-    }
-    else if(isEducationEmpty){
-        alert("Please fill up the education history (until college level is required)");
+
+
+function validateForm() {
+    //var educationInputs = document.getElementsByClassName("educationinput");
+    // var infoInputs = document.getElementsByClassName("infoinput");
+    var hasBlank = false;
+    /*
+     for(var i = 0; i < infoInputs.length; i++){
+     if(infoInputs[i].value === "")
+     {
+     infoInputs[i]
+     isInfoEmpty = true;
+     }
+     }*/
+    $(".infoinput").each(function() {
+        if ($(this).val().length === 0)
+        {
+            $(this).css("border", "2px rgba(230, 60, 60, .4) solid");
+            hasBlank = true;
+        }
+        else
+        {
+            $(this).css("border", "1px rgb(200, 200, 200) solid");
+        }
+    });
+
+    $(".educationinput").each(function() {
+        if ($(this).val().length === 0)
+        {
+            $(this).css("border", "2px rgba(230, 60, 60, .4) solid");
+            hasBlank = true;
+        }
+        else
+        {
+            $(this).css("border", "none");
+        }
+    });
+
+    /*
+     for(var i = 0; i < educationInputs.length && !isEducationEmpty; i++){
+     if(educationInputs[i].value === "")
+     isEducationEmpty = true;
+     }
+     */
+    if (hasBlank) {
+        alert("Please fill up the all the required fields for the employee's biodata.\n(Personal Information and Education History)");
         return false;
     }
     return true;
@@ -38,7 +62,7 @@ $(document).ready(function() {
     var licensewrapper = $('table[name=license]');
     var employmentwrapper = $('table[name=employment]');
     var criminaloffensewrapper = $('table[name=criminaloffense]');
-	var miscfilewrapper = $('table[name=miscellaneous]');
+    var miscfilewrapper = $('table[name=miscellaneous]');
 
     $(tohide).hide();
     $('select[name=civilstatus]').change(function() {
@@ -49,16 +73,16 @@ $(document).ready(function() {
     });
 
     $('select[name=convicted]').change(function() {
-        if ($('select[name=convicted]').find(':selected').val() === "Yes"){
-		    $('input[name=offensename]').prop("required", true);
-			$('input[name=offensedate]').prop("required", true);
+        if ($('select[name=convicted]').find(':selected').val() === "Yes") {
+            $('input[name=offensename]').prop("required", true);
+            $('input[name=offensedate]').prop("required", true);
             $(tohide).show();
-	    }
-        else{
-		   $('input[name=offensename]').prop("required", false);
-			$('input[name=offensedate]').prop("required", false);
+        }
+        else {
+            $('input[name=offensename]').prop("required", false);
+            $('input[name=offensedate]').prop("required", false);
             $(tohide).hide();
-	    }
+        }
     });
 
     $(document).on("click", ".addsibling", function(e) {
@@ -75,11 +99,10 @@ $(document).ready(function() {
 
     $(document).on("click", ".removesibling", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
     });
 
     $(document).on("click", ".addchild", function(e) {
@@ -96,11 +119,10 @@ $(document).ready(function() {
 
     $(document).on("click", ".removechild", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
     });
 
     $(document).on("click", ".addelem", function(e) {
@@ -117,11 +139,10 @@ $(document).ready(function() {
 
     $(document).on("click", ".removeelem", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
     });
 
     $(document).on("click", ".addhighschool", function(e) {
@@ -156,11 +177,10 @@ $(document).ready(function() {
 
     $(document).on("click", ".removecollege", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
     });
 
     $(document).on("click", ".addvocational", function(e) {
@@ -195,11 +215,10 @@ $(document).ready(function() {
 
     $(document).on("click", ".removemasteral", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
     });
 
     $(document).on("click", ".addother", function(e) {
@@ -215,11 +234,10 @@ $(document).ready(function() {
 
     $(document).on("click", ".removeother", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
     });
 
     $(document).on("click", ".addlicense", function(e) {
@@ -234,23 +252,22 @@ $(document).ready(function() {
 
     $(document).on("click", ".removelicense", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
     });
 
     $(document).on("click", ".addemployment", function(e) {
         e.preventDefault();
 
         $(employmentwrapper).append(
-		        '<tr>'
-				+ '<td><hr></td>'
-				+ '<td><hr></td>'
-				+ '<td><hr></td>'
-				+ '<td><hr></td>'
-				+ '</tr>'
+                '<tr>'
+                + '<td><hr></td>'
+                + '<td><hr></td>'
+                + '<td><hr></td>'
+                + '<td><hr></td>'
+                + '</tr>'
                 + '<tr>'
                 + '	<td width="300px" class="here">Job Title</td>'
                 + '	<td>Date of Employment</td>'
@@ -298,17 +315,16 @@ $(document).ready(function() {
         e.preventDefault();
 
         //$(toremove).nextUntil("input[name=jobreason]").remove();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(toremove).prev().prev().prev().prev().prev().prev().remove();
-				$(toremove).prev().prev().prev().prev().prev().remove();
-				$(toremove).prev().prev().prev().prev().remove();
-				$(toremove).prev().prev().prev().remove();
-				$(toremove).prev().prev().remove();
-				$(toremove).prev().remove();
-				$(toremove).remove();
-		}
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(toremove).prev().prev().prev().prev().prev().prev().remove();
+            $(toremove).prev().prev().prev().prev().prev().remove();
+            $(toremove).prev().prev().prev().prev().remove();
+            $(toremove).prev().prev().prev().remove();
+            $(toremove).prev().prev().remove();
+            $(toremove).prev().remove();
+            $(toremove).remove();
+        }
     });
 
     $(document).on("click", ".addcriminaloffense", function(e) {
@@ -323,31 +339,29 @@ $(document).ready(function() {
     });
     $(document).on("click", ".removecriminaloffense", function(e) {
         e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-        if (c){
-				alert("Removing one row of data.");
-				$(this).parent().parent().remove();
-		}
-        
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
+
     });
-	
-	$(document).on("click", ".addmiscfile", function(e){
-		e.preventDefault();
-		$(miscfilewrapper).append(
-		    '<tr><td><input type="text" name="filename" placeholder="File Name here" /></td>'
-			+ '<td><button name="attachfile">Attach File</button></td>'
-			+ '<td><button class="removemiscfile">-</button></td></tr>'
-		);
-	});
-	
-	$(document).on("click", ".removemiscfile", function(e){
-		e.preventDefault();
-		var c = confirm("Do you want to remove this row of data?");
-		if (c){
-			alert("Removing one row of data.");
-			$(this).parent().parent().remove();
-		}
-	});
+
+    $(document).on("click", ".addmiscfile", function(e) {
+        e.preventDefault();
+        $(miscfilewrapper).append(
+                '<tr><td><input type="text" name="filename" placeholder="File Name here" /></td>'
+                + '<td><button name="attachfile">Attach File</button></td>'
+                + '<td><button class="removemiscfile">-</button></td></tr>'
+                );
+    });
+
+    $(document).on("click", ".removemiscfile", function(e) {
+        e.preventDefault();
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
+    });
 
     $('.tab-section').hide();
     $('.tabs a').bind('click', function(e) {

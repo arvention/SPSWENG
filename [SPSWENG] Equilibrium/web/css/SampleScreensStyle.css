@@ -97,7 +97,7 @@ DIV.content{
     padding-right: 100px;
     position: absolute;
     top: 20%;
-    z-score: -1;
+    z-index: -1;
 }
 DIV.nav{
     padding-top:0px;
@@ -209,4 +209,9 @@ DIV.nav{
 
 text{
     border: solid black;
+}
+
+#bio_form{
+    max-height: 400px;
+    overflow-y: auto;
 }

@@ -100,7 +100,7 @@ public class LoginServlet extends HttpServlet {
             }
             else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Hr Employee")){
                 session.setAttribute("employee", modelEmployee);
-                RequestDispatcher view = request.getRequestDispatcher("HREmployeeHomepage.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-HrEmployee.jsp");
                 view.forward(request, response);
             }
             else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Manager")){

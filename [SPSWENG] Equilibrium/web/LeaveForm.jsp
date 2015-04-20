@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel = "shortcut icon" href="img/eq logo.ico"/>
-	<link rel="stylesheet" type="text/css" href="css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="css/navbar.css">
         <title>Leave Application</title>
 
         <!-- Bootstrap -->
@@ -28,6 +28,9 @@
     </head>
 
     <body>
+        <%
+            HttpSession reqSession = request.getSession();
+        %>
         <div class= "nav">
             <ul>
                 <li><a href= "#">Log Out</a></li>
@@ -40,7 +43,7 @@
             <h3>Leave Form Application</h3>
         </div>
         <div align="center" class="content">
-            <form id = "leave_form" action = "LeaveSubmit" method = "post"><br>
+            <form onsubmit = "return submitLeave()" id = "leave_form"><br>
                 <!--h4>ID Number: <input type="number" name = "idNum" required></h4-->
                 <h4>Type of Leave:
                     <select name= "leaveType" required class = "form-input">
@@ -59,53 +62,31 @@
                     until 
                     <input type= "date" class= "form-control" id="dp" name = "endDate" required/>
                 </h4>
-                <%
-                    HttpSession reqSession = request.getSession();
-                    ArrayList<Boolean> errorFlags = (ArrayList) reqSession.getAttribute("errorFlags");
-
-                    if (errorFlags != null) {
-                        if (errorFlags.get(0)) {
-                %>
-                <h4><hr/>Invalid Input! The end date is earlier than the start date.</h4>
-                    <%
-                    } else if (errorFlags.get(1)) {
-                    %>
-                <h4><hr/>Invalid Input! The number of days of leave doesn't match the duration between the start and end date.</h4>
-                    <%
-                    } else if (errorFlags.get(2)) {
-                    %>
-                <h4><hr/>Sorry, your request exceeds the number of leaves that you can have.</h4>
-                    <%
-                            }
-                        }
-                    %>
                 <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
             </form>
-
             <%
                 modelEmployee modelEmployee = (modelEmployee) reqSession.getAttribute("employee");
-            %>
-            <%
                 if (modelEmployee.getEmployeeType().equalsIgnoreCase("Employee")) {
             %>
-            <a href="Homepage-Employee.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
-                <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("HR Head")) {
-                %>
-            <a href="Homepage-HrHead.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
-                <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("HR Employee")) {
-                %>
-            <a href="Homepage-HrEmployee.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
-                <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("Manager")) {
-                %>
-            <a href="Homepage-Manager.jsp"><input class="back" type="submit" value="Back" name="bBack"/></a>
-                <%}%>
+            <a href="Homepage-Employee.jsp"><button class="back" type="submit" name="bBack">Back</button></a>
+            <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("HR Head")) {
+            %>
+            <a href="Homepage-HrHead.jsp"><button class="back" type="submit" name="bBack">Back</button></a>
+            <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("HR Employee")) {
+            %>
+            <a href="Homepage-HrEmployee.jsp"><button class="back" type="submit" name="bBack">Back</button></a>
+            <%  } else if (modelEmployee.getEmployeeType().equalsIgnoreCase("Manager")) {
+            %>
+            <a href="Homepage-Manager.jsp"><button class="back" type="submit" name="bBack">Back</button></a>
+            <%}%>
         </div>
-
+        <div id = "leaveMessage">
+            
+        </div>
         <div class= "footer">
             <hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.
         </div>
-
     </body>
 </html>
 

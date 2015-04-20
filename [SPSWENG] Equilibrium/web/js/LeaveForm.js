@@ -1,14 +1,35 @@
+function submitLeave() {
+    $.ajax({
+        type: "POST",
+        url: "LeaveSubmit",
+        data: $("#leave_form").serialize(),
+        success: function(html) {
+            if (html)
+            {
+                $("#leaveMessage").html(html);
+            }
+            else {
+                goNext();
+            }
+        }
+    });
+    return false;
+}
+
+function goNext() {
+    window.location.href = "LeaveSuccess.jsp";
+}
+
 $(document).ready(function() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
-        console.log("HEHE");
     //initialize dates to today
-    if(day < 10)
+    if (day < 10)
         day = "0" + day;
-    
+
     if (month < 10)
     {
         $("input[name='startDate']").val(year + "-0" + month + "-" + day);

@@ -144,8 +144,10 @@ public class EnterBioData extends HttpServlet {
         String religion = request.getParameter("religion");
         int salary = Integer.parseInt(request.getParameter("salary"));
         String emailAddress = request.getParameter("emailadd");
-        long mobileNumber = Long.parseLong(request.getParameter("mobileno"));;
+        long mobileNumber = Long.parseLong(request.getParameter("mobileno"));
         Date birthDay = new Date();
+        
+        
         try {
             birthDay = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("birthday"));
         } catch (ParseException e) {

@@ -33,7 +33,7 @@
 			</ul>
 		</DIV>
 		<DIV class="content">
-		<form>
+		<form action="SaveAward" method="POST" enctype="multipart/form-data">
                 <span>Attach soft copies of awards that is pertinent to this employee record</span><br/>
 		<br/>
 						          
@@ -42,7 +42,7 @@
                 <input type="file" name="filename"/>                                             
                 <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea>
                 <input class="back" input type="submit" value="Submit" name="bSubmit" align="center">
-					  
+                   Message here${message} 
 		</form>
 		</DIV>
 		

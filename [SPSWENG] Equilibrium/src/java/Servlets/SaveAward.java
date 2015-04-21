@@ -2,27 +2,28 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-goes here when the employee clicks on search result.
-
-*/
+ */
 
 package Servlets;
 
 import Database.Database;
 import Models.modelEmployee;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Thursday
  */
-public class SelectEmployeeServlet extends HttpServlet {
+public class SaveAward extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +42,10 @@ public class SelectEmployeeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SelectEmployeeServlet</title>");            
+            out.println("<title>Servlet SaveAward</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SelectEmployeeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SaveAward at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +62,8 @@ public class SelectEmployeeServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {       
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -76,16 +78,56 @@ public class SelectEmployeeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String id = request.getParameter("idnumber");
-        modelEmployee employee = Database.getInstance().getEmployee(id);
-        HttpSession session = request.getSession();
-        session.setAttribute("selectedemployee", employee);
         
-        if(request.getParameter("type").equals("file")){
-        response.sendRedirect("FileMemo.jsp");    
-        }else if(request.getParameter("type").equals("award")){     
-           response.sendRedirect("addAward.jsp");
+        
+        HttpSession session = request.getSession();
+        modelEmployee employee = (modelEmployee) session.getAttribute("selectedemployee");
+        Part filePart = request.getPart("filename");
+        
+        
+        String typeofmemo = request.getParameter("listTypeMemo");
+        int intid = employee.getEntryNum();
+        String memo = request.getParameter("memoNote");
+         InputStream inputStream = null;
+        
+        if (memo.length() >= 2500) {
+            System.out.println("Oh no too much characters");
+            session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
+            response.sendRedirect("FileMemo.jsp");
         }
+        if(filePart != null){
+            
+            System.out.println("File Size is "+ filePart.getSize());
+            if(filePart.getSize() >  10847412){
+                session.setAttribute("error", new String("* Maximum File Size Reached."));
+                response.sendRedirect("FileMemo.jsp");
+            }
+            
+            
+        }
+        
+        
+           Database db = Database.getInstance();
+           if(filePart != null){
+             
+             inputStream = filePart.getInputStream();
+             System.out.println("I am over gereee");  
+             String nameoffile =  filePart.getSubmittedFileName();
+             db.saveDisciplinary(intid, memo,typeofmemo,inputStream,nameoffile );  
+           }
+           else{
+               db.saveDisciplinary(intid, memo,typeofmemo,null,null);    
+               
+           }
+         //till here
+            session.removeAttribute("error");
+            RequestDispatcher view = request.getRequestDispatcher("FileMemoSuccess.jsp");
+            view.forward(request, response);
+        
+        
+        
+        
+        
         
         
     }

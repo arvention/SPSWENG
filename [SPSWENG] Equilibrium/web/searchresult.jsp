@@ -1,6 +1,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Models.modelEmployee"%>
 <%@page import="ClassHelpers.SearchResult"%>
+
+
 <html>
     <head>
         <link rel="shortcut icon" href="eq logo.ico"/>
@@ -21,6 +23,15 @@
                     $("#numberofid").val(id);
                     $("#go").submit();
                 });
+                
+                $(".addAward").click(function() {
+
+                    var id = $(this).closest("div").attr("val");
+                    $("#numberofid").val(id);
+                    $("#go2").submit();
+                });
+                
+                
             });
         </script>
     </head>
@@ -32,7 +43,14 @@
                     <form id="go" method="POST" action="SelectEmployeeServlet">
                         <input id ="numberofid" name="idnumber" type="hidden" value="">
                         <input name="type"type="hidden" value="file">
-                    </form>   
+                    </form>
+                    
+                     <form id="go2" method="POST" action="SelectEmployeeServlet">
+                        <input id ="numberofid" name="idnumber" type="hidden" value="">
+                        <input name="type"type="hidden" value="award">
+                    </form>
+                    
+                    
 
                     <%for (modelEmployee e : me) {
 
@@ -64,7 +82,7 @@
                         <%} else {%>
                         <span class="accStatus">Has Account</span>
                         <%}%>
-                        <button class="addAccount">Add Award</button>
+                        <button class="addAward">Add Award</button>
                         <button class="filememo">File Memo</button>
 
                     </div>

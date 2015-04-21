@@ -310,6 +310,8 @@ public class Database {
 
     public modelEmployee getEmployeeAccount(String username, String userpassword) {
 
+        modelEmployee modelEmployee = new modelEmployee();
+        
         sql = "SELECT * FROM employee"
                 + " WHERE employeeID = " + username;
 
@@ -317,8 +319,9 @@ public class Database {
             rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                if (rs.getString("password").equals(userpassword)) {
-                    modelEmployee modelEmployee = new modelEmployee();
+                String getPassword = rs.getString("password");
+                
+                if (getPassword != null && getPassword.equals(userpassword)) {
                     int entryNum = rs.getInt("entryNum");
                     modelEmployee.setEntryNum(entryNum);
                     int employeeID = rs.getInt("employeeID");

@@ -3,6 +3,7 @@ package Database;
 import Models.modelBranch;
 import Models.modelDepartment;
 import Models.modelEmployee;
+import Models.modelLeaveForm;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
@@ -977,5 +978,33 @@ public class Database {
         }
         
         return branchID;
+    }
+    
+    // get leave forms to be approved by a manager
+    public ArrayList<modelLeaveForm> getLeaveFormToApprove(int managerEntryNum){
+        ArrayList<modelLeaveForm> leaveFormsToApprove = new ArrayList<>();
+        
+        sql = "SELECT * from leave_form " +
+              "WHERE isApproved = false AND " + 
+              "approverEntryNum = " + managerEntryNum;
+        
+        try{
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                modelLeaveForm leaveForm = new modelLeaveForm();
+                leaveForm.setLeaveID(rs.getInt("leaveID"));
+                leaveForm.setLeaveType(rs.getString("leaveType"));
+                leaveForm.setEmpEntryNum(rs.getInt("empEntryNum"));
+                leaveForm.setStartDate(rs.getDate("startDate"));
+                leaveForm.setDuration(rs.getFloat("duration"));
+                leaveForm.setIsApproved(false);
+                leaveForm.setApproverEntryNum(managerEntryNum);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return leaveFormsToApprove;
     }
 }

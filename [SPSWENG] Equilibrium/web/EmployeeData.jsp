@@ -60,7 +60,7 @@
                                 <td>Expected Salary</td>
                             </tr>
                             <tr>
-                                <td class="three-hundred"><input type="number" title = "ID | this is required" class = "infoinput" min = "0" max = "99999999999" name="employeeID" placeholder="Employee ID"  /></td>
+                                <td class="three-hundred"><input type="number" class = "infoinput" min = "0" max = "99999999999" name="employeeID" placeholder="Employee ID"  /></td>
                                 <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="lastname" placeholder="Last Name"  /></td>
                                 <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="firstname" placeholder="First Name"  /></td>
                                 <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="middlename" placeholder="Middle Name"  /></td>
@@ -141,7 +141,7 @@
                                 <td><input type="text" class = "infoinput" maxlength = 45 name="empdep" placeholder="Current Department" /></td>
                                 <td><input type="text" class = "infoinput" maxlength = 45 name="empposition" placeholder="Current Position" /></td>
                                 <td><input type="date" class = "infoinput" name="hiredate" placeholder="Hire Date"  /></td>
-                                <td><input type="text" class = "infoinput" maxlength = 45 name="emphead" placeholder="Department Head/Employee's Manager" /></td>
+                                <td><input type="number" class = "infoinput" min = "0" max = "99999999999" name="emphead" placeholder="Employee's Manager ID" /></td>
                             </tr>
                         </table>
                     </DIV>

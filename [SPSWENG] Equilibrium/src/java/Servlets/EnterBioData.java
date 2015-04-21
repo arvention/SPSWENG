@@ -145,16 +145,22 @@ public class EnterBioData extends HttpServlet {
         int salary = Integer.parseInt(request.getParameter("salary"));
         String emailAddress = request.getParameter("emailadd");
         long mobileNumber = Long.parseLong(request.getParameter("mobileno"));
+        int band = Integer.parseInt(request.getParameter("employeeband"));
+        String department = request.getParameter("empdep");
+        String position = request.getParameter("empposition");
+        Date hireDate = new Date();
+        int managerID = Integer.parseInt(request.getParameter("emphead"));
         Date birthDay = new Date();
         
         
         try {
             birthDay = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("birthday"));
+            hireDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hiredate"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return db.addInfo(employeeID, lastName, firstName, middleName, address, new java.sql.Date(birthDay.getTime()), birthplace, mobileNumber, SSSNumber, TINNumber, PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, emailAddress, homePhone);
+        return db.addInfo(employeeID, lastName, firstName, middleName, address, new java.sql.Date(birthDay.getTime()), birthplace, mobileNumber, SSSNumber, TINNumber, PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, emailAddress, homePhone, Integer.toString(band), department, position, new java.sql.Date(hireDate.getTime()), managerID);
     }
 
     public void addRelatives(int empEntryNum, Database db, HttpServletRequest request) {

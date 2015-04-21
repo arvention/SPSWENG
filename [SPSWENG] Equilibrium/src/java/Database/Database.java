@@ -486,12 +486,16 @@ public class Database {
     public int addInfo(int employeeID, String lastName, String firstName, String middleName, String address, Date birthDay,
                             String birthplace, long mobileNumber, String SSSNumber, String TINNumber, String PHICNumber, 
                             String PAGIBIGNumber, String civilStatus, String citizenship, String religion, 
-                            int salary, String emailAddress, int homePhone){
+                            int salary, String emailAddress, int homePhone, String band, String department, String position,
+                            Date hireDate, int managerID){
         int maxEntry = 1;
-        
+        int managerEntryNum = getEntryNum(managerID);
         sql = "SELECT MAX(entryNum) FROM employee";
         
         try{
+            Statement stmt;
+            ResultSet rs;
+            stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
             if(rs.next())
             {
@@ -499,10 +503,10 @@ public class Database {
             }
             
             sql = "INSERT INTO employee(entryNum, employeeID, lastName, firstName, middleName, address, birthDay, birthplace, mobileNumber, SSSNumber, TINNumber"
-                    + ", PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, isDeleted, emailAddress, homePhone)"
+                    + ", PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, hireDate, band, salary, departmentID, positionName, isDeleted, emailAddress, homePhone, managerEntryNum)"
                     + " VALUES("+ maxEntry + ", " + employeeID + ", '" + lastName + "', '" + firstName + "', '" + middleName + "', '" + address + "', '" + birthDay + "', '" + birthplace + 
                     "', " + mobileNumber + ", '" + SSSNumber + "', '" + TINNumber + "', '" + PHICNumber + "', '" + PAGIBIGNumber + "', '" + civilStatus + "', '" + citizenship
-                    + "', '" + religion + "', " + salary + ", '0', '" + emailAddress + "', " + homePhone + ")";
+                    + "', '" + religion + "', '" + hireDate + "', '" + band + "', " + salary + ", " + department + ", '" + position + "', '0', '" + emailAddress + "', " + homePhone + ", " + managerEntryNum + ")";
             
             stmt.executeUpdate(sql);
         }catch(SQLException e){

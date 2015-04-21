@@ -5,7 +5,7 @@ public class modelLicense {
     private int licenseID;
     private String licenseName;
     private int empEntryNum;
-    private int percantage;
+    private int percentage;
 
     public int getLicenseID() {
         return licenseID;
@@ -31,11 +31,11 @@ public class modelLicense {
         this.empEntryNum = empEntryNum;
     }
 
-    public int getPercantage() {
-        return percantage;
+    public int getPercentage() {
+        return percentage;
     }
 
-    public void setPercantage(int percantage) {
-        this.percantage = percantage;
+    public void setPercentage(int percentage) {
+        this.percentage = percentage;
     }
 }

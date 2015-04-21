@@ -2,8 +2,12 @@ package Database;
 
 import Models.modelBranch;
 import Models.modelDepartment;
+import Models.modelEducationHistory;
 import Models.modelEmployee;
+import Models.modelEmployeeAuditTrail;
 import Models.modelLeaveForm;
+import Models.modelLicense;
+import Models.modelRelative;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
@@ -29,7 +33,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "jetisjet";
+            String uPass = "admin";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -311,7 +315,7 @@ public class Database {
     public modelEmployee getEmployeeAccount(String username, String userpassword) {
 
         modelEmployee modelEmployee = new modelEmployee();
-        
+
         sql = "SELECT * FROM employee"
                 + " WHERE employeeID = " + username;
 
@@ -320,7 +324,7 @@ public class Database {
 
             if (rs.next()) {
                 String getPassword = rs.getString("password");
-                
+
                 if (getPassword != null && getPassword.equals(userpassword)) {
                     int entryNum = rs.getInt("entryNum");
                     modelEmployee.setEntryNum(entryNum);
@@ -630,41 +634,38 @@ public class Database {
 
         return max;
     }
-/*
-    public void saveDisciplinaryFile(int id, String filename, InputStream is) {
+    /*
+     public void saveDisciplinaryFile(int id, String filename, InputStream is) {
 
-        String sql = "INSERT INTO disciplinarymemo (memoID , file, filename) values (?, ?, ?)";
+     String sql = "INSERT INTO disciplinarymemo (memoID , file, filename) values (?, ?, ?)";
 
-        try {
+     try {
 
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.setBlob(2, is);
-            statement.setString(3, filename);
-            statement.executeUpdate();
-            //stmt.executeUpdate(sql);
+     PreparedStatement statement = con.prepareStatement(sql);
+     statement.setInt(1, id);
+     statement.setBlob(2, is);
+     statement.setString(3, filename);
+     statement.executeUpdate();
+     //stmt.executeUpdate(sql);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+     } catch (SQLException e) {
+     e.printStackTrace();
+     }
 
-    }
-*/
-     public int saveDisciplinary(int empEntryNum, String memo, String type, InputStream is ,String filename) {
+     }
+     */
 
-        String sql="";
-        if(is == null){
+    public int saveDisciplinary(int empEntryNum, String memo, String type, InputStream is, String filename) {
+
+        String sql = "";
+        if (is == null) {
             System.out.println("I am over here");
             sql = "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment) VALUES (?, ?, ?, ?, ?)";
-        }
-        
-
-        else{
+        } else {
             System.out.println("I am over here333");
-            sql=  "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment, file, filename) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        } 
-        
-        
+            sql = "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment, file, filename) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        }
+
         int max = getMaxRecordID();
         max++;
 
@@ -676,13 +677,13 @@ public class Database {
             statement.setInt(3, empEntryNum);
             statement.setString(4, type);
             statement.setString(5, memo);
-            
-            if(is != null){
+
+            if (is != null) {
                 System.out.println("ima here now hehehe");
                 statement.setBlob(6, is);
                 statement.setString(7, filename);
             }
-            
+
             statement.executeUpdate();
             //stmt.executeUpdate(sql);
 
@@ -901,137 +902,167 @@ public class Database {
         ResultSet rs;
         ArrayList<modelDepartment> departmentList = new ArrayList<>();
         int departmentID, branchID;
-        String name; 
-        
+        String name;
+
         sql = "SELECT * FROM department"
                 + " GROUP BY(name);";
 
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            
+
             while (rs.next()) {
                 departmentID = rs.getInt("departmentID");
                 name = rs.getString("name");
                 branchID = rs.getInt("branchID");
                 modelDepartment dept = new modelDepartment(departmentID, name, branchID);
-                
+
                 departmentList.add(dept);
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return departmentList;
     }
-    
-    public ArrayList<modelBranch> getBranches(){
+
+    public ArrayList<modelBranch> getBranches() {
         Statement stmt;
         ResultSet rs;
         ArrayList<modelBranch> branchList = new ArrayList<>();
         int branchID;
-        String name, address; 
-        
+        String name, address;
+
         sql = "SELECT * FROM branch";
 
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            
+
             while (rs.next()) {
                 branchID = rs.getInt("branchID");
                 name = rs.getString("name");
                 address = rs.getString("address");
                 modelBranch branch = new modelBranch(branchID, name, address);
-                
+
                 branchList.add(branch);
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return branchList;
     }
-    
-    public int getDeptID(String name, int branchID){
+
+    public int getDeptID(String name, int branchID) {
         Statement stmt;
         ResultSet rs;
-        int departmentID = 0; 
-        
+        int departmentID = 0;
+
         sql = "SELECT departmentID FROM department"
                 + " WHERE name = '" + name + "' AND branchID = " + branchID;
-        
-        try{
+
+        try {
             stmt = con.createStatement();
-            
+
             rs = stmt.executeQuery(sql);
-            
-            if(rs.next())
-            {
+
+            if (rs.next()) {
                 departmentID = rs.getInt("departmentID");
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return departmentID;
     }
-    
-    public int getBranchID(String name){
+
+    public int getBranchID(String name) {
         Statement stmt;
         ResultSet rs;
-        int branchID = 0; 
-        
+        int branchID = 0;
+
         sql = "SELECT branchID FROM branch"
                 + " WHERE name = '" + name + "'";
-        
-        try{
+
+        try {
             stmt = con.createStatement();
-            
+
             rs = stmt.executeQuery(sql);
-            
-            if(rs.next())
-            {
+
+            if (rs.next()) {
                 branchID = rs.getInt("branchID");
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return branchID;
     }
-    
+
     // get leave forms to be approved by a manager
-    public ArrayList<modelLeaveForm> getLeaveFormToApprove(int managerEntryNum){
+    public ArrayList<modelLeaveForm> getLeaveFormToApprove(int managerEntryNum) {
         ArrayList<modelLeaveForm> leaveFormsToApprove = new ArrayList<>();
-        
-        sql = "SELECT * from leave_form " +
-              "WHERE isApproved = 'Pending' AND " + 
-              "approverEntryNum = " + managerEntryNum;
-        
-        try{
+
+        sql = "SELECT * from leave_form "
+                + "WHERE isApproved = 'Pending' AND "
+                + "approverEntryNum = " + managerEntryNum;
+
+        try {
             rs = stmt.executeQuery(sql);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 modelLeaveForm leaveForm = new modelLeaveForm();
                 leaveForm.setLeaveID(rs.getInt("leaveID"));
                 leaveForm.setLeaveType(rs.getString("leaveType"));
                 leaveForm.setEmpEntryNum(rs.getInt("empEntryNum"));
                 leaveForm.setStartDate(rs.getDate("startDate"));
                 leaveForm.setDuration(rs.getFloat("duration"));
-                leaveForm.setIsApproved(false);
+                leaveForm.setIsApproved("Pending");
                 leaveForm.setApproverEntryNum(managerEntryNum);
-                
+
                 leaveFormsToApprove.add(leaveForm);
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return leaveFormsToApprove;
     }
-    
-    public void changeLeaveStatus(int leaveID, String isApproved){
+
+    // get audit trails to be approved by manager
+    public ArrayList<modelEmployeeAuditTrail> getAuditToApprove() {
+        ArrayList<modelEmployeeAuditTrail> auditToApprove = new ArrayList<>();
+
+        sql = "SELECT * from employee_audit_trail "
+                + "WHERE isApproved = 'Pending'";
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                modelEmployeeAuditTrail audit = new modelEmployeeAuditTrail();
+
+                audit.setEmpAuditTrailID(rs.getInt("empAuditTrailID"));
+                audit.setFieldChanged(rs.getString("fieldChanged"));
+                audit.setEditFrom(rs.getString("editFrom"));
+                audit.setEditTo(rs.getString("editTo"));
+                audit.setEditorEntryNum(rs.getInt("editorEntryNum"));
+                audit.setEditedEntryNum(rs.getInt("editedEntryNum"));
+                audit.setTimestamp(rs.getTimestamp("timestamp"));
+                audit.setIsApproved("Pending");
+                audit.setApproverEntryNum(0);
+
+                auditToApprove.add(audit);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return auditToApprove;
+    }
+
+    public void changeLeaveStatus(int leaveID, String isApproved) {
         sql = "UPDATE leave_form"
                 + " SET isApproved = '" + isApproved + "'"
                 + " WHERE leaveID = " + leaveID;
@@ -1041,5 +1072,152 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void changeAuditStatus(int empAuditTrailID, String isApproved) {
+        sql = "UPDATE employee_audit_trail"
+                + " SET isApproved = '" + isApproved + "'"
+                + " WHERE empAuditTrailID = " + empAuditTrailID;
+
+        try {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public modelRelative getParent(String relation, int empEntryNum) {
+        Statement stmt;
+        ResultSet rs;
+        modelRelative parent = new modelRelative();
+        sql = "SELECT * FROM relative"
+                + " WHERE relation = '" + relation + "' AND empEntryNum = " + empEntryNum;
+
+        try {
+            stmt = con.createStatement();
+
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                parent.setRelativeID(rs.getInt("relativeID"));
+                parent.setName(rs.getString("name"));
+                parent.setAge(rs.getInt("age"));
+                parent.setOccupation(rs.getString("occupation"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return parent;
+    }
+
+    public modelRelative getSpouse(int empEntryNum) {
+        Statement stmt;
+        ResultSet rs;
+        modelRelative spouse = new modelRelative();
+        sql = "SELECT * FROM relative"
+                + " WHERE relation = 'spouse' AND empEntryNum = " + empEntryNum;
+
+        try {
+            stmt = con.createStatement();
+
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                spouse.setRelativeID(rs.getInt("relativeID"));
+                spouse.setName(rs.getString("name"));
+                spouse.setContactNum(rs.getInt("contactNum"));
+                spouse.setOccupation(rs.getString("occupation"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return spouse;
+    }
+
+    public ArrayList<modelRelative> getRelatives(String relation, int empEntryNum) {
+        Statement stmt;
+        ResultSet rs;
+        ArrayList<modelRelative> relativeList = new ArrayList<>();
+        sql = "SELECT * FROM relative"
+                + " WHERE relation = '" + relation + "' AND empEntryNum = " + empEntryNum;
+
+        try {
+            stmt = con.createStatement();
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                modelRelative relative = new modelRelative();
+                relative.setRelativeID(rs.getInt("relativeID"));
+                relative.setName(rs.getString("name"));
+                relative.setAge(rs.getInt("age"));
+                relative.setOccupation(rs.getString("occupation"));
+                relative.setOccupationLocation(rs.getString("occupationLocation"));
+                relativeList.add(relative);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return relativeList;
+    }
+
+    public ArrayList<modelEducationHistory> getEducation(String level, int empEntryNum) {
+        ArrayList<modelEducationHistory> eduList = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+
+        try {
+            stmt = con.createStatement();
+
+            sql = "SELECT * FROM education_history"
+                    + " WHERE level = '" + level + "' AND empEntryNum = " + empEntryNum;
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                modelEducationHistory edu = new modelEducationHistory();
+                edu.setEducationHistoryID(rs.getInt("educationHistoryID"));
+                edu.setLevel(rs.getString("level"));
+                edu.setSchoolName(rs.getString("schoolName"));
+                edu.setYearFrom(rs.getInt("yearFrom"));
+                edu.setYearTo(rs.getInt("yearTo"));
+                edu.setAward(rs.getString("award"));
+
+                eduList.add(edu);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return eduList;
+    }
+
+    public ArrayList<modelLicense> getLicenses(int empEntryNum) {
+        ArrayList<modelLicense> licenseList = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+
+        try {
+            stmt = con.createStatement();
+
+            sql = "SELECT * FROM license"
+                    + " WHERE empEntryNum = " + empEntryNum;
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                modelLicense license = new modelLicense();
+                license.setLicenseID(rs.getInt("licenseID"));
+                license.setLicenseName(rs.getString("licenseName"));
+                license.setPercentage(rs.getInt("percentage"));
+                licenseList.add(license);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return licenseList;
     }
 }

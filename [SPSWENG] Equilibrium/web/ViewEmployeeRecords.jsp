@@ -4,6 +4,10 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelEducationHistory"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Models.modelRelative"%>
+<%@page import="Database.Database"%>
 <%@page import="Models.modelEmployee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +25,8 @@
     </head>
     <%
         modelEmployee emp = (modelEmployee) request.getSession().getAttribute("viewEmp");
+        Database db = Database.getInstance();
+        modelEmployee user = (modelEmployee) request.getSession().getAttribute("employee");
     %>
     <body bgcolor ="#E8E8E8">
 
@@ -37,7 +43,11 @@
                 <div id="box">
                     <div id="header">
                         <span id="name">Employee Name</span>
+                        <%
+                            if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
+                        %>
                         <input type="button" value="Edit" id="editButton">
+                        <%}%>
                     </div>
                     <select id="options" size="6">
                         <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
@@ -57,12 +67,14 @@
                     <div id="personal" class="pages">
                         <div class="content">
                             <div class="line"><span class="label">Name</span>
-                                <span class="data"><%=emp.getFirstName()%> <%=emp.getLastName()%></span></div>
+                                <span class="data"><%=emp.getFirstName()%> <%=emp.getMiddleName()%> <%=emp.getLastName()%></span></div>
                             <div class="line"><span class="label">ID Number</span>
                                 <span class="data"><%=emp.getEmployeeID()%></span></div>
+                            <div class="line"><span class="label">Hire Date</span>
+                                <span class="data"><%=emp.getHireDate()%></span></div>
                             <div class="line"><span class="label">Position</span>
                                 <span class="data"><%=emp.getPositionName()%></span></div>
-                            <div class="line"><span class="label">Salary</span>
+                            <div class="line"><span class="label">Expected Salary</span>
                                 <span class="data"><%=emp.getSalary()%></span></div>
                             <div class="line"><span class="label">Date of Birth</span>
                                 <span class="data"><%=emp.getBirthday()%></span></div>
@@ -82,184 +94,258 @@
                                 <span class="data"><%=emp.getCitizenship()%></span></div>
                             <div class="line"><span class="label">Religion</span>
                                 <span class="data"><%=emp.getReligion()%></span></div>
-                               
+                            <div class="line"><span class="label">SSS #</span>
+                                <span class="data"><%=emp.getSSSNumber()%></span></div>
+                            <div class="line"><span class="label">TIN #</span>
+                                <span class="data"><%=emp.getTINNumber()%></span></div>
+                            <div class="line"><span class="label">PHIC #</span>
+                                <span class="data"><%=emp.getPHICNumber()%></span></div>
+                            <div class="line"><span class="label">PAGIBIG #</span>
+                                <span class="data"><%=emp.getPAGIBIGNumber()%></span></div>
+                            <div class="line"><span class="label">Band</span>
+                                <span class="data"><%=emp.getBand()%></span></div>
+                            <div class="line"><span class="label">Manager: </span>
+                                <span class="data"><%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%></span></div>
+
                         </div>
                     </div>
 
                     <div id="relations" class="pages">
                         <div class="content">
 
+                            <%
+                                if (!emp.getCivilStatus().equals("Single")) {
+                                    modelRelative spouse = db.getSpouse(emp.getEntryNum());
+                                    ArrayList<modelRelative> children = db.getRelatives("child", emp.getEntryNum());
+                            %>
                             <div>
                                 <div class="label-rel">
                                     Spouse
                                 </div>
                                 <div class="subContent" id="waddup">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <span class="data"><%=spouse.getName()%></span></div>
                                     <div class="line"><span class="label">Contact Number</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">Occupation</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">Employer</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=spouse.getContactNum()%></span></div>
+                                    <div class="line"><span class="label">Occupation/Employer</span>
+                                        <span class="data"><%=spouse.getOccupation()%></span></div>
                                 </div>
+                                <br>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Children
                                 </div>
+                                <%
+                                    for (modelRelative child : children) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=child.getName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">Grade/Year</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">School</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=child.getAge()%></span></div>
+                                    <div class="line"><span class="label">Occupation</span>
+                                        <span class="data"><%=child.getOccupation()%></span></div>
+                                    <div class="line"><span class="label">School/Location</span>
+                                        <span class="data"><%=child.getOccupationLocation()%></span></div><br/>
                                 </div>
+                                <br>
+                                <%
+                                    }
+                                %>
                             </div>
 
+                            <%
+                                }
+                                System.out.println("hehe");
+                                modelRelative father = db.getParent("father", emp.getEntryNum());
+                                System.out.println("haha");
+                                modelRelative mother = db.getParent("mother", emp.getEntryNum());
+                                ArrayList<modelRelative> siblings = db.getRelatives("sibling", emp.getEntryNum());
+                            %>
                             <div>
                                 <div class="label-rel">
-                                    Parents
+                                    <b>Parents</b>
                                 </div>
                                 <div class="subContent">
+                                    <div class="label-rel">Father</div>
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <span class="data"><%=father.getName()%></span></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=father.getAge()%></span></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">Company</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=father.getOccupation()%></span></div>
                                 </div>
+                                <br>
+                                <div class="subContent">
+                                    <div class="label-rel">Mother</div>
+                                    <div class="line"><span class="label"><b>Name</b></span>
+                                        <span class="data"><%=mother.getName()%></span></div>
+                                    <div class="line"><span class="label">Age</span>
+                                        <span class="data"><%=mother.getAge()%></span></div>
+                                    <div class="line"><span class="label">Occupation</span>
+                                        <span class="data"><%=mother.getOccupation()%></span></div>
+                                </div>
+                                <br>
                             </div>
 
                             <div>    
                                 <div class="label-rel">
                                     Siblings
                                 </div>
+                                <%
+                                    for (modelRelative sibling : siblings) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=sibling.getName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=sibling.getAge()%></span></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">Company</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=sibling.getOccupation()%></span></div>
+                                    <div class="line"><span class="label">Company/Location</span>
+                                        <span class="data"><%=sibling.getOccupationLocation()%></span></div>
                                 </div>
+                                <br>
+                                <%}%>
                             </div>
                         </div>
                     </div>
 
                     <div id="edu" class="pages">
-                        <div class="content"> 
-
+                        <%
+                            ArrayList<modelEducationHistory> schoolList;
+                        %>
+                        <div class="content">
                             <div>
                                 <div class="label-rel">
                                     Elementary
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Elementary", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     High School
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("High School", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     College
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("College", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Vocational
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Vocational", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Masters
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Masteral", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Others
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Others", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>

@@ -45,16 +45,25 @@
         <servlet-class>Servlets.SearchEmployee</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ViewEmployee</servlet-name>
+        <servlet-class>Servlets.ViewEmployee</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SelectEmployeeServlet</servlet-name>
         <servlet-class>Servlets.SelectEmployeeServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>toAddAward</servlet-name>
         <servlet-class>Servlets.toAddAward</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SaveAward</servlet-name>
         <servlet-class>Servlets.SaveAward</servlet-class>
+=======
+        <servlet-name>ApproveLeave</servlet-name>
+        <servlet-class>Servlets.ApproveLeave</servlet-class>
+>>>>>>> origin/DEV5
     </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
@@ -109,16 +118,25 @@
         <url-pattern>/SearchEmployee</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ViewEmployee</servlet-name>
+        <url-pattern>/ViewEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SelectEmployeeServlet</servlet-name>
         <url-pattern>/SelectEmployeeServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>toAddAward</servlet-name>
         <url-pattern>/toAddAward</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SaveAward</servlet-name>
         <url-pattern>/SaveAward</url-pattern>
+=======
+        <servlet-name>ApproveLeave</servlet-name>
+        <url-pattern>/ApproveLeave</url-pattern>
+>>>>>>> origin/DEV5
     </servlet-mapping>
     <session-config>
         <session-timeout>

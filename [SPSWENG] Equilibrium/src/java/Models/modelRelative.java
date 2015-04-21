@@ -10,7 +10,7 @@ public class modelRelative {
     private String occupation;
     private String occupationLocation;
     private long contactNum;
-
+    
     public int getRelativeID() {
         return relativeID;
     }

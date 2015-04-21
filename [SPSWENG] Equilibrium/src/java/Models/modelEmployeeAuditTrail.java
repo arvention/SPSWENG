@@ -11,7 +11,7 @@ public class modelEmployeeAuditTrail {
     private int editorEntryNum;
     private int editedEntryNum;
     private Timestamp timestamp;
-    private boolean isApproved;
+    private String isApproved;
     private int approverEntryNum;
 
     public int getEmpAuditTrailID() {
@@ -70,11 +70,11 @@ public class modelEmployeeAuditTrail {
         this.timestamp = timestamp;
     }
 
-    public boolean isIsApproved() {
+    public String isIsApproved() {
         return isApproved;
     }
 
-    public void setIsApproved(boolean isApproved) {
+    public void setIsApproved(String isApproved) {
         this.isApproved = isApproved;
     }
 

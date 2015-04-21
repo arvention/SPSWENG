@@ -9,7 +9,7 @@ public class modelLeaveForm {
     private int empEntryNum;
     private Date startDate;
     private float duration;
-    private boolean isApproved;
+    private String isApproved;
     private int approverEntryNum;
 
     public int getLeaveID() {
@@ -52,11 +52,11 @@ public class modelLeaveForm {
         this.duration = duration;
     }
 
-    public boolean isIsApproved() {
+    public String isIsApproved() {
         return isApproved;
     }
 
-    public void setIsApproved(boolean isApproved) {
+    public void setIsApproved(String isApproved) {
         this.isApproved = isApproved;
     }
 

@@ -43,13 +43,15 @@
                         <p>Leave Type: <%=leaveForm.getLeaveType()%></p>
                         <p>Start Date: <%=leaveForm.getStartDate()%></p>
                         <p>Duration: <%=leaveForm.getDuration()%></p>
-                        <form>
-                            <input type ="hidden" name="leaveID" />
-                            <input type="button" class ="approve-button" value="Approve" />
+                        <form action="ApproveLeave" method="POST">
+                            <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
+                            <input type="hidden" name="approveValue" value="Approved" />
+                            <input type="submit" class ="approve-button" value="Approve" />
                         </form>
-                        <form>
-                            <input type ="hidden" name="leaveID" />
-                            <input type="button" class="reject-button" value="Reject" />
+                        <form action="ApproveLeave" method="POST">
+                            <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
+                            <input type="hidden" name="approveValue" value="Rejected" />
+                            <input type="submit" class ="reject-button" value="Reject" />
                         </form>
                     </li>
                     <%}%>

@@ -28,7 +28,8 @@ DIV.announcements{
     font-family: sans-serif;
     width: 25%;
     height: 55%;
-    margin: 0px auto;
+    margin-top: 5%;
+    margin-left: 50px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 0px;
@@ -42,11 +43,13 @@ DIV.announcements{
     border-color: white;
     text-align: left;
     opacity: 0.55;
-    float:left;
+
+    
 }
 
 DIV.notifications{
-    margin-top: 7%;
+    margin-top: 90px;
+    margin-left: 200px;
     font-family: sans-serif;
     width: 25%;
     height: 55%;
@@ -62,6 +65,7 @@ DIV.notifications{
     text-align: left;
     opacity: 0.55;
     overflow: auto;
+
 }
 
 DIV.contentannounce{
@@ -123,9 +127,10 @@ DIV.nav{
     color: white;
 }
 .logo{
+    margin-top:0;
     float: left;
     width: auto;
-    height: 55px;
+    height: 35px;
 }
 
 .headers{
@@ -162,7 +167,7 @@ DIV.search{
 
 DIV.trail{
     top: 15%;
-    left: 34%;
+    margin-left: 700px;
     position: absolute;
     font-family: sans-serif;
     width: 25%;
@@ -178,4 +183,9 @@ DIV.trail{
     border-color: white;
     text-align: left;
     opacity: 0.55;
+}
+.searchBox{
+	margin-left: 150px;
+	margin-top: 18px;
+	width: 300px;
 }

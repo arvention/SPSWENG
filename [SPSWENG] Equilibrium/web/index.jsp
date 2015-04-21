@@ -5,7 +5,7 @@
 <head>
 	<link rel = "shortcut icon" href="eq logo.ico"/>
 	<title> EQuilibrium </title>
-	<link rel = "stylesheet" type="text/css" href="loginPage.css"/> 
+	<link rel = "stylesheet" type="text/css" href="LoginPage.css"/> 
 	
 </head>
 

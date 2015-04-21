@@ -49,6 +49,7 @@
                 <li><a href="#">Employees</a></li>
                 <li><a href= "#">File a Leave</a></li>
                 <li><a href= "#"><input class="report" type="button" value="Generate Report"/></a></li>
+                <li><input type="search" class="searchBox" placeholder="Search Employee"></li>
                 <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
             </ul>
         </DIV>	
@@ -58,11 +59,7 @@
         <DIV class="trail">
             <p>This is a sample content in Audit Trail</p>
         </DIV>
-        <DIV class="search">
-         <form method ="GET" action="SearchEmployee">
-			Search for an Employee: <input name="searchbox" id="search" type="search" placeholder="Enter Employee Name"/>
-          </form>   
-        </DIV>    
+       
         <DIV class="footer">
             <br/><hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.

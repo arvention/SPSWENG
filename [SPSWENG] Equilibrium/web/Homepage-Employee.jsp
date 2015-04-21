@@ -14,7 +14,7 @@
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "#">Change Password</a></li>
-                <li><a href= "#">File a Leave</a></li>
+                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
                 <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
             </ul>
         </DIV>	

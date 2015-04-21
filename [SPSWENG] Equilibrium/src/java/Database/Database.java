@@ -154,7 +154,7 @@ public class Database {
         return emailAddress;
     }
 
-    public void addLeaveForm(String leaveType, int empEntryNum, Date startDate, float duration) {
+    public void addLeaveForm(String leaveType, int empEntryNum, Date startDate, float duration, int manEntryNum) {
         int leaveID = 1;
         try {
             //get highest leaveNum
@@ -166,8 +166,8 @@ public class Database {
             }
 
             //insert the leave form entry
-            sql = "INSERT INTO leave_form(leaveID, leaveType, empEntryNum, startDate, duration)"
-                    + " VALUES(" + leaveID + ", '" + leaveType + "', " + empEntryNum + ", '" + startDate + "', " + duration + ")";
+            sql = "INSERT INTO leave_form(leaveID, leaveType, empEntryNum, startDate, duration, approverEntryNum)"
+                    + " VALUES(" + leaveID + ", '" + leaveType + "', " + empEntryNum + ", '" + startDate + "', " + duration + ", " + manEntryNum + ")";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();

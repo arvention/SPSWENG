@@ -1044,6 +1044,8 @@ public class Database {
                 modelEmployeeAuditTrail audit = new modelEmployeeAuditTrail();
 
                 audit.setEmpAuditTrailID(rs.getInt("empAuditTrailID"));
+                audit.setTableName(rs.getString("tableName"));
+                audit.setTableReferenceNum(rs.getInt("tableReferenceNum"));
                 audit.setFieldChanged(rs.getString("fieldChanged"));
                 audit.setEditFrom(rs.getString("editFrom"));
                 audit.setEditTo(rs.getString("editTo"));

@@ -9,6 +9,7 @@
         
         <%
             SearchResult sr =(SearchResult) session.getAttribute("searchresult");
+            modelEmployee user =(modelEmployee) session.getAttribute("employee");
             ArrayList<modelEmployee> me = sr.getResult();
         %>
         
@@ -20,6 +21,10 @@
               $("#numberofid").val(id);
               $("#go").submit();
           });   
+          
+        
+          
+          
         });
         </script>
         
@@ -45,14 +50,23 @@
 		
                 <%if( e.getPassword()== null){%>
                 <span class="accStatus">No Account</span>
-                <select required name="type">
-		<option> Senior Manager </option>
-		<option> Manager </option>
-		<option> HR Employee </option>
-		<option selected> Employee </option>
-		</select>
+              
+                    
+                <%if(user.getEmployeeType().equals("Hr Head")){%>             
                 
-                <button class="addAccount">Add Account</button>
+                <form method="POST" action="SaveAccount" style="display: inline;">
+                <select required name="type">
+                 <option value="Senior Manager"> Senior Manager </option>
+                 <option value="Manager"> Manager </option>
+                 <option value="Hr Head"> HR Head </option>
+                 <option value ="Hr Employee"> HR Employee </option>
+                 <option selected value="Employee"> Employee </option>
+                 </select>
+                    <input type="hidden"  name="entry" value="<%=e.getEntryNum()%>">
+                    <input type ="submit"  value="Add Account">
+                </form>
+                <%}%>
+                
                 
                 <%}else{%>
                 <span class="accStatus">Has Account</span>

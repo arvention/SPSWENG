@@ -18,14 +18,14 @@
             $(document).ready(function () {
                 var sugg = [];
                 var search;
-                alert("son of a");
+              
 
                 $("#search").keyup(function () {
                     search = $("#search").val();
                     search = search.trim();
-                    console.log("HEREE");
+            
                     $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
-                        console.log("BITCH PLS");
+                       
                         console.log(responseText);
                         sugg = responseText.split("\n");
                         console.log(sugg);

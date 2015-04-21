@@ -4,6 +4,7 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelLicense"%>
 <%@page import="Models.modelEducationHistory"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Models.modelRelative"%>
@@ -352,14 +353,19 @@
                                 <div class="label-rel">
                                     Licensure Exams
                                 </div>
+                                <%
+                                    ArrayList<modelLicense> licenseList = db.getLicenses(emp.getEntryNum());
+                                    for (modelLicense license : licenseList) {
+                                %>
                                 <div class="subContent">
-                                    <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                    <div class="line"><span class="label"><b>Name</b></span>
+                                        <span class="data"><%=license.getLicenseName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Score</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=license.getPercentage()%></span></div>
                                 </div>
+                                <%}%>
                             </div>
                         </div>
                     </div>

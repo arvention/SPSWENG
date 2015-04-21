@@ -12,7 +12,7 @@
         <DIV class= "nav">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
-                <li><a href= "#">Log Out</a></li>
+                <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "#">Change Password</a></li>
                 <li><a href= "#">File a Leave</a></li>
                 <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>

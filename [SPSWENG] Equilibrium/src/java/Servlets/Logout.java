@@ -57,7 +57,11 @@ public class Logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //invalidate the session -> remove all saved attributes
+        request.getSession().invalidate();
+        RequestDispatcher reqDispatcher;
+        reqDispatcher = request.getRequestDispatcher("index.jsp");
+        reqDispatcher.forward(request, response);
     }
 
     /**
@@ -71,11 +75,6 @@ public class Logout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //invalidate the session -> remove all saved attributes
-        request.getSession().invalidate();
-        RequestDispatcher reqDispatcher;
-        reqDispatcher = request.getRequestDispatcher("index.jsp");
-        reqDispatcher.forward(request, response);
     }
 
     /**

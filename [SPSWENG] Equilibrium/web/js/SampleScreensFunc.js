@@ -1,4 +1,23 @@
-
+function submitData() {
+    if (validateForm())
+    {
+        $.ajax({
+            type: "POST",
+            url: "EnterBioData",
+            data: $(".data_form").serialize(),
+            success: function(html) {
+                if (html)
+                {
+                    $("#bioMessage").html(html);
+                }
+                else {
+                    goNext();
+                }
+            }
+        });
+    }
+    return false;
+}
 
 function validateForm() {
     //var educationInputs = document.getElementsByClassName("educationinput");
@@ -32,7 +51,7 @@ function validateForm() {
         }
         else
         {
-            $(this).css("border", "none");
+            $(this).css("border", "1px rgb(200, 200, 200) solid");
         }
     });
 
@@ -46,7 +65,13 @@ function validateForm() {
         alert("Please fill up the all the required fields for the employee's biodata.\n(Personal Information and Education History)");
         return false;
     }
-    return true;
+    else {
+        return true;
+    }
+}
+
+function goNext(){
+    window.location.href = "BiodataFiled.html";
 }
 
 $(document).ready(function() {

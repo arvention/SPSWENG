@@ -32,9 +32,6 @@
             </ul>
         </DIV>
         <DIV class="content">
-            <div id = "bioMessage">
-
-            </div>
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
                 <li><a href="#family">Family Relations</a></li>
@@ -43,7 +40,7 @@
                 <li><a href="#emphistory">Employment History</a></li>
                 <li><a href="#crimes">Past Criminal Offenses</a></li>
             </ul>
-            <form action = "EnterBioData" onsubmit = "return validateForm()" method = "post">
+            <form onsubmit = "return submitData()" class = "data_form">
                 <div id = "bio_form">
                     <DIV id="personalinfo" class="tab-section">
 
@@ -497,7 +494,10 @@
                 </div>
                 <input type="submit" value="Submit" />
             </form>
-        </DIV>
+
+            <div id = "bioMessage">
+            </div>
+        </DIV> 
         <br/><br/>
         <DIV class= "footer">
             <br/><hr width="75%"/>

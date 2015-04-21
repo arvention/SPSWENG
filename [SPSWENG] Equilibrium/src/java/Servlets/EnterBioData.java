@@ -75,43 +75,39 @@ public class EnterBioData extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=UTF-8");
 
         //--- variables ----------------------
         Database db = Database.getInstance();
         RequestDispatcher view = null;
         int empEntryNum = 0;
         String empid = request.getParameter("employeeID");
+        int managerid = Integer.parseInt(request.getParameter("emphead"));
         int intid = Integer.parseInt(empid.trim());
-        
-        
+        boolean isError = false;
+
         //--- functions ----------------------
-        if(!(db.isValidID(intid))){
-            request.getSession().setAttribute("isSameID", true);
-            view = request.getRequestDispatcher("EmployeeData.jsp");
+        if (!(db.isValidID(intid))) {
+            isError = true;
+            response.getWriter().write("- An employee with the EmployeeID, " + intid + ", already has a record.<br>");
+        }
+        if (checkSchoolYears(request)) {
+            isError = true;
+            response.getWriter().write("- Please check the input school years: An end of a school year is earlier than the start.<br>");
+        }
+        if (db.isValidID(managerid)) {
+            isError = true;
+            response.getWriter().write("- No Manager has an ID number " + managerid +  ".<br>");
         }
         
-        else if (!checkSchoolYears(request)) {
+        if (!isError) {
             empEntryNum = addInfo(empEntryNum, db, request);
             addEducationHistory(empEntryNum, db, request);
             addLicenseExam(empEntryNum, db, request);
             addRelatives(empEntryNum, db, request);
             addEmploymentHistory(empEntryNum, db, request);
             addCriminalOffenses(empEntryNum, db, request);
-
-            request.getSession().removeAttribute("isEarlier");
-            view = request.getRequestDispatcher("BiodataFiled.html");
-        } else {
-            request.getSession().setAttribute("isEarlier", true);
-            view = request.getRequestDispatcher("EmployeeData.jsp");
         }
-        
-        
-        
-        
-        
-        
-        view.forward(request, response);
     }
 
     /**
@@ -152,18 +148,16 @@ public class EnterBioData extends HttpServlet {
         Date hireDate = new Date();
         int managerID = Integer.parseInt(request.getParameter("emphead"));
         Date birthDay = new Date();
-        
-        
+
         try {
             birthDay = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("birthday"));
             hireDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hiredate"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        
+
         int departmentID = db.getDeptID(department, branchID);
-        
-        
+
         return db.addInfo(employeeID, lastName, firstName, middleName, address, new java.sql.Date(birthDay.getTime()), birthplace, mobileNumber, SSSNumber, TINNumber, PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, emailAddress, homePhone, Integer.toString(band), departmentID, position, new java.sql.Date(hireDate.getTime()), managerID);
     }
 
@@ -385,25 +379,22 @@ public class EnterBioData extends HttpServlet {
             }
         }
     }
-    
-    public void addLicenseExam(int empEntryNum, Database db, HttpServletRequest request){
+
+    public void addLicenseExam(int empEntryNum, Database db, HttpServletRequest request) {
         String[] licenseNames, licensePercentages;
-        
+
         licenseNames = request.getParameterValues("license");
         licensePercentages = request.getParameterValues("licensepercentage");
-        
-        if(licenseNames != null && licensePercentages != null)
-        {
-            for(int i = 0; i < licenseNames.length; i++)
-            {
-                if(!licenseNames[i].equals("") && !licensePercentages[i].equals(""))
-                {
+
+        if (licenseNames != null && licensePercentages != null) {
+            for (int i = 0; i < licenseNames.length; i++) {
+                if (!licenseNames[i].equals("") && !licensePercentages[i].equals("")) {
                     db.addLicense(licenseNames[i], empEntryNum, Integer.parseInt(licensePercentages[i]));
                 }
             }
         }
     }
-    
+
     public boolean checkSchoolYears(HttpServletRequest request) {
         boolean isEarlier = false;
 
@@ -456,8 +447,7 @@ public class EnterBioData extends HttpServlet {
 
             if (startDates != null && endDates != null) {
                 for (int i = 0; i < startDates.length && !isEarlier; i++) {
-                    if(!startDates[i].equals("") && !endDates[i].equals(""))
-                    {
+                    if (!startDates[i].equals("") && !endDates[i].equals("")) {
                         if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
                             isEarlier = true;
                         }
@@ -473,8 +463,7 @@ public class EnterBioData extends HttpServlet {
 
             if (startDates != null && endDates != null) {
                 for (int i = 0; i < startDates.length && !isEarlier; i++) {
-                    if(!startDates[i].equals("") && !endDates[i].equals(""))
-                    {
+                    if (!startDates[i].equals("") && !endDates[i].equals("")) {
                         if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
                             isEarlier = true;
                         }
@@ -490,8 +479,7 @@ public class EnterBioData extends HttpServlet {
 
             if (startDates != null && endDates != null) {
                 for (int i = 0; i < startDates.length && !isEarlier; i++) {
-                    if(!startDates[i].equals("") && !endDates[i].equals(""))
-                    {
+                    if (!startDates[i].equals("") && !endDates[i].equals("")) {
                         if (Integer.parseInt(endDates[i]) < Integer.parseInt(startDates[i])) {
                             isEarlier = true;
                         }

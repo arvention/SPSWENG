@@ -21,6 +21,7 @@
 
                     var id = $(this).closest("div").attr("val");
                     $("#numberofid").val(id);
+                    $("#kind").val("file");
                     $("#go").submit();
                 });
                 
@@ -28,7 +29,8 @@
 
                     var id = $(this).closest("div").attr("val");
                     $("#numberofid").val(id);
-                    $("#go2").submit();
+                    $("#kind").val("award");
+                    $("#go").submit();
                 });
                 
                 
@@ -42,13 +44,10 @@
 
                     <form id="go" method="POST" action="SelectEmployeeServlet">
                         <input id ="numberofid" name="idnumber" type="hidden" value="">
-                        <input name="type"type="hidden" value="file">
+                        <input id="kind" name="type"type="hidden" value="file">
                     </form>
                     
-                     <form id="go2" method="POST" action="SelectEmployeeServlet">
-                        <input id ="numberofid" name="idnumber" type="hidden" value="">
-                        <input name="type"type="hidden" value="award">
-                    </form>
+          
                     
                     
 

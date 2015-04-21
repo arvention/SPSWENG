@@ -39,10 +39,10 @@
 						          
                 Award Name  <input type="text" name="awardname" placeholder="Award Name" required /> <br>
                 Date Received <input id="datepicker" type="date" name="awardreceive" placeholder="Date Received" readonly="true"> <br/>
-                <input type="file" name="filename"/>                                             
+                <input type="file" name="filename" placeholder="File Name here"/>                                             
                 <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea>
                 <input class="back" input type="submit" value="Submit" name="bSubmit" align="center">
-                   Message here${message} 
+                   ${message} 
 		</form>
 		</DIV>
 		

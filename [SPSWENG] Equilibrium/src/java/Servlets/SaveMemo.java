@@ -96,7 +96,7 @@ public class SaveMemo extends HttpServlet {
             session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
             response.sendRedirect("FileMemo.jsp");
         }
-        if(filePart != null){
+        if(filePart.getSize() != 0){
             
             System.out.println("File Size is "+ filePart.getSize());
             if(filePart.getSize() >  10847412){
@@ -109,7 +109,7 @@ public class SaveMemo extends HttpServlet {
         
         
            Database db = Database.getInstance();
-           if(filePart != null){
+           if(filePart.getSize() != 0){
              
              inputStream = filePart.getInputStream();
              System.out.println("I am over gereee");  

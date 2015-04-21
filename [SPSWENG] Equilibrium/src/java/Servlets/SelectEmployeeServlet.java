@@ -76,15 +76,23 @@ public class SelectEmployeeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+       
         String id = request.getParameter("idnumber");
         modelEmployee employee = Database.getInstance().getEmployee(id);
+        
+        System.out.println("ID OF EMPLOYEE IS "+id );
+        
         HttpSession session = request.getSession();
         session.setAttribute("selectedemployee", employee);
+        
         
         if(request.getParameter("type").equals("file")){
         response.sendRedirect("FileMemo.jsp");    
         }else if(request.getParameter("type").equals("award")){     
-           response.sendRedirect("addAward.jsp");
+        
+            response.sendRedirect("addAward.jsp");
+        
         }
         
         

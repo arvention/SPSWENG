@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 public class modelEmployeeAuditTrail {
     private int empAuditTrailID;
+    private String tableName;
+    private int tableReferenceNum;
     private String fieldChanged;
     private String editFrom;
     private String editTo;
@@ -22,6 +24,22 @@ public class modelEmployeeAuditTrail {
         this.empAuditTrailID = empAuditTrailID;
     }
 
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public int getTableReferenceNum() {
+        return tableReferenceNum;
+    }
+
+    public void setTableReferenceNum(int tableReferenceNum) {
+        this.tableReferenceNum = tableReferenceNum;
+    }
+    
     public String getFieldChanged() {
         return fieldChanged;
     }

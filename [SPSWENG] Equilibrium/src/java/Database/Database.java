@@ -1007,4 +1007,16 @@ public class Database {
         
         return leaveFormsToApprove;
     }
+    
+    public void changeLeaveStatus(int leaveID, String isApproved){
+        sql = "UPDATE leave_form"
+                + " SET isApproved = '" + isApproved + "'"
+                + " WHERE leaveID = " + leaveID;
+
+        try {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -12,10 +12,12 @@
  	 <script src="addMiscFilesFunc.js"></script>
          
          <script>
-                  $("#datepicker").datepicker({
-			changeMonth: true;
-			changeYear: true;
-		});         
+               $(document).ready(function () {
+                  
+                   $( "#datepicker" ).datepicker();
+                   
+                
+             });
          </script>    
              
          
@@ -35,23 +37,15 @@
                	<span class="boxText"> Add Award to Employee Record</span>
 		<hr width="75%"/>
 		<br/>
-<<<<<<< HEAD
-						          
-                Award Name  <input type="text" name="awardname" placeholder="Award Name" required /> <br>
-                Date Received <input id="datepicker" type="date" name="awardreceive" placeholder="Date Received" readonly="true"> <br/>
-                <input type="file" name="filename" placeholder="File Name here"/>                                             
-                <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea>
-                <input class="back" input type="submit" value="Submit" name="bSubmit" align="center">
-                   ${message} 
-=======
-		          
+
+						                  
                 <span class="nameText">Award Name</span>  <input type="text" name="awardname" placeholder="Award Name" class="awardName" required /> <br/><br/>
-                <span class="nameText">Date Received</span> <input id="datepicker" class="dateReceived" type="date" name="awardreceive" ><br/><br/>                                 
+                <span class="nameText">Date Received</span> <input id="datepicker" class="dateReceived" type="date" name="awardreceive" readonly="true" ><br/><br/>                                 
                 <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea><br/><br/>
                 <input type="file" name="filename" class="chooseFile"/>   
 		<input class="submitBtn" input type="submit" value="Submit" name="bSubmit" align="center">
-                  
->>>>>>> origin/DEV5
+                   ${message} 
+
 		</form>
 		</DIV>
 		
@@ -59,3 +53,5 @@
 			<hr width="75%"/>
 			EQUILIBRIUM INTERTRADE CORP.
 		</DIV>              
+</body>
+</html>>

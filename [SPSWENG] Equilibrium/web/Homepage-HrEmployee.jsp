@@ -11,7 +11,7 @@
 
 
         <link rel="shortcut icon" href="img/eq logo.ico">
-        <link rel="stylesheet" type="text/css" media="all" href= "HomepageStyles.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href= "css/HomepageStyles.css"/>
         <!-- <script src= "js/jquery-1.11.2.js"></script>-->
         <!--  <script src="HomepageFunc.js"></script>-->
         <script>
@@ -47,7 +47,9 @@
                 <li><a href="#">Employees</a></li>
                 <li><a href= "#">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
-                <li><input type="search" class="searchBox" placeholder="Search Employee"></li>
+                  <form method="GET" action="SearchEmployee" style="display: inline;">
+                <li><input id="search" name="searchbox" type="search" class="searchBox" placeholder="Search Employee"></li>
+                </form>
 		<li><img class= "logo" src= "eqboyz.png" /></li>
             </ul>
         </DIV>	

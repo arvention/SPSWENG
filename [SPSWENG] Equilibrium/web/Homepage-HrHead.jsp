@@ -8,7 +8,7 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link rel="shortcut icon" href="img/eqboyz.png">
-        <link rel="stylesheet" type="text/css" media="all" href="css/HomepageStyles.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href= "css/HomepageStyles.css"/>
 
         <script src="js/HomepageFunc.js"></script>
         
@@ -49,7 +49,9 @@
                 <li><a href="#">Employees</a></li>
                 <li><a href= "#">File a Leave</a></li>
                 <li><a href= "#"><input class="report" type="button" value="Generate Report"/></a></li>
-                <li><input type="search" class="searchBox" placeholder="Search Employee"></li>
+                <form method="GET" action="SearchEmployee" style="display: inline;">
+                <li><input id="search" name="searchbox" type="search" class="searchBox" placeholder="Search Employee"></li>
+                </form>
                 <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
             </ul>
         </DIV>	

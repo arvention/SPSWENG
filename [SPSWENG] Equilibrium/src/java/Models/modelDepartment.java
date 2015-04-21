@@ -5,7 +5,14 @@ public class modelDepartment {
     private int departmentID;
     private String name;
     private int branchID;
-
+    
+    public modelDepartment(int departmentID, String name, int branchID)
+    {
+        this.departmentID = departmentID;
+        this.name = name;
+        this.branchID = branchID;
+    }
+    
     public int getDepartmentID() {
         return departmentID;
     }

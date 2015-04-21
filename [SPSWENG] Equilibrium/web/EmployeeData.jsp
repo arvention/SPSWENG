@@ -4,6 +4,10 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelBranch"%>
+<%@page import="Models.modelDepartment"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Database.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +19,9 @@
         <script src="js/SampleScreensFunc.js"></script>
     </head>
     <body>
+        <%
+            Database db = Database.getInstance();
+        %>
         <DIV class= "nav">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
@@ -26,7 +33,7 @@
         </DIV>
         <DIV class="content">
             <div id = "bioMessage">
-                
+
             </div>
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
@@ -131,14 +138,42 @@
                             </tr>
                             <tr>
                                 <td>Band</td>
-                                <td width="325px">Department</td>
+                                <td width="150px">Department</td>
+                                <td width="200px">Branch</td>
                                 <td width="325px">Current Position </td>
                                 <td>Hire Date</td>
                                 <td width="325px">Manager</td>
                             </tr>
                             <tr>
                                 <td><input type="number" class = "infoinput" step = "1" min = "1" max = "9" name="employeeband" placeholder="1"/></td>
-                                <td><input type="text" class = "infoinput" maxlength = 45 name="empdep" placeholder="Current Department" /></td>
+                                <td>
+                                    <%
+                                        ArrayList<modelDepartment> departmentList = db.getDepartments();
+                                    %>
+                                    <select name = "empdep">
+                                        <%
+                                            for (modelDepartment dept : departmentList) {
+                                        %>
+                                        <option type="text" class = "infoinput" value = "<%=dept.getName()%>"><%=dept.getName()%></option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+                                </td>
+                                <td>
+                                    <%
+                                        ArrayList<modelBranch> branchList = db.getBranches();
+                                    %>
+                                    <select name = "empbranch">
+                                        <%
+                                            for (modelBranch branch : branchList) {
+                                        %>
+                                        <option type="text" class = "infoinput" value = "<%=branch.getBranchID()%>"><%=branch.getName()%></option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+                                </td>
                                 <td><input type="text" class = "infoinput" maxlength = 45 name="empposition" placeholder="Current Position" /></td>
                                 <td><input type="date" class = "infoinput" name="hiredate" placeholder="Hire Date"  /></td>
                                 <td><input type="number" class = "infoinput" min = "0" max = "99999999999" name="emphead" placeholder="Employee's Manager ID" /></td>
@@ -245,8 +280,7 @@
                         </table>
                     </DIV>
                     <DIV id="edhistory" class="tab-section">
-                        <%
-                            Boolean isEarlier = (Boolean) request.getSession().getAttribute("isEarlier");
+                        <%                            Boolean isEarlier = (Boolean) request.getSession().getAttribute("isEarlier");
                             if (isEarlier != null) {
                                 if (isEarlier) {
                         %>

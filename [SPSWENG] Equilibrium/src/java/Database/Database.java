@@ -985,7 +985,7 @@ public class Database {
         ArrayList<modelLeaveForm> leaveFormsToApprove = new ArrayList<>();
         
         sql = "SELECT * from leave_form " +
-              "WHERE isApproved = false AND " + 
+              "WHERE isApproved = 'Pending' AND " + 
               "approverEntryNum = " + managerEntryNum;
         
         try{
@@ -1000,6 +1000,8 @@ public class Database {
                 leaveForm.setDuration(rs.getFloat("duration"));
                 leaveForm.setIsApproved(false);
                 leaveForm.setApproverEntryNum(managerEntryNum);
+                
+                leaveFormsToApprove.add(leaveForm);
             }
         } catch(SQLException e){
             e.printStackTrace();

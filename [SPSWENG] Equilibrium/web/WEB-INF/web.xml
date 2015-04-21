@@ -48,6 +48,10 @@
         <servlet-name>SelectEmployeeServlet</servlet-name>
         <servlet-class>Servlets.SelectEmployeeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApproveLeave</servlet-name>
+        <servlet-class>Servlets.ApproveLeave</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>SelectEmployeeServlet</servlet-name>
         <url-pattern>/SelectEmployeeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveLeave</servlet-name>
+        <url-pattern>/ApproveLeave</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

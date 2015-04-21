@@ -31,7 +31,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "admin";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -1092,7 +1092,7 @@ public class Database {
     public modelRelative getParent(String relation, int empEntryNum){
         Statement stmt;
         ResultSet rs;
-        modelRelative parent = null;
+        modelRelative parent = new modelRelative();
         sql = "SELECT * FROM relative"
                 + " WHERE relation = '" + relation + "' AND empEntryNum = " + empEntryNum;
         
@@ -1118,7 +1118,7 @@ public class Database {
     public modelRelative getSpouse(int empEntryNum){
         Statement stmt;
         ResultSet rs;
-        modelRelative spouse = null;
+        modelRelative spouse = new modelRelative();
         sql = "SELECT * FROM relative"
                 + " WHERE relation = 'spouse' AND empEntryNum = " + empEntryNum;
         
@@ -1144,7 +1144,7 @@ public class Database {
     public ArrayList<modelRelative> getRelatives(String relation, int empEntryNum){
         Statement stmt;
         ResultSet rs;
-        ArrayList<modelRelative> relativeList = null;
+        ArrayList<modelRelative> relativeList = new ArrayList<>();
         sql = "SELECT * FROM relative"
                 + " WHERE relation = '" + relation + "' AND empEntryNum = " + empEntryNum;
         
@@ -1155,8 +1155,9 @@ public class Database {
             
             while(rs.next())
             {
-                modelRelative relative = null;
+                modelRelative relative = new modelRelative();
                 relative.setRelativeID(rs.getInt("relativeID"));
+                relative.setName(rs.getString("name"));
                 relative.setAge(rs.getInt("age"));
                 relative.setOccupation(rs.getString("occupation"));
                 relative.setOccupationLocation(rs.getString("occupationLocation"));

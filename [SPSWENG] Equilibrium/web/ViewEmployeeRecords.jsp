@@ -4,6 +4,8 @@
     Author     : Arces
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Models.modelRelative"%>
 <%@page import="Database.Database"%>
 <%@page import="Models.modelEmployee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -112,6 +114,8 @@
 
                             <%
                                 if (!emp.getCivilStatus().equals("Single")) {
+                                    modelRelative spouse = db.getSpouse(emp.getEntryNum());
+                                    ArrayList<modelRelative> children = db.getRelatives("child", emp.getEntryNum());
                             %>
                             <div>
                                 <div class="label-rel">
@@ -119,34 +123,47 @@
                                 </div>
                                 <div class="subContent" id="waddup">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=spouse.getName()%></span></div>
                                     <div class="line"><span class="label">Contact Number</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=spouse.getContactNum()%></span></div>
                                     <div class="line"><span class="label">Occupation/Employer</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=spouse.getOccupation()%></span></div>
                                 </div>
+                                <br>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Children
                                 </div>
+                                <%
+                                    for (modelRelative child : children) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=child.getName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">Grade/Year</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">School</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=child.getAge()%></span></div>
+                                    <div class="line"><span class="label">Occupation</span>
+                                        <span class="data"><%=child.getOccupation()%></span></div>
+                                    <div class="line"><span class="label">School/Location</span>
+                                        <span class="data"><%=child.getOccupationLocation()%></span></div><br/>
                                 </div>
+                                <br>
+                                <%
+                                    }
+                                %>
                             </div>
 
                             <%
                                 }
+                                System.out.println("hehe");
+                                modelRelative father = db.getParent("father", emp.getEntryNum());
+                                System.out.println("haha");
+                                modelRelative mother = db.getParent("mother", emp.getEntryNum());
+                                ArrayList<modelRelative> siblings = db.getRelatives("sibling", emp.getEntryNum());
                             %>
                             <div>
                                 <div class="label-rel">
@@ -155,20 +172,21 @@
                                 <div class="subContent">
                                     <div class="label-rel">Father</div>
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=father.getName()%></span></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=father.getAge()%></span></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=father.getOccupation()%></span></div>
                                 </div>
+                                <br>
                                 <div class="subContent">
                                     <div class="label-rel">Mother</div>
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=mother.getName()%></span></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=mother.getAge()%></span></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=mother.getOccupation()%></span></div>
                                 </div>
                                 <br>
                             </div>
@@ -177,18 +195,23 @@
                                 <div class="label-rel">
                                     Siblings
                                 </div>
+                                <%
+                                    for (modelRelative sibling : siblings) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=sibling.getName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=sibling.getAge()%></span></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <span class="data"></span></div>
-                                    <div class="line"><span class="label">Company</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=sibling.getOccupation()%></span></div>
+                                    <div class="line"><span class="label">Company/Location</span>
+                                        <span class="data"><%=sibling.getOccupationLocation()%></span></div>
                                 </div>
+                                <br>
+                                <%}%>
                             </div>
                         </div>
                     </div>

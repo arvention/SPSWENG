@@ -45,6 +45,10 @@
         <servlet-class>Servlets.SearchEmployee</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ViewEmployee</servlet-name>
+        <servlet-class>Servlets.ViewEmployee</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SelectEmployeeServlet</servlet-name>
         <servlet-class>Servlets.SelectEmployeeServlet</servlet-class>
     </servlet>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>SearchEmployee</servlet-name>
         <url-pattern>/SearchEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewEmployee</servlet-name>
+        <url-pattern>/ViewEmployee</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SelectEmployeeServlet</servlet-name>

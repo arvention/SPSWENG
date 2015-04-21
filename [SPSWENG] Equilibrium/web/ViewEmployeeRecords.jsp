@@ -4,6 +4,7 @@
     Author     : Arces
 --%>
 
+<%@page import="Database.Database"%>
 <%@page import="Models.modelEmployee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +22,8 @@
     </head>
     <%
         modelEmployee emp = (modelEmployee) request.getSession().getAttribute("viewEmp");
+        Database db = Database.getInstance();
+        modelEmployee user = (modelEmployee) request.getSession().getAttribute("employee");
     %>
     <body bgcolor ="#E8E8E8">
 
@@ -37,7 +40,11 @@
                 <div id="box">
                     <div id="header">
                         <span id="name">Employee Name</span>
+                        <%
+                            if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
+                        %>
                         <input type="button" value="Edit" id="editButton">
+                        <%}%>
                     </div>
                     <select id="options" size="6">
                         <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
@@ -57,12 +64,14 @@
                     <div id="personal" class="pages">
                         <div class="content">
                             <div class="line"><span class="label">Name</span>
-                                <span class="data"><%=emp.getFirstName()%> <%=emp.getLastName()%></span></div>
+                                <span class="data"><%=emp.getFirstName()%> <%=emp.getMiddleName()%> <%=emp.getLastName()%></span></div>
                             <div class="line"><span class="label">ID Number</span>
                                 <span class="data"><%=emp.getEmployeeID()%></span></div>
+                            <div class="line"><span class="label">Hire Date</span>
+                                <span class="data"><%=emp.getHireDate()%></span></div>
                             <div class="line"><span class="label">Position</span>
                                 <span class="data"><%=emp.getPositionName()%></span></div>
-                            <div class="line"><span class="label">Salary</span>
+                            <div class="line"><span class="label">Expected Salary</span>
                                 <span class="data"><%=emp.getSalary()%></span></div>
                             <div class="line"><span class="label">Date of Birth</span>
                                 <span class="data"><%=emp.getBirthday()%></span></div>
@@ -82,28 +91,39 @@
                                 <span class="data"><%=emp.getCitizenship()%></span></div>
                             <div class="line"><span class="label">Religion</span>
                                 <span class="data"><%=emp.getReligion()%></span></div>
-                               
+                            <div class="line"><span class="label">SSS #</span>
+                                <span class="data"><%=emp.getSSSNumber()%></span></div>
+                            <div class="line"><span class="label">TIN #</span>
+                                <span class="data"><%=emp.getTINNumber()%></span></div>
+                            <div class="line"><span class="label">PHIC #</span>
+                                <span class="data"><%=emp.getPHICNumber()%></span></div>
+                            <div class="line"><span class="label">PAGIBIG #</span>
+                                <span class="data"><%=emp.getPAGIBIGNumber()%></span></div>
+                            <div class="line"><span class="label">Band</span>
+                                <span class="data"><%=emp.getBand()%></span></div>
+                            <div class="line"><span class="label">Manager: </span>
+                                <span class="data"><%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%></span></div>
+
                         </div>
                     </div>
 
                     <div id="relations" class="pages">
                         <div class="content">
 
+                            <%
+                                if (!emp.getCivilStatus().equals("Single")) {
+                            %>
                             <div>
                                 <div class="label-rel">
                                     Spouse
                                 </div>
                                 <div class="subContent" id="waddup">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <span class="data"></span></div>
                                     <div class="line"><span class="label">Contact Number</span>
                                         <span class="data"></span></div>
-                                    <div class="line"><span class="label">Occupation</span>
+                                    <div class="line"><span class="label">Occupation/Employer</span>
                                         <span class="data"></span></div>
-                                    <div class="line"><span class="label">Employer</span>
-                                        <span class="data"></span></div><br/>
                                 </div>
                             </div>
 
@@ -125,22 +145,32 @@
                                 </div>
                             </div>
 
+                            <%
+                                }
+                            %>
                             <div>
                                 <div class="label-rel">
-                                    Parents
+                                    <b>Parents</b>
                                 </div>
                                 <div class="subContent">
+                                    <div class="label-rel">Father</div>
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <span class="data"></span>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <span class="data"></span></div>
                                     <div class="line"><span class="label">Age</span>
                                         <span class="data"></span></div>
                                     <div class="line"><span class="label">Occupation</span>
                                         <span class="data"></span></div>
-                                    <div class="line"><span class="label">Company</span>
-                                        <span class="data"></span></div><br/>
                                 </div>
+                                <div class="subContent">
+                                    <div class="label-rel">Mother</div>
+                                    <div class="line"><span class="label"><b>Name</b></span>
+                                        <span class="data"></span></div>
+                                    <div class="line"><span class="label">Age</span>
+                                        <span class="data"></span></div>
+                                    <div class="line"><span class="label">Occupation</span>
+                                        <span class="data"></span></div>
+                                </div>
+                                <br>
                             </div>
 
                             <div>    

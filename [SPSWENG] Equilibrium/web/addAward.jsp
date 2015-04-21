@@ -2,7 +2,7 @@
    <head>
      <title>Add Awards</title>
         <link rel="shortcut icon" href="img/eq logo.ico">
-	 <link rel="stylesheet" type="text/css" media="all" href="addMiscFilesStyle.css"/>
+	 <link rel="stylesheet" type="text/css" media="all" href="addAwards.css"/>
 	 <script src="js/jquery-1.11.2.js"></script>
          
            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -12,12 +12,10 @@
  	 <script src="addMiscFilesFunc.js"></script>
          
          <script>
-              $(document).ready(function () {
-                  
-                   $( "#datepicker" ).datepicker();
-                   
-                
-             });
+                  $("#datepicker").datepicker({
+			changeMonth: true;
+			changeYear: true;
+		});         
          </script>    
              
          
@@ -34,19 +32,20 @@
 		</DIV>
 		<DIV class="content">
 		<form action="SaveAward" method="POST" enctype="multipart/form-data">
-                <span>Attach soft copies of awards that is pertinent to this employee record</span><br/>
+               	<span class="boxText"> Add Award to Employee Record</span>
+		<hr width="75%"/>
 		<br/>
-						          
-                Award Name  <input type="text" name="awardname" placeholder="Award Name" required /> <br>
-                Date Received <input id="datepicker" type="date" name="awardreceive" placeholder="Date Received" readonly="true"> <br/>
-                <input type="file" name="filename"/>                                             
-                <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea>
-                <input class="back" input type="submit" value="Submit" name="bSubmit" align="center">
-                   Message here${message} 
+		          
+                <span class="nameText">Award Name</span>  <input type="text" name="awardname" placeholder="Award Name" class="awardName" required /> <br/><br/>
+                <span class="nameText">Date Received</span> <input id="datepicker" class="dateReceived" type="date" name="awardreceive" ><br/><br/>                                 
+                <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea><br/><br/>
+                <input type="file" name="filename" class="chooseFile"/>   
+		<input class="submitBtn" input type="submit" value="Submit" name="bSubmit" align="center">
+                  
 		</form>
 		</DIV>
 		
 		<DIV class= "footer">
 			<hr width="75%"/>
 			EQUILIBRIUM INTERTRADE CORP.
-		</DIV>                   
+		</DIV>              

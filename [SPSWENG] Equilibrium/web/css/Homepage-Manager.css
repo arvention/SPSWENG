@@ -31,6 +31,7 @@
 
 .approve-button, .reject-button{
     height: 20px;
+    width: 100px;
     line-height: 15px;
     background: white;
     font-family: sans-serif;

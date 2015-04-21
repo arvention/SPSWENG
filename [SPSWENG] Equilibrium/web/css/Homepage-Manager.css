@@ -20,11 +20,13 @@
 
 #leave-list{
     padding-left: 20px;
-    margin-top: 10px;
+    padding-right: 20px;
 }
 
 .leave-item{
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DCDCDC;
 }
 
 .approve-button, .reject-button{
@@ -68,9 +70,9 @@ p{
 }
 
 form{
-    position: relative;
-    top: 5px;
-    display: inline;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 ul{

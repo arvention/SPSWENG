@@ -4,6 +4,7 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelEducationHistory"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Models.modelRelative"%>
 <%@page import="Database.Database"%>
@@ -217,102 +218,134 @@
                     </div>
 
                     <div id="edu" class="pages">
-                        <div class="content"> 
-
+                        <%
+                            ArrayList<modelEducationHistory> schoolList;
+                        %>
+                        <div class="content">
                             <div>
                                 <div class="label-rel">
                                     Elementary
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Elementary", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     High School
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("High School", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     College
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("College", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Vocational
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Vocational", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Masters
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Masteral", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>
                                 <div class="label-rel">
                                     Others
                                 </div>
+                                <%
+                                    schoolList = db.getEducation("Others", emp.getEntryNum());
+                                    for (modelEducationHistory school : schoolList) {
+                                %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <span class="data"></span>
+                                        <span class="data"><%=school.getSchoolName()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=school.getYearFrom()%> - <%=school.getYearTo()%></span></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <span class="data"></span></div><br/>
+                                        <span class="data"><%=school.getAward()%></span></div><br/>
                                 </div>
+                                <%}%>
                             </div>
 
                             <div>

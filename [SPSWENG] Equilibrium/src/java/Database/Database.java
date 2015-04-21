@@ -1,10 +1,12 @@
 package Database;
 
 import Models.modelBranch;
+import Models.modelCriminalOffenseHistory;
 import Models.modelDepartment;
 import Models.modelEducationHistory;
 import Models.modelEmployee;
 import Models.modelEmployeeAuditTrail;
+import Models.modelEmploymentHistory;
 import Models.modelLeaveForm;
 import Models.modelLicense;
 import Models.modelRelative;
@@ -1266,5 +1268,69 @@ public class Database {
             e.printStackTrace();
         }
         return licenseList;
+    }
+    
+    public ArrayList<modelCriminalOffenseHistory> getCriminalOffenses(int empEntryNum){
+        ArrayList<modelCriminalOffenseHistory> offenseList = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+        
+        try{
+            stmt = con.createStatement();
+            
+            sql = "SELECT * FROM criminal_offense_history"
+                    + " WHERE empEntryNum = " + empEntryNum;
+            
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                modelCriminalOffenseHistory offense = new modelCriminalOffenseHistory();
+                offense.setCriminalOffenseHistoryID(rs.getInt("criminalOffenseHistoryID"));
+                offense.setCriminalOffense(rs.getString("criminalOffense"));
+                offense.setDateOfOffense(rs.getDate("dateOfOffense"));
+                offense.setPlaceOfOffense(rs.getString("placeOfOffense"));
+                
+                offenseList.add(offense);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return offenseList;
+    }
+    
+    public ArrayList<modelEmploymentHistory> getEmploymentHistory(int empEntryNum){
+        ArrayList<modelEmploymentHistory> empHistory = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+        
+        try{
+            stmt = con.createStatement();
+            sql = "SELECT * FROM employment_history"
+                    + " WHERE empEntryNum = " + empEntryNum;
+            
+            rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                modelEmploymentHistory empHisto = new modelEmploymentHistory();
+                
+                empHisto.setEmploymentHistoryID(rs.getInt("employmentHistoryID"));
+                empHisto.setJobTitle(rs.getString("jobTitle"));
+                empHisto.setDateOfEmployment(rs.getDate("dateOfEmployment"));
+                empHisto.setStartingSalary(rs.getInt("startingSalary"));
+                empHisto.setEndingSalary(rs.getInt("endingSalary"));
+                empHisto.setEmployerName(rs.getString("employerName"));
+                empHisto.setEmployerAddress(rs.getString("employerAddress"));
+                empHisto.setEmployerContactNum(rs.getLong("employerContactNum"));
+                empHisto.setSupervisorName(rs.getString("supervisorName"));
+                empHisto.setSupervisorContactNum(rs.getLong("supervisorContactNum"));
+                empHisto.setReasonForLeaving(rs.getString("reasonForLeaving"));
+                
+                empHistory.add(empHisto);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return empHistory;
     }
 }

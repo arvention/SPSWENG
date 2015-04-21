@@ -11,7 +11,7 @@
 
 
         <link rel="shortcut icon" href="img/eq logo.ico">
-        <link rel="stylesheet" type="text/css" media="all" href= "css/HomepageStyles.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href= "HomepageStyles.css"/>
         <!-- <script src= "js/jquery-1.11.2.js"></script>-->
         <!--  <script src="HomepageFunc.js"></script>-->
         <script>
@@ -19,7 +19,6 @@
                 var sugg = [];
                 var search;
               
-
                 $("#search").keyup(function () {
                     search = $("#search").val();
                     search = search.trim();
@@ -34,8 +33,6 @@
                         });
                     });
                 });
-
-
             });
         </script>
 
@@ -50,7 +47,8 @@
                 <li><a href="#">Employees</a></li>
                 <li><a href= "#">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
-                <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
+                <li><input type="search" class="searchBox" placeholder="Search Employee"></li>
+		<li><img class= "logo" src= "eqboyz.png" /></li>
             </ul>
         </DIV>	
         <DIV class="notifications">
@@ -59,12 +57,7 @@
         <DIV class="trail">
             <p>This is a sample content in Audit Trail</p>
         </DIV>
-        <DIV class="search">
-            <form method ="GET" action="SearchEmployee">
-                Search for an Employee: <input name="searchbox" id="search" type="search" placeholder="Enter Employee Name
-                                               "/>
-            </form>   
-        </DIV>
+       
         <DIV class="footer">
             <br/><hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.

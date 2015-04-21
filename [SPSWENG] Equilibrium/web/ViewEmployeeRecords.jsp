@@ -4,6 +4,8 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelEmploymentHistory"%>
+<%@page import="Models.modelCriminalOffenseHistory"%>
 <%@page import="Models.modelLicense"%>
 <%@page import="Models.modelEducationHistory"%>
 <%@page import="java.util.ArrayList"%>
@@ -375,33 +377,39 @@
 
                             <div>
                                 <div class="label-rel">
+                                    Employment History
                                 </div>
+                                <%
+                                    ArrayList<modelEmploymentHistory> empHistory = db.getEmploymentHistory(emp.getEntryNum());
+                                    for(modelEmploymentHistory empHisto: empHistory)
+                                    {
+                                %>
                                 <div class="subContent">
-                                    <div class="line"><span class="label"><b>Year</b></span>
-                                        <span class="data"></span>
+                                    <div class="line"><span class="label"><b>Occupation</b></span>
+                                        <span class="data"><%=empHisto.getJobTitle()%></span>
                                         <input type="button" value="+" class="add-delete-button">
                                         <input type="button" value="-" class="add-delete-button"></div>
-                                    <div class="line"><span class="label"><b>Occupation</b></span>
-                                        <span class="data"></span></div>
                                     <div class="line"><span class="label">Date of Employment</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getDateOfEmployment()%></span></div>
                                     <div class="line"><span class="label">Beginning Salary</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getStartingSalary()%></span></div>
                                     <div class="line"><span class="label">Ending Salary</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getEndingSalary()%></span></div>
                                     <div class="line"><span class="label">Name of Employer</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getEmployerName()%></span></div>
                                     <div class="line"><span class="label">Address of Employer</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getEmployerAddress()%></span></div>
                                     <div class="line"><span class="label">Contact Number of Employer</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getEmployerContactNum()%></span></div>
                                     <div class="line"><span class="label">Name of Supervisor</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getSupervisorName()%></span></div>
                                     <div class="line"><span class="label">Contact Number of Supervisor</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getSupervisorContactNum()%></span></div>
                                     <div class="line"><span class="label">Reason for leaving</span>
-                                        <span class="data"></span></div>
+                                        <span class="data"><%=empHisto.getReasonForLeaving()%></span></div>
                                 </div>
+                                <br>
+                                <%}%>
                             </div>
                         </div>
                     </div>
@@ -419,15 +427,37 @@
 
                     <div id="others" class="pages">
                         <div class="content"> 
+                            <div>
+                                <div class="label-rel">
+                                    Criminal Offense History
+                                </div>
+                                <%
+                                    ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
+                                    for (modelCriminalOffenseHistory offense : offenses) {
+                                %>
+                                <div class="subContent">
+                                    <div class="line"><span class="label"><b>Criminal Offense</b></span>
+                                        <span class="data"><%=offense.getCriminalOffense()%></span>
+                                        <input type="button" value="+" class="add-delete-button">
+                                        <input type="button" value="-" class="add-delete-button"></div>
+                                    <div class="line"><span class="label"><b>Date of Offense</b></span>
+                                        <span class="data"><%=offense.getDateOfOffense()%></span></div>
+                                    <div class="line"><span class="label">Place of Offense</span>
+                                        <span class="data"><%=offense.getPlaceOfOffense()%></span></div>
+                                </div>
+                                <br>
+                                <%}%>
+                            </div>
                         </div>
                     </div>
-                </div> <!-- end of box -->
-            </div>
-
-            <div class = "pageBot">
-                <hr width = "75%">
-                EQUILIBRIUM INTERTRADE CORP.
-            </div>
+                </div>
+            </div> <!-- end of box -->
         </div>
-    </body>
+
+        <div class = "pageBot">
+            <hr width = "75%">
+            EQUILIBRIUM INTERTRADE CORP.
+        </div>
+    </div>
+</body>
 </html>

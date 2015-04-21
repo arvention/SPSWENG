@@ -5,6 +5,7 @@ import Models.modelDepartment;
 import Models.modelEmployee;
 import Models.modelEmployeeAuditTrail;
 import Models.modelLeaveForm;
+import Models.modelRelative;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
@@ -1086,5 +1087,85 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public modelRelative getParent(String relation, int empEntryNum){
+        Statement stmt;
+        ResultSet rs;
+        modelRelative parent = null;
+        sql = "SELECT * FROM relative"
+                + " WHERE relation = '" + relation + "' AND empEntryNum = " + empEntryNum;
+        
+        try{
+            stmt = con.createStatement();
+            
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+            {
+                parent.setRelativeID(rs.getInt("relativeID"));
+                parent.setName(rs.getString("name"));
+                parent.setAge(rs.getInt("age"));
+                parent.setOccupation(rs.getString("occupation"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return parent;
+    }
+    
+    public modelRelative getSpouse(int empEntryNum){
+        Statement stmt;
+        ResultSet rs;
+        modelRelative spouse = null;
+        sql = "SELECT * FROM relative"
+                + " WHERE relation = 'spouse' AND empEntryNum = " + empEntryNum;
+        
+        try{
+            stmt = con.createStatement();
+            
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next())
+            {
+                spouse.setRelativeID(rs.getInt("relativeID"));
+                spouse.setName(rs.getString("name"));
+                spouse.setContactNum(rs.getInt("contactNum"));
+                spouse.setOccupation(rs.getString("occupation"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return spouse;
+    }
+    
+    public ArrayList<modelRelative> getRelatives(String relation, int empEntryNum){
+        Statement stmt;
+        ResultSet rs;
+        ArrayList<modelRelative> relativeList = null;
+        sql = "SELECT * FROM relative"
+                + " WHERE relation = '" + relation + "' AND empEntryNum = " + empEntryNum;
+        
+        try{
+            stmt = con.createStatement();
+            
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                modelRelative relative = null;
+                relative.setRelativeID(rs.getInt("relativeID"));
+                relative.setAge(rs.getInt("age"));
+                relative.setOccupation(rs.getString("occupation"));
+                relative.setOccupationLocation(rs.getString("occupationLocation"));
+                relativeList.add(relative);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return relativeList;
     }
 }

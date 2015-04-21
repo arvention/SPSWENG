@@ -9,13 +9,13 @@ DIV.pageMid{
 		font-family: helvetica;
 		font-size: 72;
 		font-weight: bold;
-		color: #F94D00;
+		color: #FF2600;
 		margin-top: 70px;
 		
 }
 .loginForm{
 	width: 28%;
-	height: 60%;
+	height: 65%;
 	background-color: white;
 	margin-right: auto;
 	margin-left: auto;
@@ -44,7 +44,7 @@ DIV.pageMid{
 		position:relative;
 		width: 298px;
 		height: 45px;
-		background-color: #F94D00;
+		background-color: #FF2600;
 		color: white;
 		cursor: hand;	
 		border: 1px solid rgba(0,0,0,0.1);

@@ -109,14 +109,16 @@ public class SaveMemo extends HttpServlet {
         
         
            Database db = Database.getInstance();
-           int max = db.saveDisciplinary(intid, memo,typeofmemo);    
-           
-           /*stuff for getting file
-           */
            if(filePart != null){
-             String nameoffile =  filePart.getSubmittedFileName();
+             
              inputStream = filePart.getInputStream();
-             db.saveDisciplinaryFile(max, nameoffile , inputStream);
+             System.out.println("I am over gereee");  
+             String nameoffile =  filePart.getSubmittedFileName();
+             db.saveDisciplinary(intid, memo,typeofmemo,inputStream,nameoffile );  
+           }
+           else{
+               db.saveDisciplinary(intid, memo,typeofmemo,null,null);    
+               
            }
          //till here
             session.removeAttribute("error");

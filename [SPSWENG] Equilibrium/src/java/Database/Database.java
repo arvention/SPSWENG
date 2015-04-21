@@ -29,7 +29,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "jetisjet";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -627,7 +627,7 @@ public class Database {
 
         return max;
     }
-
+/*
     public void saveDisciplinaryFile(int id, String filename, InputStream is) {
 
         String sql = "INSERT INTO disciplinarymemo (memoID , file, filename) values (?, ?, ?)";
@@ -646,11 +646,22 @@ public class Database {
         }
 
     }
+*/
+     public int saveDisciplinary(int empEntryNum, String memo, String type, InputStream is ,String filename) {
 
-    public int saveDisciplinary(int empEntryNum, String memo, String type) {
+        String sql="";
+        if(is == null){
+            System.out.println("I am over here");
+            sql = "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment) VALUES (?, ?, ?, ?, ?)";
+        }
+        
 
-        String sql = "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment) VALUES (?, ?, ?, ?, ?)";
-
+        else{
+            System.out.println("I am over here333");
+            sql=  "INSERT record (recordID, recordType, empEntryNum, disciplinaryRecordType, disciplinaryComment, file, filename) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        } 
+        
+        
         int max = getMaxRecordID();
         max++;
 
@@ -662,6 +673,13 @@ public class Database {
             statement.setInt(3, empEntryNum);
             statement.setString(4, type);
             statement.setString(5, memo);
+            
+            if(is != null){
+                System.out.println("ima here now hehehe");
+                statement.setBlob(6, is);
+                statement.setString(7, filename);
+            }
+            
             statement.executeUpdate();
             //stmt.executeUpdate(sql);
 

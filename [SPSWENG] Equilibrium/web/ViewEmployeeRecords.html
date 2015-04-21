@@ -12,9 +12,22 @@
         <script src="js/ViewEmployeeRecords.js"></script>
     </head>
     <body bgcolor ="#E8E8E8">
+        
+        <div id="alert">
+            Are you sure you want to delete this content?<br/>
+            <input type="button" value="Yes" class="alertButton">
+            <input type="button" value="No" class="alertButton">
+        </div>
+        
+        <div id="overlay"></div>
+        
+        <div id="main">
         <div class="pageTop">
             <div id="box">
-                <div id="name">Employee Name</div>
+                <div id="header">
+                    <span id="name">Employee Name</span>
+                    <input type="button" value="Edit" id="editButton">
+                </div>
                 <select id="options" size="6">
                     <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
                                                                                                                             birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
@@ -33,19 +46,19 @@
                 <div id="personal" class="pages">
                     <div class="content">
                         <div class="line"><span class="label">Name</span>
-                            <span class="data"></span></div>
+                            <span class="data">Sample Data</span></div>
                         <div class="line"><span class="label">Position</span>
-                            <span class="data"></span></div>
+                            <span class="data">Sample Data</span></div>
                         <div class="line"><span class="label">Expected Salary</span>
-                            <span class="data"></span></div>
+                            <span class="data">Sample Data</span></div>
                         <div class="line"><span class="label">Date of Birth</span>
-                            <span class="data"></span></div>
+                            <span class="data">Sample Data</span></div>
                         <div class="line"><span class="label">Place of Birth</span>
-                            <span class="data"></span></div>
+                            <span class="data">Sample Data</span></div>
                         <div class="line"><span class="label">Home Address</span>
-                            <span class="data"></span></div>
+                            <span class="data">Sample Data</span></div>
                         <div class="line"><span class="label">Home Phone Number</span>
-                            <span class="data"></span></div>
+                            <span class="data">Sample Data</span></div>
                         <div class="line"><span class="label">Mobile Number</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Email Address</span>
@@ -61,109 +74,207 @@
 
                 <div id="relations" class="pages">
                     <div class="content">
-                        <div class="label-rel">Spouse</div>
+                        
+                        <div>
+                        <div class="label-rel">
+                            Spouse
+                        </div>
+                        <div class="subContent" id="waddup">
                         <div class="line"><span class="label"><b>Name</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Contact Number</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Occupation</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Employer</span>
                             <span class="data"></span></div><br/>
+                        </div>
+                        </div>
 
-                        <div class="label-rel">Children</div>
+                        <div>
+                        <div class="label-rel">
+                            Children
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Age</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Grade/Year</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">School</span>
                             <span class="data"></span></div><br/>
+                        </div>
+                        </div>
 
-                        <div class="label-rel">Parents</div>
+                        <div>
+                        <div class="label-rel">
+                            Parents
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Age</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Occupation</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Company</span>
                             <span class="data"></span></div><br/>
-
-                        <div class="label-rel">Siblings</div>
+                        </div>
+                        </div>
+                            
+                        <div>    
+                        <div class="label-rel">
+                            Siblings
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Age</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Occupation</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Company</span>
                             <span class="data"></span></div>
+                        </div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="edu" class="pages">
                     <div class="content"> 
-                        <div class="label-rel">Elementary</div>
+                        
+                        <div>
+                        <div class="label-rel">
+                            Elementary
+                        </div>
+                        <div class="subContent">
+                            <div class="line"><span class="label"><b>Name of School</b></span>
+                                <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
+                            <div class="line"><span class="label">Years</span>
+                                <span class="data"></span></div>
+                            <div class="line"><span class="label">Awards</span>
+                                <span class="data"></span></div><br/>
+                        </div>
+                        </div>
+
+                        <div>
+                        <div class="label-rel">
+                            High School
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name of School</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Years</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Awards</span>
                             <span class="data"></span></div><br/>
+                        </div>
+                        </div>
 
-                        <div class="label-rel">High School</div>
+                        <div>
+                        <div class="label-rel">
+                            College
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name of School</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Years</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Awards</span>
                             <span class="data"></span></div><br/>
+                        </div>
+                        </div>
 
-                        <div class="label-rel">College</div>
-                        <div class="line"><span class="label"><b>Name of School</b></span>
-                            <span class="data"></span></div>
+                        <div>
+                        <div class="label-rel">
+                            Vocational
+                        </div>
+                        <div class="subContent">
+                            <div class="line"><span class="label"><b>Name of School</b></span>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Years</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Awards</span>
                             <span class="data"></span></div><br/>
+                        </div>
+                        </div>
 
-                        <div class="label-rel">Vocational</div>
+                        <div>
+                        <div class="label-rel">
+                            Masters
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name of School</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Years</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Awards</span>
                             <span class="data"></span></div><br/>
+                        </div>
+                        </div>
 
-                        <div class="label-rel">Masters</div>
+                        <div>
+                        <div class="label-rel">
+                            Others
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name of School</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Years</span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Awards</span>
                             <span class="data"></span></div><br/>
+                        </div>
+                        </div>
 
-                        <div class="label-rel">Others</div>
+                        <div>
+                        <div class="label-rel">
+                            Licensure Exams
+                        </div>
+                        <div class="subContent">
                         <div class="line"><span class="label"><b>Name of School</b></span>
-                            <span class="data"></span></div>
-                        <div class="line"><span class="label">Years</span>
-                            <span class="data"></span></div>
-                        <div class="line"><span class="label">Awards</span>
-                            <span class="data"></span></div><br/>
-
-                        <div class="label-rel">Licensure Exams</div>
-                        <div class="line"><span class="label"><b>Name of School</b></span>
-                            <span class="data"></span></div>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label">Score</span>
                             <span class="data"></span></div>
+                        </div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="history" class="pages">
                     <div class="content"> 
-                        <div class="label-rel">Year</div>
+                        
+                        <div>
+                        <div class="label-rel">
+                        </div>
+                        <div class="subContent">
+                        <div class="line"><span class="label"><b>Year</b></span>
+                            <span class="data"></span>
+                            <input type="button" value="+" class="add-delete-button">
+                            <input type="button" value="-" class="add-delete-button"></div>
                         <div class="line"><span class="label"><b>Occupation</b></span>
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Date of Employment</span>
@@ -184,6 +295,8 @@
                             <span class="data"></span></div>
                         <div class="line"><span class="label">Reason for leaving</span>
                             <span class="data"></span></div>
+                        </div>
+                        </div>
                     </div>
                 </div>
 
@@ -208,6 +321,7 @@
         <div class = "pageBot">
             <hr width = "75%">
             EQUILIBRIUM INTERTRADE CORP.
+        </div>
         </div>
     </body>
 </html>

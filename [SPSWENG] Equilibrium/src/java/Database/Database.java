@@ -3,6 +3,7 @@ package Database;
 import Models.modelBranch;
 import Models.modelDepartment;
 import Models.modelEmployee;
+import Models.modelEmployeeAuditTrail;
 import Models.modelLeaveForm;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -1019,7 +1020,7 @@ public class Database {
                 leaveForm.setEmpEntryNum(rs.getInt("empEntryNum"));
                 leaveForm.setStartDate(rs.getDate("startDate"));
                 leaveForm.setDuration(rs.getFloat("duration"));
-                leaveForm.setIsApproved(false);
+                leaveForm.setIsApproved("Pending");
                 leaveForm.setApproverEntryNum(managerEntryNum);
                 
                 leaveFormsToApprove.add(leaveForm);
@@ -1031,10 +1032,54 @@ public class Database {
         return leaveFormsToApprove;
     }
     
+    // get audit trails to be approved by manager
+    public ArrayList<modelEmployeeAuditTrail> getAuditToApprove(){
+        ArrayList<modelEmployeeAuditTrail> auditToApprove = new ArrayList<>();
+        
+        sql = "SELECT * from employee_audit_trail " +
+              "WHERE isApproved = 'Pending'";
+        
+        try{
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                modelEmployeeAuditTrail audit = new modelEmployeeAuditTrail();
+                
+                audit.setEmpAuditTrailID(rs.getInt("empAuditTrailID"));
+                audit.setFieldChanged(rs.getString("fieldChanged"));
+                audit.setEditFrom(rs.getString("editFrom"));
+                audit.setEditTo(rs.getString("editTo"));
+                audit.setEditorEntryNum(rs.getInt("editorEntryNum"));
+                audit.setEditedEntryNum(rs.getInt("editedEntryNum"));
+                audit.setTimestamp(rs.getTimestamp("timestamp"));
+                audit.setIsApproved("Pending");
+                audit.setApproverEntryNum(0);
+                
+                auditToApprove.add(audit);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return auditToApprove;
+    }
+    
     public void changeLeaveStatus(int leaveID, String isApproved){
         sql = "UPDATE leave_form"
                 + " SET isApproved = '" + isApproved + "'"
                 + " WHERE leaveID = " + leaveID;
+
+        try {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void changeAuditStatus(int empAuditTrailID, String isApproved){
+        sql = "UPDATE employee_audit_trail"
+                + " SET isApproved = '" + isApproved + "'"
+                + " WHERE empAuditTrailID = " + empAuditTrailID;
 
         try {
             stmt.executeUpdate(sql);

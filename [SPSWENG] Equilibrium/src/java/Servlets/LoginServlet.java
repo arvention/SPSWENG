@@ -108,6 +108,11 @@ public class LoginServlet extends HttpServlet {
                 RequestDispatcher view = request.getRequestDispatcher("Homepage-Manager.jsp");
                 view.forward(request, response);
             }
+            else if(modelEmployee.getEmployeeType().equalsIgnoreCase("Senior Manager")){
+                session.setAttribute("employee", modelEmployee);
+                RequestDispatcher view = request.getRequestDispatcher("Homepage-SManager.jsp");
+                view.forward(request, response);
+            }
         }
         else{
             request.setAttribute("error", "Invalid Username/Password");

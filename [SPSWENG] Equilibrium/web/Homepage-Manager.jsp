@@ -1,10 +1,14 @@
+<%@page import="Models.modelLeaveForm"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Models.modelEmployee"%>
+<%@page import="Database.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <title>	Home - EQuilibrium </title>
         <link rel="shortcut icon" href="eq logo.ico"/>
-        <link rel="stylesheet" type="text/css" href="approveLeaves.css"/>
+        <link rel="stylesheet" type="text/css" href="css/Homepage-Manager.css"/>
         <link rel="stylesheet" type="text/css" media="all" href="css/HomepageStyles.css"/>
     </head>
     <body>
@@ -17,61 +21,50 @@
                 <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
             </ul>
         </DIV>	
-
-        <div id="box">
-            <span class = "titleText">Leaves for Approval </span>
-            <div id="results">
-                <div class="result">
-                    <span class="name">Last Name, Reynalo Bayeta Luneta Cometa Chupeta Gupeta Lupeta</span><br>
-                    <span class="typeLeave">Type of Leave</span><br>
-                    <span class="duration">Duration of Leave</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
+        
+        
+        <div id="approve-leave-div">
+            <div id="leave-div">
+                <%  Database db = Database.getInstance();
+                    modelEmployee employee = (modelEmployee)request.getSession().getAttribute("employee");
+                    ArrayList<modelLeaveForm> leaveFormsToApprove = db.getLeaveFormToApprove(employee.getEntryNum());
+                    System.out.println("EMPLOYEE ENTRY NUM: " + employee.getEntryNum());
+                    if(leaveFormsToApprove.size() != 0){
+                %>
+                <div>
+                    <p id="heading-tag">Pending Leave Requests</p>
                 </div>
-                <div class="result">
-                    <span class="name">Last Name, First Name</span><br>
-                    <span class="typeLeave">Type of Leave</span><br>
-                    <span class="duration">Duration of Leave</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>
-                <div class="result">
-                    <span class="name">Last Name, First Name</span><br>
-                    <span class="typeLeave">Type of Leave</span><br>
-                    <span class="duration">Duration of Leave</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>
-                <div class="result">
-                    <span class="name">Last Name, First Name</span><br>
-                    <span class="typeLeave">Type of Leave</span><br>
-                    <span class="duration">Duration of Leave</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>
-                <div class="result">
-                    <span class="name">Last Name, First Name</span><br>
-                    <span class="typeLeave">Type of Leave</span><br>
-                    <span class="duration">Duration of Leave</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>
-                <div class="result">
-                    <span class="name">Last Name, First Name</span><br>
-                    <span class="typeLeave">Type of Leave</span><br>
-                    <span class="duration">Duration of Leave</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>
-                <div class="result">
-                    <span class="name">Last Name, First Name</span><br>
-                    <span class="typeLeave">Type of Leave</span><br>
-                    <span class="duration">Duration of Leave</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>
-            </div></div>
-        <div class = "pageBottom">
+                <ul id="leave-list">
+                    <%
+                        for(modelLeaveForm leaveForm : leaveFormsToApprove){        
+                    %>
+                    <li class="leave-item">
+                        <p>Employee Name: <%=db.getFirstName(leaveForm.getEmpEntryNum())%> <%=db.getLastName(leaveForm.getEmpEntryNum())%></p>
+                        <p>Leave Type: <%=leaveForm.getLeaveType()%></p>
+                        <p>Start Date: <%=leaveForm.getStartDate()%></p>
+                        <p>Duration: <%=leaveForm.getDuration()%></p>
+                        <form>
+                            <input type ="hidden" name="leaveID" />
+                            <input type="button" class ="approve-button" value="Approve" />
+                        </form>
+                        <form>
+                            <input type ="hidden" name="leaveID" />
+                            <input type="button" class="reject-button" value="Reject" />
+                        </form>
+                    </li>
+                    <%}%>
+                </ul>
+                <%  }
+                    else{
+                %>
+                    <div id="no-pending-div">
+                        <p id="no-pending-tag">No pending leave request</p>
+                    </div>
+                <%}%>
+            </div>
+        </div>
+        
+        <div class = "footer">
             <hr width="75%"/>EQUILIBRIUM INTERTRADE CORPORATION
         </div>
     </body>

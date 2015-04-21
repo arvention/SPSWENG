@@ -1,57 +1,80 @@
-DIV.pageTop{
-    margin-top: 3px;
-    height:200px;
-    text-align: center;
+#approve-leave-div{
+    margin-top: 80px;
+    width: 100%;
+    margin-bottom: 80px;
 }
 
-DIV.pageMid{
-    height: 350px;
-    text-align: center;
+#leave-div{
+    width: 75%;
+    margin: 0 auto 0 auto;
+    background-color: white;
+    border-radius: 10px;
 }
 
-DIV.pageBot{
-    margin-top: 3px;
-    text-align:center;
-    color: #808080;
-    font-size: 11px;
-    font-family: "Arial";
+#heading-tag{
+    font-family: sans-serif;
+    font-size: 20px;
+    margin-left: 20px;
+    padding-top: 20px;
 }
 
-DIV.buttonDiv{
-    margin-right:auto;
-    margin-left: auto;
-    width: 1050px;
-    height: 360px;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+#leave-list{
+    padding-left: 20px;
+    margin-top: 10px;
 }
 
-IMG.compLogo{
-    width: 100px;
-    height: auto;
+.leave-item{
+    padding-bottom: 20px;
 }
 
-.buttonDividerLine{
-    border-left:1px solid black;
-    height: 300px;
-    width: 50px;
+.approve-button, .reject-button{
+    height: 20px;
+    line-height: 15px;
+    background: white;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: black;
+    border: 1px black solid;
 }
 
-.selectButton{
-    position:relative;
-    width: 220px;
-    height: 45px;
-    background-color: #E80000;
+.approve-button:hover{
+    border: 1px solid green;
+    background: green;
     color: white;
-    cursor: hand;	
-    border: 1px solid rgba(0,0,0,0.1);
-    margin: 0 auto;	
-    font-weight: bold;
-    border-radius: 5px;
+    cursor: pointer;
 }
 
-.selectButton:hover{
-    opacity: 0.75;
-    border: 1.5px solid black;
+.reject-button:hover{
+    border: 1px solid #AD0000;
+    background: #AD0000;
+    color: white;
     cursor: pointer;
+}
+
+#no-pending-div{
+    text-align: center;
+}
+
+#no-pending-tag{
+    font-family: sans-serif;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: gray;
+}
+
+p{
+    margin: 0;
+}
+
+form{
+    position: relative;
+    top: 5px;
+    display: inline;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }

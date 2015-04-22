@@ -28,7 +28,7 @@
                 <%  Database db = Database.getInstance();
                     modelEmployee employee = (modelEmployee)request.getSession().getAttribute("employee");
                     ArrayList<modelLeaveForm> leaveFormsToApprove = db.getLeaveFormToApprove(employee.getEntryNum());
-                    System.out.println("EMPLOYEE ENTRY NUM: " + employee.getEntryNum());
+                    
                     if(leaveFormsToApprove.size() != 0){
                 %>
                 <div>

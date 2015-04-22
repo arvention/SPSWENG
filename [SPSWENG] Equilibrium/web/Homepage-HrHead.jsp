@@ -1,5 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
         <title>Home - Equilibrium</title>
@@ -8,7 +6,7 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link rel="shortcut icon" href="img/eqboyz.png">
-        <link rel="stylesheet" type="text/css" media="all" href= "css/HomepageStyles.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="HomepageStyles.css"/>
 
         <script src="js/HomepageFunc.js"></script>
         
@@ -46,21 +44,83 @@
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href="#">Employees</a></li>
                 <li><a href= "#">File a Leave</a></li>
-                <li><a href= "#"><input class="report" type="button" value="Generate Report"/></a></li>
-                <form method="GET" action="SearchEmployee" style="display: inline;">
-                <li><input id="search" name="searchbox" type="search" class="searchBox" placeholder="Search Employee"></li>
-                </form>
-                <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
+                <li><a href= "#">Generate Report</a></li>
+		<li><a href= "#">Search</a></li>
+                <li><img class= "logo" src= "eqlogoclear.png" height="53px"/></li>
             </ul>
         </DIV>	
-        <DIV class="notifications">
-            <p>This is a sample paragraph inside Notifications.</p>
-        </DIV>
-        <DIV class="trail">
-            <p>This is a sample content in Audit Trail</p>
-        </DIV>
+        <div id="box">
+		<span class = "titleText">Leaves for Approval </span>
+	<div id="results">
+		<div class="result">
+			<span class="name">Last Name, First Name</span><br>
+			<span class="typeLeave">Type of Leave</span><br>
+			<span class="duration">Duration of Leave</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>
+		<div class="result">
+			<span class="name">Last Name, First Name</span><br>
+			<span class="typeLeave">Type of Leave</span><br>
+			<span class="duration">Duration of Leave</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>
+		<div class="result">
+			<span class="name">Last Name, First Name</span><br>
+			<span class="typeLeave">Type of Leave</span><br>
+			<span class="duration">Duration of Leave</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>
+		<div class="result">
+			<span class="name">Last Name, First Name</span><br>
+			<span class="typeLeave">Type of Leave</span><br>
+			<span class="duration">Duration of Leave</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>
+		
+	</div></div>
+	
+	<div id="box2">
+		<span class = "titleText2">Edits for Approval </span>
+	<div id="results">
+		<div class="result">
+			<span class="name">Last Name, First Name of record edited</span><br>
+			<span class="editor">Name of Editor</span><br>
+			<span class="edited">Edited data</span><br>
+			<span class="timestamp">Timestamp</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>	
+		<div class="result">
+			<span class="name">Last Name, First Name of record edited</span><br>
+			<span class="editor">Name of Editor</span><br>
+			<span class="edited">Edited data</span><br>
+			<span class="timestamp">Timestamp</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>
+		<div class="result">
+			<span class="name">Last Name, First Name of record edited</span><br>
+			<span class="editor">Name of Editor</span><br>
+			<span class="edited">Edited data</span><br>
+			<span class="timestamp">Timestamp</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>	
+		<div class="result">
+			<span class="name">Last Name, First Name of record edited</span><br>
+			<span class="editor">Name of Editor</span><br>
+			<span class="edited">Edited data</span><br>
+			<span class="timestamp">Timestamp</span></br></br>
+			<button class="approveLeave">Approve</button>
+			<button class="declineLeave">Decline</button>
+		</div>	
+	</div></div>
+
        
         <DIV class="footer">
             <br/><hr width="75%"/>

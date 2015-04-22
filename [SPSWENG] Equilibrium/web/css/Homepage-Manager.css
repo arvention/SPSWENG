@@ -1,83 +1,111 @@
-#approve-leave-div{
-    margin-top: 80px;
-    width: 100%;
-    margin-bottom: 80px;
+body {
+	font-family: helvetica;
+	font-size: 14;
+	background-color: #E8E8E8;
 }
 
-#leave-div{
-    width: 75%;
-    margin: 0 auto 0 auto;
-    background-color: white;
-    border-radius: 10px;
+#box {
+	height: 400px;
+	width: 500px;
+	position: absolute;
+	top: 0; bottom:0; left: 0; right: 0;
+	margin-top: 100px;
+	margin-bottom:auto;
+	margin-right:auto;
+	margin-left:auto;
+	padding: 10px;
+	
+	
+	background-color: white;
+	border-radius: 16px;
+	opacity: 0.55;
 }
 
-#heading-tag{
-    font-family: sans-serif;
-    font-size: 20px;
-    margin-left: 20px;
-    padding-top: 20px;
+#header {
+	width: 600px;
+	height: 35px;
 }
 
-#leave-list{
-    padding-left: 20px;
-    padding-right: 20px;
+#searchBox {
+	float: right;
+	border: 2px solid lightgray;
+	border-right: 0;
+	height: 30px;
+	width: 470px;
+	text-indent: 5px;
 }
 
-.leave-item{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #DCDCDC;
+#submitButton:hover {
+	cursor: hand;
 }
 
-.approve-button, .reject-button{
-    height: 20px;
-    width: 100px;
-    line-height: 15px;
-    background: white;
-    font-family: sans-serif;
-    font-size: 12px;
-    color: black;
-    border: 1px black solid;
+#submitButton {
+	float: right;
+	background-color: #D63333;
+	color: white;
+	border: 0;
+	height: 30px;
+	width: 60px;
 }
 
-.approve-button:hover{
-    border: 1px solid green;
-    background: green;
-    color: white;
-    cursor: pointer;
+#results {
+	height: 360px;
+	width: 500px;
+	overflow: auto;
 }
 
-.reject-button:hover{
-    border: 1px solid #AD0000;
-    background: #AD0000;
-    color: white;
-    cursor: pointer;
+.result {
+	padding: 5px;
+	margin-top: 5px;
+	border-top: 1px dotted lightgray;
 }
 
-#no-pending-div{
-    text-align: center;
+.name {
+	font-size: 15;
+	font-weight: bold;
 }
 
-#no-pending-tag{
-    font-family: sans-serif;
-    font-size: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    color: gray;
+.approveLeave {
+	background-color: #E8E8E8;
+	border-radius: 5px;
+	margin-left: 120px;
+	
+	border: 0;
+	padding: 3px;
+	width: 100px;
 }
-
-p{
-    margin: 0;
+.declineLeave {
+	background-color: #E8E8E8;
+	border-radius: 5px;
+	margin-left: 10px;
+	border: 0;
+	padding: 3px;
+	width: 100px;
 }
-
-form{
-    display: inline-block;
-    margin-bottom: 5px;
-    margin-top: 5px;
+.approveLeave:hover {
+	cursor: hand;
 }
-
-ul{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+.declineLeave:hover {
+	cursor: pointer;
+}
+DIV.pageBottom{
+		padding-top: 130px;
+		text-align:center;
+		color: #808080;
+		font-size: 11;
+		font-family: "Arial";
+		margin-top: 450px;
+	}
+.titleText{
+	font-family: "Arial";
+	font-weight: bold;
+	font-size: 20;
+	margin-left: 150px;
+	color: red;
+}
+DIV.pageTop{
+		margin-top: 3px;
+	}
+select:hover{
+	cursor: hand;
 }

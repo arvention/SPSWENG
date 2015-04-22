@@ -5,8 +5,8 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="shortcut icon" href="img/eqboyz.png">
-        <link rel="stylesheet" type="text/css" media="all" href="HomepageStyles.css"/>
+        <link rel="shortcut icon" href="img/eq logo.png">
+        <link rel="stylesheet" type="text/css" media="all" href="/cssHomepage-HrHead.css"/>
 
         <script src="js/HomepageFunc.js"></script>
         
@@ -47,7 +47,7 @@
                 <li><a href= "#">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
 		<li><a href= "#">Search</a></li>
-                <li><img class= "logo" src= "eqlogoclear.png" height="53px"/></li>
+                <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
             </ul>
         </DIV>	
         <div id="box">

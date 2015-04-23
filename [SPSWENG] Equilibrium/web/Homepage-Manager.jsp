@@ -18,40 +18,37 @@
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "#">Change Password</a></li>
                 <li><a href= "#">File a Leave</a></li>
-                <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
+                <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
             </ul>
         </DIV>	
         
         
-        <div id="approve-leave-div">
-            <div id="leave-div">
+        <div id="box">
+            <ul id="results">
                 <%  Database db = Database.getInstance();
                     modelEmployee employee = (modelEmployee)request.getSession().getAttribute("employee");
                     ArrayList<modelLeaveForm> leaveFormsToApprove = db.getLeaveFormToApprove(employee.getEntryNum());
                     
                     if(leaveFormsToApprove.size() != 0){
                 %>
-                <div>
-                    <p id="heading-tag">Pending Leave Requests</p>
-                </div>
-                <ul id="leave-list">
+                <span class= "titleText"> Leaves for Approval </span>
                     <%
                         for(modelLeaveForm leaveForm : leaveFormsToApprove){        
                     %>
-                    <li class="leave-item">
-                        <p>Employee Name: <%=db.getFirstName(leaveForm.getEmpEntryNum())%> <%=db.getLastName(leaveForm.getEmpEntryNum())%></p>
-                        <p>Leave Type: <%=leaveForm.getLeaveType()%></p>
-                        <p>Start Date: <%=leaveForm.getStartDate()%></p>
-                        <p>Duration: <%=leaveForm.getDuration()%></p>
+                   <li class="result">
+			            <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br>
+		            	<span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></p></span><br>
+		            	<span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></p></span><br>
+			
                         <form action="ApproveLeave" method="POST">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Approved" />
-                            <input type="submit" class ="approve-button" value="Approve" />
+                            <input type="submit" class ="approveLeave" value="Approve" />
                         </form>
                         <form action="ApproveLeave" method="POST">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Rejected" />
-                            <input type="submit" class ="reject-button" value="Reject" />
+                            <input type="submit" class ="declineLeave" value="Reject" />
                         </form>
                     </li>
                     <%}%>

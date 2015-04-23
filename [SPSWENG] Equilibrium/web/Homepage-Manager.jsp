@@ -36,15 +36,16 @@
                         for(modelLeaveForm leaveForm : leaveFormsToApprove){        
                     %>
                    <li class="result">
-			            <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br>
-		            	<span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></p></span><br>
-		            	<span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></p></span><br>
+			        <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br>
+		            	<span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></p></span><br/>
+		            	<span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></p></span><br/>
 			
                         <form action="ApproveLeave" method="POST">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Approved" />
                             <input type="submit" class ="approveLeave" value="Approve" />
                         </form>
+                            
                         <form action="ApproveLeave" method="POST">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Rejected" />

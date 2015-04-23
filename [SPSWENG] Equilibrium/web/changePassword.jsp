@@ -37,6 +37,9 @@
 	<div class="header">
 	</div>
 	<div class= "content" align= "center">
+		<span class = "titleText">Change Password</span>
+		<hr width= "75%"/>
+		<br/><br/>
                 <form action="ChangePasswordServlet" method="POST" id="passwordform">
 		Current password: <input class= "textLine" input type="password" size="25" name="oldpassword" /> </br></br>
 		New password: <input class="textLine" input type="password" size="25" name="newpassword" id="newpass"/></br></br>

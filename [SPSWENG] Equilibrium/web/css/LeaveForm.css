@@ -7,11 +7,10 @@ div.background{
     background-color: #E8E8E8;
 }
 div.header{
-    border-style: solid;
-    border-color: #E8E8E8;
+
     width: 100%;
     font-family: sans-serif;
-    background-color: #E8E8E8;
+
     text-align:center;
     color: #D63333;
 }

@@ -40,15 +40,17 @@
     </head>
     <body>
         <DIV class= "nav">
+            <form method="GET" action="SearchEmployee">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "changePassword.jsp">Change Password</a></li>
                 <li><a href= "#">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
-		<li><a href= "#">Search</a></li>
+                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
             </ul>
+            </form>
         </DIV>	
         <div id="box">
 		<span class = "titleText">Leaves for Approval </span>

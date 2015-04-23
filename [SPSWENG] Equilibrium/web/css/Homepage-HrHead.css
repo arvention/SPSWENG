@@ -1,3 +1,14 @@
+.searchBox{
+    position: absolute;
+    width: 250px;
+    height: 25px;
+    text-indent: 5px;
+    left: 130px;
+    top: 13px;
+    border: 0;
+    border-radius: 5px;
+}
+
 .report{
     float: right;
     color: black;

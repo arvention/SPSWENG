@@ -6,7 +6,7 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link rel="shortcut icon" href="img/eq logo.png">
-        <link rel="stylesheet" type="text/css" media="all" href="/cssHomepage-HrHead.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-HrHead.css"/>
 
         <script src="js/HomepageFunc.js"></script>
         

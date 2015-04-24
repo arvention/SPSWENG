@@ -38,12 +38,8 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-<<<<<<< HEAD
             String uPass = "admin";
 
-=======
-            String uPass = "password";
->>>>>>> origin/DEV5
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -1442,8 +1438,6 @@ public class Database {
         return image;
     }
 
-<<<<<<< HEAD
-=======
     public Downloadables getDownloadables(int id) {
 
         Downloadables files = new Downloadables();
@@ -1795,5 +1789,47 @@ public class Database {
             e.printStackTrace();
         }
     }
->>>>>>> origin/DEV5
+    
+    
+    public ArrayList<modelRecord> getRecords(String type, int empEntryNum) {
+        ArrayList<modelRecord> recordList = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+
+        sql = "SELECT * FROM record"
+                + " WHERE recordType = '" + type + "' AND empEntryNum = " + empEntryNum;
+        try {   
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                modelRecord record = new modelRecord();
+                
+                record.setRecordID(rs.getInt("recordID"));
+                record.setRecordType(type);
+                record.setEmpEntryNum(empEntryNum);
+                record.setDate(new Date(rs.getTimestamp("date").getTime()));
+                record.setFile(rs.getBlob("file"));
+                record.setFileName(rs.getString("filename"));
+                
+                switch (type) {
+                    case "memo":
+                        record.setDisciplinaryRecordType(rs.getString("disciplinaryRecordType"));
+                        record.setDisciplinaryComment(rs.getString("disciplinaryComment"));
+                        break;
+                    case "award":
+                        record.setAwardName(rs.getString("awardName"));
+                        break;
+                    case "evaluation":
+                        record.setEvaluationScore(rs.getString("evaluationScore"));
+                        record.setEvaluatorEntryNum(rs.getInt("evaluatorEntryNum"));
+                        break;
+                }
+                recordList.add(record);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recordList;
+    }
 }

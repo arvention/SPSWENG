@@ -246,7 +246,7 @@
                                         <div class="line"><span class="label">Years</span>
                                             <input type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/></div>
                                         <div class="line"><span class="label">Awards</span>
-                                            <span class="data"><%=school.getAward()%></span></div><br/>
+                                            <input type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -267,7 +267,7 @@
                                         <div class="line"><span class="label">Years</span>
                                             <input type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/></div>
                                         <div class="line"><span class="label">Awards</span>
-                                            <span class="data"><%=school.getAward()%></span></div><br/>
+                                            <input type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -288,7 +288,7 @@
                                         <div class="line"><span class="label">Years</span>
                                             <input type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/></div>
                                         <div class="line"><span class="label">Awards</span>
-                                            <span class="data"><%=school.getAward()%></span></div><br/>
+                                            <input type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -309,7 +309,7 @@
                                         <div class="line"><span class="label">Years</span>
                                             <input type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/></div>
                                         <div class="line"><span class="label">Awards</span>
-                                            <span class="data"><%=school.getAward()%></span></div><br/>
+                                            <input type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -330,7 +330,7 @@
                                         <div class="line"><span class="label">Years</span>
                                             <input type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/></div>
                                         <div class="line"><span class="label">Awards</span>
-                                            <span class="data"><%=school.getAward()%></span></div><br/>
+                                            <input type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -351,7 +351,7 @@
                                         <div class="line"><span class="label">Years</span>
                                             <input type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/></div>
                                         <div class="line"><span class="label">Awards</span>
-                                            <span class="data"><%=school.getAward()%></span></div><br/>
+                                            <input type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -366,11 +366,11 @@
                                     %>
                                     <div class="subContent">
                                         <div class="line"><span class="label"><b>Name</b></span>
-                                            <span class="data"><%=license.getLicenseName()%></span>
+                                            <input type = "text" class="data" value = "<%=license.getLicenseName()%>" readonly/>
                                             <input type="button" value="+" class="add-delete-button">
                                             <input type="button" value="-" class="add-delete-button"></div>
                                         <div class="line"><span class="label">Score</span>
-                                            <span class="data"><%=license.getPercentage()%></span></div>
+                                            <input type ="number" class="data" value = "<%=license.getPercentage()%>" readonly/></div>
                                     </div>
                                     <%}%>
                                 </div>
@@ -390,27 +390,27 @@
                                     %>
                                     <div class="subContent">
                                         <div class="line"><span class="label"><b>Occupation</b></span>
-                                            <span class="data"><%=empHisto.getJobTitle()%></span>
+                                            <input type = "text" class="data" value = "<%=empHisto.getJobTitle()%>" readonly/>
                                             <input type="button" value="+" class="add-delete-button">
                                             <input type="button" value="-" class="add-delete-button"></div>
                                         <div class="line"><span class="label">Date of Employment</span>
-                                            <span class="data"><%=empHisto.getDateOfEmployment()%></span></div>
+                                            <input type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(empHisto.getDateOfEmployment())%>" readonly/></div>
                                         <div class="line"><span class="label">Beginning Salary</span>
-                                            <span class="data"><%=empHisto.getStartingSalary()%></span></div>
+                                            <input type = "number" class="data" value = "<%=empHisto.getStartingSalary()%>" readonly/></div>
                                         <div class="line"><span class="label">Ending Salary</span>
-                                            <span class="data"><%=empHisto.getEndingSalary()%></span></div>
+                                            <input type = "number" class="data" value = "<%=empHisto.getEndingSalary()%>" readonly/></div>
                                         <div class="line"><span class="label">Name of Employer</span>
-                                            <span class="data"><%=empHisto.getEmployerName()%></span></div>
+                                            <input type = "text" class="data" value = "<%=empHisto.getEmployerName()%>" readonly/></span></div>
                                         <div class="line"><span class="label">Address of Employer</span>
-                                            <span class="data"><%=empHisto.getEmployerAddress()%></span></div>
+                                            <input type ="text" class="data" value = "<%=empHisto.getEmployerAddress()%>" readonly/></div>
                                         <div class="line"><span class="label">Contact Number of Employer</span>
-                                            <span class="data"><%=empHisto.getEmployerContactNum()%></span></div>
+                                            <input type ="number" class="data" value = "<%=empHisto.getEmployerContactNum()%>" readonly/></div>
                                         <div class="line"><span class="label">Name of Supervisor</span>
-                                            <span class="data"><%=empHisto.getSupervisorName()%></span></div>
+                                            <input type ="text" class="data" value ="<%=empHisto.getSupervisorName()%>" readonly/></div>
                                         <div class="line"><span class="label">Contact Number of Supervisor</span>
-                                            <span class="data"><%=empHisto.getSupervisorContactNum()%></span></div>
+                                            <input type ="number" class="data" value = "<%=empHisto.getSupervisorContactNum()%>" readonly/></div>
                                         <div class="line"><span class="label">Reason for leaving</span>
-                                            <span class="data"><%=empHisto.getReasonForLeaving()%></span></div>
+                                            <input type = "text" class="data" value = "<%=empHisto.getReasonForLeaving()%>" readonly/></div>
                                     </div>
                                     <br>
                                     <%}%>
@@ -426,6 +426,8 @@
                                     <option>Filed Leaves</option>
                                     <option>Recognitions and Awards</option>
                                 </select>
+                                <div class ="subContent">
+                                </div>
                             </div>
                         </div>
 
@@ -441,13 +443,13 @@
                                     %>
                                     <div class="subContent">
                                         <div class="line"><span class="label"><b>Criminal Offense</b></span>
-                                            <span class="data"><%=offense.getCriminalOffense()%></span>
+                                            <input type ="text" class="data" value = "<%=offense.getCriminalOffense()%>" readonly/>
                                             <input type="button" value="+" class="add-delete-button">
                                             <input type="button" value="-" class="add-delete-button"></div>
                                         <div class="line"><span class="label"><b>Date of Offense</b></span>
-                                            <span class="data"><%=offense.getDateOfOffense()%></span></div>
+                                            <input type ="text" class="data" value ="<%=offense.getDateOfOffense()%>" readonly/></div>
                                         <div class="line"><span class="label">Place of Offense</span>
-                                            <span class="data"><%=offense.getPlaceOfOffense()%></span></div>
+                                            <input type ="text" class="data" value = "<%=offense.getPlaceOfOffense()%>" readonly/></div>
                                     </div>
                                     <br>
                                     <%}%>

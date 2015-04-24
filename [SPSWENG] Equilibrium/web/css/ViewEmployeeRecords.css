@@ -52,20 +52,37 @@ input:hover, .alertButton:hover {
     margin-left: 2px;
 }
 
-#editButton {
+#editButton, #saveButton{
     width: 100px;
     height: 30px;
     background-color: lightgray;
     border: 0;
-    float: right;
     font-size: 16px;
     color: white;
     border-top-right-radius: 13px;
 }
 
+#saveButton{
+    display: none;
+}
+
+.editSpan{
+    float: right;
+}
+
+.editMessage{
+    margin-right: 10px;
+    display: none;
+}
+
 .data {
-    padding-left: 2px;
-    padding-right: 2px;
+    padding: 2px;
+    border: none;
+    color: black;
+}
+
+.data:hover{
+   cursor: default; 
 }
 
 #box {
@@ -161,4 +178,16 @@ select:focus {
     color: #808080;
     font-size: 11px;
     font-family: "Arial";
+}
+
+.editNote{
+    color: red;
+    font-size: 11px;
+    display: none;
+    font-weight: bolder;
+    font-style: italic
+}
+
+input[type='date']{
+    width: 125px;
 }

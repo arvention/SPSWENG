@@ -17,16 +17,25 @@ $(document).ready(function () {
     
     $(document).on("click", "#editButton", function () {
         if($(this).val() === "Edit") {
-            $(this).val("Save Edit");
-            $(".data").attr("contentEditable", true);
-            $(".data").css("border-bottom", "1px solid lightgray");
+            $(this).val("Cancel Edit");
+            $(this).css("border-top-right-radius", "0px");
+            $("#saveButton").show();
+            $(".data").attr("readonly", false);
+            //$(".data").css("border-bottom", "1px solid lightgray");
+            $(".editMessage").show();
             $(".add-delete-button").show();
+            $(".editNote").show();
         }
-        else if($(this).val() === "Save Edit") {
+        else if($(this).val() === "Cancel Edit") {
             $(this).val("Edit");
-            $(".data").attr("contentEditable", false);
+            $("#editButton").attr("type", "button");
+            $("#saveButton").hide();
+            $(this).css("border-top-right-radius", "13px");
+            $(".data").attr("readonly", true);
             $(".data").css("border-bottom", "0");
+            $(".editMessage").hide();
             $(".add-delete-button").hide();
+            $(".editNote").hide();
         }
     });
     

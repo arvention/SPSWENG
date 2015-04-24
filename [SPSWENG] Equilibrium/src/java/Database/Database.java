@@ -11,6 +11,7 @@ import Models.modelLeaveForm;
 import Models.modelLicense;
 import Models.modelRelative;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -1384,4 +1385,72 @@ public class Database {
         
         return empHistory;
     }
+    
+    
+    public InputStream getInputStream(int id,StringBuilder name){
+            
+        String filename;
+          sql = "SELECT * from record"
+             + " WHERE recordID = " + id;
+        Blob blob;
+        Statement stmt;
+        ResultSet rs;
+        InputStream is=null;
+        
+         try{
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next()){
+            blob = rs.getBlob("file");
+            filename = rs.getString("filename");
+         name.append(filename);
+            
+            
+            is = blob.getBinaryStream();
+            }
+            
+        
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return is;
+        
+    }
+    
+    
+    
+    public byte[] getImage(int id){
+        
+        sql = "SELECT * from record"
+             + " WHERE recordID = " + id;
+        
+        Blob imageBlob;
+        Statement stmt;
+        ResultSet rs;
+        byte[] image=null;
+        
+        try{
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next()){
+            imageBlob = rs.getBlob("file");
+            image = imageBlob.getBytes(1, (int) imageBlob.length());
+            }
+            
+        
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return image;
+    }
+    
+    
+    
+    
+    
+    
 }

@@ -38,34 +38,32 @@
 
         <script>
 
-            $(document).ready(function(){
-
-            function readURL(input) {
-
-            if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            $(document).ready(function() {
+                function readURL(input) {
                     if (input.files && input.files[0]) {
-            var reader = new FileReader();
-                    reader.onload = function (e) {
-                    $('#frameforpic').attr('src', e.target.result);
+                        var reader = new FileReader();
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                $('#frameforpic').attr('src', e.target.result);
+                            };
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
                     }
 
-            reader.readAsDataURL(input.files[0]);
-            }
-            }
 
-
-            $("#imgInp").change(function(){
-            readURL(this);
-            });
-            });
-                    $(".downloadButton").click(function(){
-            $("#listoffiles").submit(function (e) {
-            e.preventDefault(); // this will prevent from submitting the form.
-            });
+                    $("#imgInp").change(function() {
+                        readURL(this);
+                    });
+                };
+                        $(".downloadButton").click(function() {
+                    $("#listoffiles").submit(function(e) {
+                        e.preventDefault(); // this will prevent from submitting the form.
+                    });
                     window.location.href = "GetImage?id=" + this.id;
-            });
-                    $("#docs-select").hide();
+                });
+                $("#docs-select").hide();
             });</script>  
 
 

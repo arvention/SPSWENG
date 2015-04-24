@@ -45,8 +45,9 @@
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "#">File a Leave</a></li>
+                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
+                <li><a href= "EmployeeData.jsp">Add Employee Record</a></li>
                 <li><img class= "logo" src= "img/eqboyz.png" height="53px"/></li>
             </ul>
         </DIV>	

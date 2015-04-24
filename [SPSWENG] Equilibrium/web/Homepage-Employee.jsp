@@ -35,7 +35,6 @@
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "#">Change Password</a></li>
-                <li><a href= "#">File a Leave</a></li>
                 <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
             </ul>
         </div>

@@ -223,3 +223,7 @@ select:focus {
 input[type='date']{
     width: 125px;
 }
+
+.downloadButton{
+    float: right;
+}

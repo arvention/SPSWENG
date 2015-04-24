@@ -9,6 +9,7 @@ import Models.modelEmployeeAuditTrail;
 import Models.modelEmploymentHistory;
 import Models.modelLeaveForm;
 import Models.modelLicense;
+import Models.modelRecord;
 import Models.modelRelative;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -36,7 +37,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "admin";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -658,10 +659,8 @@ public class Database {
      }
      */
 
-    public int saveAward(int empEntryNum, Date date, String awardName,String awardComment, InputStream is, String filename) {
-        
- 
-      
+    public int saveAward(int empEntryNum, Date date, String awardName, String awardComment, InputStream is, String filename) {
+
         String sql = "";
         if (is == null) {
             System.out.println("I am over here");
@@ -682,11 +681,10 @@ public class Database {
             statement.setInt(3, empEntryNum);
             //statement.setString(4, type);
             java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
-            statement.setTimestamp(4,sq);
+            statement.setTimestamp(4, sq);
             statement.setString(5, awardName);
-            statement.setString(6,awardComment);
-            
-            
+            statement.setString(6, awardComment);
+
             if (is != null) {
                 System.out.println("ima here now hehehe");
                 statement.setBlob(7, is);
@@ -701,12 +699,9 @@ public class Database {
         }
         return max;
     }
-    
-    
-     public int saveEval(int empEntryNum,String evalname,String score, InputStream is, String filename) {
-        
- 
-      
+
+    public int saveEval(int empEntryNum, String evalname, String score, InputStream is, String filename) {
+
         String sql = "";
         if (is == null) {
             System.out.println("I am over here");
@@ -718,36 +713,36 @@ public class Database {
 
         int max = getMaxRecordID();
         max++;
-/*
-        try {
+        /*
+         try {
 
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, max);
-            statement.setString(2, "award");
-            statement.setInt(3, empEntryNum);
-            //statement.setString(4, type);
-            java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
-            statement.setTimestamp(4,sq);
-            statement.setString(5, awardName);
-            statement.setString(6,awardComment);
+         PreparedStatement statement = con.prepareStatement(sql);
+         statement.setInt(1, max);
+         statement.setString(2, "award");
+         statement.setInt(3, empEntryNum);
+         //statement.setString(4, type);
+         java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
+         statement.setTimestamp(4,sq);
+         statement.setString(5, awardName);
+         statement.setString(6,awardComment);
             
             
-            if (is != null) {
-                System.out.println("ima here now hehehe");
-                statement.setBlob(7, is);
-                statement.setString(8, filename);
-            }
+         if (is != null) {
+         System.out.println("ima here now hehehe");
+         statement.setBlob(7, is);
+         statement.setString(8, filename);
+         }
 
-            statement.executeUpdate();
-            //stmt.executeUpdate(sql);
+         statement.executeUpdate();
+         //stmt.executeUpdate(sql);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        */
+         } catch (SQLException e) {
+         e.printStackTrace();
+         }
+         */
         return max;
     }
-    
+
     public int saveDisciplinary(int empEntryNum, String memo, String type, InputStream is, String filename) {
 
         String sql = "";
@@ -789,14 +784,14 @@ public class Database {
     public ArrayList<modelEmployee> getSearchResult(String search) {
         ArrayList<modelEmployee> modelEmployees = new ArrayList<>();
 
-       sql = "select * "
+        sql = "select * "
                 + "from employee "
-                + "where firstName like '%" + search + "%' or  lastName like '%"+search+"%' or employeeID like '%" + search + "%'"
-                +" or "+ "CONCAT(lastName,' ',firstName) LIKE '%" + search + "%'"
-                +" or CONCAT(firstName,' ',lastName) LIKE '%" + search + "%'";  ;
+                + "where firstName like '%" + search + "%' or  lastName like '%" + search + "%' or employeeID like '%" + search + "%'"
+                + " or " + "CONCAT(lastName,' ',firstName) LIKE '%" + search + "%'"
+                + " or CONCAT(firstName,' ',lastName) LIKE '%" + search + "%'";;
 
         System.out.println(sql);
-                
+
         try {
             rs = stmt.executeQuery(sql);
 
@@ -946,9 +941,9 @@ public class Database {
 
         sql = "select firstName, lastName,middleName, employeeID "
                 + "from employee "
-                + "where firstName like '%" + word + "%' or  lastName like '%"+word+"%' or employeeID like '%" + word + "%'"
-                +" or "+ "CONCAT(lastName,' ',firstName) LIKE '%" + word + "%'"
-                +" or CONCAT(firstName,' ',lastName) LIKE '%" + word + "%'";  ;
+                + "where firstName like '%" + word + "%' or  lastName like '%" + word + "%' or employeeID like '%" + word + "%'"
+                + " or " + "CONCAT(lastName,' ',firstName) LIKE '%" + word + "%'"
+                + " or CONCAT(firstName,' ',lastName) LIKE '%" + word + "%'";;
 
         int counter = 0;
         String people = null;
@@ -1321,50 +1316,50 @@ public class Database {
         }
         return licenseList;
     }
-    
-    public ArrayList<modelCriminalOffenseHistory> getCriminalOffenses(int empEntryNum){
+
+    public ArrayList<modelCriminalOffenseHistory> getCriminalOffenses(int empEntryNum) {
         ArrayList<modelCriminalOffenseHistory> offenseList = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
-        
-        try{
+
+        try {
             stmt = con.createStatement();
-            
+
             sql = "SELECT * FROM criminal_offense_history"
                     + " WHERE empEntryNum = " + empEntryNum;
-            
+
             rs = stmt.executeQuery(sql);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 modelCriminalOffenseHistory offense = new modelCriminalOffenseHistory();
                 offense.setCriminalOffenseHistoryID(rs.getInt("criminalOffenseHistoryID"));
                 offense.setCriminalOffense(rs.getString("criminalOffense"));
                 offense.setDateOfOffense(rs.getDate("dateOfOffense"));
                 offense.setPlaceOfOffense(rs.getString("placeOfOffense"));
-                
+
                 offenseList.add(offense);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return offenseList;
     }
-    
-    public ArrayList<modelEmploymentHistory> getEmploymentHistory(int empEntryNum){
+
+    public ArrayList<modelEmploymentHistory> getEmploymentHistory(int empEntryNum) {
         ArrayList<modelEmploymentHistory> empHistory = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
-        
-        try{
+
+        try {
             stmt = con.createStatement();
             sql = "SELECT * FROM employment_history"
                     + " WHERE empEntryNum = " + empEntryNum;
-            
+
             rs = stmt.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 modelEmploymentHistory empHisto = new modelEmploymentHistory();
-                
+
                 empHisto.setEmploymentHistoryID(rs.getInt("employmentHistoryID"));
                 empHisto.setJobTitle(rs.getString("jobTitle"));
                 empHisto.setDateOfEmployment(rs.getDate("dateOfEmployment"));
@@ -1376,81 +1371,70 @@ public class Database {
                 empHisto.setSupervisorName(rs.getString("supervisorName"));
                 empHisto.setSupervisorContactNum(rs.getLong("supervisorContactNum"));
                 empHisto.setReasonForLeaving(rs.getString("reasonForLeaving"));
-                
+
                 empHistory.add(empHisto);
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return empHistory;
     }
-    
-    
-    public InputStream getInputStream(int id,StringBuilder name){
-            
+
+    public InputStream getInputStream(int id, StringBuilder name) {
+
         String filename;
-          sql = "SELECT * from record"
-             + " WHERE recordID = " + id;
+        sql = "SELECT * from record"
+                + " WHERE recordID = " + id;
         Blob blob;
         Statement stmt;
         ResultSet rs;
-        InputStream is=null;
-        
-         try{
+        InputStream is = null;
+
+        try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            
-            if(rs.next()){
-            blob = rs.getBlob("file");
-            filename = rs.getString("filename");
-         name.append(filename);
-            
-            
-            is = blob.getBinaryStream();
+
+            if (rs.next()) {
+                blob = rs.getBlob("file");
+                filename = rs.getString("filename");
+                name.append(filename);
+
+                is = blob.getBinaryStream();
             }
-            
-        
-        } catch(SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return is;
-        
+
     }
-    
-    
-    
-    public byte[] getImage(int id){
-        
+
+    public byte[] getImage(int id) {
+
         sql = "SELECT * from record"
-             + " WHERE recordID = " + id;
-        
+                + " WHERE recordID = " + id;
+
         Blob imageBlob;
         Statement stmt;
         ResultSet rs;
-        byte[] image=null;
-        
-        try{
+        byte[] image = null;
+
+        try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            
-            if(rs.next()){
-            imageBlob = rs.getBlob("file");
-            image = imageBlob.getBytes(1, (int) imageBlob.length());
+
+            if (rs.next()) {
+                imageBlob = rs.getBlob("file");
+                image = imageBlob.getBytes(1, (int) imageBlob.length());
             }
-            
-        
-        } catch(SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return image;
     }
-    
-    
-    
-    
-    
-    
+
 }

@@ -1,6 +1,7 @@
 
 package Models;
 
+import java.sql.Blob;
 import java.sql.Date;
 
 public class modelRecord {
@@ -14,6 +15,8 @@ public class modelRecord {
     private String disciplinaryRecordType;
     private String disciplinaryComment;
     private int disciplinaryDuration;
+    private Blob file;
+    private String fileName;
 
     public int getRecordID() {
         return recordID;
@@ -93,5 +96,33 @@ public class modelRecord {
 
     public void setDisciplinaryDuration(int disciplinaryDuration) {
         this.disciplinaryDuration = disciplinaryDuration;
+    }
+
+    /**
+     * @return the file
+     */
+    public Blob getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(Blob file) {
+        this.file = file;
+    }
+
+    /**
+     * @return the fileName
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * @param fileName the fileName to set
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

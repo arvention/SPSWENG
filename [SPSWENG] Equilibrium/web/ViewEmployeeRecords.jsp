@@ -4,6 +4,7 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelRecord"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Models.modelEmploymentHistory"%>
 <%@page import="Models.modelCriminalOffenseHistory"%>
@@ -168,9 +169,7 @@
 
                                 <%
                                     }
-                                    System.out.println("hehe");
                                     modelRelative father = db.getParent("father", emp.getEntryNum());
-                                    System.out.println("haha");
                                     modelRelative mother = db.getParent("mother", emp.getEntryNum());
                                     ArrayList<modelRelative> siblings = db.getRelatives("sibling", emp.getEntryNum());
                                 %>
@@ -426,7 +425,20 @@
                                     <option>Filed Leaves</option>
                                     <option>Recognitions and Awards</option>
                                 </select>
+                                <br>
+                                <br>
+                                <br>
                                 <div class ="subContent">
+                                    <%
+                                        ArrayList<modelRecord> recordList = db.getRecords("memo", emp.getEntryNum());
+                                        System.out.println("record = " + recordList.size());
+                                        for(modelRecord record : recordList){
+                                    %>
+                                    <div class = "line"><span class ="label"><b>Date</b></span>
+                                        <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
+                                        <button class = "downloadButton">Download File</button>
+                                    </div>
+                                    <%}%>
                                 </div>
                             </div>
                         </div>

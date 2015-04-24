@@ -1,3 +1,4 @@
+<%@page import="Models.modelEmployee"%>
 <html>
     <head>
 	<link rel="shortcut icon" href="img/eq logo.ico"/>

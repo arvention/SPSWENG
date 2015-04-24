@@ -67,7 +67,7 @@
         <% 
            }
            
-           else if (m.getEmployeeType().equals("Senior Manager")){
+           else if (m.getEmployeeType().equals("Senior Manager")){ 
                
         %>
         <DIV class= "nav">

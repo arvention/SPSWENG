@@ -10,6 +10,9 @@
         <link rel="shortcut icon" href="eq logo.ico"/>
         <link rel="stylesheet" type="text/css" href="css/Homepage-Manager.css"/>
         <link rel="stylesheet" type="text/css" media="all" href="css/HomepageStyles.css"/>
+        
+        <script type = "text/javascript" src = "js/Homepage-Manager.js">
+        </script>
     </head>
     <body>
         <DIV class= "nav">
@@ -41,16 +44,16 @@
 		            	<span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></span><br/>
 		            	<span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></span><br/>
 			
-                        <form action="ApproveLeave" method="POST" class="inline-form">
+                        <form action="ApproveLeave" method="POST" class="inline-form" onclick="return accept('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Approved" />
-                            <input type="submit" class ="approveLeave" value="Approve" />
+                            <input type="submit" class ="approveLeave" value="Approve" id="approve-button"/>
                         </form>
                             
-                        <form action="ApproveLeave" method="POST" class="inline-form">
+                        <form action="ApproveLeave" method="POST" class="inline-form" onclick="return reject('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Rejected" />
-                            <input type="submit" class ="declineLeave" value="Reject" />
+                            <input type="submit" class ="declineLeave" value="Reject" id="reject-button"/>
                         </form>
                     </div>
                     <%}%>

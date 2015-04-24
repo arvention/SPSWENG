@@ -16,6 +16,7 @@
         <title>Employee BioData - Personal Information</title>
         <link rel ="shortcut icon" href="img/eq logo.ico">
         <link rel="stylesheet" type="text/css" media="all" href="css/SampleScreensStyle.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="css/navigationBar.css"/>  
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/SampleScreensFunc.js"></script>
     </head>
@@ -30,10 +31,10 @@
             <form method="GET" action="SearchEmployee">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
-                <li><a href= "#">Generate Report</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
+                <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
             </ul>
@@ -47,11 +48,11 @@
         <DIV class= "nav">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
-                <li><a href= "#">Generate Report</a></li>
-                <li><a href= "EmployeeData.jsp">Add Employee Record</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
+                <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
+                <li><a href= "EmployeeData.jsp"><span class="selectText">Add Employee Record</span></a></li>
                 <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
             </ul>
         </DIV>

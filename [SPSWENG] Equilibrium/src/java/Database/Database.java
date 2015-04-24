@@ -38,12 +38,8 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-<<<<<<< HEAD
             //String uPass = "password";
             String uPass = "070670";
-=======
-            String uPass = "admin";
->>>>>>> parent of cc9ff28... US10-Display Audit Trail-04252015_0132
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {

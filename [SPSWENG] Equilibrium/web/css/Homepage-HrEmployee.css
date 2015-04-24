@@ -125,3 +125,8 @@ DIV.search{
     color: #D63333;
    
 }
+.selectText:hover{
+     color: red;
+    cursor:pointer;
+}
+

@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +27,7 @@ import javax.servlet.http.Part;
  *
  * @author Thursday
  */
+@MultipartConfig(maxFileSize = 16177215)  
 public class SaveEvaluation extends HttpServlet {
 
     /**
@@ -87,10 +89,15 @@ public class SaveEvaluation extends HttpServlet {
         Part filePart = request.getPart("filename");
         int intid = employee.getEntryNum();
         String score = request.getParameter("score");
-        InputStream inputStream = null;       
-        String evalname = request.getParameter("evalname");
+        InputStream inputStream = null;  
+        String evalname="";
+        evalname = request.getParameter("evalname");
          
-
+        if (score.length() >= 10) { 
+            request.setAttribute("message", "Character Limit Reached for score");
+            RequestDispatcher view = request.getRequestDispatcher("addEvaluation.jsp");
+            view.forward(request, response);
+        }
             
         
         if (evalname.length() >= 2500) { 
@@ -102,12 +109,12 @@ public class SaveEvaluation extends HttpServlet {
             System.out.println("File Size is "+ filePart.getSize());
             if(filePart.getSize() >  10847412){
                 request.setAttribute("message", "File Size Limit Reached");
-                RequestDispatcher view = request.getRequestDispatcher("addAward.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("addEvaluation.jsp");
                 view.forward(request, response);
             }
         }
         
-        /*
+      
            Database db = Database.getInstance();
            if(filePart.getSize()!=0){
              
@@ -115,18 +122,18 @@ public class SaveEvaluation extends HttpServlet {
              System.out.println("I am over gereee");  
              String nameoffile =  filePart.getSubmittedFileName();
            //  db.saveDisciplinary(intid, memo,typeofmemo,inputStream,nameoffile );  
-             db.saveAward(intid, sql,awardname , memo, inputStream, nameoffile);
-            
+            // db.saveAward(intid, sql,awardname , memo, inputStream, nameoffile);
+            db.saveEval(intid, evalname, score, inputStream, nameoffile);
            }
            else{
-            db.saveAward(intid, sql, awardname , memo,null,null);
+            db.saveEval(intid, evalname, score ,null,null);
                
            }
          //till here
             request.setAttribute("message","Success!");
-            RequestDispatcher view = request.getRequestDispatcher("addAward.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("addEvaluation.jsp");
             view.forward(request, response);
-        */
+        
         
     }
 

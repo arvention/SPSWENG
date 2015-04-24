@@ -72,7 +72,7 @@ console.log(today);
 			</ul>
 		</DIV>
 		<DIV class="content">
-		<form action="SaveAward" method="POST" enctype="multipart/form-data">
+		<form action="SaveEvaluation" method="POST" enctype="multipart/form-data">
                	<span class="boxText"> Add Evaluation to Employee Record</span>
 		<hr width="75%"/>
 		<br/>

@@ -1,4 +1,5 @@
 package Database;
+
 import ClassHelpers.Downloadables;
 import Models.modelBranch;
 import Models.modelCriminalOffenseHistory;
@@ -37,7 +38,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "jetisjet";
+            String uPass = "password";
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -658,10 +659,8 @@ public class Database {
      }
      */
 
-    public int saveAward(int empEntryNum, Date date, String awardName,String awardComment, InputStream is, String filename) {
-        
- 
-      
+    public int saveAward(int empEntryNum, Date date, String awardName, String awardComment, InputStream is, String filename) {
+
         String sql = "";
         if (is == null) {
             System.out.println("I am over here");
@@ -682,11 +681,10 @@ public class Database {
             statement.setInt(3, empEntryNum);
             //statement.setString(4, type);
             java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
-            statement.setTimestamp(4,sq);
+            statement.setTimestamp(4, sq);
             statement.setString(5, awardName);
-            statement.setString(6,awardComment);
-            
-            
+            statement.setString(6, awardComment);
+
             if (is != null) {
                 System.out.println("ima here now hehehe");
                 statement.setBlob(7, is);
@@ -701,12 +699,9 @@ public class Database {
         }
         return max;
     }
-    
-    
-     public int saveEval(int empEntryNum,String evalname,String score, InputStream is, String filename) {
-        
- 
-      
+
+    public int saveEval(int empEntryNum, String evalname, String score, InputStream is, String filename) {
+
         String sql = "";
         if (is == null) {
             System.out.println("I am over here");
@@ -718,36 +713,36 @@ public class Database {
 
         int max = getMaxRecordID();
         max++;
-/*
-        try {
+        /*
+         try {
 
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, max);
-            statement.setString(2, "award");
-            statement.setInt(3, empEntryNum);
-            //statement.setString(4, type);
-            java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
-            statement.setTimestamp(4,sq);
-            statement.setString(5, awardName);
-            statement.setString(6,awardComment);
+         PreparedStatement statement = con.prepareStatement(sql);
+         statement.setInt(1, max);
+         statement.setString(2, "award");
+         statement.setInt(3, empEntryNum);
+         //statement.setString(4, type);
+         java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
+         statement.setTimestamp(4,sq);
+         statement.setString(5, awardName);
+         statement.setString(6,awardComment);
             
             
-            if (is != null) {
-                System.out.println("ima here now hehehe");
-                statement.setBlob(7, is);
-                statement.setString(8, filename);
-            }
+         if (is != null) {
+         System.out.println("ima here now hehehe");
+         statement.setBlob(7, is);
+         statement.setString(8, filename);
+         }
 
-            statement.executeUpdate();
-            //stmt.executeUpdate(sql);
+         statement.executeUpdate();
+         //stmt.executeUpdate(sql);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        */
+         } catch (SQLException e) {
+         e.printStackTrace();
+         }
+         */
         return max;
     }
-    
+
     public int saveDisciplinary(int empEntryNum, String memo, String type, InputStream is, String filename) {
 
         String sql = "";
@@ -789,14 +784,14 @@ public class Database {
     public ArrayList<modelEmployee> getSearchResult(String search) {
         ArrayList<modelEmployee> modelEmployees = new ArrayList<>();
 
-       sql = "select * "
+        sql = "select * "
                 + "from employee "
-                + "where firstName like '%" + search + "%' or  lastName like '%"+search+"%' or employeeID like '%" + search + "%'"
-                +" or "+ "CONCAT(lastName,' ',firstName) LIKE '%" + search + "%'"
-                +" or CONCAT(firstName,' ',lastName) LIKE '%" + search + "%'";  ;
+                + "where firstName like '%" + search + "%' or  lastName like '%" + search + "%' or employeeID like '%" + search + "%'"
+                + " or " + "CONCAT(lastName,' ',firstName) LIKE '%" + search + "%'"
+                + " or CONCAT(firstName,' ',lastName) LIKE '%" + search + "%'";;
 
         System.out.println(sql);
-                
+
         try {
             rs = stmt.executeQuery(sql);
 
@@ -946,9 +941,9 @@ public class Database {
 
         sql = "select firstName, lastName,middleName, employeeID "
                 + "from employee "
-                + "where firstName like '%" + word + "%' or  lastName like '%"+word+"%' or employeeID like '%" + word + "%'"
-                +" or "+ "CONCAT(lastName,' ',firstName) LIKE '%" + word + "%'"
-                +" or CONCAT(firstName,' ',lastName) LIKE '%" + word + "%'";  ;
+                + "where firstName like '%" + word + "%' or  lastName like '%" + word + "%' or employeeID like '%" + word + "%'"
+                + " or " + "CONCAT(lastName,' ',firstName) LIKE '%" + word + "%'"
+                + " or CONCAT(firstName,' ',lastName) LIKE '%" + word + "%'";;
 
         int counter = 0;
         String people = null;
@@ -1321,50 +1316,50 @@ public class Database {
         }
         return licenseList;
     }
-    
-    public ArrayList<modelCriminalOffenseHistory> getCriminalOffenses(int empEntryNum){
+
+    public ArrayList<modelCriminalOffenseHistory> getCriminalOffenses(int empEntryNum) {
         ArrayList<modelCriminalOffenseHistory> offenseList = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
-        
-        try{
+
+        try {
             stmt = con.createStatement();
-            
+
             sql = "SELECT * FROM criminal_offense_history"
                     + " WHERE empEntryNum = " + empEntryNum;
-            
+
             rs = stmt.executeQuery(sql);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 modelCriminalOffenseHistory offense = new modelCriminalOffenseHistory();
                 offense.setCriminalOffenseHistoryID(rs.getInt("criminalOffenseHistoryID"));
                 offense.setCriminalOffense(rs.getString("criminalOffense"));
                 offense.setDateOfOffense(rs.getDate("dateOfOffense"));
                 offense.setPlaceOfOffense(rs.getString("placeOfOffense"));
-                
+
                 offenseList.add(offense);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return offenseList;
     }
-    
-    public ArrayList<modelEmploymentHistory> getEmploymentHistory(int empEntryNum){
+
+    public ArrayList<modelEmploymentHistory> getEmploymentHistory(int empEntryNum) {
         ArrayList<modelEmploymentHistory> empHistory = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
-        
-        try{
+
+        try {
             stmt = con.createStatement();
             sql = "SELECT * FROM employment_history"
                     + " WHERE empEntryNum = " + empEntryNum;
-            
+
             rs = stmt.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 modelEmploymentHistory empHisto = new modelEmploymentHistory();
-                
+
                 empHisto.setEmploymentHistoryID(rs.getInt("employmentHistoryID"));
                 empHisto.setJobTitle(rs.getString("jobTitle"));
                 empHisto.setDateOfEmployment(rs.getDate("dateOfEmployment"));
@@ -1376,132 +1371,421 @@ public class Database {
                 empHisto.setSupervisorName(rs.getString("supervisorName"));
                 empHisto.setSupervisorContactNum(rs.getLong("supervisorContactNum"));
                 empHisto.setReasonForLeaving(rs.getString("reasonForLeaving"));
-                
+
                 empHistory.add(empHisto);
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return empHistory;
     }
-    
-    
-    public InputStream getInputStream(int id,StringBuilder name){
-            
+
+    public InputStream getInputStream(int id, StringBuilder name) {
+
         String filename;
-          sql = "SELECT * from record"
-             + " WHERE recordID = " + id;
+        sql = "SELECT * from record"
+                + " WHERE recordID = " + id;
         Blob blob;
         Statement stmt;
         ResultSet rs;
-        InputStream is=null;
-        
-         try{
+        InputStream is = null;
+
+        try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            
-            if(rs.next()){
-            blob = rs.getBlob("file");
-            filename = rs.getString("filename");
-         name.append(filename);
-            
-            
-            is = blob.getBinaryStream();
+
+            if (rs.next()) {
+                blob = rs.getBlob("file");
+                filename = rs.getString("filename");
+                name.append(filename);
+
+                is = blob.getBinaryStream();
             }
-            
-        
-        } catch(SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return is;
-        
+
     }
-    
-    
-    
-    public byte[] getImage(int id){
-        
+
+    public byte[] getImage(int id) {
+
         sql = "SELECT * from record"
-             + " WHERE recordID = " + id;
-        
+                + " WHERE recordID = " + id;
+
         Blob imageBlob;
         Statement stmt;
         ResultSet rs;
-        byte[] image=null;
-        
-        try{
+        byte[] image = null;
+
+        try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            
-            if(rs.next()){
-            imageBlob = rs.getBlob("file");
-            image = imageBlob.getBytes(1, (int) imageBlob.length());
+
+            if (rs.next()) {
+                imageBlob = rs.getBlob("file");
+                image = imageBlob.getBytes(1, (int) imageBlob.length());
             }
-            
-        
-        } catch(SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return image;
     }
-    
-    
-    public Downloadables getDownloadables(int id){
-        
+
+    public Downloadables getDownloadables(int id) {
+
         Downloadables files = new Downloadables();
         modelRecord file;
-        sql ="select * from record where empEntryNum = "+ id;
-        
-        try{
+        sql = "select * from record where empEntryNum = " + id;
+
+        try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            
-            while(rs.next()){
-                
-                if(rs.getBlob("file") != null  ){
-                
-                file = new modelRecord();
-                file.setRecordID(rs.getInt("recordID"));
-                file.setRecordType(rs.getString("recordType"));
-                file.setEmpEntryNum(rs.getInt("empEntryNum"));
-                file.setDate(rs.getDate("date"));
-                
-                
-                switch(rs.getString("recordType")){
-                    
-                    case "memo":
-                        file.setDisciplinaryRecordType(rs.getString("disciplinaryRecordType"));
-                        file.setDisciplinaryComment(rs.getString("disciplinaryComment"));
-                    break;
-                        
-                    case "award":
-                        file.setAwardName(rs.getString("awardName"));
-                    break;    
-                          
-                    case "evalutation":
-                        file.setEvaluationScore(rs.getString("evaluationScore"));
-                        file.setEvaluationName(rs.getString("evaluationName"));
-                    break;    
-                        
+
+            while (rs.next()) {
+
+                if (rs.getBlob("file") != null) {
+
+                    file = new modelRecord();
+                    file.setRecordID(rs.getInt("recordID"));
+                    file.setRecordType(rs.getString("recordType"));
+                    file.setEmpEntryNum(rs.getInt("empEntryNum"));
+                    file.setDate(rs.getDate("date"));
+
+                    switch (rs.getString("recordType")) {
+
+                        case "memo":
+                            file.setDisciplinaryRecordType(rs.getString("disciplinaryRecordType"));
+                            file.setDisciplinaryComment(rs.getString("disciplinaryComment"));
+                            break;
+
+                        case "award":
+                            file.setAwardName(rs.getString("awardName"));
+                            break;
+
+                        case "evalutation":
+                            file.setEvaluationScore(rs.getString("evaluationScore"));
+                            file.setEvaluationName(rs.getString("evaluationName"));
+                            break;
+                    }
                 }
-                
-                }    
-                
             }
-            
-        
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-       
         return files;
-        
     }
     
-    
-    
+    public void changeFieldValue(String tableName, int tableRefNum, String field, Object value) {
+        try {
+            if(tableName.equals("employee")){
+                if(field.equals("lastName")){
+                    sql = "UPDATE employee SET lastName = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("firstName")){
+                    sql = "UPDATE employee SET firstName = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("middleName")){
+                    sql = "UPDATE employee SET middleName = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("address")){
+                    sql = "UPDATE employee SET address = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("birthday")){
+                    sql = "UPDATE employee SET birthday = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setDate(1, (Date) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("birthplace")){
+                    sql = "UPDATE employee SET birthplace = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("homePhone")){
+                    sql = "UPDATE employee SET homePhone = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("mobileNumber")){
+                    sql = "UPDATE employee SET mobileNumber = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setLong(1, (Long) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("SSSNumber")){
+                    sql = "UPDATE employee SET SSSNumber = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("TINNumber")){
+                    sql = "UPDATE employee SET TINNumber = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("PHICNumber")){
+                    sql = "UPDATE employee SET PHICNumber = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("PAGIBIGNumber")){
+                    sql = "UPDATE employee SET PAGIBIGNumber = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("civilStatus")){
+                    sql = "UPDATE employee SET civilStatus = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("citizenship")){
+                    sql = "UPDATE employee SET citizenship = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("religion")){
+                    sql = "UPDATE employee SET religion = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("hireDate")){
+                    sql = "UPDATE employee SET hireDate = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setDate(1, (Date) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("band")){
+                    sql = "UPDATE employee SET band = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("salary")){
+                    sql = "UPDATE employee SET salary = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("departmentID")){
+                    sql = "UPDATE employee SET departmentID = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("positionName")){
+                    sql = "UPDATE employee SET positionName = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("emailAddress")){
+                    sql = "UPDATE employee SET emailAddress = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("managerEntryNum")){
+                    sql = "UPDATE employee SET managerEntryNum = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if(tableName.equals("criminal_offense_history")){
+                if(field.equals("criminalOffense")){
+                    sql = "UPDATE criminal_offense_history SET criminalOffense = ? WHERE criminalOffenseHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("dateOfOffense")){
+                    sql = "UPDATE criminal_offense_history SET dateOfOffense = ? WHERE criminalOffenseHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setDate(1, (Date) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("placeOfOffense")){
+                    sql = "UPDATE criminal_offense_history SET placeOfOffense = ? WHERE criminalOffenseHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if(tableName.equals("education_history")){
+                if(field.equals("level")){
+                    sql = "UPDATE education_history SET level = ? WHERE educationHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("schoolName")){
+                    sql = "UPDATE education_history SET schoolName = ? WHERE educationHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("yearFrom")){
+                    sql = "UPDATE education_history SET yearFrom = ? WHERE educationHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("yearTo")){
+                    sql = "UPDATE education_history SET yearTo = ? WHERE educationHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("award")){
+                    sql = "UPDATE education_history SET award = ? WHERE educationHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if(tableName.equals("employment_history")){
+                if(field.equals("jobTitle")){
+                    sql = "UPDATE employment_history SET jobTitle = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("dateOfEmployment")){
+                    sql = "UPDATE employment_history SET dateOfEmployment = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setDate(1, (Date) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("startingSalary")){
+                    sql = "UPDATE employment_history SET startingSalary = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("endingSalary")){
+                    sql = "UPDATE employment_history SET endingSalary = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("employerName")){
+                    sql = "UPDATE employment_history SET employerName = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("employerAddress")){
+                    sql = "UPDATE employment_history SET employerAddress = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("employerContactNum")){
+                    sql = "UPDATE employment_history SET employerContactNum = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setLong(1, (Long) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("supervisorName")){
+                    sql = "UPDATE employment_history SET supervisorName = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("supervisorContactNum")){
+                    sql = "UPDATE employment_history SET supervisorContactNum = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setLong(1, (Long) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("reasonForLeaving")){
+                    sql = "UPDATE employment_history SET reasonForLeaving = ? WHERE employmentHistoryID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if(tableName.equals("license")){
+                if(field.equals("licenseName")){
+                    sql = "UPDATE license SET licenseName = ? WHERE licenseID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("percentage")){
+                    sql = "UPDATE license SET percentage = ? WHERE licenseID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if(tableName.equals("relative")){
+                if(field.equals("name")){
+                    sql = "UPDATE relative SET name = ? WHERE relativeID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("relation")){
+                    sql = "UPDATE relative SET relation = ? WHERE relativeID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("age")){
+                    sql = "UPDATE relative SET age = ? WHERE relativeID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, (int) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("occupation")){
+                    sql = "UPDATE relative SET occupation = ? WHERE relativeID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("occupationLocation")){
+                    sql = "UPDATE relative SET occupationLocation = ? WHERE relativeID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if(field.equals("contactNum")){
+                    sql = "UPDATE relative SET contactNum = ? WHERE relativeID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setLong(1, (Long) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

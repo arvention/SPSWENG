@@ -7,11 +7,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel = "shortcut icon" href="img/eq logo.ico"/>
-<<<<<<< HEAD
+
         <link rel="stylesheet" type="text/css" href="css/navbar.css">
-=======
-       
->>>>>>> origin/DEV5
+
+
         <title>Home - EQuilibrium</title>
 
         <!-- Bootstrap -->

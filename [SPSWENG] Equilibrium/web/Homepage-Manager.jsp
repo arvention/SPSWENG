@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="eq logo.ico"/>
         <link rel="stylesheet" type="text/css" href="css/Homepage-Manager.css"/>
         <link rel="stylesheet" type="text/css" media="all" href="css/HomepageStyles.css"/>
-        
+
         <script type = "text/javascript" src = "js/Homepage-Manager.js">
         </script>
     </head>
@@ -24,52 +24,53 @@
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>	
-        
-        
+
+
         <div id="box">
             <div id="results">
                 <%  Database db = Database.getInstance();
-                    modelEmployee employee = (modelEmployee)request.getSession().getAttribute("employee");
+                    modelEmployee employee = (modelEmployee) request.getSession().getAttribute("employee");
                     ArrayList<modelLeaveForm> leaveFormsToApprove = db.getLeaveFormToApprove(employee.getEntryNum());
-                    
-                    if(leaveFormsToApprove.size() != 0){
+
+                    if (leaveFormsToApprove.size() != 0) {
                 %>
                 <span class= "titleText"> Leaves for Approval </span>
                 <hr width="75%"/>
-                    <%
-                        for(modelLeaveForm leaveForm : leaveFormsToApprove){        
-                    %>
-                   <div class="result">
-			        <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br/>
-		            	<span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></span><br/>
-		            	<span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></span><br/>
-			
-                        <form action="ApproveLeave" method="POST" class="inline-form" onclick="return accept('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
-                            <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
-                            <input type="hidden" name="approveValue" value="Approved" />
-                            <input type="submit" class ="approveLeave" value="Approve" id="approve-button"/>
-                        </form>
-                            
-                        <form action="ApproveLeave" method="POST" class="inline-form" onclick="return reject('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
-                            <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
-                            <input type="hidden" name="approveValue" value="Rejected" />
-                            <input type="submit" class ="declineLeave" value="Reject" id="reject-button"/>
-                        </form>
-                    </div>
-                    <%}%>
-                </div>
-                <%  }
-                    else{
+                <%
+                    for (modelLeaveForm leaveForm : leaveFormsToApprove) {
                 %>
-                    <div id="no-pending-div">
-                        <p id="no-pending-tag">No pending leave request</p>
-                    </div>
+                <div class="result">
+                    <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br/>
+                    <span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></span><br/>
+                    <span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></span><br/>
+
+                    <form action="ApproveLeave" method="POST" class="inline-form" onclick="return accept('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
+                        <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
+                        <input type="hidden" name="approveValue" value="Approved" />
+                        <input type="hidden" name="curpage" value="homepage-manager" />
+                        <input type="submit" class ="approveLeave" value="Approve" id="approve-button"/>
+                    </form>
+
+                    <form action="ApproveLeave" method="POST" class="inline-form" onclick="return reject('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
+                        <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
+                        <input type="hidden" name="approveValue" value="Rejected" />
+                        <input type="hidden" name="curpage" value="homepage-manager" />
+                        <input type="submit" class ="declineLeave" value="Reject" id="reject-button"/>
+                    </form>
+                </div>
                 <%}%>
             </div>
+            <%  } else {
+            %>
+            <div id="no-pending-div">
+                <p id="no-pending-tag">No pending leave request</p>
+            </div>
+            <%}%>
         </div>
-        
-        <div class = "footer">
-            <hr width="75%"/>EQUILIBRIUM INTERTRADE CORPORATION
-        </div>
-    </body>
+    </div>
+
+    <div class = "footer">
+        <hr width="75%"/>EQUILIBRIUM INTERTRADE CORPORATION
+    </div>
+</body>
 </html>

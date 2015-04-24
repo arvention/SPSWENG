@@ -42,9 +42,9 @@
             <form onsubmit = "return submitLeave()" id = "leave_form"><br>
                 <!--h4>ID Number: <input type="number" name = "idNum" required></h4-->
                 <div class= "header">
-			        <h3>Leave Form Application</h3>
-			    </div>
-		        <hr width= "75%"/>
+                    <h3>Leave Form Application</h3>
+                </div>
+                <hr width= "75%"/>
                 <h4>Type of Leave:
                     <select name= "leaveType" required class = "form-input">
                         <option value= "Sick">Sick</option>
@@ -81,7 +81,7 @@
             <%}%>
         </div>
         <div id = "leaveMessage">
-            
+
         </div>
         <div class= "footer">
             <hr width="75%"/>

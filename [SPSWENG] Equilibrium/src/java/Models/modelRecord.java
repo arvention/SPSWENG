@@ -10,14 +10,27 @@ public class modelRecord {
     private int empEntryNum;
     private Date date;
     private String awardName;
-    private int evaluationScore;
+    private String evaluationScore;
     private int evaluatorEntryNum;
     private String disciplinaryRecordType;
     private String disciplinaryComment;
     private int disciplinaryDuration;
+<<<<<<< HEAD
     private Blob file;
     private String fileName;
+=======
+    private String evaluationName;
+>>>>>>> origin/DEV5
 
+    
+    public void setEvaluationName(String s){
+        this.evaluationName= s;
+    }
+    
+    public String getEvaluationName(){
+        return this.evaluationName;
+    }
+    
     public int getRecordID() {
         return recordID;
     }
@@ -58,11 +71,11 @@ public class modelRecord {
         this.awardName = awardName;
     }
 
-    public int getEvaluationScore() {
+    public String getEvaluationScore() {
         return evaluationScore;
     }
 
-    public void setEvaluationScore(int evaluationScore) {
+    public void setEvaluationScore(String evaluationScore) {
         this.evaluationScore = evaluationScore;
     }
 

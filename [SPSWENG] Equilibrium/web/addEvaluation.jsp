@@ -109,7 +109,7 @@ console.log(today);
 
 						                  
                 <span class="nameText">Evaluation Name</span>  <input type="text" name="evalname" placeholder="Award Name" class="awardName" required /> <br/><br/>
-                <span class="nameText">Score</span> <input id="score" class="dateReceived" type="date" name="score"  required=/><br/><br/>                                 
+                <span class="nameText">Score</span> <input id="score" class="dateReceived" name="score"  required=/><br/><br/>                                 
                 <input type="file" name="filename" class="chooseFile" required/>   
 		<input class="submitBtn" input type="submit" value="Submit" name="bSubmit" align="center">
                    ${message} 

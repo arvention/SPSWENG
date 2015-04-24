@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel = "shortcut icon" href="img/eq logo.ico"/>
         <link rel="stylesheet" type="text/css" href="css/navbar.css">
-        <title>Leave Application</title>
+        <title>Home - EQuilibrium</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,8 +33,8 @@
         %>
         <div class= "nav">
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "#">Change Password</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href= "#"><span class="selectText">Change Password</span></a></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </div>

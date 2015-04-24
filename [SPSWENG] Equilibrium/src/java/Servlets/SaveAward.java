@@ -118,7 +118,14 @@ public class SaveAward extends HttpServlet {
 	}
         
          java.sql.Date sql = new java.sql.Date(date.getTime());
-            
+         
+         
+         if (awardname.length() >= 42) {
+            System.out.println("Oh no too much characters");
+            request.setAttribute("message", "Character Limit Reached for Award Name");
+            RequestDispatcher view = request.getRequestDispatcher("addAward.jsp");
+            view.forward(request, response);
+        }
         
         
         if (memo.length() >= 2500) {

@@ -1788,7 +1788,6 @@ public class Database {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
     
     public ArrayList<modelRecord> getRecords(String type, int empEntryNum) {
         ArrayList<modelRecord> recordList = new ArrayList<>();
@@ -1831,6 +1830,4 @@ public class Database {
         }
         return recordList;
     }
-=======
->>>>>>> origin/DEV5
 }

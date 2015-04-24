@@ -54,6 +54,7 @@ body {
     padding: 5px;
     margin-top: 5px;
     border-top: 1px dotted lightgray;
+    border-bottom: 1px dotted lightgray;
 }
 
 .name {

@@ -37,7 +37,7 @@
         <div class= "nav">
             <ul>
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
-                <li><a href= "#"><span class="selectText">Change Password</span></a></li>
+                <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </div>

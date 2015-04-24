@@ -45,7 +45,7 @@
             <div class="pageTop">
                 <div id="box">
                     <div id="header">
-                        <span id="name">Employee Name</span>
+                        <span id="name"><%=emp.getFirstName()%> <%=emp.getLastName()%></span>
                         <%
                             if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
                         %>

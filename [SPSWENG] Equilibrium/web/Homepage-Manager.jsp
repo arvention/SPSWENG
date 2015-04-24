@@ -42,7 +42,7 @@
                 <div class="result">
                     <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br/>
                     <span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></span><br/>
-                    <span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></span><br/>
+                    <span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></span><br/><br/>
 
                     <form action="ApproveLeave" method="POST" class="inline-form" onclick="return accept('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
                         <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>

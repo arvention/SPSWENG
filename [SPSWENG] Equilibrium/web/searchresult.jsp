@@ -33,6 +33,14 @@
                     $("#go").submit();
                 });
                 
+                $(".evaluate").click(function() {
+
+                    var id = $(this).closest("div").attr("val");
+                    $("#numberofid").val(id);
+                    $("#kind").val("evaluate");
+                    $("#go").submit();
+                });
+                
                 
             });
         </script>
@@ -74,6 +82,7 @@
                             </select>
                             <input type="hidden"  name="entry" value="<%=e.getEntryNum()%>">
                             <input type ="submit"  value="Add Account">
+                            
                         </form>
                         <%}%>
 
@@ -83,7 +92,7 @@
                         <%}%>
                         <button class="addAward">Add Award</button>
                         <button class="filememo">File Memo</button>
-
+                        <button class="evaluate">Evaluation</button>
                     </div>
                     <%}%>   
 

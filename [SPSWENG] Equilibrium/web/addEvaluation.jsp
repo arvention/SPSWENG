@@ -1,6 +1,6 @@
 <html>
    <head>
-     <title>Add Awards</title>
+     <title>Add Evaluation</title>
         <link rel="shortcut icon" href="img/eq logo.ico">
 	 <link rel="stylesheet" type="text/css" media="all" href="addAwards.css"/>
 	 <script src="js/jquery-1.11.2.js"></script>
@@ -73,15 +73,14 @@ console.log(today);
 		</DIV>
 		<DIV class="content">
 		<form action="SaveAward" method="POST" enctype="multipart/form-data">
-               	<span class="boxText"> Add Award to Employee Record</span>
+               	<span class="boxText"> Add Evaluation to Employee Record</span>
 		<hr width="75%"/>
 		<br/>
 
 						                  
-                <span class="nameText">Award Name</span>  <input type="text" name="awardname" placeholder="Award Name" class="awardName" required /> <br/><br/>
-                <span class="nameText">Date Received</span> <input id="datepicker" class="dateReceived" type="date" name="awardreceive"  required="true" /><br/><br/>                                 
-                <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea><br/><br/>
-                <input type="file" name="filename" class="chooseFile"/>   
+                <span class="nameText">Evaluation Name</span>  <input type="text" name="evalname" placeholder="Award Name" class="awardName" required /> <br/><br/>
+                <span class="nameText">Score</span> <input id="score" class="dateReceived" type="date" name="score"  required=/><br/><br/>                                 
+                <input type="file" name="filename" class="chooseFile" required/>   
 		<input class="submitBtn" input type="submit" value="Submit" name="bSubmit" align="center">
                    ${message} 
 

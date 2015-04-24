@@ -14,12 +14,8 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,8 +26,7 @@ import javax.servlet.http.Part;
  *
  * @author Thursday
  */
-@MultipartConfig(maxFileSize = 16177215)  
-public class SaveAward extends HttpServlet {
+public class SaveEvaluation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,10 +45,10 @@ public class SaveAward extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SaveAward</title>");            
+            out.println("<title>Servlet SaveEvaluation</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SaveAward at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SaveEvaluation at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -86,62 +81,33 @@ public class SaveAward extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-  
-        
         HttpSession session = request.getSession();
         modelEmployee employee = (modelEmployee) session.getAttribute("selectedemployee");
-        
-        if(employee == null){
-            System.out.println("WHYY");
-        }
-        
+                
         Part filePart = request.getPart("filename");
         int intid = employee.getEntryNum();
-        String memo = request.getParameter("memoNote");
-        InputStream inputStream = null;
-        String dates = request.getParameter("awardreceive");
-        String awardname = request.getParameter("awardname");
-        
-        System.out.println("date is "+dates);
-        
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = null;
- 
-	try {
- 
-		date = formatter.parse(dates);
-		System.out.println(date);
-		System.out.println(formatter.format(date));
- 
-	} catch (ParseException e) {
-		e.printStackTrace();
-	}
-        
-         java.sql.Date sql = new java.sql.Date(date.getTime());
+        String score = request.getParameter("score");
+        InputStream inputStream = null;       
+        String evalname = request.getParameter("evalname");
+         
+
             
         
-        
-        if (memo.length() >= 2500) {
-            System.out.println("Oh no too much characters");
-            
-        
+        if (evalname.length() >= 2500) { 
             request.setAttribute("message", "Character Limit Reached");
-            RequestDispatcher view = request.getRequestDispatcher("addAward.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("addEvaluation.jsp");
             view.forward(request, response);
         }
         if( filePart.getSize() != 0){
-            
             System.out.println("File Size is "+ filePart.getSize());
             if(filePart.getSize() >  10847412){
                 request.setAttribute("message", "File Size Limit Reached");
                 RequestDispatcher view = request.getRequestDispatcher("addAward.jsp");
                 view.forward(request, response);
             }
-            
-            
         }
         
-        
+        /*
            Database db = Database.getInstance();
            if(filePart.getSize()!=0){
              
@@ -160,6 +126,8 @@ public class SaveAward extends HttpServlet {
             request.setAttribute("message","Success!");
             RequestDispatcher view = request.getRequestDispatcher("addAward.jsp");
             view.forward(request, response);
+        */
+        
     }
 
     /**

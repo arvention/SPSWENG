@@ -64,6 +64,10 @@
         <servlet-name>ApproveLeave</servlet-name>
         <servlet-class>Servlets.ApproveLeave</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveEvaluation</servlet-name>
+        <servlet-class>Servlets.SaveEvaluation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -131,10 +135,14 @@
     <servlet-mapping>
         <servlet-name>SaveAward</servlet-name>
         <url-pattern>/SaveAward</url-pattern>
-        </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ApproveLeave</servlet-name>
         <url-pattern>/ApproveLeave</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveEvaluation</servlet-name>
+        <url-pattern>/SaveEvaluation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

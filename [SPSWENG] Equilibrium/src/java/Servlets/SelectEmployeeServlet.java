@@ -90,9 +90,9 @@ public class SelectEmployeeServlet extends HttpServlet {
         if(request.getParameter("type").equals("file")){
         response.sendRedirect("FileMemo.jsp");    
         }else if(request.getParameter("type").equals("award")){     
-        
             response.sendRedirect("addAward.jsp");
-        
+        }else if(request.getParameter("type").equals("evaluate")){
+            response.sendRedirect("addEvaluation.jsp");
         }
         
         

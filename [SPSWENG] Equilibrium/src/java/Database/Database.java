@@ -38,7 +38,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "admin";
+            String uPass = "password";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -1789,7 +1789,6 @@ public class Database {
             e.printStackTrace();
         }
     }
-    
     
     public ArrayList<modelRecord> getRecords(String type, int empEntryNum) {
         ArrayList<modelRecord> recordList = new ArrayList<>();

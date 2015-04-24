@@ -39,7 +39,6 @@ public class Database {
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
             String uPass = "password";
-
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -1789,6 +1788,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
     
     public ArrayList<modelRecord> getRecords(String type, int empEntryNum) {
         ArrayList<modelRecord> recordList = new ArrayList<>();
@@ -1831,4 +1831,6 @@ public class Database {
         }
         return recordList;
     }
+=======
+>>>>>>> origin/DEV5
 }

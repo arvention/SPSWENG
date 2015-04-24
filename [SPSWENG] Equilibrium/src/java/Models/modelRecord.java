@@ -15,9 +15,14 @@ public class modelRecord {
     private String disciplinaryRecordType;
     private String disciplinaryComment;
     private int disciplinaryDuration;
+<<<<<<< HEAD
     private Blob file;
     private String fileName;
     private String evaluationName;
+=======
+    private String evaluationName;
+
+>>>>>>> origin/DEV5
     
     public void setEvaluationName(String s){
         this.evaluationName= s;

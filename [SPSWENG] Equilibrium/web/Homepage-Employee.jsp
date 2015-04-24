@@ -10,7 +10,7 @@
 <<<<<<< HEAD
         <link rel="stylesheet" type="text/css" href="css/navbar.css">
 =======
-        <link rel="stylesheet" type="text/css" href="css/navBar.css">
+       
 >>>>>>> origin/DEV5
         <title>Home - EQuilibrium</title>
 

@@ -35,7 +35,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "jetisjet";
 
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
@@ -743,10 +743,14 @@ public class Database {
     public ArrayList<modelEmployee> getSearchResult(String search) {
         ArrayList<modelEmployee> modelEmployees = new ArrayList<>();
 
-        String sql = "select * from employee "
-                + "WHERE CONCAT(lastName,' ',firstName) LIKE '%" + search + "%'"
-                + "or CONCAT(firstName,' ',lastName) LIKE '%" + search + "%'";
+       sql = "select * "
+                + "from employee "
+                + "where firstName like '%" + search + "%' or  lastName like '%"+search+"%' or employeeID like '%" + search + "%'"
+                +" or "+ "CONCAT(lastName,' ',firstName) LIKE '%" + search + "%'"
+                +" or CONCAT(firstName,' ',lastName) LIKE '%" + search + "%'";  ;
 
+        System.out.println(sql);
+                
         try {
             rs = stmt.executeQuery(sql);
 
@@ -896,7 +900,9 @@ public class Database {
 
         sql = "select firstName, lastName,middleName, employeeID "
                 + "from employee "
-                + "where firstName like '%" + word + "%' or  lastName like '%A%' or employeeID like '%" + word + "%'";
+                + "where firstName like '%" + word + "%' or  lastName like '%"+word+"%' or employeeID like '%" + word + "%'"
+                +" or "+ "CONCAT(lastName,' ',firstName) LIKE '%" + word + "%'"
+                +" or CONCAT(firstName,' ',lastName) LIKE '%" + word + "%'";  ;
 
         int counter = 0;
         String people = null;

@@ -4,12 +4,13 @@
     width:750px;
     height: 450px;
     opacity: 0.55;
+    margin-top: 8%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .memoText{
-    margin-left: 125px;
+    margin-left: 25%;
     margin-top: 20px;
     color: black;
     border: 1px solid black;
@@ -21,7 +22,7 @@
     width: 75px;
     height: 25px;
     margin-top: 8px;
-    margin-left: 440px;
+    margin-left: 65%;
     color: black;
 }
 
@@ -32,28 +33,34 @@
 
 .titleText{
     font-size: 35px;
-    font-family: Arial;
+    font-family: sans-serif;
     font-weight: bold;
     color: red;
-    margin-left: 125px;
+    margin-left: 30%;
     opacity: .85;
 }
 
 .contentText{
     font-size: 17px;
-    font-family: Arial;
+    font-family: sans-serif;
     color: red;
-    margin-left: 125px;
+    margin-left: 10%;
     margin-top: 8px;
     opacity: .85;
 }
 
 DIV.pageBottom{
-    padding-top: 130px;
+    width: 100%;
+    position: fixed;
+    top: 90%;
+    left: 0%;
+    height: 500px;
     text-align:center;
     color: #808080;
     font-size: 11px;
-    font-family: "Arial";
+    font-family: sans-serif;
+    background-color: #E8E8E8;
+    z-index: 1;
 }
 
 textarea{

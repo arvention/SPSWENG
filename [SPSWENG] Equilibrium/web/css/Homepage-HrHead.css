@@ -97,6 +97,7 @@ DIV.footer{
     position: fixed;
     top: 90%;
     left: 0%;
+    bottom:0;
     height: 500px;
     text-align:center;
     color: #808080;

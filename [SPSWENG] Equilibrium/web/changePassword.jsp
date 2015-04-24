@@ -1,13 +1,10 @@
 <%@page import="Models.modelEmployee"%>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="navigationBar.css">
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel = "shortcut icon" href="img/eq logo.ico"/>
-    <link rel = "stylesheet" type="text/css" href= "css/changePassword.css"/>
-    
+<link rel="shortcut icon" href="img/eq logo.ico">
+        <link rel = "stylesheet" type="text/css" href= "css/navigationBar.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="css/changePassword.css"/>
+        
      <script src="js/jquery-1.11.2.min.js"></script>
       <script src="js/jquery-ui.min.js"></script>
     <title>Change Password - EQuilibrium</title>
@@ -48,7 +45,7 @@
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
                 <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-HrHead.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
             </form>
         </DIV>
@@ -64,7 +61,7 @@
                 <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
                 <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
-                <li><a href= "EmployeeData.jsp"><span class="selectText">Add Employee Record</span></a></li>
+                <li><a href= "EmployeeData.jsp">Add Employee Record</a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
@@ -82,7 +79,7 @@
                 <li><a href="changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-SManager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>
         <%       
@@ -96,7 +93,7 @@
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
                 <li><a href="changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
-                <li><a href="Homepage-Manager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>
         <%
@@ -108,15 +105,16 @@
             <ul>
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
                 <li><a href="changePassword.jsp"><span class="selectText">Change Password</span></a></li>
-                <li><a href="Homepage-Employee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                
+                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </div>
         <%
            }
         %>
-	<div class= "content" align= "center">
+	<div class= "content">
 		<span class = "titleText">Change Password</span>
-		<hr width= "75%"/>
+		
 		<br/><br/>
                 <form action="ChangePasswordServlet" method="POST" id="passwordform">
 		Current password: <input class= "textLine" input type="password" size="25" name="oldpassword" /> </br></br>

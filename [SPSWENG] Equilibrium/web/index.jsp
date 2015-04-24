@@ -22,6 +22,11 @@
 	<div id="button-buttons" align="center">
 	<input type="submit" id="login" class="loginButton"value="Log in"/></div>
 	</form></div>
-	<DIV class = "pageBottom" style="margin-bottom: 3px"><hr width ="75%"/></br> EQUILIBRIUM INTERTRADE CORP.</div>
+	<!--DIV class = "pageBottom" style="margin-bottom: 3px"><hr width ="75%"/></br> EQUILIBRIUM INTERTRADE CORP.</div-->
+        
+        <DIV class="footer">
+            <br/><hr width="75%"/>
+            EQUILIBRIUM INTERTRADE CORP.
+        </DIV>
 </body>
 </html>

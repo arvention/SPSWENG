@@ -180,5 +180,9 @@
                 </div>
             </div>
         </div>
+        <DIV class="footer">
+            <br/><hr width="75%"/>
+            EQUILIBRIUM INTERTRADE CORP.
+        </DIV>
     </body>
 </html>

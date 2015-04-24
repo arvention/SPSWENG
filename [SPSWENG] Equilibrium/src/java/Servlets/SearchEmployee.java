@@ -70,6 +70,7 @@ public class SearchEmployee extends HttpServlet {
          session.setAttribute("searchresult", SR);
          
          response.sendRedirect("searchresult.jsp");
+         System.out.println("IN SEARCH SERVLET: "+ search);
     }
 
     /**

@@ -4,6 +4,7 @@
      <title>Add Evaluation</title>
         <link rel="shortcut icon" href="img/eq logo.ico">
 	 <link rel="stylesheet" type="text/css" media="all" href="addAwards.css"/>
+	  <link rel="stylesheet" type="text/css" media="all" href="navigationBar.css"/>
 	 <script src="js/jquery-1.11.2.js"></script>
          
            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">

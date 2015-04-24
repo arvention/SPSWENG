@@ -106,14 +106,14 @@ DIV.footer{
     z-index: 1;
 }
 
-DIV.nav{
+.nav{
     padding-top:0px;
     background: #f5f5f5;
-
+ 
     /*display: block;*/
     width: 100%;
     height: 52px;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
@@ -127,14 +127,7 @@ DIV.nav{
     list-style: none;
 }
 .nav ul li a{
-    float: right;
-    margin-top: 15px;
-    margin-right: 20px;
-    color: black;
     text-decoration: none;
-    display: block;
-    font-size: 125%;
-    position:relative;
 }
 .nav ul li a:hover{
     color: red;
@@ -145,7 +138,7 @@ DIV.nav{
     margin-left: 25px;
     float: left;
     width: auto;
-    position:relative;
+    position:fixed;
 }
 .logo:hover{
     cursor:pointer;
@@ -270,4 +263,17 @@ DIV.search{
 
 .inline-form{
     display: inline;
+}
+.selectText{
+	float: right;
+    	margin-top: 15px;
+  	margin-right: 20px;
+    	color: black;
+	display: block;
+    	font-size: 125%;
+    	position:relative;
+}
+.selectText:hover{
+     color: red;
+    cursor:pointer;
 }

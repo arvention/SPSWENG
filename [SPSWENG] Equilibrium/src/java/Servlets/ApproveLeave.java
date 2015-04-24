@@ -75,11 +75,18 @@ public class ApproveLeave extends HttpServlet {
         
         int leaveID = Integer.parseInt(request.getParameter("leaveID"));
         String approveValue = request.getParameter("approveValue");
+        String curpage = request.getParameter("curpage");
         
         db.changeLeaveStatus(leaveID, approveValue);
         
-        RequestDispatcher view = request.getRequestDispatcher("Homepage-Manager.jsp");
-        view.forward(request, response);
+        if(curpage.equals("homepage-manager")){
+            RequestDispatcher view = request.getRequestDispatcher("Homepage-Manager.jsp");
+            view.forward(request, response);
+        }
+        else if(curpage.equals("homepage-hrhead")){
+            RequestDispatcher view = request.getRequestDispatcher("Homepage-HrHead.jsp");
+            view.forward(request, response);
+        }
     }
 
     /**

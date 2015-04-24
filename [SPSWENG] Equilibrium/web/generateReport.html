@@ -1,0 +1,152 @@
+<html>
+<head>
+    <link rel="shortcut icon" href="img/eq logo.ico">
+    <link rel="stylesheet" href="css/generateReport.css">
+    <script type="text/javascript">
+        function makeTableScroll() {
+            // Constant retrieved from server-side via JSP
+            var maxRows = 15;
+
+            var table = document.getElementById('reportTable');
+            var wrapper = table.parentNode;
+            var rowsInTable = table.rows.length;
+            var height = 0;
+            if (rowsInTable > maxRows) {
+                for (var i = 0; i < maxRows; i++) {
+                    height += table.rows[i].clientHeight;
+                }
+                wrapper.style.height = height + "px";
+            }
+        }
+    </script>
+</head>
+<body onload="makeTableScroll();">
+	
+    <DIV class= "nav">
+            <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
+            <ul>
+                <li><a href= "Logout">Log Out</a></li>
+                <li><a href= "changePassword.jsp">Change Password</a></li>
+                <li><a href= "#">File a Leave</a></li>
+                <li><a href= "#">Generate Report</a></li>
+                <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
+            </ul>
+        </DIV>	
+
+
+    <div id = "box" align="center">
+	<span class="titleText">Monthly Leave Report</span><hr/>
+    <div class="scrollingTable">
+        <table id="reportTable">
+    <tr>
+			<th> Employee Name </th>
+			<th> Leaves Taken </th>
+			<th> Leaves Left </th>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+		<tr>
+			<td> Employee Name </td>
+			<td> Leaves Taken </td>
+			<td> Leaves Left </td>
+		</tr>
+
+        </table>
+		
+    </div>
+    		<br/>
+		Select Month:
+		<select>
+			<option>January</option>
+			<option>February</option>
+			<option>March</option>
+			<option>April</option>
+			<option>May</option>
+			<option>June</option>
+		</select>
+    </div>
+	   <DIV class="footer">
+            <br/><hr width="75%"/>
+            EQUILIBRIUM INTERTRADE CORP.
+        </DIV>
+</body>
+</html>

@@ -77,7 +77,7 @@ console.log(today);
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
                 <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-HrHead.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
             </form>
         </DIV>

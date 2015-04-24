@@ -24,7 +24,7 @@
                 <li><a href= "LeaveForm.jsp">File a Leave</a></li> 
                 <li><a href= "#">Generate Report</a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-HrHead.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
             </form>
         </DIV>
@@ -58,7 +58,7 @@
                 <li><a href="changePassword.jsp">Change Password</a></li>
                 <li><a href= "LeaveForm.jsp">File a Leave</a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-SManager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>
         <%       
@@ -72,7 +72,7 @@
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "changePassword.jsp">Change Password</a></li>
                 <li><a href= "LeaveForm.jsp">File a Leave</a></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-Manager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>
         <%
@@ -84,7 +84,7 @@
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="Homepage-Employee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </div>
         <%

@@ -28,12 +28,50 @@
         <link rel="stylesheet" type="text/css" media="all" href= "css/navigationBar.css"/>
         <script src="js/jquery.min.js"></script>
         <script src="js/ViewEmployeeRecords.js"></script>
-    </head>
-    <%
+        
+        <%
         modelEmployee emp = (modelEmployee) request.getSession().getAttribute("viewEmp");
         Database db = Database.getInstance();
         modelEmployee user = (modelEmployee) request.getSession().getAttribute("employee");
-    %>
+        %>
+        
+        
+        <script>
+       
+    $(document).ready(function(){
+        
+   function readURL(input) {
+
+    
+
+
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#frameforpic').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+  }
+        
+        
+    $("#imgInp").change(function(){
+    readURL(this);
+    });  
+      
+        
+  
+        
+  });
+        
+      </script>  
+        
+   
+    </head>
+
     <body bgcolor ="#E8E8E8">
     <DIV class= "nav">
             <form method="GET" action="SearchEmployee">
@@ -56,8 +94,9 @@
 
         <div id="overlay"></div>
         <div class= "pageLeft" align = "center">
-            <img class = "empPicture" src="http://fc02.deviantart.net/fs37/i/2008/279/c/8/Rawr_by_EmoPenguin64.jpg"/><br/>
-            <input class="botan" type="button" value="Change Image"/><br/><br/>
+            <img   id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%> " /><br/>
+            <input type='file' id="imgInp" />
+          <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
             <input class="botan" type="button" value="Save Changes"/>
         </div>
         <div id="main">
@@ -466,8 +505,8 @@
                                             for (modelRecord record : recordList) {
                                         %>
                                         <div class = "line"><span class ="label"><b>Award Name</b></span>
-                                            <%=record.getDisciplinaryRecordType()%>
-                                            <button class = "downloadButton">Download File</button>
+                                            <%=record.getAwardName()%>
+                                            <button class = "downloadButton" value="<%=record.getRecordID()%>">Download File</button>
                                         </div>
                                         <div class = "line"><span class ="label"><b>Date</b></span>
                                             <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
@@ -475,6 +514,8 @@
                                         <br>
                                         <%}%>
                                     </div>
+                                    
+                                    
                                     <div id = "evaluation">
                                         <%
                                             recordList = db.getRecords("evaluation", emp.getEntryNum());
@@ -483,13 +524,11 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Evaluation Name</b></span>
                                             <%=record.getEvaluationName()%>
-                                            <button class = "downloadButton">Download File</button>
+                                            <button class = "downloadButton" value="<%=record.getRecordID()%>">Download File</button>
                                         </div>
                                         <div class = "line"><span class ="label"><b>Score</b></span>
                                             <%=record.getEvaluationScore()%>
                                         </div>
-                                        <div class = "line"><span class ="label"><b>Evaluated By</b></span>
-                                            <%=db.getFirstName(record.getEvaluatorEntryNum())%> <%=db.getLastName(record.getEvaluatorEntryNum())%>
                                         </div>
                                         <br>
                                         <%}%>

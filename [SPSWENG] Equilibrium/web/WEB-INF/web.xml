@@ -68,6 +68,10 @@
         <servlet-name>SaveEvaluation</servlet-name>
         <servlet-class>Servlets.SaveEvaluation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetImage</servlet-name>
+        <servlet-class>Servlets.GetImage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>SaveEvaluation</servlet-name>
         <url-pattern>/SaveEvaluation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetImage</servlet-name>
+        <url-pattern>/GetImage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

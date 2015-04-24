@@ -1896,4 +1896,36 @@ public class Database {
         }
         return x;
     }
+    
+    public boolean isFile(int id){
+        
+        sql = "select * from record where file is not null and recordID = "+ id;
+        boolean flag=false;
+       Statement stmt;
+        ResultSet rs;
+    
+        
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            if(rs.next()) {
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

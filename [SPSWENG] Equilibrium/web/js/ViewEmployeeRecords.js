@@ -1,18 +1,27 @@
 $(document).ready(function () {
-    var currPage = "#personal";
-    var nextPage;
+    var currPage = "#personal", currRecord = "#memo";
+    var nextPage, nextRecord;
     var toBeDeleted;
     $(".pages").hide();
     $("#personal").show();
     $("#alert").hide();
     $(".add-delete-button").hide();
     $("#overlay").hide();
+    $("#awards").hide();
+    $("#evaluation").hide();
 
     $(document).on("change", "#options", function () {
         nextPage = "#" + $("#options").find(":selected").val();
         $(currPage).hide();
         $(nextPage).show();
         currPage = nextPage;
+    });
+    
+    $(document).on("change", "#docs-select", function () {
+        nextRecord = "#" + $("#docs-select").find(":selected").val();
+        $(currRecord).hide();
+        $(nextRecord).show();
+        currRecord = nextRecord;
     });
     
     $(document).on("click", "#editButton", function () {

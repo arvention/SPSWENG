@@ -8,8 +8,8 @@
     <head>
         <title>	Home - EQuilibrium </title>
         <link rel="shortcut icon" href="eq logo.ico"/>
-        <link rel="stylesheet" type="text/css" href="css/HomePage-Manager.css"/>
-        <link rel="stylesheet" type="text/css" media="all" href="css/HomepageStyles.css"/>
+        <link rel="stylesheet" type="text/css" href="css/Homepage-Manager.css"/>
+    
 
         <script type = "text/javascript" src = "js/Homepage-Manager.js">
         </script>

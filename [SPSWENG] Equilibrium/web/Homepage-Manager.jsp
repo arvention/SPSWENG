@@ -19,9 +19,9 @@
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "FileLeave.jsp">File a Leave</a></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href= "#">Change Password</a></li>
+                <li><a href= "#">File a Leave</a></li>
+                <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
             </ul>
         </DIV>	
 

@@ -32,7 +32,7 @@
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
                 <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
+                <li><a href= "#">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>

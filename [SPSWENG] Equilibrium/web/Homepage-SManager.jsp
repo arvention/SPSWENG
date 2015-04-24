@@ -13,10 +13,9 @@
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
-                <li><a href="changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
-                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                <li><a href="#">Change Password</a></li>
+                <li><a href= "#">File a Leave</a></li>
+                <li><img class= "logo" src= "img/eqboyz.png" height="55px"/></li>
             </ul>
         </DIV>	
         <DIV class="notifications">

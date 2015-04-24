@@ -52,28 +52,51 @@ input:hover, .alertButton:hover {
     margin-left: 2px;
 }
 
-#editButton {
+#editButton, #saveButton{
     width: 100px;
     height: 30px;
     background-color: lightgray;
     border: 0;
-    float: right;
     font-size: 16px;
     color: white;
     border-top-right-radius: 13px;
 }
 
+#saveButton{
+    display: none;
+}
+
+.editSpan{
+    float: right;
+}
+
+.editMessage{
+    margin-right: 10px;
+    display: none;
+}
+
 .data {
     padding-left: 2px;
     padding-right: 2px;
+    padding: 2px;
+    border: none;
+    color: black;
+}
+
+.data:hover{
+    cursor: default; 
+}
+
+#main{
+    margin: 0;
+    margin-right: 50px;
+    display: inline-block;
 }
 
 #box {
     height: 500px;
     width: 800px;
-    position: absolute;
-    top: 0; bottom:0; left: 0; right: 0;
-    margin: auto;
+    float: right;
     border: 2px solid lightgray;
     background: white;
     border-radius: 16px;
@@ -153,31 +176,50 @@ select:focus {
 .pageTop{
     margin-top: 3px;
 }
+
 .pageLeft{
-	height:19%;
-	width: 19%;
-	position: relative;
-	margin-top:7.5%;
-	padding-top:0;
-	margin-bottom: 600px;
+    height: 40%;
+    width: 20%;
+    margin-right: 10px;
+    margin-top: 50px;
+    padding-top: 0;
+    float: left;
 }
+
+.empPicture{
+    width: 200px;
+    height: 200px;
+}
+
 .botan{
-	font-size: 100%;
-	width: 50%;
-	padding: 5px;
-	background-color: #D63333;
-	border-color: #D63333;
-	color: white;
-	float: left;
-	cursor:hand;
-	opacity: 0.55;
+    font-size: 100%;
+    width: 50%;
+    padding: 5px;
+    background-color: #D63333;
+    border-color: #D63333;
+    color: white;
+    cursor: pointer;
+    opacity: 0.55;
 }
+
 .pageBot{
+    margin-top: 50px;
     position: relative;
-    margin-top: 600px;
     margin-bottom: 0;
-	text-align:center;
+    text-align:center;
     color: #808080;
     font-size: 11px;
     font-family: "Arial";
+}
+
+.editNote{
+    color: red;
+    font-size: 11px;
+    display: none;
+    font-weight: bolder;
+    font-style: italic
+}
+
+input[type='date']{
+    width: 125px;
 }

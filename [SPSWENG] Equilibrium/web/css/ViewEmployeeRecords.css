@@ -226,4 +226,5 @@ input[type='date']{
 
 .downloadButton{
     float: right;
+    margin-right: 10px;
 }

@@ -420,25 +420,66 @@
                         <div id="docs" class="pages">
                             <div class="content"> 
                                 <select id="docs-select">
-                                    <option>Employment Contract</option>
-                                    <option>Memorandums of Disciplinary Actions</option>
-                                    <option>Filed Leaves</option>
-                                    <option>Recognitions and Awards</option>
+                                    <option selected value = "memo">Memorandums of Disciplinary Actions</option>
+                                    <option value = "awards">Recognitions and Awards</option>
+                                    <option value = "evaluation">Evaluation</option>
                                 </select>
                                 <br>
                                 <br>
                                 <br>
+                                <%
+                                    ArrayList<modelRecord> recordList = db.getRecords("memo", emp.getEntryNum());
+                                %>
                                 <div class ="subContent">
-                                    <%
-                                        ArrayList<modelRecord> recordList = db.getRecords("memo", emp.getEntryNum());
-                                        System.out.println("record = " + recordList.size());
-                                        for(modelRecord record : recordList){
-                                    %>
-                                    <div class = "line"><span class ="label"><b>Date</b></span>
-                                        <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
-                                        <button class = "downloadButton">Download File</button>
+                                    <div id = "memo">
+                                        <%
+                                            for (modelRecord record : recordList) {
+                                        %>
+                                        <div class = "line"><span class ="label"><b>Date</b></span>
+                                            <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
+                                            <button class = "downloadButton">Download File</button></div>
+                                        <div class = "line"><span class ="label"><b>Disciplinary Record Type</b></span>
+                                            <%=record.getDisciplinaryRecordType()%></div>
+                                        <div class = "line"><span class ="label"><b>Disciplinary Comment</b></span>
+                                            <%=record.getDisciplinaryComment()%></div>
+                                        <br>
+                                        <%}%>
                                     </div>
-                                    <%}%>
+                                    <div id = "awards">
+                                        <%
+                                            recordList = db.getRecords("award", emp.getEntryNum());
+
+                                            for (modelRecord record : recordList) {
+                                        %>
+                                        <div class = "line"><span class ="label"><b>Award Name</b></span>
+                                            <%=record.getDisciplinaryRecordType()%>
+                                            <button class = "downloadButton">Download File</button>
+                                        </div>
+                                        <div class = "line"><span class ="label"><b>Date</b></span>
+                                            <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
+                                        </div>
+                                        <br>
+                                        <%}%>
+                                    </div>
+                                    <div id = "evaluation">
+                                        <%
+                                            recordList = db.getRecords("evaluation", emp.getEntryNum());
+
+                                            for (modelRecord record : recordList) {
+                                        %>
+                                        <div class = "line"><span class ="label"><b>Evaluation Name</b></span>
+                                            <%=record.getEvaluationName()%>
+                                            <button class = "downloadButton">Download File</button>
+                                        </div>
+                                        <div class = "line"><span class ="label"><b>Score</b></span>
+                                            <%=record.getEvaluationScore()%>
+                                        </div>
+                                        <div class = "line"><span class ="label"><b>Evaluated By</b></span>
+                                            <%=db.getFirstName(record.getEvaluatorEntryNum())%> <%=db.getLastName(record.getEvaluatorEntryNum())%>
+                                        </div>
+                                        <br>
+                                        <%}%>
+                                    </div>
                                 </div>
                             </div>
                         </div>

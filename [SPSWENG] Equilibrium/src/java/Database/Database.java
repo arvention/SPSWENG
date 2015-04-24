@@ -38,7 +38,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
+            String uPass = "admin";
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -1819,6 +1819,7 @@ public class Database {
                         record.setAwardName(rs.getString("awardName"));
                         break;
                     case "evaluation":
+                        record.setEvaluationName(rs.getString("evaluationName"));
                         record.setEvaluationScore(rs.getString("evaluationScore"));
                         record.setEvaluatorEntryNum(rs.getInt("evaluatorEntryNum"));
                         break;

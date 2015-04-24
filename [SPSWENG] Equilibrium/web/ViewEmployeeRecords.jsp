@@ -28,91 +28,63 @@
         <link rel="stylesheet" type="text/css" media="all" href= "css/navigationBar.css"/>
         <script src="js/jquery.min.js"></script>
         <script src="js/ViewEmployeeRecords.js"></script>
-        
+
         <%
-        modelEmployee emp = (modelEmployee) request.getSession().getAttribute("viewEmp");
-        Database db = Database.getInstance();
-        modelEmployee user = (modelEmployee) request.getSession().getAttribute("employee");
+            modelEmployee emp = (modelEmployee) request.getSession().getAttribute("viewEmp");
+            Database db = Database.getInstance();
+            modelEmployee user = (modelEmployee) request.getSession().getAttribute("employee");
         %>
-        
-        
+
+
         <script>
-       
-    $(document).ready(function(){
-        
-   function readURL(input) {
 
-    
+            $(document).ready(function(){
+
+            function readURL(input) {
+
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+                    if (input.files && input.files[0]) {
+            var reader = new FileReader();
+                    reader.onload = function (e) {
+                    $('#frameforpic').attr('src', e.target.result);
+                    }
+
+            reader.readAsDataURL(input.files[0]);
+            }
+            }
 
 
-<<<<<<< HEAD
+            $("#imgInp").change(function(){
+            readURL(this);
+            });
+            });
+                    $(".downloadButton").click(function(){
+            $("#listoffiles").submit(function (e) {
+            e.preventDefault(); // this will prevent from submitting the form.
+            });
+                    window.location.href = "GetImage?id=" + this.id;
+            });
+                    $("#docs-select").hide();
+            });</script>  
 
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
 
-=======
-
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
->>>>>>> origin/DEV5
-        reader.onload = function (e) {
-            $('#frameforpic').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-  }
-        
-        
-    $("#imgInp").change(function(){
-    readURL(this);
-    });  
-      
-        
-  
-<<<<<<< HEAD
-        
-  });
-=======
-  $(".downloadButton").click(function(){
-    $("#listoffiles").submit(function (e) {
-      e.preventDefault(); // this will prevent from submitting the form.
-  });
-    
-     window.location.href = "GetImage?id="+ this.id;   
-   
-    
-    
-    });  
-  
-    $("#docs-select").hide();
-  
-        
-  });
-  
-  
->>>>>>> origin/DEV5
-        
-      </script>  
-        
-   
     </head>
 
     <body bgcolor ="#E8E8E8">
-    <DIV class= "nav">
+        <DIV class= "nav">
             <form method="GET" action="SearchEmployee">
-            <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
-            <ul>
-                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
-                <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
-                <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
-                <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
-                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
-            </ul>
+                <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
+                <ul>
+                    <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                    <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                    <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
+                    <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
+                    <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
+                    <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
+                </ul>
             </form>
-    </DIV>
+        </DIV>
         <div id="alert">
             Are you sure you want to delete this content?<br/>
             <input type="button" value="Yes" class="alertButton">
@@ -123,7 +95,7 @@
         <div class= "pageLeft" align = "center">
             <img   id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%> " /><br/>
             <input type='file' id="imgInp" />
-          <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
+            <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
             <input class="botan" type="button" value="Save Changes"/>
         </div>
         <div id="main">
@@ -519,7 +491,7 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Date</b></span>
                                             <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
-                                            <%if(db.isFile(record.getRecordID()) ){  %>
+                                            <%if (db.isFile(record.getRecordID())) {%>
                                             <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button></div>
                                             <% }%>
                                         <div class = "line"><span class ="label"><b>Disciplinary Record Type</b></span>
@@ -537,13 +509,10 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Award Name</b></span>
                                             <%=record.getAwardName()%>
-<<<<<<< HEAD
                                             <button class = "downloadButton" value="<%=record.getRecordID()%>">Download File</button>
-=======
-                                            <%if(db.isFile(record.getRecordID()) ){  %>
+                                            <%if (db.isFile(record.getRecordID())) {%>
                                             <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button>
-                                             <% }%>
->>>>>>> origin/DEV5
+                                            <% }%>
                                         </div>
                                         <div class = "line"><span class ="label"><b>Date</b></span>
                                             <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
@@ -551,8 +520,8 @@
                                         <br>
                                         <%}%>
                                     </div>
-                                    
-                                    
+
+
                                     <div id = "evaluation">
                                         <%
                                             recordList = db.getRecords("evaluation", emp.getEntryNum());
@@ -561,59 +530,56 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Evaluation Name</b></span>
                                             <%=record.getEvaluationName()%>
-<<<<<<< HEAD
                                             <button class = "downloadButton" value="<%=record.getRecordID()%>">Download File</button>
-=======
-                                             <%if(db.isFile(record.getRecordID()) ){  %>
+                                            <%if (db.isFile(record.getRecordID())) {%>
                                             <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button>
                                             <% }%>
->>>>>>> origin/DEV5
                                         </div>
                                         <div class = "line"><span class ="label"><b>Score</b></span>
                                             <%=record.getEvaluationScore()%>
                                         </div>
-                                        </div>
-                                        <br>
-                                        <%}%>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="others" class="pages">
-                            <div class="content"> 
-                                <div>
-                                    <div class="label-rel">
-                                        Criminal Offense History
-                                    </div>
-                                    <%
-                                        ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
-                                        for (modelCriminalOffenseHistory offense : offenses) {
-                                    %>
-                                    <div class="subContent">
-                                        <div class="line"><span class="label"><b>Criminal Offense</b></span>
-                                            <input name = "offensename" type ="text" class="data" value = "<%=offense.getCriminalOffense()%>" readonly/>
-                                            <input type="button" value="+" class="add-delete-button">
-                                            <input type="button" value="-" class="add-delete-button"></div>
-                                        <div class="line"><span class="label"><b>Date of Offense</b></span>
-                                            <input name = "offensedate" type ="text" class="data" value ="<%=offense.getDateOfOffense()%>" readonly/></div>
-                                        <div class="line"><span class="label">Place of Offense</span>
-                                            <input name = "offenseplace" type ="text" class="data" value = "<%=offense.getPlaceOfOffense()%>" readonly/></div>
                                     </div>
                                     <br>
                                     <%}%>
                                 </div>
                             </div>
                         </div>
-                        <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
-                    </form>
-                    <%}%>
                 </div>
-            </div> <!-- end of box -->
-        </div>
-        <div class = "pageBot">
-            <hr width = "75%">
-            EQUILIBRIUM INTERTRADE CORP.
-        </div>
-    </body>
+
+                <div id="others" class="pages">
+                    <div class="content"> 
+                        <div>
+                            <div class="label-rel">
+                                Criminal Offense History
+                            </div>
+                            <%
+                                ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
+                                for (modelCriminalOffenseHistory offense : offenses) {
+                            %>
+                            <div class="subContent">
+                                <div class="line"><span class="label"><b>Criminal Offense</b></span>
+                                    <input name = "offensename" type ="text" class="data" value = "<%=offense.getCriminalOffense()%>" readonly/>
+                                    <input type="button" value="+" class="add-delete-button">
+                                    <input type="button" value="-" class="add-delete-button"></div>
+                                <div class="line"><span class="label"><b>Date of Offense</b></span>
+                                    <input name = "offensedate" type ="text" class="data" value ="<%=offense.getDateOfOffense()%>" readonly/></div>
+                                <div class="line"><span class="label">Place of Offense</span>
+                                    <input name = "offenseplace" type ="text" class="data" value = "<%=offense.getPlaceOfOffense()%>" readonly/></div>
+                            </div>
+                            <br>
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+                <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+                </form>
+                <%}%>
+            </div>
+        </div> <!-- end of box -->
+    </div>
+    <div class = "pageBot">
+        <hr width = "75%">
+        EQUILIBRIUM INTERTRADE CORP.
+    </div>
+</body>
 </html>

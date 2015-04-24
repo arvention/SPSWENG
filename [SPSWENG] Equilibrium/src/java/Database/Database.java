@@ -40,15 +40,15 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-<<<<<<< HEAD
+
             String uPass = "admin";
-=======
+
 
             //String uPass = "password"
 
-            String uPass = "jetisjet";
+            
 
->>>>>>> origin/DEV5
+
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -1836,7 +1836,7 @@ public class Database {
         }
         return recordList;
     }
-<<<<<<< HEAD
+
 
     public void addEmployeeAuditTrail(String tableName, int tableReferenceNum, String fieldChanged, String editFrom, String editTo,
             int editorEntryNum, int editedEntryNum, Timestamp timestamp, int approverEntryNum) {
@@ -1871,7 +1871,7 @@ public class Database {
             e.printStackTrace();
         }
     }
-=======
+
     
     public int[] getYearSpan() {
 
@@ -1969,5 +1969,5 @@ public class Database {
     
     
     
->>>>>>> origin/DEV5
+
 }

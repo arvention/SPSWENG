@@ -24,7 +24,7 @@
         
         
         <div id="box">
-            <ul id="results">
+            <div id="results">
                 <%  Database db = Database.getInstance();
                     modelEmployee employee = (modelEmployee)request.getSession().getAttribute("employee");
                     ArrayList<modelLeaveForm> leaveFormsToApprove = db.getLeaveFormToApprove(employee.getEntryNum());
@@ -32,27 +32,29 @@
                     if(leaveFormsToApprove.size() != 0){
                 %>
                 <span class= "titleText"> Leaves for Approval </span>
+                <hr width="75%"/>
                     <%
                         for(modelLeaveForm leaveForm : leaveFormsToApprove){        
                     %>
-                   <li class="result">
-			            <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br>
-		            	<span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></p></span><br>
-		            	<span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></p></span><br>
+                   <div class="result">
+			        <span class="name"><%=db.getLastName(leaveForm.getEmpEntryNum())%>, <%=db.getFirstName(leaveForm.getEmpEntryNum())%></span><br/>
+		            	<span class="typeLeave">Type of Leave: <%=leaveForm.getLeaveType()%></span><br/>
+		            	<span class="typeLeave">Start Date: <%=leaveForm.getStartDate()%></span><br/>
 			
                         <form action="ApproveLeave" method="POST">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Approved" />
                             <input type="submit" class ="approveLeave" value="Approve" />
                         </form>
+                            
                         <form action="ApproveLeave" method="POST">
                             <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                             <input type="hidden" name="approveValue" value="Rejected" />
                             <input type="submit" class ="declineLeave" value="Reject" />
                         </form>
-                    </li>
+                    </div>
                     <%}%>
-                </ul>
+                </div>
                 <%  }
                     else{
                 %>

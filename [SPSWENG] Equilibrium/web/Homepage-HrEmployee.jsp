@@ -47,14 +47,18 @@
                 <li><a href= "changePassword.jsp">Change Password</a></li>
                 <li><a href= "LeaveForm.jsp">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
+<<<<<<< HEAD
                 <li><a href= "EmployeeData.jsp">Add Employee Record</a></li>
                 <li><img class= "logo" src= "img/eqboyz.png" height="53px"/></li>
+=======
+                <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
+>>>>>>> origin/DEV5
             </ul>
         </DIV>	
         
         <DIV class="search" >
          <form method ="GET" align="center" action="SearchEmployee">
-		<IMG class ="compLogo" src = "img/eqlogobig.png"/>
+		<IMG class ="compLogo" src = "img/eqboyz.png"/>
 		<input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/>
           </form>   
         </DIV>    

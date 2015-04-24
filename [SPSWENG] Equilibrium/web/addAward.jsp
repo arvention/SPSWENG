@@ -5,7 +5,7 @@
         <link rel="shortcut icon" href="img/eq logo.ico">
 	 <link rel="stylesheet" type="text/css" media="all" href="addAwards.css"/>
 	 <script src="js/jquery-1.11.2.js"></script>
-         
+    
          <!--  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
            <link rel="stylesheet" href= "css/jquery-ui.css"/>
             <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
@@ -18,7 +18,13 @@
          <script>
                $(document).ready(function () {
                   
-                   $( "#datepicker" ).datepicker();
+                   
+                   
+                    $( "#datepicker" ).datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                    });
+                   
                    
                    
                     $("#datepicker").keydown(function(e){

@@ -1,5 +1,5 @@
 package Database;
-
+import ClassHelpers.Downloadables;
 import Models.modelBranch;
 import Models.modelCriminalOffenseHistory;
 import Models.modelDepartment;
@@ -9,6 +9,7 @@ import Models.modelEmployeeAuditTrail;
 import Models.modelEmploymentHistory;
 import Models.modelLeaveForm;
 import Models.modelLicense;
+import Models.modelRecord;
 import Models.modelRelative;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -36,8 +37,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "password";
-
+            String uPass = "jetisjet";
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -1449,7 +1449,58 @@ public class Database {
     }
     
     
-    
+    public Downloadables getDownloadables(int id){
+        
+        Downloadables files = new Downloadables();
+        modelRecord file;
+        sql ="select * from record where empEntryNum = "+ id;
+        
+        try{
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                
+                if(rs.getBlob("file") != null  ){
+                
+                file = new modelRecord();
+                file.setRecordID(rs.getInt("recordID"));
+                file.setRecordType(rs.getString("recordType"));
+                file.setEmpEntryNum(rs.getInt("empEntryNum"));
+                file.setDate(rs.getDate("date"));
+                
+                
+                switch(rs.getString("recordType")){
+                    
+                    case "memo":
+                        file.setDisciplinaryRecordType(rs.getString("disciplinaryRecordType"));
+                        file.setDisciplinaryComment(rs.getString("disciplinaryComment"));
+                    break;
+                        
+                    case "award":
+                        file.setAwardName(rs.getString("awardName"));
+                    break;    
+                          
+                    case "evalutation":
+                        file.setEvaluationScore(rs.getString("evaluationScore"));
+                        file.setEvaluationName(rs.getString("evaluationName"));
+                    break;    
+                        
+                }
+                
+                }    
+                
+            }
+            
+        
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+       
+        return files;
+        
+    }
     
     
     

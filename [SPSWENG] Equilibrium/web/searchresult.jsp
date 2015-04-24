@@ -7,7 +7,7 @@
     <head>
         <link rel="shortcut icon" href="eq logo.ico"/>
         <link rel="stylesheet" type="text/css" media="all" href= "css/SearchStyle.css"/>
-        <link rel="stylesheet" type="text/css" media="all" href= "css/navBar.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href= "css/navbar.css"/>
         <script src= "js/jquery-1.11.2.js"></script>
 
         <%

@@ -1,3 +1,4 @@
+<%@page import="Models.modelEmployeeAuditTrail"%>
 <%@page import="Models.modelLeaveForm"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -102,41 +103,42 @@
         </div></div>
 
         <div id="box2">
-            <span class = "titleText2">Edits for Approval </span>
             <div id="results">
+                <%  ArrayList<modelEmployeeAuditTrail> auditToApprove = db.getAuditToApprove();
+
+                    if (auditToApprove.size() != 0) {
+                %>
+                <span class = "titleText2">Edits for Approval </span>
+                <%
+                    for (modelEmployeeAuditTrail audit : auditToApprove) {
+                %>
                 <div class="result">
-                    <span class="name">Last Name, First Name of record edited</span><br>
-                    <span class="editor">Name of Editor</span><br>
-                    <span class="edited">Edited data</span><br>
-                    <span class="timestamp">Timestamp</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>	
-                <div class="result">
-                    <span class="name">Last Name, First Name of record edited</span><br>
-                    <span class="editor">Name of Editor</span><br>
-                    <span class="edited">Edited data</span><br>
-                    <span class="timestamp">Timestamp</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
+                    <span class="name"><%=db.getLastName(audit.getEditedEntryNum())%>, <%=db.getFirstName(audit.getEditedEntryNum())%></span><br>
+                    <span class="editor">Name of Editor: <%=db.getLastName(audit.getEditorEntryNum())%>, <%=db.getFirstName(audit.getEditorEntryNum())%></span><br>
+                    <span class="edited">Edited data: <%=audit.getFieldChanged()%> | Old Value: <%=audit.getEditFrom()%> | New Value: <%=audit.getEditTo()%>  </span><br>
+                    <span class="timestamp"><%=audit.getTimestamp()%></span></br></br>
+
+                    <form action="ApproveLeave" method="POST" class="inline-form" onclick="return accept('<%=db.getFirstName(audit.getEditedEntryNum())%>', '<%=db.getLastName(audit.getEditedEntryNum())%>', '<%=audit.getFieldChanged()%>')">
+                        <!--input type ="hidden" name="leaveID" value=""/-->
+                        <input type="hidden" name="approveValue" value="Approved" />
+                        <input type="hidden" name="curpage" value="homepage-hrhead" />
+                        <input type="submit" class ="approveLeave" value="Approve" id="approve-button"/>
+                    </form>
+
+                    <form action="ApproveLeave" method="POST" class="inline-form" onclick="return reject('<%=db.getFirstName(audit.getEditedEntryNum())%>', '<%=db.getLastName(audit.getEditedEntryNum())%>', '<%=audit.getFieldChanged()%>')">
+                        <!--input type ="hidden" name="leaveID" value=""/-->
+                        <input type="hidden" name="approveValue" value="Rejected" />
+                        <input type="hidden" name="curpage" value="homepage-hrhead" />
+                        <input type="submit" class ="declineLeave" value="Reject" id="reject-button"/>
+                    </form>
                 </div>
-                <div class="result">
-                    <span class="name">Last Name, First Name of record edited</span><br>
-                    <span class="editor">Name of Editor</span><br>
-                    <span class="edited">Edited data</span><br>
-                    <span class="timestamp">Timestamp</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>	
-                <div class="result">
-                    <span class="name">Last Name, First Name of record edited</span><br>
-                    <span class="editor">Name of Editor</span><br>
-                    <span class="edited">Edited data</span><br>
-                    <span class="timestamp">Timestamp</span></br></br>
-                    <button class="approveLeave">Approve</button>
-                    <button class="declineLeave">Decline</button>
-                </div>	
+                <%}%>
             </div>
+            <%} else {%>
+            <div id="results">
+                <p>No pending audit trail</p>
+            </div>
+            <%}%>
         </div>
 
 

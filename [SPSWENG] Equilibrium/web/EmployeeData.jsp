@@ -106,7 +106,7 @@
                             <tr>
                                 <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="block" placeholder="Block/Street" /></td>
                                 <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="subdivision" placeholder="Subdivision"  /></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="barangay" placeholder="Barangay" /></td>
+                                <td class="three-hundred"><input type="text" maxlength = 20 name="barangay" placeholder="Barangay" /></td>
                                 <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="city" placeholder="City"  /></td>
                                 <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="province" placeholder="Province"  /></td>
                                 <td></td>

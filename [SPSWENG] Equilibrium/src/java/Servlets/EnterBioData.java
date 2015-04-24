@@ -6,6 +6,7 @@
 package Servlets;
 
 import Database.Database;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -95,11 +96,19 @@ public class EnterBioData extends HttpServlet {
             isError = true;
             response.getWriter().write("- Please check the input school years: An end of a school year is earlier than the start.<br>");
         }
+        if (coincideSchoolYears(request)) {
+            isError = true;
+            response.getWriter().write("- Please check the input school years: There seems to be a school year that coincides with another school year.<br>Please input the schools attended in order from the oldest to the latest.<br>");
+        }
         if (db.isValidID(managerid)) {
             isError = true;
-            response.getWriter().write("- No Manager has an ID number " + managerid +  ".<br>");
+            response.getWriter().write("- No Manager has an ID number " + managerid + ".<br>");
         }
-        
+        else if (checkEmployee(managerid)){
+            isError = true;
+            response.getWriter().write("- The Employee with the ID number " + managerid + " is not a manager.<br>");
+        }
+
         if (!isError) {
             empEntryNum = addInfo(empEntryNum, db, request);
             addEducationHistory(empEntryNum, db, request);
@@ -125,7 +134,12 @@ public class EnterBioData extends HttpServlet {
         String lastName = request.getParameter("lastname");
         String firstName = request.getParameter("firstname");
         String middleName = request.getParameter("middlename");
-        String address = request.getParameter("block") + ", " + request.getParameter("subdivision") + ", " + request.getParameter("barangay") + ", " + request.getParameter("city") + ", " + request.getParameter("province");
+        String address;
+        if (!request.getParameter("barangay").equals("")) {
+            address = request.getParameter("block") + ", " + request.getParameter("subdivision") + ", " + request.getParameter("barangay") + ", " + request.getParameter("city") + ", " + request.getParameter("province");
+        } else {
+            address = request.getParameter("block") + ", " + request.getParameter("subdivision") + ", " + request.getParameter("city") + ", " + request.getParameter("province");
+        }
         String birthplace = request.getParameter("birthplace");
         int homePhone = 0;
         if (!request.getParameter("homephone").equals("")) {
@@ -488,5 +502,248 @@ public class EnterBioData extends HttpServlet {
             }
         }
         return isEarlier;
+    }
+
+    public boolean coincideSchoolYears(HttpServletRequest request) {
+        boolean isCoincide = false;
+        String[] elemFrom = request.getParameterValues("elemfrom");
+        String[] elemTo = request.getParameterValues("elemto");
+        String[] highFrom = request.getParameterValues("highschoolfrom");
+        String[] highTo = request.getParameterValues("highschoolto");
+        String[] collFrom = request.getParameterValues("collegefrom");
+        String[] collTo = request.getParameterValues("collegeto");
+        String[] vocFrom = request.getParameterValues("vocationalschoolfrom");
+        String[] vocTo = request.getParameterValues("vocationalschoolto");
+        String[] masFrom = request.getParameterValues("masteralschoolfrom");
+        String[] masTo = request.getParameterValues("masteralschoolto");
+        String[] othFrom = request.getParameterValues("otherfrom");
+        String[] othTo = request.getParameterValues("otherto");
+
+        //check if elem is greater than other elem years
+        for (int i = 0; i < elemFrom.length && !isCoincide; i++) {
+            for (int j = 0; j < elemFrom.length && !isCoincide; j++) {
+                if (!elemFrom[i].equals("") && !elemTo[j].equals("")) {
+                    if (Integer.parseInt(elemFrom[i]) > Integer.parseInt(elemTo[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+        //check if elem is greater than other school years
+        for (int i = 0; i < elemTo.length && !isCoincide; i++) {
+            //high school
+            for (int j = 0; j < highFrom.length && !isCoincide; j++) {
+                if (!highFrom[j].equals("") && !elemTo[i].equals("")) {
+                    if (Integer.parseInt(elemTo[i]) > Integer.parseInt(highFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //college
+            for (int j = 0; j < collFrom.length && !isCoincide; j++) {
+                if (!collFrom[j].equals("") && !elemTo[i].equals("")) {
+                    if (Integer.parseInt(elemTo[i]) > Integer.parseInt(collFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //vocational
+            for (int j = 0; j < vocFrom.length && !isCoincide; j++) {
+                if (!vocFrom[j].equals("") && !elemTo[i].equals("")) {
+                    if (Integer.parseInt(elemTo[i]) > Integer.parseInt(vocFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //master
+            for (int j = 0; j < masFrom.length && !isCoincide; j++) {
+                if (!masFrom[j].equals("") && !elemTo[i].equals("")) {
+                    if (Integer.parseInt(elemTo[i]) > Integer.parseInt(masFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //other
+            for (int j = 0; j < othFrom.length && !isCoincide; j++) {
+                if (!othFrom[j].equals("") && !elemTo[i].equals("")) {
+                    if (Integer.parseInt(elemTo[i]) > Integer.parseInt(othFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if high school is greater than other high school years
+        for (int i = 0; i < highFrom.length && !isCoincide; i++) {
+            for (int j = 0; j < highFrom.length && !isCoincide; j++) {
+                if (!highFrom[i].equals("") && !highTo[j].equals("")) {
+                    if (Integer.parseInt(highFrom[i]) > Integer.parseInt(highTo[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if high school is greater than other school years
+        for (int i = 0; i < highTo.length && !isCoincide; i++) {
+            //college
+            for (int j = 0; j < collFrom.length && !isCoincide; j++) {
+                if (!collFrom[j].equals("") && !highTo[i].equals("")) {
+                    if (Integer.parseInt(highTo[i]) > Integer.parseInt(collFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //vocational
+            for (int j = 0; j < vocFrom.length && !isCoincide; j++) {
+                if (!vocFrom[j].equals("") && !highTo[i].equals("")) {
+                    if (Integer.parseInt(highTo[i]) > Integer.parseInt(vocFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //master
+            for (int j = 0; j < masFrom.length && !isCoincide; j++) {
+                if (!masFrom[j].equals("") && !highTo[i].equals("")) {
+                    if (Integer.parseInt(highTo[i]) > Integer.parseInt(masFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //other
+            for (int j = 0; j < othFrom.length && !isCoincide; j++) {
+                if (!othFrom[j].equals("") && !highTo[i].equals("")) {
+                    if (Integer.parseInt(highTo[i]) > Integer.parseInt(othFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if college is greater than other college years
+        for (int i = 0; i < collFrom.length && !isCoincide; i++) {
+            for (int j = 0; j < collFrom.length && !isCoincide; j++) {
+                if (!collFrom[j].equals("") && !collTo[i].equals("")) {
+                    if (Integer.parseInt(collFrom[i]) > Integer.parseInt(collTo[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if college is greater than other school years
+        for (int i = 0; i < collTo.length && !isCoincide; i++) {
+            //vocational
+            for (int j = 0; j < vocFrom.length && !isCoincide; j++) {
+                if (!vocFrom[j].equals("") && !collTo[i].equals("")) {
+                    if (Integer.parseInt(collTo[i]) > Integer.parseInt(vocFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //master
+            for (int j = 0; j < masFrom.length && !isCoincide; j++) {
+                if (!masFrom[j].equals("") && !collTo[i].equals("")) {
+                    if (Integer.parseInt(collTo[i]) > Integer.parseInt(masFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //other
+            for (int j = 0; j < othFrom.length && !isCoincide; j++) {
+                if (!othFrom[j].equals("") && !collTo[i].equals("")) {
+                    if (Integer.parseInt(collTo[i]) > Integer.parseInt(othFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if masters is greater than other masters years
+        for (int i = 0; i < masFrom.length && !isCoincide; i++) {
+            for (int j = 0; j < masFrom.length && !isCoincide; j++) {
+                if (!masFrom[j].equals("") && !masTo[i].equals("")) {
+                    if (Integer.parseInt(masFrom[i]) > Integer.parseInt(masTo[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if masters is greater than other school years
+        for (int i = 0; i < masTo.length && !isCoincide; i++) {
+            //vocational
+            for (int j = 0; j < vocFrom.length && !isCoincide; j++) {
+                if (!vocFrom[j].equals("") && !masTo[i].equals("")) {
+                    if (Integer.parseInt(masTo[i]) > Integer.parseInt(vocFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+
+            //other
+            for (int j = 0; j < othFrom.length && !isCoincide; j++) {
+                if (!othFrom[j].equals("") && !masTo[i].equals("")) {
+                    if (Integer.parseInt(masTo[i]) > Integer.parseInt(othFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if vocational is greater than other college years
+        for (int i = 0; i < vocFrom.length && !isCoincide; i++) {
+            for (int j = 0; j < vocFrom.length && !isCoincide; j++) {
+                if (!vocFrom[j].equals("") && !vocTo[i].equals("")) {
+                    if (Integer.parseInt(vocFrom[i]) > Integer.parseInt(vocTo[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if vocational is greater than other school years
+        for (int i = 0; i < vocTo.length && !isCoincide; i++) {
+            //other
+            for (int j = 0; j < othFrom.length && !isCoincide; j++) {
+                if (!vocTo[i].equals("") && !othFrom[j].equals("")) {
+                    if (Integer.parseInt(vocTo[i]) > Integer.parseInt(othFrom[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+
+        //check if others is greater than other college years
+        for (int i = 0; i < othFrom.length && !isCoincide; i++) {
+            for (int j = 0; j < othFrom.length && !isCoincide; j++) {
+                if (!othFrom[i].equals("") && !othTo[j].equals("")) {
+                    if (Integer.parseInt(othFrom[i]) > Integer.parseInt(othTo[j])) {
+                        isCoincide = true;
+                    }
+                }
+            }
+        }
+        return isCoincide;
+    }
+    
+    public boolean checkEmployee(int managerid){
+        boolean isEmployee = false;
+        Database db = Database.getInstance();
+        modelEmployee emp = db.getEmployee(Integer.toString(managerid));
+        
+        if(emp.getEmployeeType().equals("Employee"))
+            isEmployee = true;
+        
+        return isEmployee;
     }
 }

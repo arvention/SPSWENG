@@ -47,7 +47,7 @@
     <body>
         <DIV class= "nav">
             <form method="GET" action="SearchEmployee">
-<<<<<<< HEAD
+
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
                 <li><a href= "Logout">Log Out</a></li>
@@ -57,17 +57,7 @@
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
-=======
-                <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
-                <ul>
-                    <li><a href= "Logout">Log Out</a></li>
-                    <li><a href= "changePassword.jsp">Change Password</a></li>
-                    <li><a href= "#">File a Leave</a></li>
-                    <li><a href= "#">Generate Report</a></li>
-                    <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                    <li><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></li>
-                </ul>
->>>>>>> 838dd0ce85df85858c677b786bdf81a330a4c1ed
+
             </form>
         </DIV>	
         <div id="box">

@@ -3,26 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Servlets;
 
+import Database.Database;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import javax.servlet.ServletContext;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thursday
+ * @author hsibayan
  */
-public class GetImage extends HttpServlet {
+@WebServlet(name = "GenerateReport", urlPatterns = {"/GenerateReport"})
+public class GenerateReport extends HttpServlet {
 
-    private static final int BUFFER_SIZE = 4096;   
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,10 +42,10 @@ public class GetImage extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GetImage</title>");            
+            out.println("<title>Servlet GenerateReport</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GetImage at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet GenerateReport at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,54 +63,7 @@ public class GetImage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        
-        /*
-        byte[] imageData = Database.Database.getInstance().getImage(13);
-        response.setContentType("image/jpeg");
-        response.getOutputStream().write(imageData);
-        */
-        
-        String id = request.getParameter("id");
-        int intid = Integer.parseInt(id.trim());
-        
-        String theFilename="download";
-        StringBuilder fname = new StringBuilder ();
-        InputStream is = Database.Database.getInstance().getInputStream(intid,fname);
-        String filename = fname.toString();
-        System.out.println("File name is "+ filename);
-        theFilename=theFilename + filename.substring(0, filename.lastIndexOf('.'));
-        int fileLength = is.available();
-                 
-        System.out.println("fileLength = " + fileLength);
- 
-                ServletContext context = getServletContext();
- 
-                // sets MIME type for the file download
-                
-                String mimeType = context.getMimeType(filename);
-                if (mimeType == null) {        
-                    mimeType = "application/octet-stream";
-                }          
-        
-                response.setContentType(mimeType);
-                response.setContentLength(fileLength);
-                String headerKey = "Content-Disposition";
-                String headerValue = String.format("attachment; filename=\"%s\"",filename);
-                response.setHeader(headerKey, headerValue);
- 
-                // writes the file to the client
-                OutputStream outStream = response.getOutputStream();
-                 
-                byte[] buffer = new byte[BUFFER_SIZE];
-                int bytesRead = -1;
-                 
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    outStream.write(buffer, 0, bytesRead);
-                }
-                 
-                is.close();
-                outStream.close();                
+        processRequest(request, response);
     }
 
     /**
@@ -122,12 +77,24 @@ public class GetImage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //processRequest(request, response);
         
-       // String imageId = request.getParameter("imageId");
-        byte[] imageData = Database.Database.getInstance().getImage(13);
-        response.setContentType("image/jpeg");
-        response.getOutputStream().write(imageData);
+        Database db = Database.getInstance();
+        int month = parseInt(request.getParameter("m").trim());
+        int year = parseInt(request.getParameter("y").trim());
+        System.out.println("MONTH: "+month+"   YEAR:"+year);
+//        ArrayList<ArrayList<String>> report = db.getLeaveReport(month, year);
+        String x = db.getLeaveReport(month, year);
+        System.out.println(x);
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8"); 
+        response.getWriter().write(x); 
         
+//        RequestDispatcher view = request.getRequestDispatcher("GenerateReport.jsp");
+//        view.forward(request, response);
+        
+//        RequestDispatcher view = request.getRequestDispatcher("GenerateReport.jsp");
+//        view.forward(request, response);
     }
 
     /**

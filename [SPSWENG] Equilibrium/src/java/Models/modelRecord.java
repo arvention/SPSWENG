@@ -18,7 +18,16 @@ public class modelRecord {
     private Blob file;
     private String fileName;
     private String evaluationName;
+    private String awardComment;
  
+     public void setAwardComment(String s){
+        this.awardComment= s;
+    }
+    
+    public String setAwardComment(){
+        return this.awardComment;
+    }
+     
     public void setEvaluationName(String s){
         this.evaluationName= s;
     }

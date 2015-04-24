@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.servlet.annotation.MultipartConfig;
 
 @MultipartConfig(maxFileSize = 16177215)
@@ -39,7 +40,15 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
+<<<<<<< HEAD
             String uPass = "admin";
+=======
+
+            //String uPass = "password"
+
+            String uPass = "jetisjet";
+
+>>>>>>> origin/DEV5
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -704,35 +713,30 @@ public class Database {
     public int saveEval(int empEntryNum, String evalname, String score, InputStream is, String filename) {
 
         String sql = "";
-        if (is == null) {
-            System.out.println("I am over here");
-            sql = "INSERT record (recordID, recordType, empEntryNum,awardName ,awardComment) VALUES (?, ?, ?, ?, ?, ?)";
-        } else {
+       
+        
             System.out.println("I am over here333");
-            sql = "INSERT record (recordID, recordType, empEntryNum, date, awardName ,awardComment, file, filename) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        }
+            sql = "INSERT record (recordID, recordType, empEntryNum, evaluationName ,evaluationScore, file, filename) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
 
         int max = getMaxRecordID();
         max++;
-        /*
+        
          try {
 
          PreparedStatement statement = con.prepareStatement(sql);
          statement.setInt(1, max);
-         statement.setString(2, "award");
+         statement.setString(2, "evaluation");
          statement.setInt(3, empEntryNum);
-         //statement.setString(4, type);
-         java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
-         statement.setTimestamp(4,sq);
-         statement.setString(5, awardName);
-         statement.setString(6,awardComment);
-            
-            
-         if (is != null) {
+         statement.setString(4, evalname);
+        
+         statement.setString(5,score);
+         
+   
          System.out.println("ima here now hehehe");
-         statement.setBlob(7, is);
-         statement.setString(8, filename);
-         }
+         statement.setBlob(6, is);
+         statement.setString(7, filename);
+         
 
          statement.executeUpdate();
          //stmt.executeUpdate(sql);
@@ -740,7 +744,7 @@ public class Database {
          } catch (SQLException e) {
          e.printStackTrace();
          }
-         */
+         
         return max;
     }
 
@@ -1414,8 +1418,8 @@ public class Database {
 
     public byte[] getImage(int id) {
 
-        sql = "SELECT * from record"
-                + " WHERE recordID = " + id;
+        sql = "SELECT * from employee"
+                + " WHERE employeeID = " + id;
 
         Blob imageBlob;
         Statement stmt;
@@ -1427,7 +1431,7 @@ public class Database {
             rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                imageBlob = rs.getBlob("file");
+                imageBlob = rs.getBlob("empPicture");
                 image = imageBlob.getBytes(1, (int) imageBlob.length());
             }
 
@@ -1818,10 +1822,11 @@ public class Database {
                         break;
                     case "award":
                         record.setAwardName(rs.getString("awardName"));
+                        record.setAwardComment(rs.getString("awardComment"));
                         break;
                     case "evaluation":
                         record.setEvaluationScore(rs.getString("evaluationScore"));
-                        record.setEvaluatorEntryNum(rs.getInt("evaluatorEntryNum"));
+                        record.setEvaluationName(rs.getString("evaluationName"));
                         break;
                 }
                 recordList.add(record);
@@ -1831,6 +1836,7 @@ public class Database {
         }
         return recordList;
     }
+<<<<<<< HEAD
 
     public void addEmployeeAuditTrail(String tableName, int tableReferenceNum, String fieldChanged, String editFrom, String editTo,
             int editorEntryNum, int editedEntryNum, Timestamp timestamp, int approverEntryNum) {
@@ -1865,4 +1871,103 @@ public class Database {
             e.printStackTrace();
         }
     }
+=======
+    
+    public int[] getYearSpan() {
+
+        sql = "select max(startDate) as max, min(startDate) as min\n" +
+            "from leave_form\n" +
+            "where isApproved = 'Approved'";
+
+        Statement stmt;
+        ResultSet rs;
+        int[] years = new int[3];
+        int max = Calendar.getInstance().get(Calendar.YEAR);
+        int min = 1900;
+
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                min = rs.getInt("min");
+                max = rs.getInt("max");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        years[0] = min;
+        years[1] = max;
+
+        return years;
+    }
+    
+    public String getLeaveReport(int month, int year) {
+
+        sql = "select concat(e.lastName, ', ' , e.firstName) as name, sum(l.duration) as sum \n" +
+            "from leave_form l, employee e\n" +
+            "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n" +
+            "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n" +
+            "group by concat(e.lastName, ', ' , e.firstName)\n" +
+            "order by concat(e.lastName, ', ' , e.firstName)";
+
+        Statement stmt;
+        ResultSet rs;
+        float tempSum;
+        float maxDays = 15;
+        String x="";
+        
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                tempSum = rs.getFloat("sum");
+                x += "<tr class=\"entry\">\n" +
+                        "<td>"+rs.getString("name")+"</td>\n" +
+                        "<td>"+tempSum+"</td>\n" +
+                        "<td>"+(maxDays-tempSum)+"</td>\n" +
+                    "</tr>";
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return x;
+    }
+    
+    public boolean isFile(int id){
+        
+        sql = "select * from record where file is not null and recordID = "+ id;
+        boolean flag=false;
+       Statement stmt;
+        ResultSet rs;
+    
+        
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            if(rs.next()) {
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+>>>>>>> origin/DEV5
 }

@@ -45,10 +45,17 @@
     
 
 
+<<<<<<< HEAD
 
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
+=======
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+>>>>>>> origin/DEV5
         reader.onload = function (e) {
             $('#frameforpic').attr('src', e.target.result);
         }
@@ -64,8 +71,28 @@
       
         
   
+<<<<<<< HEAD
         
   });
+=======
+  $(".downloadButton").click(function(){
+    $("#listoffiles").submit(function (e) {
+      e.preventDefault(); // this will prevent from submitting the form.
+  });
+    
+     window.location.href = "GetImage?id="+ this.id;   
+   
+    
+    
+    });  
+  
+    $("#docs-select").hide();
+  
+        
+  });
+  
+  
+>>>>>>> origin/DEV5
         
       </script>  
         
@@ -111,7 +138,7 @@
                             <%}%>
                     </div>
                     <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
-                    <form>
+                    <form id="listoffiles">
                         <%}%>
                         <select id="options" size="6">
                             <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
@@ -492,7 +519,9 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Date</b></span>
                                             <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
-                                            <button class = "downloadButton">Download File</button></div>
+                                            <%if(db.isFile(record.getRecordID()) ){  %>
+                                            <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button></div>
+                                            <% }%>
                                         <div class = "line"><span class ="label"><b>Disciplinary Record Type</b></span>
                                             <%=record.getDisciplinaryRecordType()%></div>
                                         <div class = "line"><span class ="label"><b>Disciplinary Comment</b></span>
@@ -508,7 +537,13 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Award Name</b></span>
                                             <%=record.getAwardName()%>
+<<<<<<< HEAD
                                             <button class = "downloadButton" value="<%=record.getRecordID()%>">Download File</button>
+=======
+                                            <%if(db.isFile(record.getRecordID()) ){  %>
+                                            <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button>
+                                             <% }%>
+>>>>>>> origin/DEV5
                                         </div>
                                         <div class = "line"><span class ="label"><b>Date</b></span>
                                             <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
@@ -526,7 +561,13 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Evaluation Name</b></span>
                                             <%=record.getEvaluationName()%>
+<<<<<<< HEAD
                                             <button class = "downloadButton" value="<%=record.getRecordID()%>">Download File</button>
+=======
+                                             <%if(db.isFile(record.getRecordID()) ){  %>
+                                            <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button>
+                                            <% }%>
+>>>>>>> origin/DEV5
                                         </div>
                                         <div class = "line"><span class ="label"><b>Score</b></span>
                                             <%=record.getEvaluationScore()%>

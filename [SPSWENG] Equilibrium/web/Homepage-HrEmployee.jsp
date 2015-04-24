@@ -49,7 +49,7 @@
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
                 <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
-                <li><a href= "#"><span class="selectText">Generate Report</span></a></li>
+                <li><a href= "GenerateReport.jsp"><span class="selectText">Generate Report</span></a></li>
                 <li><a href= "EmployeeData.jsp"><span class="selectText">Add Employee Record</span></a></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>

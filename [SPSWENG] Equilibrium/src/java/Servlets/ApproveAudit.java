@@ -5,8 +5,10 @@
  */
 package Servlets;
 
+import Database.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -70,7 +72,21 @@ public class ApproveAudit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Database db = Database.getInstance();
+        int empAuditTrailID = Integer.parseInt(request.getParameter("empAuditTrailID"));
+        String approveValue = request.getParameter("approveValue");
+        
+        db.changeAuditStatus(empAuditTrailID, approveValue);
+        
+        String tableName = request.getParameter("tableName");
+        int tableReferenceNum = Integer.parseInt(request.getParameter("tableReferenceNum"));
+        String field = request.getParameter("field");
+        Object value = request.getParameter("value");
+        
+        db.changeFieldValue(tableName, tableReferenceNum, field, value);
+        
+        RequestDispatcher view = request.getRequestDispatcher("Homepage-HrHead.jsp");
+        view.forward(request, response);
     }
 
     /**

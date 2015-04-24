@@ -76,6 +76,10 @@
         <servlet-name>ApproveAudit</servlet-name>
         <servlet-class>Servlets.ApproveAudit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DisplayImage</servlet-name>
+        <servlet-class>Servlets.DisplayImage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>ApproveAudit</servlet-name>
         <url-pattern>/ApproveAudit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayImage</servlet-name>
+        <url-pattern>/DisplayImage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

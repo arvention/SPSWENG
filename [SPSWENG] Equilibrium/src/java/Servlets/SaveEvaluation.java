@@ -124,6 +124,8 @@ public class SaveEvaluation extends HttpServlet {
            //  db.saveDisciplinary(intid, memo,typeofmemo,inputStream,nameoffile );  
             // db.saveAward(intid, sql,awardname , memo, inputStream, nameoffile);
             db.saveEval(intid, evalname, score, inputStream, nameoffile);
+            System.out.println("Saving evalll");
+            
            }
            else{
             db.saveEval(intid, evalname, score ,null,null);

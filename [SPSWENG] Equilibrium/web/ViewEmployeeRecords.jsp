@@ -53,14 +53,14 @@
                     $("#imgInp").change(function() {
                         readURL(this);
                     });
-                };
-                        $(".downloadButton").click(function() {
+                }
+                ;
+                $(".downloadButton").click(function() {
                     $("#listoffiles").submit(function(e) {
                         e.preventDefault(); // this will prevent from submitting the form.
                     });
                     window.location.href = "GetImage?id=" + this.id;
                 });
-                $("#docs-select").hide();
             });</script>  
 
 
@@ -279,11 +279,19 @@
                             %>
                             <div class="content">
                                 <div>
-                                    <div class="label-rel">
-                                        Elementary
-                                    </div>
                                     <%
                                         schoolList = db.getEducation("Elementary", emp.getEntryNum());
+                                        System.out.println("school = " + schoolList.size());
+                                    %>
+                                    <div class="label-rel">
+                                        Elementary
+                                        <%
+                                            if (schoolList.isEmpty()) {
+                                        %>
+                                        <input type="button" value="+" class="add-delete-button">
+                                        <%}%>
+                                    </div>
+                                    <%
                                         for (modelEducationHistory school : schoolList) {
                                     %>
                                     <div class="subContent">
@@ -515,7 +523,6 @@
                                         <br>
                                         <%}%>
                                     </div>
-
 
                                     <div id = "evaluation">
                                         <%

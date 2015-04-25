@@ -85,7 +85,7 @@ public class EditEmployeeData extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void getPersonalInformation(modelEmployee logged, modelEmployee emp, HttpServletRequest request) {
+    public void editPersonalInformation(modelEmployee logged, modelEmployee emp, HttpServletRequest request) {
         Database db = Database.getInstance();
         String firstname = request.getParameter("firstname");
         if (!emp.getFirstName().equals(firstname)) {
@@ -124,7 +124,67 @@ public class EditEmployeeData extends HttpServlet {
                 case "Hr Head":
                     int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "middleName", emp.getMiddleName(), middlename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
                     db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "lastName", lastname);
+                    break;
+            }
+        }
+        
+        String position = request.getParameter("position");
+        if (!emp.getPositionName().equals(position)) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "positionName", emp.getPositionName(), position, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "positionName", emp.getPositionName(), position, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+                    
+                    db.changeAuditStatus(auditTrailID, "Approved");
                     db.changeFieldValue("employee", emp.getEntryNum(), "middleName", middlename);
+                    break;
+            }
+        }
+        
+        int salary = Integer.parseInt(request.getParameter("salary"));
+        if (emp.getSalary() != salary) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "salary", Integer.toString(emp.getSalary()), Integer.toString(salary), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "salary", Integer.toString(emp.getSalary()), Integer.toString(salary), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+                    
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "salary", Integer.toString(salary));
+                    break;
+            }
+        }
+        
+        String birthplace = request.getParameter("birthplace");
+        if (emp.getSalary() != salary) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "birthplace", emp.getBirthplace(), birthplace, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "birthplace", emp.getBirthplace(), birthplace, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+                    
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "birthplace", birthplace);
+                    break;
+            }
+        }
+        
+        String address = request.getParameter("address");
+        if (emp.getSalary() != salary) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "address", emp.getAddress(), address, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "address", emp.getAddress(), address, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+                    
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "address", address);
                     break;
             }
         }

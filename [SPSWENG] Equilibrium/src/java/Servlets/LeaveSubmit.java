@@ -114,7 +114,7 @@ public class LeaveSubmit extends HttpServlet {
                 db.addLeaveForm(leaveType, modelEmployee.getEntryNum(), new java.sql.Date(startDate.getTime()), duration, modelEmployee.getManagerEntryNum());
 
                 //send an email to the manager
-                en.sendLeaveRequest(modelEmployee.getEntryNum(), leaveType, startDate, endDate, duration);
+             //   en.sendLeaveRequest(modelEmployee.getEntryNum(), leaveType, startDate, endDate, duration);
             }
         }
 

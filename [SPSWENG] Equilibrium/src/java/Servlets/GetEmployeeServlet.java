@@ -88,15 +88,15 @@ public class GetEmployeeServlet extends HttpServlet {
 
         String email = db.getEmailAddress(entryNum);
         
-        if (EmailNotifier.getInstance().sendEmail(email, "Welcome to Equilibrium, "+fname+" "+lname+".\n"
-                + "An account has been created by the Human Resources department, for you.\nYour password is " + password
-                +"\nThank you!", "[Password]")) {
+       // if (EmailNotifier.getInstance().sendEmail(email, "Welcome to Equilibrium, "+fname+" "+lname+".\n"
+         //       + "An account has been created by the Human Resources department, for you.\nYour password is " + password
+           //     +"\nThank you!", "[Password]")) {
           
             request.setAttribute("response", new String("Password is sent to " + email));
 
-        } else {
-            request.setAttribute("response", new String("Failed to send password to " + email));
-        }
+ //       } else {
+   //         request.setAttribute("response", new String("Failed to send password to " + email));
+     //   }
 
         RequestDispatcher view = request.getRequestDispatcher("UserAccountCreated.jsp");
         view.forward(request, response);

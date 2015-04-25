@@ -84,6 +84,10 @@
         <servlet-name>DisplayImage</servlet-name>
         <servlet-class>Servlets.DisplayImage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveProfilePic</servlet-name>
+        <servlet-class>Servlets.SaveProfilePic</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>EditEmployeeData</servlet-name>
         <url-pattern>/EditEmployeeData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveProfilePic</servlet-name>
+        <url-pattern>/SaveProfilePic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

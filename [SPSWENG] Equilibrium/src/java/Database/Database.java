@@ -40,7 +40,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "admin";
+            String uPass = "password";
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -701,6 +701,32 @@ public class Database {
         }
         return max;
     }
+     
+    public void savePic(int id, InputStream is, String filename){
+        
+        
+        
+        String sql ="UPDATE employee SET empPicture = ?, empPictureFileName ='"+filename+"' WHERE entryNum= "+id ;
+        
+          try {
+
+         PreparedStatement statement = con.prepareStatement(sql);
+       
+         statement.setBlob(1, is);
+        
+                     
+         statement.executeUpdate();
+         //stmt.executeUpdate(sql);
+
+         } catch (SQLException e) {
+         e.printStackTrace();
+         }
+        
+        
+        
+    }
+    
+    
     
     public int saveEval(int empEntryNum, String evalname, String score, InputStream is, String filename) {
 
@@ -1410,8 +1436,8 @@ public class Database {
 
     public byte[] getImage(int id) {
 
-        sql = "SELECT * from record"
-                + " WHERE recordID = " + id;
+        sql = "SELECT * from employee"
+                + " WHERE employeeID = " + id;
 
         Blob imageBlob;
         Statement stmt;
@@ -1423,7 +1449,7 @@ public class Database {
             rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                imageBlob = rs.getBlob("file");
+                imageBlob = rs.getBlob("empPicture");
                 image = imageBlob.getBytes(1, (int) imageBlob.length());
             }
 

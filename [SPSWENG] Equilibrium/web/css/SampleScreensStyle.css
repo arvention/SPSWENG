@@ -86,7 +86,7 @@ DIV.footer{
     height: 500px;
     text-align:center;
     color: #808080;
-    font-size: 11;
+    font-size: 11px;
     font-family: "Arial";
     background-color: #E8E8E8;
     z-index: 1;
@@ -130,12 +130,9 @@ DIV.nav{
     list-style: none;
 }
 .nav ul li a{
-    float: right;
-    padding: 20px 30px;
-    color: black;
+ 
     text-decoration: none;
-    display: block;
-    font-size: 125%;
+   
 }
 .nav ul li a:hover{
     color: white;

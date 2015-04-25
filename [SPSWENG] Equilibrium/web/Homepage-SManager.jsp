@@ -8,10 +8,29 @@
     <head>
         <title>Home - Equilibrium</title>
         <link rel="shortcut icon" href="img/eq logo.ico">
-        <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-HrHead.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-Manager1.css"/>
 
         <script src="js/HomepageFunc.js"></script>
-        <script type = "text/javascript" src = "js/Homepage-Manager.js">
+        <script type = "text/javascript" src = "js/Homepage-Manager.js"></script>
+        <script>
+         $(document).ready(function () {
+                var sugg = [];
+                var search;
+                $("#search").keyup(function () {
+                    search = $("#search").val();
+                    search = search.trim();
+                    console.log("HEREE");
+                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
+                        console.log(responseText);
+                        sugg = responseText.split("\n");
+                        console.log(sugg);
+                        $("#search").autocomplete({
+                            source: sugg
+                        });
+                    });
+                });
+            });
+            </script>
     </head>
     <body>
         <DIV class= "nav">
@@ -20,6 +39,7 @@
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
                 <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href= "FileLeave.jsp"><span class="selectText">File a Leave</span></a></li>
+                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/></li>
                 <li><a href="Homepage-SManager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>	

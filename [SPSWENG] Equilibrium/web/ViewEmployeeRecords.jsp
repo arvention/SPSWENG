@@ -59,7 +59,23 @@
                     window.location.href = "GetImage?id=" + this.id;
                 });
 
+              /*
+              $("#savepicchange").click(function () {
+                  
+                  
+                  
+                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
 
+                        console.log(responseText);
+                        sugg = responseText.split("\n");
+                        console.log(sugg);
+                        $("#search").autocomplete({
+                            source: sugg
+                        });
+                    });
+                });
+        */
+        
             });</script>  
 
 
@@ -87,10 +103,14 @@
 
         <div id="overlay"></div>
         <div class= "pageLeft" align = "center">
-            <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%> " /><br/>
-            <input type='file' id="imgInp" />
+            
+            <form action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
+            <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%>"/><br/>
+            <input type='file' id="imgInp" name="filename"/>
             <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
-            <input class="botan" type="button" value="Save Changes"/>
+            <input id="savepicchange" class="botan" type="submit" value="Save Changes"/>
+            <input type="hidden" name="id" value="<%=emp.getEntryNum()%>" />
+            </form>
         </div>
         <div id="main">
             <div class="pageTop">

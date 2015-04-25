@@ -701,39 +701,34 @@ public class Database {
         }
         return max;
     }
-
+    
     public int saveEval(int empEntryNum, String evalname, String score, InputStream is, String filename) {
 
         String sql = "";
-        if (is == null) {
-            System.out.println("I am over here");
-            sql = "INSERT record (recordID, recordType, empEntryNum,awardName ,awardComment) VALUES (?, ?, ?, ?, ?, ?)";
-        } else {
+       
+        
             System.out.println("I am over here333");
-            sql = "INSERT record (recordID, recordType, empEntryNum, date, awardName ,awardComment, file, filename) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        }
+            sql = "INSERT record (recordID, recordType, empEntryNum, evaluationName ,evaluationScore, file, filename) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
 
         int max = getMaxRecordID();
         max++;
-        /*
+        
          try {
 
          PreparedStatement statement = con.prepareStatement(sql);
          statement.setInt(1, max);
-         statement.setString(2, "award");
+         statement.setString(2, "evaluation");
          statement.setInt(3, empEntryNum);
-         //statement.setString(4, type);
-         java.sql.Timestamp sq = new java.sql.Timestamp(date.getTime());
-         statement.setTimestamp(4,sq);
-         statement.setString(5, awardName);
-         statement.setString(6,awardComment);
-            
-            
-         if (is != null) {
+         statement.setString(4, evalname);
+        
+         statement.setString(5,score);
+         
+   
          System.out.println("ima here now hehehe");
-         statement.setBlob(7, is);
-         statement.setString(8, filename);
-         }
+         statement.setBlob(6, is);
+         statement.setString(7, filename);
+         
 
          statement.executeUpdate();
          //stmt.executeUpdate(sql);
@@ -741,7 +736,7 @@ public class Database {
          } catch (SQLException e) {
          e.printStackTrace();
          }
-         */
+         
         return max;
     }
 

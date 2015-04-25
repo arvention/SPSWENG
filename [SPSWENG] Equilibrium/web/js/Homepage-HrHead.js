@@ -9,11 +9,11 @@ function rejectLeave(leaveFirstName, leaveLastName) {
 }
 
 function acceptRevision(firstName, lastName, field) {
-    alert("You accepted the revision on " + firstName + " " + lastName + "'s" + field + ".");
+    alert("You accepted the revision on " + firstName + " " + lastName + "'s " + field + ".");
     return true;
 }
 
 function rejectRevision(firstName, lastName, field) {
-    alert("You rejected the revision on " + firstName + " " + lastName + "'s" + field + ".");
+    alert("You rejected the revision on " + firstName + " " + lastName + "'s " + field + ".");
     return true;
 }

@@ -1823,7 +1823,6 @@ public class Database {
                     case "evaluation":
                         record.setEvaluationName(rs.getString("evaluationName"));
                         record.setEvaluationScore(rs.getString("evaluationScore"));
-                        record.setEvaluatorEntryNum(rs.getInt("evaluatorEntryNum"));
                         break;
                 }
                 recordList.add(record);

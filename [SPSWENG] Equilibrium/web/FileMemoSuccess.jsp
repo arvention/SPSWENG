@@ -8,6 +8,25 @@
         <link href = "css/navigationBar.css" rel = "stylesheet" />
         <link rel="shortcut icon" href="img/eq logo.ico"/>
         <link href = "css/MemoFiled.css" rel = "stylesheet" />
+        <script>
+         $(document).ready(function () {
+                var sugg = [];
+                var search;
+                $("#search").keyup(function () {
+                    search = $("#search").val();
+                    search = search.trim();
+                    console.log("HEREE");
+                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
+                        console.log(responseText);
+                        sugg = responseText.split("\n");
+                        console.log(sugg);
+                        $("#search").autocomplete({
+                            source: sugg
+                        });
+                    });
+                });
+            });
+            </script>
     </head>
     <body bgcolor=#E8E8E8>
         <%
@@ -22,9 +41,9 @@
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
                 <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
-                <li><a href= "GenerateReport"><span class="selectText">Generate Report</span></a></li>
+                <li><a href= "GenerateReport.jsp"><span class="selectText">Generate Report</span></a></li>
                 <li><a href= "EmployeeData.jsp"><span class="selectText">Add Employee Record</span></a></li>
-                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
+                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/></li>
                 <li><a href="Homepage-HrHead.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
             </form>
@@ -42,7 +61,7 @@
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
                 <li><a href= "GenerateReport.jsp"><span class="selectText">Generate Report</span></a></li>
                 <li><a href= "EmployeeData.jsp"><span class="selectText">Add Employee Record</span></a></li>
-                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
+                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>
@@ -58,7 +77,7 @@
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
                 <li><a href="changePassword.jsp"><span class="selectText">Change Password</span></a></li>
                 <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
-                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
+                <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/></li>
                 <li><a href="Homepage-SManager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>
@@ -97,7 +116,7 @@
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="titleText">Memo has been filed!</div><br/>
             <div class="titleText">${response}</div><br/>
-           
+           <a href ="FileMemo.jsp">File another Memo...</a><br/>
             <%   
             modelEmployee me =(modelEmployee) session.getAttribute("employee");
             

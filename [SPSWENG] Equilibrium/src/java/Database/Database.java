@@ -190,7 +190,7 @@ public class Database {
         float approveCount = 0;
 
         sql = "SELECT SUM(duration) FROM leave_form"
-                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved = true";
+                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected'";
 
         try {
             rs = stmt.executeQuery(sql);

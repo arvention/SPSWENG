@@ -97,7 +97,6 @@
                 <div id="box">
                     <div id="header">
                         <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
-
                     </div>
                     <select id="options" size="6">
                         <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
@@ -121,8 +120,10 @@
                             <%
                                 if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
                             %>
-                            <div class = "editSpan"><span class = "editMessage">Click on an entry to change it's content</span><input type="button" onclick = "return false;" value="Edit" id="editButton"><input type = "submit" value = "Save Edit" id = "saveButton"/></div>
-                                <%}%>
+                            <div class = "editSpan"><span class = "editMessage">Click on an entry to change its content</span><input type="button" onclick = "return false;" value="Edit" id="editButton"><input type = "submit" value = "Save Edit" id = "saveButton"/></div>
+                            <br>
+                            <br>
+                            <%}%>
                             <div class="content">
                                 <div class="line"><span class="label">Name</span>
                                     <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/> <input name = "middlename" type = "text" class="data" value = "<%=emp.getMiddleName()%>" readonly/> <input name = "lastname" type = "text" class="data" value = "<%=emp.getLastName()%>" readonly/></div>

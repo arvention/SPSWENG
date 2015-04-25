@@ -11,6 +11,13 @@ public class modelRelative {
     private String occupationLocation;
     private long contactNum;
     
+    public modelRelative(){
+        this.name = "";
+        this.relation = "";
+        this.age = 0;
+        this.occupation = "";
+        this.occupationLocation = "";
+    }
     public int getRelativeID() {
         return relativeID;
     }

@@ -59,7 +59,6 @@ input:hover, .alertButton:hover {
     border: 0;
     font-size: 16px;
     color: white;
-    border-top-right-radius: 13px;
 }
 
 #saveButton{
@@ -233,6 +232,8 @@ input[type='date']{
 #info-form{
     position: absolute;
     z-index: 0;
+    height: 450px;
+    overflow-y: auto;
 }
 
 #docs{

@@ -19,6 +19,7 @@
 	display: block;
     	font-size: 125%;
     	position:relative;
+        font-family: Arial;
 }
 .nav{
     padding-top:0px;
@@ -52,7 +53,7 @@
     margin-left: 25px;
     float: left;
     width: auto;
-    position:fixed;
+ 
 }
 .logo:hover{
     cursor:pointer;

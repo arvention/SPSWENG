@@ -35,7 +35,7 @@
                 <li><a href= "LeaveForm.jsp">File a Leave</a></li>
                 <li><a href= "#">Generate Report</a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
-                <li><a href="Homepage-HrHead.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>>
+                <li><a href="Homepage-HrHead.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
             </form>
         </DIV>

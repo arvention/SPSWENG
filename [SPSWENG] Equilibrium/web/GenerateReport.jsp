@@ -7,6 +7,30 @@
     <link rel="shortcut icon" href="img/eq logo.ico">
     <link rel="stylesheet" href="css/generateReport.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script>
+            $(document).ready(function () {
+                var sugg = [];
+                var search;
+
+
+                $("#search").keyup(function () {
+                    search = $("#search").val();
+                    search = search.trim();
+                    console.log("HEREE");
+                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
+
+                        console.log(responseText);
+                        sugg = responseText.split("\n");
+                        console.log(sugg);
+                        $("#search").autocomplete({
+                            source: sugg
+                        });
+                    });
+                });
+
+
+            });
+        </script>
     
     <%
         Database db = Database.getInstance();

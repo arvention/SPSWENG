@@ -19,12 +19,40 @@
         <script src="js/jquery-1.11.2.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script>
             $("#datepicker").datepicker({
                 changeMonth: true,
                 changeYear: true
             });</script>
         <script type = "text/javascript" src = "js/LeaveForm.js"></script>
+        <script>
+            $(document).ready(function () {
+                var sugg = [];
+                var search;
+
+
+                $("#search").keyup(function () {
+                    search = $("#search").val();
+                    search = search.trim();
+                    console.log("HEREE");
+                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
+
+                        console.log(responseText);
+                        sugg = responseText.split("\n");
+                        console.log(sugg);
+                        $("#search").autocomplete({
+                            source: sugg
+                        });
+                    });
+                });
+
+
+            });
+        </script>
     </head>
 
     <body>

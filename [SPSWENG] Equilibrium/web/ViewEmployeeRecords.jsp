@@ -532,7 +532,6 @@
                                         %>
                                         <div class = "line"><span class ="label"><b>Evaluation Name</b></span>
                                             <%=record.getEvaluationName()%>
-                                            <button class = "downloadButton" value="<%=record.getRecordID()%>">Download File</button>
                                             <%if (db.isFile(record.getRecordID())) {%>
                                             <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button>
                                             <% }%>

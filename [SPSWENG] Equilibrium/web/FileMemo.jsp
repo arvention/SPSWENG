@@ -29,7 +29,8 @@
                     }
                 });
             });
-            
+          </script>
+          <script>
              $(document).ready(function () {
                 var sugg = [];
                 var search;

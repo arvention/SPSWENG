@@ -58,7 +58,7 @@
         <DIV class="search" >
          <form method ="GET" align="center" action="SearchEmployee">
 		<IMG class ="compLogo" src = "img/eqboyz.png"/>
-		<input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/>
+		<input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/>
           </form>   
         </DIV>    
         <DIV class="footer">

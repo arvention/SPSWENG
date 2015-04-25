@@ -34,10 +34,7 @@
             Database db = Database.getInstance();
             modelEmployee user = (modelEmployee) request.getSession().getAttribute("employee");
         %>
-
-
         <script>
-
             $(document).ready(function() {
                 function readURL(input) {
                     if (input.files && input.files[0]) {
@@ -127,7 +124,7 @@
                         <div id="personal" class="pages">
                             <div class="content">
                                 <div class="line"><span class="label">Name</span>
-                                    <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/> <input name = "middlename" type = "text" class="data" value = "<%=emp.getMiddleName()%>" readonly/> <input type = "text" class="data" value = "<%=emp.getLastName()%>" readonly/></div>
+                                    <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/> <input name = "middlename" type = "text" class="data" value = "<%=emp.getMiddleName()%>" readonly/> <input name = "lastname" type = "text" class="data" value = "<%=emp.getLastName()%>" readonly/></div>
                                 <div class="line"><span class="label">ID Number</span>
                                     <%=emp.getEmployeeID()%></div>
                                 <div class="line"><span class="label">Hire Date</span>

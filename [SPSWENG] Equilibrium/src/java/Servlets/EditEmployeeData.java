@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Servlets;
 
+import Database.Database;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,7 +37,7 @@ public class EditEmployeeData extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditEmployeeData</title>");            
+            out.println("<title>Servlet EditEmployeeData</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditEmployeeData at " + request.getContextPath() + "</h1>");
@@ -71,7 +72,7 @@ public class EditEmployeeData extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+
     }
 
     /**
@@ -84,4 +85,48 @@ public class EditEmployeeData extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public void getPersonalInformation(modelEmployee logged, modelEmployee emp, HttpServletRequest request) {
+        Database db = Database.getInstance();
+        String firstname = request.getParameter("firstname");
+        if (!emp.getFirstName().equals(firstname)) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "firstName", emp.getFirstName(), firstname, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "firstName", emp.getFirstName(), firstname, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "firstName", firstname);
+                    break;
+            }
+        }
+
+        String middlename = request.getParameter("middlename");
+        if (!emp.getMiddleName().equals(middlename)) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "middleName", emp.getMiddleName(), middlename, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "middleName", emp.getMiddleName(), middlename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "middleName", middlename);
+                    break;
+            }
+        }
+        
+        String lastname = request.getParameter("lastname");
+        if (!emp.getLastName().equals(lastname)) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "lastName", emp.getLastName(), lastname, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "middleName", emp.getMiddleName(), middlename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "middleName", middlename);
+                    break;
+            }
+        }
+    }
 }

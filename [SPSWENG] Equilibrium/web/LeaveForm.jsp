@@ -186,10 +186,10 @@
         <div id = "leaveMessage">
             
         </div>
-        <div class= "footer">
-            <hr width="75%"/>
+           <DIV class="footer">
+            <br/><hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.
-        </div>
+        </DIV>
     </body>
 </html>
 

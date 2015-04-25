@@ -75,9 +75,8 @@ div.footer{
     background-color: #E8E8E8;
     z-index: 1;
 }
-
 .footer hr{
-    margin: 0;
+    margin-top: 0;
 }
 
 form{
@@ -87,16 +86,7 @@ form{
 .form-input{
     color: black;
 }
-.searchBox{
-    position: absolute;
-    width: 250px;
-    height: 25px;
-    text-indent: 5px;
-    left: 130px;
-    top: 13px;
-    border: 0;
-    border-radius: 5px;
-}
+
 .searchBox{
     position: absolute;
     width: 250px;
@@ -161,6 +151,7 @@ DIV.footer{
     position: fixed;
     top: 90%;
     left: 0%;
+    bottom:0;
     height: 500px;
     text-align:center;
     color: #808080;
@@ -169,6 +160,7 @@ DIV.footer{
     background-color: #E8E8E8;
     z-index: 1;
 }
+
 .searchBox{
     position: absolute;
     width: 250px;
@@ -181,16 +173,19 @@ DIV.footer{
 }
 .selectText{
 	float: right;
-    	margin-top: 15px;
+    	margin-top: 12px;
   	margin-right: 20px;
     	color: black;
 	display: block;
-    	font-size: 125%;
+    	font-size: 20px;
     	position:relative;
         font-family: Arial;
 }
-.leaveMessage{
-        margin-top:300px;
+#leaveMessage{
+        margin-top:500px;
         margin-right:auto;
         margin-left:auto;
+}
+hr{
+    border-top: 1px solid black;
 }

@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.servlet.annotation.MultipartConfig;
 
 @MultipartConfig(maxFileSize = 16177215)
@@ -1830,5 +1831,70 @@ public class Database {
             e.printStackTrace();
         }
         return recordList;
+    }
+    
+    public int[] getYearSpan() {
+
+        sql = "select max(startDate) as max, min(startDate) as min\n" +
+            "from leave_form\n" +
+            "where isApproved = 'Approved'";
+
+        Statement stmt;
+        ResultSet rs;
+        int[] years = new int[3];
+        int max = Calendar.getInstance().get(Calendar.YEAR);
+        int min = 1900;
+
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                min = rs.getInt("min");
+                max = rs.getInt("max");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        years[0] = min;
+        years[1] = max;
+
+        return years;
+    }
+    
+    public String getLeaveReport(int month, int year) {
+
+        sql = "select concat(e.lastName, ', ' , e.firstName) as name, sum(l.duration) as sum \n" +
+            "from leave_form l, employee e\n" +
+            "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n" +
+            "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n" +
+            "group by concat(e.lastName, ', ' , e.firstName)\n" +
+	    "order by concat(e.lastName, ', ' , e.firstName)";
+
+        Statement stmt;
+        ResultSet rs;
+        float tempSum;
+        float maxDays = 15;
+        String x="";
+        
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                tempSum = rs.getFloat("sum");
+                x += "<tr class=\"entry\">\n" +
+                        "<td>"+rs.getString("name")+"</td>\n" +
+                        "<td>"+tempSum+"</td>\n" +
+                        "<td>"+(maxDays-tempSum)+"</td>\n" +
+                    "</tr>";
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return x;
     }
 }

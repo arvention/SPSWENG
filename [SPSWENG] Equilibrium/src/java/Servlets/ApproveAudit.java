@@ -83,7 +83,8 @@ public class ApproveAudit extends HttpServlet {
         String field = request.getParameter("field");
         Object value = request.getParameter("value");
         
-        db.changeFieldValue(tableName, tableReferenceNum, field, value);
+        if(approveValue.equals("Approved"))
+            db.changeFieldValue(tableName, tableReferenceNum, field, value);
         
         RequestDispatcher view = request.getRequestDispatcher("Homepage-HrHead.jsp");
         view.forward(request, response);

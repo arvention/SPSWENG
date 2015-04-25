@@ -53,6 +53,10 @@
         <servlet-class>Servlets.SelectEmployeeServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EditEmployeeData</servlet-name>
+        <servlet-class>Servlets.EditEmployeeData</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>toAddAward</servlet-name>
         <servlet-class>Servlets.toAddAward</servlet-class>
     </servlet>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>DisplayImage</servlet-name>
         <url-pattern>/DisplayImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditEmployeeData</servlet-name>
+        <url-pattern>/EditEmployeeData</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

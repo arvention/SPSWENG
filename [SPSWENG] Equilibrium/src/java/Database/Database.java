@@ -1508,7 +1508,8 @@ public class Database {
                 } else if (field.equals("birthday")) {
                     sql = "UPDATE employee SET birthday = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setDate(1, (Date) value);
+                    Date date = Date.valueOf((String)value);
+                    statement.setDate(1, date);
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("birthplace")) {
@@ -1520,7 +1521,7 @@ public class Database {
                 } else if (field.equals("homePhone")) {
                     sql = "UPDATE employee SET homePhone = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("mobileNumber")) {
@@ -1574,7 +1575,8 @@ public class Database {
                 } else if (field.equals("hireDate")) {
                     sql = "UPDATE employee SET hireDate = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setDate(1, (Date) value);
+                    Date date = Date.valueOf((String)value);
+                    statement.setDate(1, date);
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("band")) {
@@ -1586,13 +1588,13 @@ public class Database {
                 } else if (field.equals("salary")) {
                     sql = "UPDATE employee SET salary = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("departmentID")) {
                     sql = "UPDATE employee SET departmentID = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("positionName")) {
@@ -1610,7 +1612,7 @@ public class Database {
                 } else if (field.equals("managerEntryNum")) {
                     sql = "UPDATE employee SET managerEntryNum = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 }
@@ -1924,7 +1926,7 @@ public class Database {
             ResultSet rs = st.executeQuery(sql);
 
             if (rs.next()) {
-                maxAuditTrail = rs.getInt("MAX(empAuditTrailID)");
+                maxAuditTrail = rs.getInt("MAX(empAuditTrailID)") + 1;
             }
 
             sql = "INSERT INTO employee_audit_trail(empAuditTrailID, tableName, tableReferenceNum, fieldChanged, editFrom, editTo, editorEntryNum, editedEntryNum, isApproved, approverEntryNum)"
@@ -1948,5 +1950,23 @@ public class Database {
         }
         
         return maxAuditTrail;
+    }
+    
+    public int getEmployeeID(int entryNum) {
+        int employeeID = 0;
+        sql = "SELECT employeeID FROM employee"
+                + " WHERE entryNum = " + entryNum;
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                employeeID = rs.getInt("employeeID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return employeeID;
     }
 }

@@ -72,6 +72,7 @@ input:hover, .alertButton:hover {
 
 .editMessage{
     margin-right: 10px;
+    color: firebrick;
     display: none;
 }
 
@@ -227,4 +228,13 @@ input[type='date']{
 .downloadButton{
     float: right;
     margin-right: 10px;
+}
+
+#info-form{
+    position: absolute;
+    z-index: 0;
+}
+
+#docs{
+    z-index: 1;
 }

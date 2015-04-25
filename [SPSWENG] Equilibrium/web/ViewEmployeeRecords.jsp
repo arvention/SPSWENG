@@ -44,23 +44,22 @@
                             reader.onload = function(e) {
                                 $('#frameforpic').attr('src', e.target.result);
                             };
-
                             reader.readAsDataURL(input.files[0]);
                         }
                     }
-
-
-                    $("#imgInp").change(function() {
-                        readURL(this);
-                    });
                 }
-                ;
+
+                $("#imgInp").change(function() {
+                    readURL(this);
+                });
                 $(".downloadButton").click(function() {
                     $("#listoffiles").submit(function(e) {
                         e.preventDefault(); // this will prevent from submitting the form.
                     });
                     window.location.href = "GetImage?id=" + this.id;
                 });
+
+
             });</script>  
 
 
@@ -88,7 +87,7 @@
 
         <div id="overlay"></div>
         <div class= "pageLeft" align = "center">
-            <img   id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%> " /><br/>
+            <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%> " /><br/>
             <input type='file' id="imgInp" />
             <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
             <input class="botan" type="button" value="Save Changes"/>
@@ -96,32 +95,34 @@
         <div id="main">
             <div class="pageTop">
                 <div id="box">
-                    <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
-                    <form action = "EditEmployeeData" method = "POST">
-                        <%}%>
-                        <div id="header">
-                            <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
+                    <div id="header">
+                        <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
+
+                    </div>
+                    <select id="options" size="6">
+                        <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
+                                                                                                                                birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
+                        <option value="relations">Relations</option> <!--name, age, occupation and company of occupation of the employeeâ€™s siblings and parents. Information 
+                                                                                                                regarding the spouseâ€™s name, contact number and occupation or employer is added, as well as the names of their children, age, grade or year and the school of the children-->	
+                        <option value="edu">Education</option> <!--elementary, high school, college, vocational, masters and others. In the history, the name of 
+                                                                                                                school, years the employee has studied in that school and the awards given by the school to the employee are mentioned. The bio-data also includes the licensure exams taken and the score of the employee in the exams-->
+                        <option value="history">Employment History</option> <!--job names, date of employment, beginning & ending salary, employerâ€™s name, employerâ€™s address, 
+                                                                                                                        employerâ€™s telephone number, supervisorâ€™s name, supervisorâ€™s contact number and reason for leaving-->
+                        <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
+                                                                                                        disciplinary actions, records of filed leaves, recognitions, and awards-->
+                        <option value="others">Others</option> <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
+                                                                                                        of that offense. -->
+                    </select>
+                    <div id="personal" class="pages">
+
+                        <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+                        <form action = "EditEmployeeData" method = "POST" id = "info-form">
+                            <%}%>
                             <%
                                 if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
                             %>
                             <div class = "editSpan"><span class = "editMessage">Click on an entry to change it's content</span><input type="button" onclick = "return false;" value="Edit" id="editButton"><input type = "submit" value = "Save Edit" id = "saveButton"/></div>
                                 <%}%>
-                        </div>
-                        <select id="options" size="6">
-                            <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
-                                                                                                                                    birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
-                            <option value="relations">Relations</option> <!--name, age, occupation and company of occupation of the employeeâ€™s siblings and parents. Information 
-                                                                                                                    regarding the spouseâ€™s name, contact number and occupation or employer is added, as well as the names of their children, age, grade or year and the school of the children-->	
-                            <option value="edu">Education</option> <!--elementary, high school, college, vocational, masters and others. In the history, the name of 
-                                                                                                                    school, years the employee has studied in that school and the awards given by the school to the employee are mentioned. The bio-data also includes the licensure exams taken and the score of the employee in the exams-->
-                            <option value="history">Employment History</option> <!--job names, date of employment, beginning & ending salary, employerâ€™s name, employerâ€™s address, 
-                                                                                                                            employerâ€™s telephone number, supervisorâ€™s name, supervisorâ€™s contact number and reason for leaving-->
-                            <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
-                                                                                                            disciplinary actions, records of filed leaves, recognitions, and awards-->
-                            <option value="others">Others</option> <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
-                                                                                                            of that offense. -->
-                        </select>
-                        <div id="personal" class="pages">
                             <div class="content">
                                 <div class="line"><span class="label">Name</span>
                                     <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/> <input name = "middlename" type = "text" class="data" value = "<%=emp.getMiddleName()%>" readonly/> <input name = "lastname" type = "text" class="data" value = "<%=emp.getLastName()%>" readonly/></div>
@@ -165,8 +166,10 @@
                                     <input name = "managerid" type = "text" class="data" value = "<%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%>" readonly/><span class = "editNote"><br>*Input the manager's ID number</span></div>
 
                             </div>
-                        </div>
-                    </form>
+                            <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+                        </form>
+                        <%}%>
+                    </div>
                     <div id="relations" class="pages">
                         <div class="content">
                             <%
@@ -180,11 +183,11 @@
                                 </div>
                                 <div class="subContent" id="waddup">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <input name = "spousename" type = "text" class="data" value = "<%=spouse.getName()%>" readonly/></div>
+                                        <%=spouse.getName()%></div>
                                     <div class="line"><span class="label">Contact Number</span>
-                                        <input name = "spousenum" type = "number" class="data" value = "<%=spouse.getContactNum()%>" readonly/></div>
+                                        <%=spouse.getContactNum()%></div>
                                     <div class="line"><span class="label">Occupation/Employer</span>
-                                        <input name = "spouseoccu" type = "number" class="data" value = "<%=spouse.getOccupation()%>" readonly/></div>
+                                        <%=spouse.getOccupation()%></div>
                                 </div>
                                 <br>
                             </div>
@@ -198,15 +201,14 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <input name = "childname" type = "text" class="data" value = "<%=child.getName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=child.getName()%>
+                                    </div>
                                     <div class="line"><span class="label">Age</span>
-                                        <input name = "childage" type = "number" class="data" value = "<%=child.getAge()%>" readonly/></div>
+                                        <%=child.getAge()%>"</div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <input name = "childoccu" type = "text" class="data" value = "<%=child.getOccupation()%>" readonly/></div>
+                                        <%=child.getOccupation()%></div>
                                     <div class="line"><span class="label">School/Location</span>
-                                        <input name = "childlocation" type = "text" class="data" value = "<%=child.getOccupationLocation()%>" readonly/></div><br/>
+                                        <%=child.getOccupationLocation()%></div><br/>
                                 </div>
                                 <br>
                                 <%
@@ -229,21 +231,21 @@
                                 <div class="subContent">
                                     <div class="label-rel">Father</div>
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <input name = "fathname" type = "text" class="data" value = "<%=father.getName()%>" readonly/></div>
+                                        <%=father.getName()%></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <input name = "fathage" type = "number" class="data" value = "<%=father.getAge()%>" readonly/></div>
+                                        <%=father.getAge()%></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <input name = "fathoccu" type = "text" class="data" value = "<%=father.getOccupation()%>" readonly/></div>
+                                        <%=father.getOccupation()%></div>
                                 </div>
                                 <br>
                                 <div class="subContent">
                                     <div class="label-rel">Mother</div>
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <input name = "mothname" type = "text" class="data" value = "<%=mother.getName()%>" readonly/></div>
+                                        <%=mother.getName()%></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <input name = "mothage" type = "number" class="data" value = "<%=mother.getAge()%>" readonly/></div>
+                                        <%=mother.getAge()%></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <input name = "mothoccu" type = "text" class="data" value = "<%=mother.getOccupation()%>" readonly/></div>
+                                        <%=mother.getOccupation()%></div>
                                 </div>
                                 <br>
                             </div>
@@ -257,15 +259,13 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <input name = "sibname" type = "text" class="data" value = "<%=sibling.getName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=sibling.getName()%></div>
                                     <div class="line"><span class="label">Age</span>
-                                        <input name = "sibnum" type = "number" class="data" value = "<%=sibling.getAge()%>" readonly/></div>
+                                        <%=sibling.getAge()%></div>
                                     <div class="line"><span class="label">Occupation</span>
-                                        <input name = "siboccu" type = "text" class="data" value = "<%=sibling.getOccupation()%>" readonly/></div>
+                                        <%=sibling.getOccupation()%></div>
                                     <div class="line"><span class="label">Company/Location</span>
-                                        <input name = "siblocation" type = "text" class="data" value = "<%=sibling.getOccupationLocation()%>" readonly/></div>
+                                        <%=sibling.getOccupationLocation()%></div>
                                 </div>
                                 <br>
                                 <%}%>
@@ -281,28 +281,20 @@
                             <div>
                                 <%
                                     schoolList = db.getEducation("Elementary", emp.getEntryNum());
-                                    System.out.println("school = " + schoolList.size());
                                 %>
                                 <div class="label-rel">
                                     Elementary
-                                    <%
-                                        if (schoolList.isEmpty()) {
-                                    %>
-                                    <input type="button" value="+" class="add-delete-button">
-                                    <%}%>
                                 </div>
                                 <%
                                     for (modelEducationHistory school : schoolList) {
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <input name = "elemname" type = "text" class="data" value = "<%=school.getSchoolName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=school.getSchoolName()%></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <input name = "elemfrom" type = "number" class="data" value = "<%=school.getYearFrom()%>" readonly/> to <input name = "elemto" type = "number"  class="data" value="<%=school.getYearTo()%>" readonly/></div>
+                                        <%=school.getYearFrom()%> to <%=school.getYearTo()%></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <input name = "elemaward" type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
+                                        <%=school.getAward()%></div><br/>
                                 </div>
                                 <%}%>
                             </div>
@@ -317,13 +309,11 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <input name = "highname" type = "text" class="data" value = "<%=school.getSchoolName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=school.getSchoolName()%></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <input name = "highfrom" type = "number" class="data" value = "<%=school.getYearFrom()%>" readonly/> to <input name = "highto" type = "number"  class="data" value="<%=school.getYearTo()%>" readonly/></div>
+                                        <%=school.getYearFrom()%> to <%=school.getYearTo()%></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <input name = "highaward" type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
+                                        <%=school.getAward()%></div><br/>
                                 </div>
                                 <%}%>
                             </div>
@@ -338,13 +328,11 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <input name = "collname" type = "text" class="data" value = "<%=school.getSchoolName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=school.getSchoolName()%></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <input name = "collfrom" type = "number" class="data" value = "<%=school.getYearFrom()%>" readonly/> to <input name = "collto" type = "number"  class="data" value="<%=school.getYearTo()%>" readonly/></div>
+                                        <%=school.getYearFrom()%> to <%=school.getYearTo()%></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <input name = "collaward" type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
+                                        <%=school.getAward()%></div><br/>
                                 </div>
                                 <%}%>
                             </div>
@@ -359,13 +347,11 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <input name = "vocname" type = "text" class="data" value = "<%=school.getSchoolName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=school.getSchoolName()%></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <input name = "vocfrom" type = "number" class="data" value = "<%=school.getYearFrom()%>" readonly/> to <input name = "vocto" type = "number"  class="data" value="<%=school.getYearTo()%>" readonly/></div>
+                                        <%=school.getYearFrom()%> to <%=school.getYearTo()%></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <input name = "vocaward" type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
+                                        <%=school.getAward()%></div><br/>
                                 </div>
                                 <%}%>
                             </div>
@@ -380,13 +366,11 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <input name = "masname" type = "text" class="data" value = "<%=school.getSchoolName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=school.getSchoolName()%></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <input name = "masfrom" type = "number" class="data" value = "<%=school.getYearFrom()%>" readonly/> to <input name = "masto" type = "number"  class="data" value="<%=school.getYearTo()%>" readonly/></div>
+                                        <%=school.getYearFrom()%> to <%=school.getYearTo()%></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <input name = "masaward" type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
+                                        <%=school.getAward()%></div><br/>
                                 </div>
                                 <%}%>
                             </div>
@@ -401,13 +385,11 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name of School</b></span>
-                                        <input name = "othname" type = "text" class="data" value = "<%=school.getSchoolName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=school.getSchoolName()%></div>
                                     <div class="line"><span class="label">Years</span>
-                                        <input name = "othfrom" type = "number" class="data" value = "<%=school.getYearFrom()%>" readonly/> to <input name = "othto" type = "number"  class="data" value="<%=school.getYearTo()%>" readonly/></div>
+                                        <%=school.getYearFrom()%> to <%=school.getYearTo()%></div>
                                     <div class="line"><span class="label">Awards</span>
-                                        <input name = "othaward" type = "text" class="data" value = "<%=school.getAward()%>" readonly/></div><br/>
+                                        <%=school.getAward()%></div><br/>
                                 </div>
                                 <%}%>
                             </div>
@@ -422,11 +404,9 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
-                                        <input name = "licname" type = "text" class="data" value = "<%=license.getLicenseName()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=license.getLicenseName()%></div>
                                     <div class="line"><span class="label">Score</span>
-                                        <input name = "licpercent" type ="number" class="data" value = "<%=license.getPercentage()%>" readonly/></div>
+                                        <%=license.getPercentage()%></div>
                                 </div>
                                 <%}%>
                             </div>
@@ -446,27 +426,25 @@
                                 %>
                                 <div class="subContent">
                                     <div class="line"><span class="label"><b>Occupation</b></span>
-                                        <input name = "empjobtitle" type = "text" class="data" value = "<%=empHisto.getJobTitle()%>" readonly/>
-                                        <input type="button" value="+" class="add-delete-button">
-                                        <input type="button" value="-" class="add-delete-button"></div>
+                                        <%=empHisto.getJobTitle()%></div>
                                     <div class="line"><span class="label">Date of Employment</span>
-                                        <input name = "empdateemployment" type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(empHisto.getDateOfEmployment())%>" readonly/></div>
+                                        <%=new SimpleDateFormat("yyyy-MM-dd").format(empHisto.getDateOfEmployment())%></div>
                                     <div class="line"><span class="label">Beginning Salary</span>
-                                        <input name = "empbegsalary" type = "number" class="data" value = "<%=empHisto.getStartingSalary()%>" readonly/></div>
+                                        <%=empHisto.getStartingSalary()%></div>
                                     <div class="line"><span class="label">Ending Salary</span>
-                                        <input name = "empendsalary" type = "number" class="data" value = "<%=empHisto.getEndingSalary()%>" readonly/></div>
+                                        <%=empHisto.getEndingSalary()%></div>
                                     <div class="line"><span class="label">Name of Employer</span>
-                                        <input name = "empemployername" type = "text" class="data" value = "<%=empHisto.getEmployerName()%>" readonly/></span></div>
+                                        <%=empHisto.getEmployerName()%></div>
                                     <div class="line"><span class="label">Address of Employer</span>
-                                        <input name = "empemployeraddress" type ="text" class="data" value = "<%=empHisto.getEmployerAddress()%>" readonly/></div>
+                                        <%=empHisto.getEmployerAddress()%></div>
                                     <div class="line"><span class="label">Contact Number of Employer</span>
-                                        <input name = "empemployercontact" type ="number" class="data" value = "<%=empHisto.getEmployerContactNum()%>" readonly/></div>
+                                        <%=empHisto.getEmployerContactNum()%></div>
                                     <div class="line"><span class="label">Name of Supervisor</span>
-                                        <input name = "empsupervisorname" type ="text" class="data" value ="<%=empHisto.getSupervisorName()%>" readonly/></div>
+                                        <%=empHisto.getSupervisorName()%></div>
                                     <div class="line"><span class="label">Contact Number of Supervisor</span>
-                                        <input name = "empsupervisorcontact" type ="number" class="data" value = "<%=empHisto.getSupervisorContactNum()%>" readonly/></div>
+                                        <%=empHisto.getSupervisorContactNum()%></div>
                                     <div class="line"><span class="label">Reason for leaving</span>
-                                        <input name = "empreason" type = "text" class="data" value = "<%=empHisto.getReasonForLeaving()%>" readonly/></div>
+                                        <%=empHisto.getReasonForLeaving()%></div>
                                 </div>
                                 <br>
                                 <%}%>
@@ -551,40 +529,37 @@
                             <%}%>
                         </div>
                     </div>
-                </div>
 
-                <div id="others" class="pages">
-                    <div class="content"> 
-                        <div>
-                            <div class="label-rel">
-                                Criminal Offense History
+                    <div id="others" class="pages">
+                        <div class="content"> 
+                            <div>
+                                <div class="label-rel">
+                                    Criminal Offense History
+                                </div>
+                                <%
+                                    ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
+                                    for (modelCriminalOffenseHistory offense : offenses) {
+                                %>
+                                <div class="subContent">
+                                    <div class="line"><span class="label"><b>Criminal Offense</b></span>
+                                        <%=offense.getCriminalOffense()%></div>
+                                    <div class="line"><span class="label"><b>Date of Offense</b></span>
+                                        <%=offense.getDateOfOffense()%></div>
+                                    <div class="line"><span class="label">Place of Offense</span>
+                                        <%=offense.getPlaceOfOffense()%>"</div>
+                                </div>
+                                <br>
+                                <%}%>
                             </div>
-                            <%
-                                ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
-                                for (modelCriminalOffenseHistory offense : offenses) {
-                            %>
-                            <div class="subContent">
-                                <div class="line"><span class="label"><b>Criminal Offense</b></span>
-                                    <input name = "offensename" type ="text" class="data" value = "<%=offense.getCriminalOffense()%>" readonly/>
-                                    <input type="button" value="+" class="add-delete-button">
-                                    <input type="button" value="-" class="add-delete-button"></div>
-                                <div class="line"><span class="label"><b>Date of Offense</b></span>
-                                    <input name = "offensedate" type ="text" class="data" value ="<%=offense.getDateOfOffense()%>" readonly/></div>
-                                <div class="line"><span class="label">Place of Offense</span>
-                                    <input name = "offenseplace" type ="text" class="data" value = "<%=offense.getPlaceOfOffense()%>" readonly/></div>
-                            </div>
-                            <br>
-                            <%}%>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div> <!-- end of box -->
-    </div>
-    <div class = "pageBot">
-        <hr width = "75%">
-        EQUILIBRIUM INTERTRADE CORP.
-    </div>
-</body>
+
+        <div class = "pageBot">
+            <hr width = "75%">
+            EQUILIBRIUM INTERTRADE CORP.
+        </div>
+    </body>
 </html>

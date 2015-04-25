@@ -1527,7 +1527,7 @@ public class Database {
                 } else if (field.equals("mobileNumber")) {
                     sql = "UPDATE employee SET mobileNumber = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setLong(1, (Long) value);
+                    statement.setLong(1, Long.parseLong((String) value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("SSSNumber")) {

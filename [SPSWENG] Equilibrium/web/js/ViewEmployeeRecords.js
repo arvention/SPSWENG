@@ -12,6 +12,10 @@ $(document).ready(function () {
 
     $(document).on("change", "#options", function () {
         nextPage = "#" + $("#options").find(":selected").val();
+        if(nextPage === "#personal")
+            $("#info-form").show();
+        else
+            $("#info-form").hide();
         $(currPage).hide();
         $(nextPage).show();
         currPage = nextPage;
@@ -27,8 +31,8 @@ $(document).ready(function () {
     $(document).on("click", "#editButton", function () {
         if($(this).val() === "Edit") {
             $(this).val("Cancel Edit");
-            $(this).css("border-top-right-radius", "0px");
             $("#saveButton").show();
+            $("input[name='managerid']").attr("type", "number");
             $(".data").attr("readonly", false);
             //$(".data").css("border-bottom", "1px solid lightgray");
             $(".editMessage").show();
@@ -39,11 +43,11 @@ $(document).ready(function () {
             $(this).val("Edit");
             $("#editButton").attr("type", "button");
             $("#saveButton").hide();
-            $(this).css("border-top-right-radius", "13px");
             $(".data").attr("readonly", true);
             $(".data").css("border-bottom", "0");
             $(".editMessage").hide();
             $(".add-delete-button").hide();
+            $("input[name='managerid']").attr("type", "text");
             $(".editNote").hide();
         }
     });

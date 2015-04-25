@@ -63,26 +63,25 @@ body{
     list-style: none;
 }
 .nav ul li a{
-    float: right;
-    margin-top: 15px;
-    margin-right: 20px;
-    color: black;
     text-decoration: none;
-    display: block;
-    font-size: 125%;
-    position:relative;
+    
 }
 .nav ul li a:hover{
     color: red;
     cursor:pointer;
 }
+.selectText:hover{
+     color: red;
+    cursor:pointer;
+}
+
 .logo{
     margin-top:0;
-    margin-right: auto;
+    
     margin-left: 25px;
     float: left;
     width: auto;
-    position:fixed;
+    
 }
 .logo:hover{
     cursor:pointer;
@@ -109,4 +108,14 @@ DIV.footer{
     top: 13px;
     border: 0;
     border-radius: 5px;
+}
+.selectText{
+	float: right;
+    	margin-top: 15px;
+  	margin-right: 20px;
+    	color: black;
+	display: block;
+    	font-size: 125%;
+    	position:relative;
+        font-family: Arial;
 }

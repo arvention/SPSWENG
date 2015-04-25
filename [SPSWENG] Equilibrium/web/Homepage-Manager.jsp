@@ -8,11 +8,10 @@
     <head>
         <title>	Home - EQuilibrium </title>
         <link rel="shortcut icon" href="eq logo.ico"/>
-        <link rel="stylesheet" type="text/css" href="css/Homepage-Manager.css"/>
-    
+        <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-HrHead.css"/>
 
-        <script type = "text/javascript" src = "js/Homepage-Manager.js">
-        </script>
+        <script type = "text/javascript" src = "js/Homepage-Manager.js"></script>
+      
     </head>
     <body>
         <DIV class= "nav">

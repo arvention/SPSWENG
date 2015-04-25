@@ -5,7 +5,7 @@
         <title>Memo Form - Equilibrium</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <link href = "css/navigationBar.css" rel = "stylesheet" />
         <link rel="shortcut icon" href="img/eq logo.ico"/>
         <link href = "css/MemoFiled.css" rel = "stylesheet" />
     </head>
@@ -19,10 +19,11 @@
             <form method="GET" action="SearchEmployee">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li> 
-                <li><a href= "#">Generate Report</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
+                <li><a href= "GenerateReport"><span class="selectText">Generate Report</span></a></li>
+                <li><a href= "EmployeeData.jsp"><span class="selectText">Add Employee Record</span></a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><a href="Homepage-HrHead.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
@@ -36,11 +37,11 @@
         <DIV class= "nav">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
-                <li><a href= "#">Generate Report</a></li>
-                <li><a href= "EmployeeData.jsp">Add Employee Record</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li> 
+                <li><a href= "GenerateReport.jsp"><span class="selectText">Generate Report</span></a></li>
+                <li><a href= "EmployeeData.jsp"><span class="selectText">Add Employee Record</span></a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
@@ -54,9 +55,9 @@
         <DIV class= "nav">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href="changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href="changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search EQuilibrium"/></li>
                 <li><a href="Homepage-SManager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
@@ -69,9 +70,9 @@
         <DIV class= "nav">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "changePassword.jsp">Change Password</a></li>
-                <li><a href= "LeaveForm.jsp">File a Leave</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href="changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                <li><a href= "LeaveForm.jsp"><span class="selectText">File a Leave</span></a></li>
                 <li><a href="Homepage-Manager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </DIV>
@@ -82,14 +83,16 @@
         %>
         <div class= "nav">
             <ul>
-                <li><a href= "Logout">Log Out</a></li>
-                <li><a href= "changePassword.jsp">Change Password</a></li>
+                <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
+                <li><a href="changePassword.jsp"><span class="selectText">Change Password</span></a></li>
+                
                 <li><a href="Homepage-Employee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </div>
         <%
            }
-        %>
+        %>        
+
         <div class = "memoForm" align="center">
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="titleText">Memo has been filed!</div><br/>
@@ -109,7 +112,7 @@
           <a href="Homepage-HrHead.jsp">Click here to return to home page...</a>
             <%}%>    
         </div>
-        <div class = "pageBottom" style="margin-bottom: 3px"><hr width ="75%"/></br> 
+        <div class = "pageBottom" style="margin-top: 3px"><hr width ="75%"/></br> 
             EQUILIBRIUM INTERTRADE CORP.
         </div>
     </body>

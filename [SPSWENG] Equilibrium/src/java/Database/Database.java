@@ -40,7 +40,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String host = "jdbc:mysql://127.0.0.1:3306/equilibrium_spsweng?user=root";
             String uUser = "root";
-            String uPass = "admin";
+            String uPass = "password";
             con = DriverManager.getConnection(host, uUser, uPass);
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -1652,7 +1652,8 @@ public class Database {
                 } else if (field.equals("dateOfOffense")) {
                     sql = "UPDATE criminal_offense_history SET dateOfOffense = ? WHERE criminalOffenseHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setDate(1, (Date) value);
+                    Date date = Date.valueOf((String)value);
+                    statement.setDate(1, date);
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("placeOfOffense")) {
@@ -1678,13 +1679,13 @@ public class Database {
                 } else if (field.equals("yearFrom")) {
                     sql = "UPDATE education_history SET yearFrom = ? WHERE educationHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("yearTo")) {
                     sql = "UPDATE education_history SET yearTo = ? WHERE educationHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("award")) {
@@ -1704,19 +1705,20 @@ public class Database {
                 } else if (field.equals("dateOfEmployment")) {
                     sql = "UPDATE employment_history SET dateOfEmployment = ? WHERE employmentHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setDate(1, (Date) value);
+                    Date date = Date.valueOf((String)value);
+                    statement.setDate(1, date);
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("startingSalary")) {
                     sql = "UPDATE employment_history SET startingSalary = ? WHERE employmentHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("endingSalary")) {
                     sql = "UPDATE employment_history SET endingSalary = ? WHERE employmentHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("employerName")) {
@@ -1734,7 +1736,7 @@ public class Database {
                 } else if (field.equals("employerContactNum")) {
                     sql = "UPDATE employment_history SET employerContactNum = ? WHERE employmentHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setLong(1, (Long) value);
+                    statement.setLong(1, Long.parseLong((String) value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("supervisorName")) {
@@ -1746,7 +1748,7 @@ public class Database {
                 } else if (field.equals("supervisorContactNum")) {
                     sql = "UPDATE employment_history SET supervisorContactNum = ? WHERE employmentHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setLong(1, (Long) value);
+                    statement.setLong(1, Long.parseLong((String) value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("reasonForLeaving")) {
@@ -1766,7 +1768,7 @@ public class Database {
                 } else if (field.equals("percentage")) {
                     sql = "UPDATE license SET percentage = ? WHERE licenseID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 }
@@ -1786,7 +1788,7 @@ public class Database {
                 } else if (field.equals("age")) {
                     sql = "UPDATE relative SET age = ? WHERE relativeID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, (int) value);
+                    statement.setInt(1, Integer.parseInt((String)value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 } else if (field.equals("occupation")) {
@@ -1804,7 +1806,7 @@ public class Database {
                 } else if (field.equals("contactNum")) {
                     sql = "UPDATE relative SET contactNum = ? WHERE relativeID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setLong(1, (Long) value);
+                    statement.setLong(1, Long.parseLong((String) value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 }

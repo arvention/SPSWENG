@@ -158,8 +158,8 @@ DIV.footer{
     z-index: 1;
 }
 #box {
-    height: 400px;
-    width: 500px;
+    height:63.5%;
+    width: 36.5%;
     float:left;
     margin-left: 120px;	
     top: 0; bottom:0; left: 0; right: 0;
@@ -175,8 +175,8 @@ DIV.footer{
     opacity: 0.75;
 }
 #box2 {
-    height: 400px;
-    width: 500px;
+    height: 63.5%;
+    width: 36.5%;
     float: right;
     top: 0; bottom:0; left: 0; right: 0;
     margin-top: 100px;
@@ -191,8 +191,8 @@ DIV.footer{
     opacity: 0.75;
 }
 #results {
-    height: 360px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     overflow: auto;
 }
 

@@ -176,7 +176,9 @@
                     <div class="result" val="<%=e.getEmployeeID()%>">
                         <span class="name"><a href = "ViewEmployee?id=<%=e.getEmployeeID()%>"><%=e.getLastName()%>, <%=e.getFirstName()%></a></span><br>
                                               <span class="idnum"><%=e.getEmployeeID()%></span><br>
-
+                         
+                        <%if( !( user.getEmployeeType().equals("Senior Manager"))){%>                      
+                                              
                         <%if (e.getPassword() == null) {%>
                         <span class="accStatus">No Account</span>
 
@@ -204,6 +206,9 @@
                         <button class="addAward">Add Award</button>
                         <button class="filememo">File Memo</button>
                         <button class="evaluate">Evaluation</button>
+                        
+                        
+                       <%}%> 
                     </div>
                     <%}%>   
 

@@ -148,7 +148,7 @@
                 <li><a href="#crimes">Past Criminal Offenses</a></li>
             </ul>
             <form onsubmit = "return submitData()" class = "data_form">
-                <div id = "bio_form">
+                
                     <DIV id="personalinfo" class="tab-section">
 
                         <%
@@ -582,8 +582,7 @@
                             </table>
                         </DIV>
                     </DIV>
-                    <br/>
-                </div>
+                    <br/><br/>
                 <input type="submit" value="Submit" />
             </form>
 

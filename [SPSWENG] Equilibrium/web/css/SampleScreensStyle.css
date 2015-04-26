@@ -99,6 +99,8 @@ DIV.tab-section {
     border-radius: 5px;
     opacity: .85;
     width: 1150px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 DIV.content{
@@ -201,8 +203,7 @@ text{
 }
 
 #bio_form{
-    max-height: 400px;
-    overflow-y: auto;
+    
 }
 
 #bioMessage{

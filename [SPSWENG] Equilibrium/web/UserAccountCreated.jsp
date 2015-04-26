@@ -77,8 +77,8 @@
             <br/><br/><br/><br/>
             <div class="titleText">User Account has been Created!</div><br/>
             <div class="titleText">${response}</div><br/>
-            <a href="searchresult.jsp">
-		Create another account...
+          <!--  <a href="SearchEm">
+		Create another account...-->
             </a> <br/>
             <a href="Homepage-HrHead.jsp">Homepage</a>
 	</div>

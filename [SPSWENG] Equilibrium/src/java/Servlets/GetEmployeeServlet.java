@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
+/*
+Developed by : Jet Virtusio
+Created to save the account of the employee
+
+*/
 public class GetEmployeeServlet extends HttpServlet {
 
     /*

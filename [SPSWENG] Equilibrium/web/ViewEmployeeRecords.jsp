@@ -238,7 +238,7 @@
             <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
             <input id="savepicchange" class="button" type="submit" value="Save Changes"/> 
             <input type="hidden" name="id" value="<%=emp.getEntryNum()%>" />
-            </form>
+            </form>  
         </div>
         <div id="main">
             <div class="pageTop">

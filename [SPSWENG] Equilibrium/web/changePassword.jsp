@@ -17,14 +17,22 @@
 	$(document).ready(function(){
             
             $("#savebutton").click(function() {
+                
+                    
+                
                    if($("#newpass").val().length ===0 ){
-                       alert("Invalid Password");
+                       //alert("Invalid Password");
+                      $("#status").text("Invalid Password");
                    }
 
                    else if($("#newpass").val() !== $("#oldpass").val()){
-                       alert("Password Does not match");
+                       $("#status").text("Password does not match");
                    }
+                   
+                   
+                   
                    else if($("#newpass").val() === $("#oldpass").val()){
+                       $("#status").text(${error});
                        $("#passwordform").submit();
                    }
                    
@@ -157,7 +165,7 @@
                 <div id = "status">${error}</div>
                 </form>
                 <input class="submitButton" input type= "submit" name="okButton" value="Save Changes" id="savebutton"/>	
-                <input class="back" input type= "submit" name="bButton" value="Back"/>
+               <!-- <input class="back" input type= "submit" name="bButton" value="Back"/>-->
 	</div>
 	<div class= "footer"><hr width="75%"/>EQUILIBRIUM INTERTRADE CORPORATION</div>
 </body>

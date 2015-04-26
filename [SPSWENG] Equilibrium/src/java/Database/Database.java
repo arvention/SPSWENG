@@ -185,9 +185,12 @@ public class Database {
     //-- LEAVE COUNT --------------------------------------------
     public float getApprovedLeaveCount(int empID) {
         float approveCount = 0;
+        Calendar today = Calendar.getInstance();
+        int year = today.get(Calendar.YEAR);
 
         sql = "SELECT SUM(duration) FROM leave_form"
-                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected'";
+                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected'"
+                + " AND YEAR(startDate) = " + year;
 
         try {
             rs = stmt.executeQuery(sql);
@@ -1169,7 +1172,7 @@ public class Database {
     public modelRelative getParent(String relation, int empEntryNum) {
         Statement stmt;
         ResultSet rs;
-        modelRelative parent = new modelRelative();
+        modelRelative parent = null;
         sql = "SELECT * FROM relative"
                 + " WHERE relation = '" + relation + "' AND empEntryNum = " + empEntryNum;
 
@@ -1179,6 +1182,7 @@ public class Database {
             rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
+                parent = new modelRelative();
                 parent.setRelativeID(rs.getInt("relativeID"));
                 parent.setName(rs.getString("name"));
                 parent.setAge(rs.getInt("age"));
@@ -1964,11 +1968,12 @@ public class Database {
         
         try {
             /* getting relative count */
-            sql = "select count(relativeID) from relative\n" +
+            sql = "select count(relativeID) as count from relative\n" +
                     "where empEntryNum = " + entryNum;
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count[0] = rs.getInt("count");
+                System.out.println("count = " + count[0]);
             }
             
             /* getting employement history count */

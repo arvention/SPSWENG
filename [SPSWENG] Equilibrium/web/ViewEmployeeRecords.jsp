@@ -104,7 +104,7 @@
                 
                 
                 if(data === "0")
-                alert("Success");
+                alert("Success!");
                 
                 else if(data==="1"){
                     alert("Picture too Large"); 

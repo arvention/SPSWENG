@@ -106,10 +106,7 @@ public class SaveProfilePic extends HttpServlet {
       
     // response.sendRedirect("ViewEmployeeRecords.jsp");
         
-         
-        
-         
-        
+   
     }
 
     /**

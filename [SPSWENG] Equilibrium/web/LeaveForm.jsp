@@ -151,6 +151,10 @@
         </div>
         <div align="center" class="content">
             <form onsubmit = "return submitLeave()" id = "leave_form"><br>
+                <div class= "header">
+                    <h3>Leave Form Application</h3>
+                </div>
+                <hr width= "75%"/>
                 <!--h4>ID Number: <input type="number" name = "idNum" required></h4-->
                 <h4>Type of Leave:
                     <select name= "leaveType" required class = "form-input">
@@ -188,7 +192,7 @@
             <%}%>
         </div>
         <div id = "leaveMessage">
-            
+            hello
         </div>
            <DIV class="footer">
             <br/><hr width="75%"/>

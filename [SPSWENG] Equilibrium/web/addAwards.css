@@ -198,7 +198,7 @@ DIV.footer{
 input[type=file]{
 			overflow:hidden;
 			text-overflow: ellipsis;
-			width: 100px;
+			width: 190px;
 			white-space:nowrap;
 		}
 

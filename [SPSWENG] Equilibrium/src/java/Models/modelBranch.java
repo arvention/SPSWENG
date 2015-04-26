@@ -13,7 +13,7 @@ public class modelBranch {
     private String address;
     
     /*
-    *   constructor with no parameter
+    *   constructor
     */
     public modelBranch(int branchID, String name, String address){
         this.branchID = branchID;

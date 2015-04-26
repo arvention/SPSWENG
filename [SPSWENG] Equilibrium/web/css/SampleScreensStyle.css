@@ -53,12 +53,12 @@ input[type=submit]{
 }
 
 input[type=submit]{
+    margin-top: 5px;
     font-size: 14px;
     height: 10%;
     width: 10%;
     position: relative;
     left: 90%;
-    top: 10%;
 }
 
 input[type=submit]:hover{

@@ -1,3 +1,9 @@
+
+/*  Class Name:     GetImage
+*   Developer:      Jet Virtusio
+*   Description:    servlet used to get image
+*/
+
 package Servlets;
 
 import java.io.IOException;

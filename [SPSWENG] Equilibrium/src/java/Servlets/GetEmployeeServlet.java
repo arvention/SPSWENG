@@ -1,6 +1,6 @@
 
 /*  Class Name:     GetEmployeeServlet
-*   Developer:      Jet Virtusion
+*   Developer:      Jet Virtusio
 *   Description:    servlet used to create user account
 */  
 

@@ -1,6 +1,6 @@
 
 /*   Class Name:     GetSearchResultServlet
- *   Developer:      Arren Antioquia
+ *   Developer:      Jet Virtusio
  *   Description:    servlet used to generate search result
  */
 package Servlets;

@@ -1958,4 +1958,38 @@ public class Database {
 
         return employeeID;
     }
+    
+    public int[] checkEmployeeData(int entryNum) {
+        int[] count = new int[4];
+        
+        try {
+            /* getting relative count */
+            sql = "select count(relativeID) from relative\n" +
+                    "where empEntryNum = " + entryNum;
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                count[0] = rs.getInt("count");
+            }
+            
+            /* getting employement history count */
+            sql = "select count(employmentHistoryID) as count from employment_history\n" +
+                    "where empEntryNum = " + entryNum;
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                count[1] = rs.getInt("count");
+            }
+            
+            /* getting cirminal offense history count */
+            sql = "select count(criminalOffenseHistoryID) as count from criminal_offense_history\n" +
+                    "where empEntryNum = " + entryNum;
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                count[2] = rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
 }

@@ -41,6 +41,21 @@
         <script>
             $(document).ready(function() {
                 
+                <% 
+                    int[] count = db.checkEmployeeData(emp.getEntryNum());
+                    if(count[0] == 0) 
+                %>  // check relative count
+                    $("select").find("option[value=\"relatives\"]").attr("disabled", "true");
+                <% 
+                    if(count[1] == 0) 
+                %>  // check employment history count
+                    $("select").find("option[value=\"history\"]").attr("disabled", "true");
+                <% 
+                    if(count[2] == 0) 
+                %>  // check criminal offense count
+                    $("select").find("option[value=\"others\"]").attr("disabled", "true");
+  
+                
                 var sugg = [];
                 var search;
                 $("#search").keyup(function () {
@@ -126,7 +141,10 @@
             }
         });
     }));
-             
+           
+           
+           
+        
             });
         </script>  
 
@@ -232,7 +250,7 @@
             <form id="savepicform" action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
                 <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%>"/><br/>
             <input type='file' id="imgInp" name="filename" accept="image/*"/>
-            <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
+            <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/>
             <input id="savepicchange" class="button" type="submit" value="Save Changes"/> 
             <input type="hidden" name="id" value="<%=emp.getEntryNum()%>" />
             </form>  
@@ -254,7 +272,7 @@
                                                                                                                         employer’s telephone number, supervisor’s name, supervisor’s contact number and reason for leaving-->
                         <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                         disciplinary actions, records of filed leaves, recognitions, and awards-->
-                        <option value="others">Others</option> <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
+                        <option value="others">Criminal Offense History</option> <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
                                                                                                         of that offense. -->
                     </select>
                     <div id="personal" class="pages">
@@ -341,8 +359,11 @@
                                 </div>
                                 <br>
                             </div>
-
+                                
                             <div>
+                            <%
+                                if(children.size() != 0) {
+                            %>
                                 <div class="label-rel">
                                     Children
                                 </div>
@@ -361,9 +382,10 @@
                                         <%=child.getOccupationLocation()%></div><br/>
                                 </div>
                                 <br>
-                                <%
+                            <%
                                     }
-                                %>
+                                }
+                            %>
                             </div>
 
                             <%
@@ -400,7 +422,10 @@
                                 <br>
                             </div>
 
-                            <div>    
+                            <div>   
+                            <%
+                                if(siblings.size() != 0) {
+                            %>
                                 <div class="label-rel">
                                     Siblings
                                 </div>
@@ -418,7 +443,10 @@
                                         <%=sibling.getOccupationLocation()%></div>
                                 </div>
                                 <br>
-                                <%}%>
+                            <%
+                                    }
+                                }
+                            %>
                             </div>
                         </div>
                     </div>
@@ -488,11 +516,14 @@
                             </div>
 
                             <div>
+                            <%
+                                schoolList = db.getEducation("Vocational", emp.getEntryNum());
+                                if(schoolList.size() != 0) {
+                            %>
                                 <div class="label-rel">
                                     Vocational
                                 </div>
                                 <%
-                                    schoolList = db.getEducation("Vocational", emp.getEntryNum());
                                     for (modelEducationHistory school : schoolList) {
                                 %>
                                 <div class="subContent">
@@ -503,15 +534,21 @@
                                     <div class="line"><span class="label">Awards</span>
                                         <%=school.getAward()%></div><br/>
                                 </div>
-                                <%}%>
+                            <%
+                                    }
+                                }
+                            %>
                             </div>
 
                             <div>
+                            <%
+                                schoolList = db.getEducation("Masteral", emp.getEntryNum());
+                                if(schoolList.size() != 0) {
+                            %>
                                 <div class="label-rel">
                                     Masters
                                 </div>
                                 <%
-                                    schoolList = db.getEducation("Masteral", emp.getEntryNum());
                                     for (modelEducationHistory school : schoolList) {
                                 %>
                                 <div class="subContent">
@@ -522,15 +559,21 @@
                                     <div class="line"><span class="label">Awards</span>
                                         <%=school.getAward()%></div><br/>
                                 </div>
-                                <%}%>
+                            <%
+                                    }
+                                }
+                            %>
                             </div>
 
                             <div>
+                            <%
+                                schoolList = db.getEducation("Others", emp.getEntryNum());
+                                if(schoolList.size() != 0) {
+                            %>
                                 <div class="label-rel">
                                     Others
                                 </div>
                                 <%
-                                    schoolList = db.getEducation("Others", emp.getEntryNum());
                                     for (modelEducationHistory school : schoolList) {
                                 %>
                                 <div class="subContent">
@@ -541,15 +584,21 @@
                                     <div class="line"><span class="label">Awards</span>
                                         <%=school.getAward()%></div><br/>
                                 </div>
-                                <%}%>
+                            <%
+                                    }
+                                }
+                            %>
                             </div>
 
                             <div>
+                            <%
+                                ArrayList<modelLicense> licenseList = db.getLicenses(emp.getEntryNum());
+                                if(licenseList.size() != 0) {
+                            %>
                                 <div class="label-rel">
                                     Licensure Exams
                                 </div>
                                 <%
-                                    ArrayList<modelLicense> licenseList = db.getLicenses(emp.getEntryNum());
                                     for (modelLicense license : licenseList) {
                                 %>
                                 <div class="subContent">
@@ -558,7 +607,10 @@
                                     <div class="line"><span class="label">Score</span>
                                         <%=license.getPercentage()%></div>
                                 </div>
-                                <%}%>
+                            <%
+                                    }
+                                }
+                            %>
                             </div>
                         </div>
                     </div>

@@ -105,6 +105,7 @@ console.log(today);
                
         %>
         <DIV class= "nav">
+         <form method="GET" action="SearchEmployee">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
                 <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
@@ -115,6 +116,7 @@ console.log(today);
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
+            </form>
         </DIV>
         <% 
            }

@@ -61,9 +61,9 @@
                 <h4>
                     Inclusive Dates:
 
-                    <input type= "date" class= "form-control" id="dp" name = "startDate" required/> 
+                    <input type= "date" class= "leaveDate" id="dp" name = "startDate" required/> 
                     until 
-                    <input type= "date" class= "form-control" id="dp" name = "endDate" required/>
+                    <input type= "date" class= "leaveDate" id="dp" name = "endDate" required/>
                 </h4>
                 <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
             </form>

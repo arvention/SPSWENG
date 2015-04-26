@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
 /*
-Developed by : Jet Virtusio
-Created to save the account of the employee
-
+   Class Name:     GetEmployeeServlet
+   Developer:      Jet Virtusio
+   Description:    Saves Employee Password in to the database
 */
 public class GetEmployeeServlet extends HttpServlet {
 

@@ -98,6 +98,7 @@ DIV.tab-section {
     border: 2px solid #A7A4A4;
     border-radius: 5px;
     opacity: .85;
+    width: 1150px;
 }
 
 DIV.content{
@@ -193,26 +194,6 @@ DIV.nav{
     color: #000;
     border-bottom: 2px solid #A7A4A4;
     border-radius: 5px 5px 0px 0px;
-}
-
-.three-hundred{
-    width: 300px;
-}
-
-.two-fifty{
-    width: 250px;
-}
-
-.three-ten{
-    width: 310px;
-}
-
-.five-hundred{
-    width: 500px;
-}
-
-.four-hundred{
-    width: 400px;
 }
 
 text{

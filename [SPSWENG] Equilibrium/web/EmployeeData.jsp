@@ -157,95 +157,72 @@
                                     }
                                 }
                             %>
-
+                        <table>
+                            <tr>
+                                <td>Employee ID #</td>
+                                <td><input type="number" class = "infoinput" min = "0" max = "99999999999" name="employeeID" placeholder="Employee ID"  /></td>
+                            </tr>
+                        </table>
                         <table name="one">
                             <tr>
-                                <td>Employee ID</td>
-                                <td>Last Name</td>
-                                <td>First Name</td>
-                                <td>Middle Name</td>
-                                <td>Expected Salary</td>
-                            </tr>
-                            <tr>
-                                <td class="three-hundred"><input type="number" class = "infoinput" min = "0" max = "99999999999" name="employeeID" placeholder="Employee ID"  /></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="lastname" placeholder="Last Name"  /></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="firstname" placeholder="First Name"  /></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="middlename" placeholder="Middle Name"  /></td>
-                                <td class="three-hundred"><input type="number" class = "infoinput" step = "1" min = "0" max = "9999999" name="salary" placeholder="Expected Salary" /></td>
+                                <td>Name </td>
+                                <td><input type="text" class = "infoinput" maxlength = 20 name="lastname" placeholder="Last Name"  /></td>
+                                <td><input type="text" class = "infoinput" maxlength = 20 name="firstname" placeholder="First Name"  /></td>
+                                <td><input type="text" class = "infoinput" maxlength = 20 name="middlename" placeholder="Middle Name"  /></td>
                             </tr>
                         </table>
                         <table name="two">
                             <tr>
-                                <td>Address</td>
-                            </tr>
-                            <tr>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="block" placeholder="Block/Street" /></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="subdivision" placeholder="Subdivision"  /></td>
-                                <td class="three-hundred"><input type="text" maxlength = 20 name="barangay" placeholder="Barangay" /></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="city" placeholder="City"  /></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 20 name="province" placeholder="Province"  /></td>
-                                <td></td>
+                                <td>Address </td>
+                                <td><input type="text" class = "infoinput" maxlength = 20 name="block" placeholder="Block/Street" /></td>
+                                <td><input type="text" class = "infoinput" maxlength = 20 name="subdivision" placeholder="Subdivision"  /></td>
+                                <td><input type="text" maxlength = 20 name="barangay" placeholder="Barangay" /></td>
+                                <td><input type="text" class = "infoinput" maxlength = 20 name="city" placeholder="City"  /></td>
+                                <td><input type="text" class = "infoinput" maxlength = 20 name="province" placeholder="Province"  /></td>
                             </tr>
                         </table>
-                        <table name="three">
+                        <table>
                             <tr>
-                                <td>Birthday</td>
-                                <td>Birthplace</td>
-                                <td>Home Phone</td>
-                                <td>Mobile No</td>
-                                <td>Email Add</td>
-                            </tr>
-                            <tr>
+                                <td>Birthday </td>
                                 <td><input type="date" name="birthday" class = "infoinput" placeholder="Birthday" /></td>
+                                <td>Birthplace</td>
                                 <td><input type="text" maxlength = 20 class = "infoinput" name="birthplace" placeholder="Birth Place" /></td>
-                                <td class="two-fifty"><input type="number" step = "1" min = "0" max = "999999999" name="homephone" placeholder="Home Phone" /></td>
-                                <td class="two-fifty"><input type="number" class = "infoinput" step = "1" min = "0" max = "99999999999" name="mobileno" placeholder="Mobile Number"/></td>
-                                <td class="three-hundred"><input type="text" class = "infoinput" maxlength = 45 name="emailadd" placeholder="Email Address"/></td>
                             </tr>
                         </table>
-                        <table name="four">
+                        <table>
+                            <tr>
+                                <td>Home Phone</td>
+                                <td><input type="number" step = "1" min = "0" max = "999999999" name="homephone" placeholder="Home Phone" /></td>
+                                <td>Mobile #</td>
+                                <td><input type="number" class = "infoinput" step = "1" min = "0" max = "99999999999" name="mobileno" placeholder="Mobile Number"/></td>
+                                <td>Email Address</td>
+                                <td><input type="text" class = "infoinput" maxlength = 45 name="emailadd" placeholder="Email Address"/></td>
+                        </table>
+                        <table>
                             <tr>
                                 <td>SSS #</td>
-                                <td>TIN # </td>
+                                <td><input type="text" class = "infoinput" maxlength = 12 name="sssno" placeholder="Ex. 01-2345678-9" /></td>
+                                <td>TIN #</td>
+                                <td><input type="text" class = "infoinput" maxlength = 16 name="tinno" placeholder="Ex. 999-999-999-999X" /></td>
                                 <td>PHIC #</td>
+                                <td><input type="text" class = "infoinput" maxlength = 14 name="phicno" placeholder="Ex. 01-234567890-1" /></td>
                                 <td>PAGIBIG #</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="three-ten"><input type="text" class = "infoinput" maxlength = 12 name="sssno" placeholder="Ex. 01-2345678-9" /></td>
-                                <td class="three-ten"><input type="text" class = "infoinput" maxlength = 16 name="tinno" placeholder="Ex. 999-999-999-999X" /></td>
-                                <td class="three-ten"><input type="text" class = "infoinput" maxlength = 14 name="phicno" placeholder="Ex. 01-234567890-1" /></td>
-                                <td class="three-ten"><input type="text" class = "infoinput" maxlength = 14 name="pagibigno" placeholder="Ex. 1234-5678-9101" /></td>
+                                <td><input type="text" class = "infoinput" maxlength = 14 name="pagibigno" placeholder="Ex. 1234-5678-9101" /></td>
                             </tr>
                         </table>
-                        <table name="five">
+                        <table>
                             <tr>
-                                <td>Civil Status </td>
                                 <td>Citizenship</td>
-                                <td>Religion</td>  
-                            </tr>
-                            <tr>
-                                <td width="150px"><select name="civilstatus">
-                                        <option value="Single">Single</option>
-                                        <option value="Married">Married</option>
-                                        <option value="Divorced">Divorced</option>
-                                        <option value="Widowed">Widowed</option>
-                                    </select></td>
                                 <td><input type="text" class = "infoinput" maxlength = 20 name="citizenship" placeholder="Citizenship" /></td>
+                                <td>Religion</td>
                                 <td><input type="text" class = "infoinput" maxlength = 20 name="religion" placeholder="Religion" /></td>
-                                <td></td>
-                                <td></td>
                             </tr>
+                        </table>
+                        <table>
                             <tr>
                                 <td>Band</td>
-                                <td width="150px">Department</td>
-                                <td width="200px">Branch</td>
-                                <td width="325px">Current Position </td>
-                                <td>Hire Date</td>
-                                <td width="325px">Manager</td>
-                            </tr>
-                            <tr>
                                 <td><input type="number" class = "infoinput" step = "1" min = "1" max = "9" name="employeeband" placeholder="1"/></td>
+                                <td>Department</td>
                                 <td>
                                     <%
                                         ArrayList<modelDepartment> departmentList = db.getDepartments();
@@ -260,6 +237,7 @@
                                         %>
                                     </select>
                                 </td>
+                                <td>Branch</td>
                                 <td>
                                     <%
                                         ArrayList<modelBranch> branchList = db.getBranches();
@@ -274,8 +252,15 @@
                                         %>
                                     </select>
                                 </td>
+                                <td>Current Position</td>
                                 <td><input type="text" class = "infoinput" maxlength = 45 name="empposition" placeholder="Current Position" /></td>
+                                <td>Expected Salary</td>
+                                <td><input type="number" class = "infoinput" step = "1" min = "0" max = "9999999" name="salary" placeholder="Expected Salary" /><br/></td>
+                            </tr>
+                            <tr>
+                                <td>Hire Date</td>
                                 <td><input type="date" class = "infoinput" name="hiredate" placeholder="Hire Date"  /></td>
+                                <td>Manager</td>
                                 <td><input type="number" class = "infoinput" min = "0" max = "99999999999" name="emphead" placeholder="Employee's Manager ID" /></td>
                             </tr>
                         </table>
@@ -306,10 +291,10 @@
                         <table name="siblings">
                             <tr>
 
-                                <td class="three-hundred">Name of Sibling</td>
+                                <td>Name of Sibling</td>
                                 <td>Age</td>
-                                <td class="three-hundred">Occupation</td>
-                                <td class="three-hundred">Company/Location</td>
+                                <td>Occupation</td>
+                                <td>Company/Location</td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -342,10 +327,10 @@
                             <table name="children">
                                 <tr>
 
-                                    <td class="three-hundred">Name of Child</td>
+                                    <td>Name of Child</td>
                                     <td>Age</td>
-                                    <td class="three-hundred">Occupation</td>
-                                    <td class="three-hundred">School/Location</td>
+                                    <td>Occupation</td>
+                                    <td>School/Location</td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -393,10 +378,10 @@
                         <table name="elementary">
                             <tr>
 
-                                <td class="three-hundred">Name of School</td>
+                                <td>Name of School</td>
                                 <td>From</td>
                                 <td>To</td>
-                                <td class="five-hundred">Awards</td>
+                                <td>Awards</td>
                             </tr>
                             <tr>
                                 <td><input type="text" class = "educationinput" maxlength = 45 name="elemschool" placeholder="ex. Don Bosco School" /></td>
@@ -411,10 +396,10 @@
                         <table name="highschool">
                             <tr>
 
-                                <td class="three-hundred">Name of School</td>
+                                <td>Name of School</td>
                                 <td>From</td>
                                 <td>To</td>
-                                <td class="five-hundred">Awards</td>
+                                <td>Awards</td>
                             </tr>
                             <tr>
 
@@ -430,10 +415,10 @@
                         <table name="college">
                             <tr>
 
-                                <td class="three-hundred">Name of School</td>
+                                <td>Name of School</td>
                                 <td>From</td>
                                 <td>To</td>
-                                <td class="five-hundred">Awards</td>
+                                <td>Awards</td>
                             </tr>
                             <tr>
 
@@ -449,10 +434,10 @@
                         <table name="vocational">
                             <tr>
 
-                                <td class="three-hundred">Name of School</td>
+                                <td>Name of School</td>
                                 <td>From</td>
                                 <td>To</td>
-                                <td class="five-hundred">Awards</td>
+                                <td>Awards</td>
                             </tr>
                             <tr>
 
@@ -468,10 +453,10 @@
                         <table name="masteral">
                             <tr>
 
-                                <td class="three-hundred">Name of School</td>
+                                <td>Name of School</td>
                                 <td>From</td>
                                 <td>To</td>
-                                <td class="five-hundred">Awards</td>
+                                <td>Awards</td>
                             </tr>
                             <tr>
 
@@ -487,10 +472,10 @@
                         <table name="others">
                             <tr>
 
-                                <td class="three-hundred">Name of School</td>
+                                <td>Name of School</td>
                                 <td>From</td>
                                 <td>To</td>
-                                <td class="five-hundred">Awards</td>
+                                <td>Awards</td>
                             </tr>
                             <tr>
 
@@ -506,7 +491,7 @@
                         <table name="license">
                             <tr>
 
-                                <td width="1000px">License/Exam Taken</td>
+                                <td>License/Exam Taken</td>
                                 <td>Percentage</td>
                             </tr>
                             <tr>
@@ -524,10 +509,10 @@
                         <table name="employment">
                             <tr>
 
-                                <td class="three-hundred">Job Title</td>
+                                <td>Job Title</td>
                                 <td>Date of Employment</td>
-                                <td class="three-hundred">Starting Salary</td>
-                                <td class="three-hundred">Ending Salary</td>
+                                <td>Starting Salary</td>
+                                <td>Ending Salary</td>
                             </tr>
                             <tr>
 
@@ -538,9 +523,9 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="three-hundred">Employer's Name</td>
-                                <td class="three-hundred">Employer's Address</td>
-                                <td class="three-hundred">Employer's Contact Number</td>
+                                <td>Employer's Name</td>
+                                <td>Employer's Address</td>
+                                <td>Employer's Contact Number</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -550,9 +535,9 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="three-hundred">Supervisor's Name</td>
-                                <td class="three-hundred">Supervisor's Contact Number</td>
-                                <td class="three-hundred">Reason for Leaving</td>
+                                <td>Supervisor's Name</td>
+                                <td>Supervisor's Contact Number</td>
+                                <td>Reason for Leaving</td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -580,9 +565,9 @@
                             <span class="headers">Past criminal offenses</span><br/>
                             <table name="criminaloffense">
                                 <tr>
-                                    <td class="four-hundred">Criminal Offense</td>
-                                    <td class="four-hundred">Date of Offense</td>
-                                    <td class="four-hundred">Place of Offense</td>
+                                    <td>Criminal Offense</td>
+                                    <td>Date of Offense</td>
+                                    <td>Place of Offense</td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" maxlength = 45 name="offensename" placeholder="Criminal Offense" /></td>

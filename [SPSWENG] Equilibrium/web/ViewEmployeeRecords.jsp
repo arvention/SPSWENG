@@ -769,7 +769,7 @@
                                     <div class="line"><span class="label"><b>Criminal Offense</b></span>
                                         <input type = "text" class="data" name = "offensename" value = "<%=offense.getCriminalOffense()%>" readonly/></div>
                                     <div class="line"><span class="label"><b>Date of Offense</b></span>
-                                        <input type = "date" class="data" name = "offensedate" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(offense.getDateOfOffense()%>" readonly/></div>
+                                        <input type = "date" class="data" name = "offensedate" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(offense.getDateOfOffense())%>" readonly/></div>
                                     <div class="line"><span class="label">Place of Offense</span>
                                         <input type = "text" class="data" name = "offenseplace" value = "<%=offense.getPlaceOfOffense()%>" readonly/></div>
                                 </div>

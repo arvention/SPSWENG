@@ -27,6 +27,11 @@ table{
     color: black;
 }
 
+td{
+    width: auto;
+    height: auto;
+}
+
 input[type=submit]{
     position: relative;
     left: 85%;
@@ -80,16 +85,14 @@ select{
 
 DIV.footer{
     width: 100%;
-    position: fixed;
-    top: 90%;
-    left: 0%;
-    height: 500px;
+    height: 45px;
     text-align:center;
     color: #808080;
     font-size: 11px;
     font-family: "Arial";
     background-color: #E8E8E8;
-    z-index: 1;
+    position: absolute;
+    top: 93%;
 }
 
 DIV.tab-section {
@@ -104,12 +107,12 @@ DIV.tab-section {
 }
 
 DIV.content{
-    padding-top: 15px;
+    padding-top: 10px;
     padding-bottom: 15px;
     padding-left: 100px;
     padding-right: 100px;
     position: absolute;
-    top: 20%;
+    top: 15%;
     z-index: -1;
 }
 DIV.nav{
@@ -200,10 +203,6 @@ DIV.nav{
 
 text{
     border: solid black;
-}
-
-#bio_form{
-    
 }
 
 #bioMessage{

@@ -582,14 +582,13 @@
                             </table>
                         </DIV>
                     </DIV>
-                    <br/><br/>
                 <input type="submit" value="Submit" />
             </form>
 
+        </DIV> 
             <div id = "bioMessage">
             </div>
-        </DIV> 
-        <br/><br/>
+                        
         <DIV class= "footer">
             <br/><hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.

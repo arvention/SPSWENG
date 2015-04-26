@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel = "shortcut icon" href="img/eq logo.ico"/>
  
-        <title>Leave Application</title>
+        <title>Leave Application - EQuilibrium</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">

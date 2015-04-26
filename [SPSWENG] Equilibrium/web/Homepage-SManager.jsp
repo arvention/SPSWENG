@@ -70,14 +70,14 @@
                     <form action="ApproveLeave" method="POST" class="inline-form" onclick="return accept('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
                         <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                         <input type="hidden" name="approveValue" value="Approved" />
-                        <input type="hidden" name="curpage" value="homepage-manager" />
+                        <input type="hidden" name="curpage" value="homepage-smanager" />
                         <input type="submit" class ="approveLeave" value="Approve" id="approve-button"/>
                     </form>
 
                     <form action="ApproveLeave" method="POST" class="inline-form" onclick="return reject('<%=db.getFirstName(leaveForm.getEmpEntryNum())%>', '<%=db.getLastName(leaveForm.getEmpEntryNum())%>')">
                         <input type ="hidden" name="leaveID" value="<%=leaveForm.getLeaveID()%>"/>
                         <input type="hidden" name="approveValue" value="Rejected" />
-                        <input type="hidden" name="curpage" value="homepage-manager" />
+                        <input type="hidden" name="curpage" value="homepage-smanager" />
                         <input type="submit" class ="declineLeave" value="Reject" id="reject-button"/>
                     </form>
                 </div>

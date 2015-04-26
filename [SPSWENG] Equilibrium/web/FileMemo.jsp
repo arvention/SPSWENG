@@ -5,6 +5,9 @@
         <link rel = "stylesheet" type="text/css" href= "css/FileMemo.css"/>
         <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-HrHead.css"/>
         <script src="js/jquery-1.11.2.js"></script>
+          <link rel="stylesheet" href="css/jquery-ui.css"/>
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui.js"></script>
         <title> Memo Form - Equilibrium </title>
         <style>
 

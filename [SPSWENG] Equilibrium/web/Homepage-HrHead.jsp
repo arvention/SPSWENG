@@ -13,7 +13,7 @@
         <script src="js/jquery-1.10.2.js"></script>
 
         <script src="js/jquery-ui.js"></script>
-        <link rel="shortcut icon" href="img/eq logo.png">
+        <link rel="shortcut icon" href="img/eq logo.ico">
         <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-HrHead.css"/>
 
         <script src="js/HomepageFunc.js"></script>

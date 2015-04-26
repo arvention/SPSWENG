@@ -168,11 +168,12 @@ public class SaveAward extends HttpServlet {
            }
            else{
             db.saveAward(intid, sql, awardname , memo,null,null);
-               
+
            }
          //till here
+         
             request.setAttribute("message","Success!");
-            RequestDispatcher view = request.getRequestDispatcher("addAward.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("FileAwardSuccess.jsp");
             view.forward(request, response);
     }
 

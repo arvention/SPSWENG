@@ -189,9 +189,10 @@ console.log(today);
                 <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea><br/><br/>
                 <input type="file" name="filename" class="chooseFile"/>   
 		<input class="submitBtn" input type="submit" value="Submit" name="bSubmit" align="center">
-                   ${message} 
+               
 
 		</form>
+                     <br/>${message} 
 		</DIV>
 		
 		<DIV class= "footer">

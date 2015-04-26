@@ -90,30 +90,37 @@ public class SaveMemo extends HttpServlet {
         HttpSession session = request.getSession();
         modelEmployee employee = (modelEmployee) session.getAttribute("selectedemployee");
         Part filePart = request.getPart("filename");
-        
+        boolean flag= true;
         
         String typeofmemo = request.getParameter("listTypeMemo");
         int intid = employee.getEntryNum();
         String memo = request.getParameter("memoNote");
-         InputStream inputStream = null;
+        InputStream inputStream = null;
         
         if (memo.length() >= 2500) {
             System.out.println("Oh no too much characters");
-            session.setAttribute("error", new String("* Invalid Input: Max characters reached."));
-            response.sendRedirect("FileMemo.jsp");
+            session.setAttribute("error", new String("* Max characters reached."));
+            //response.sendRedirect("FileMemo.jsp");
+            flag=false;
         }
         if(filePart.getSize() != 0){
             
             System.out.println("File Size is "+ filePart.getSize());
             if(filePart.getSize() >  10847412){
-                session.setAttribute("error", new String("* Maximum File Size Reached."));
-                response.sendRedirect("FileMemo.jsp");
+                session.setAttribute("error", new String("* Max File Size Reached."));
+               // response.sendRedirect("FileMemo.jsp");
+                flag=false;
             }
             
             
         }
         
-        
+        if(!flag){
+            System.out.println("Redirect now");
+            response.sendRedirect("FileMemo.jsp"); 
+        }else{
+           
+            
            Database db = Database.getInstance();
            if(filePart.getSize() != 0){
              
@@ -124,15 +131,12 @@ public class SaveMemo extends HttpServlet {
            }
            else{
                db.saveDisciplinary(intid, memo,typeofmemo,null,null);    
-               
+                 // response.sendRedirect("FileMemoSuccess.jsp");
            }
-         //till here
-            session.removeAttribute("error");
-            RequestDispatcher view = request.getRequestDispatcher("FileMemoSuccess.jsp");
-            view.forward(request, response);
-        
-        
-
+           session.removeAttribute("error");
+            response.sendRedirect("FileMemoSuccess.jsp");
+           
+        }
     }
 
     /**

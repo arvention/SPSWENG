@@ -31,6 +31,19 @@
             });
           </script>
           <script>
+              <%
+              
+              String error = (String) session.getAttribute("error");
+            
+              if( error == null ){
+                  error = "";
+                  System.out.println("error is null");
+              }
+              
+              
+              %>
+              
+              
              $(document).ready(function () {
                 var sugg = [];
                 var search;
@@ -160,9 +173,11 @@
             </table>
             <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..." required ></textarea>
             <br/><input type="submit" class="submitButton"/> 
+            
         </form>
-
-
+          <%=error%>     
+      
+           
     </div>
 
 

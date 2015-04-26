@@ -231,7 +231,7 @@
             <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%>"/><br/>
             <input type='file' id="imgInp" name="filename" accept="image/*"/>
             <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
-            <input id="savepicchange" class="botan" type="submit" value="Save Changes"/>
+            <input id="savepicchange" class="button" type="submit" value="Save Changes"/>
             <input type="hidden" name="id" value="<%=emp.getEntryNum()%>" />
             </form>
         </div>

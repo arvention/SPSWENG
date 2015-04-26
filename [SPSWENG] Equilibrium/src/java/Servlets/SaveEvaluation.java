@@ -27,6 +27,14 @@ import javax.servlet.http.Part;
  *
  * @author Thursday
  */
+
+/*  Class Name:     SaveMemo.java
+*   Developer:      Jet Virtusio
+*   Description:    Saves Evaluation in database
+*/  
+
+
+
 @MultipartConfig(maxFileSize = 16177215)  
 public class SaveEvaluation extends HttpServlet {
 

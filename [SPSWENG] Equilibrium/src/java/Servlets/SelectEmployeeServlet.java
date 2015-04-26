@@ -22,6 +22,15 @@ import javax.servlet.http.HttpSession;
  *
  * @author Thursday
  */
+
+    /*
+    
+    Classname:   SearchEmployeeServlet
+    Developer:   Jet Virtusio
+    Description: Redirects a user to the function clicked in the search page
+    */
+
+
 public class SelectEmployeeServlet extends HttpServlet {
 
     /**
@@ -98,14 +107,5 @@ public class SelectEmployeeServlet extends HttpServlet {
         
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+ 
 }

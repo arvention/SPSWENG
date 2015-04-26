@@ -1,7 +1,7 @@
 <%@page import="Models.modelEmployee"%>
 <html>
    <head>
-     <title>Add Evaluation</title>
+     <title>Add Evaluation - EQuilibrium</title>
         <link rel="shortcut icon" href="img/eq logo.ico">
 	 <link rel="stylesheet" type="text/css" media="all" href="addAwards.css"/>
 	 <script src="js/jquery-1.11.2.js"></script>

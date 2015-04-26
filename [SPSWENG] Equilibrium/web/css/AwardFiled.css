@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04 26, 15, 4:00:38 PM
+    Author     : marienne lopez
+*/
+
+.awardForm{
+    background-color: white;
+    border-radius: 16px;
+    width:750px;
+    height: 450px;
+    opacity: 0.75;
+    margin-left: auto;
+    margin-right: auto;
+     margin-top: 70px;
+}
+
+.awardText{
+    margin-left: 125px;
+    margin-top: 20px;
+    font-color: black;
+    border: 1px solid black;
+    font-family: Arial;
+    padding-left: 4px;
+}
+
+.titleText{
+    font-size: 35px;
+    font-family: Arial;
+    font-weight: bold;
+    color: red;
+    opacity: .85;
+}
+
+.contentText{
+    font-size: 17px;
+    font-family: Arial;
+    color: red;
+    margin-left: 125px;
+    margin-top: 8px;
+}
+
+DIV.pageBottom{
+    padding-top: 75px;
+    text-align:center;
+    color: #808080;
+    font-size: 11px;
+    font-family: "Arial";
+}
+
+a{
+    color:red;
+    opacity: .80;
+}

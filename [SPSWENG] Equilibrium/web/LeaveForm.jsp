@@ -192,7 +192,7 @@
             <%}%>
         </div>
         <div id = "leaveMessage">
-            hello
+           
         </div>
            <DIV class="footer">
             <br/><hr width="75%"/>

@@ -225,13 +225,13 @@
         </div>
 
         <div id="overlay"></div>
-        <div class= "pageLeft" align = "center">
-            
-            <form id="savepicform" action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
+        
+        <div id="all">
+        <div class= "pageLeft">
+            <form action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
             <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%>"/><br/>
-            <input type='file' id="imgInp" name="filename" accept="image/*"/>
-            <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
-            <input id="savepicchange" class="botan" type="submit" value="Save Changes"/>
+            <input type='file' id="imgInp" name="filename" id="fileButton" accept="image/*"/>
+            <input id="savepicchange" type="submit" value="Save Changes" class="button"/>
             <input type="hidden" name="id" value="<%=emp.getEntryNum()%>" />
             </form>
         </div>
@@ -244,12 +244,12 @@
                     <select id="options" size="6">
                         <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
                                                                                                                                 birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
-                        <option value="relations">Relations</option> <!--name, age, occupation and company of occupation of the employeeâ€™s siblings and parents. Information 
-                                                                                                                regarding the spouseâ€™s name, contact number and occupation or employer is added, as well as the names of their children, age, grade or year and the school of the children-->	
+                        <option value="relations">Relations</option> <!--name, age, occupation and company of occupation of the employee’s siblings and parents. Information 
+                                                                                                                regarding the spouse’s name, contact number and occupation or employer is added, as well as the names of their children, age, grade or year and the school of the children-->	
                         <option value="edu">Education</option> <!--elementary, high school, college, vocational, masters and others. In the history, the name of 
                                                                                                                 school, years the employee has studied in that school and the awards given by the school to the employee are mentioned. The bio-data also includes the licensure exams taken and the score of the employee in the exams-->
-                        <option value="history">Employment History</option> <!--job names, date of employment, beginning & ending salary, employerâ€™s name, employerâ€™s address, 
-                                                                                                                        employerâ€™s telephone number, supervisorâ€™s name, supervisorâ€™s contact number and reason for leaving-->
+                        <option value="history">Employment History</option> <!--job names, date of employment, beginning & ending salary, employer’s name, employer’s address, 
+                                                                                                                        employer’s telephone number, supervisor’s name, supervisor’s contact number and reason for leaving-->
                         <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                         disciplinary actions, records of filed leaves, recognitions, and awards-->
                         <option value="others">Others</option> <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
@@ -263,13 +263,17 @@
                             <%
                                 if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
                             %>
-                            <div class = "editSpan"><span class = "editMessage">Click on an entry to change its content</span><input type="button" onclick = "return false;" value="Edit" id="editButton"><input type = "submit" value = "Save Edit" id = "saveButton"/></div>
+                            <div class = "editSpan"><span class = "editMessage">Click on an entry to change its content</span><input type="button" onclick = "return false;" value="Edit" id="editButton"><input type = "submit" value = "Save" id = "saveButton"/></div>
                             <br>
                             <br>
                             <%}%>
                             <div class="content">
-                                <div class="line"><span class="label">Name</span>
-                                    <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/> <input name = "middlename" type = "text" class="data" value = "<%=emp.getMiddleName()%>" readonly/> <input name = "lastname" type = "text" class="data" value = "<%=emp.getLastName()%>" readonly/></div>
+                                <div class="line"><span class="label">First Name</span>
+                                    <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/></div>
+                                <div class="line"><span class="label">Middle Name</span>
+                                    <input name = "middlename" type = "text" class="data" value = "<%=emp.getMiddleName()%>" readonly/></div>
+                                <div class="line"><span class="label">Last Name</span>
+                                    <input name = "lastname" type = "text" class="data" value = "<%=emp.getLastName()%>" readonly/></div>
                                 <div class="line"><span class="label">ID Number</span>
                                     <%=emp.getEmployeeID()%></div>
                                 <div class="line"><span class="label">Hire Date</span>
@@ -325,7 +329,7 @@
                                 <div class="label-rel">
                                     Spouse
                                 </div>
-                                <div class="subContent" id="waddup">
+                                <div class="subContent">
                                     <div class="line"><span class="label"><b>Name</b></span>
                                         <%=spouse.getName()%></div>
                                     <div class="line"><span class="label">Contact Number</span>
@@ -369,9 +373,9 @@
 
                             %>
                             <div>
-                                <div class="label-rel">
+                                <!--div class="label-rel">
                                     <b>Parents</b>
-                                </div>
+                                </div-->
                                 <div class="subContent">
                                     <div class="label-rel">Father</div>
                                     <div class="line"><span class="label"><b>Name</b></span>
@@ -603,6 +607,7 @@
                                 <option value = "awards">Recognitions and Awards</option>
                                 <option value = "evaluation">Evaluation</option>
                             </select>
+                            <span id="chooseDoc">Choose a document type</span>
                             <br>
                             <br>
                             <br>
@@ -620,8 +625,9 @@
                                         <div class = "line"><span class ="label"><b>Date</b></span>
                                             <%=new SimpleDateFormat("MMM dd, yyyy h:mm a").format(record.getDate())%>
                                             <%if (db.isFile(record.getRecordID())) {%>
-                                            <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button></div>
+                                            <button class = "downloadButton" id="<%=record.getRecordID()%>">Download File</button>
                                             <% }%>
+                                        </div>
                                         <div class = "line"><span class ="label"><b>Disciplinary Record Type</b></span>
                                             <%=record.getDisciplinaryRecordType()%></div>
                                         <div class = "line"><span class ="label"><b>Disciplinary Comment</b></span>
@@ -664,10 +670,10 @@
                                         <div class = "line"><span class ="label"><b>Score</b></span>
                                             <%=record.getEvaluationScore()%>
                                         </div>
+                                        <br>
+                                        <%}%>
                                     </div>
-                                    <br>
-                                    <%}%>
-                                </div>
+                                </div> 
                                 <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                             </form>
                             <%}%>
@@ -700,8 +706,9 @@
                 </div>
             </div>
         </div> <!-- end of box -->
+        </div> <!-- end of all -->
 
-        <div class = "pageBot">
+        <div class = "footer">
             <hr width = "75%">
             EQUILIBRIUM INTERTRADE CORP.
         </div>

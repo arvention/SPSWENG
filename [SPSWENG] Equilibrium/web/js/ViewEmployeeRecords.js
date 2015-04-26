@@ -30,7 +30,7 @@ $(document).ready(function () {
     
     $(document).on("click", "#editButton", function () {
         if($(this).val() === "Edit") {
-            $(this).val("Cancel Edit");
+            $(this).val("Cancel");
             $("#saveButton").show();
             $("input[name='managerid']").attr("type", "number");
             $(".data").attr("readonly", false);
@@ -39,7 +39,7 @@ $(document).ready(function () {
             $(".add-delete-button").show();
             $(".editNote").show();
         }
-        else if($(this).val() === "Cancel Edit") {
+        else if($(this).val() === "Cancel") {
             $(this).val("Edit");
             $("#editButton").attr("type", "button");
             $("#saveButton").hide();

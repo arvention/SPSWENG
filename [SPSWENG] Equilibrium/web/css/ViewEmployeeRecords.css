@@ -3,6 +3,70 @@ body {
     font-size: 14px;
 }
 
+#chooseDoc {
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    color: #D63333;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    background-color: #D63333;
+    width: 200px;
+    font-size: 14px;
+    opacity: .75;
+    color: white;
+}
+
+.button {
+    width: 120px;
+    height: 25px;
+    background-color: #D63333;
+    border: 0;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 3px;
+    opacity: .75;
+    
+    margin-left: 35px;
+}
+
+#all {
+    height: 500px;
+    width: 1050px;
+    position: absolute;
+    top: 0; bottom:0; left: 0; right: 0;
+    margin: auto;
+}
+
+.pageLeft{
+    height: 500px;
+    width: 200px;
+/*    margin-right: 10px;
+    margin-top: 7%;
+    padding-top: 0;*/
+    float: left;
+    margin-right: 40px;
+}
+
+#box {
+    position: absolute;
+    height: 500px;
+    width: 800px;
+    float: right;
+    border: 2px solid lightgray;
+    background: white;
+    border-radius: 16px;
+    opacity: .75;
+    
+    margin-top: -15px;
+}
+
 input:hover, .alertButton:hover {
     cursor: pointer;
 }
@@ -46,19 +110,38 @@ input:hover, .alertButton:hover {
 .add-delete-button {
     width: 20px;
     float: right;
-    background-color: lightgray;
+    background-color: #D63333;
     border: 0;
     color: white;
     margin-left: 2px;
 }
 
-#editButton, #saveButton{
-    width: 100px;
-    height: 30px;
-    background-color: lightgray;
+button {
+    width: 110px;
+    height: 25px;
+    background-color: #D63333;
     border: 0;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: -5px;
+    padding: 3px;
+}
+
+#editButton, #saveButton{
+    width: 80px;
+    height: 25px;
+    background-color: #D63333;
+    border: 0;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: -5px;
+    padding: 3px;
 }
 
 #saveButton{
@@ -71,8 +154,12 @@ input:hover, .alertButton:hover {
 
 .editMessage{
     margin-right: 10px;
-    color: firebrick;
+    color: #D63333;
     display: none;
+}
+
+.editNote {
+    color: #D63333;
 }
 
 .data {
@@ -88,18 +175,7 @@ input:hover, .alertButton:hover {
 }
 
 #main{
-    margin: 0;
-    margin-right: 50px;
     display: inline-block;
-}
-
-#box {
-    height: 500px;
-    width: 800px;
-    float: right;
-    border: 2px solid lightgray;
-    background: white;
-    border-radius: 16px;
 }
 
 #name {
@@ -140,9 +216,9 @@ select:focus {
 
 .pages {
     float: right;
-    height: 468px;
+    height: 458px;
     width: 594px;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .content {
@@ -167,23 +243,17 @@ select:focus {
 #docs-select {
     float: right;
     margin-right: 5px;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    height: 35px;
+    border-radius: 5px;
+    height: 25px;
     width: 270px;
     text-indent: 5px;
+    
+    border: 0;
+    background-color: #D63333;
+    color: white;
 }
 .pageTop{
     margin-top: 8%;
-}
-
-.pageLeft{
-    height: 40%;
-    width: 20%;
-    margin-right: 10px;
-    margin-top: 7%;
-    padding-top: 0;
-    float: left;
 }
 
 .empPicture{
@@ -191,7 +261,7 @@ select:focus {
     height: 200px;
 }
 
-.botan{
+/*.botan{
     font-size: 100%;
     width: 50%;
     padding: 5px;
@@ -200,7 +270,7 @@ select:focus {
     color: white;
     cursor: pointer;
     opacity: 0.55;
-}
+}*/
 
 .pageBot{
     margin-top: 50px;
@@ -228,14 +298,28 @@ input[type='date']{
     float: right;
     margin-right: 10px;
 }
-
+/*
 #info-form{
     position: absolute;
     z-index: 0;
     height: 450px;
     overflow-y: auto;
 }
+*/
+/*#docs, .pages{
+    z-index: 1;
+}*/
 
-#docs{
+DIV.footer{
+    width: 100%;
+    position: fixed;
+    top: 90%;
+    left: 0%;
+    height: 500px;
+    text-align:center;
+    color: #808080;
+    font-size: 11px;
+    font-family: "Arial";
+    background-color: #E8E8E8;
     z-index: 1;
 }

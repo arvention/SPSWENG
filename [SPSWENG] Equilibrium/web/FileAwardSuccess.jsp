@@ -123,7 +123,7 @@
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="titleText">Award was added successfully!</div><br/>
             <div class="titleText">${response}</div><br/>
-        
+            <a href ="addAward.jsp">File another Award...</a><br/>
             <%   
             modelEmployee me =(modelEmployee) session.getAttribute("employee");
             

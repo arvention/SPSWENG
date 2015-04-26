@@ -123,7 +123,7 @@
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="titleText">Evaluation was added successfully!</div><br/>
             <div class="titleText">${response}</div><br/>
-        
+            <a href ="addEvaluation.jsp">File another Evaluation...</a><br/>
             <%   
             modelEmployee me =(modelEmployee) session.getAttribute("employee");
             

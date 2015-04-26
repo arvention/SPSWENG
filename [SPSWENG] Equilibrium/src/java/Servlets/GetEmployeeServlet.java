@@ -6,8 +6,8 @@
 package Servlets;
 
 import Database.Database;
-import Database.EmailNotifier;
-import Helper.PasswordGenerator;
+import ClassHelpers.EmailNotifier;
+import ClassHelpers.PasswordGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

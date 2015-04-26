@@ -6,7 +6,7 @@
 package Servlets;
 
 import Database.Database;
-import Database.EmailNotifier;
+import ClassHelpers.EmailNotifier;
 import Models.modelEmployee;
 import java.io.IOException;
 import java.io.PrintWriter;

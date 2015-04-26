@@ -4,7 +4,7 @@
 *   Description:    Used to generate a random password. The password generated has 6 characters.
 */  
 
-package Helper;
+package ClassHelpers;
 
 import java.util.Random;
 

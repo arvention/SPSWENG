@@ -6,9 +6,11 @@
 package Servlets;
 
 import Database.Database;
+import Models.modelEducationHistory;
 import Models.modelEmployee;
 import Models.modelRelative;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -111,8 +113,7 @@ public class EditEmployeeData extends HttpServlet {
                     break;
             }
         }
-
-        String birthplace = request.getParameter("birthplace");
+String birthplace = request.getParameter("birthplace");
         if (!emp.getBirthplace().equals(birthplace)) {
             switch (logged.getEmployeeType()) {
                 case "Hr Employee":
@@ -123,6 +124,22 @@ public class EditEmployeeData extends HttpServlet {
 
                     db.changeAuditStatus(auditTrailID, "Approved");
                     db.changeFieldValue("employee", emp.getEntryNum(), "birthplace", birthplace);
+                    break;
+            }
+        }
+        
+        String birthday = request.getParameter("birthday");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        if (!sdf.format(emp.getBirthday()).equals(sdf.format(birthday))) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "birthday", sdf.format(emp.getBirthday()), sdf.format(birthday), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "birthday", sdf.format(emp.getBirthday()), sdf.format(birthday), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "birthday", sdf.format(birthday));
                     break;
             }
         }
@@ -629,8 +646,457 @@ public class EditEmployeeData extends HttpServlet {
             }
         }
     }
-    
+
     public void editEducationHistory(modelEmployee logged, modelEmployee emp, HttpServletRequest request) {
+        Database db = Database.getInstance();
         //elementary
+        String[] elemsID = request.getParameterValues("elemid");
+        String[] elemsName = request.getParameterValues("elemname");
+        String[] elemsFrom = request.getParameterValues("elemfrom");
+        String[] elemsTo = request.getParameterValues("elemto");
+        String[] elemsAward = request.getParameterValues("elemaward");
+        ArrayList<modelEducationHistory> educationlist = db.getEducation("Elementary", emp.getEntryNum());
+
+        if (elemsID != null) {
+            for (int i = 0; i < elemsID.length; i++) {
+                modelEducationHistory education = educationlist.get(i);
+                int elemID = Integer.parseInt(elemsID[i]);
+
+                String elemname = elemsName[i];
+                if (!education.getSchoolName().equals(elemname)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", elemID, "schoolName", education.getSchoolName(), elemname, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", elemID, "schoolName", education.getSchoolName(), elemname, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", elemID, "schoolName", elemname);
+                            break;
+                    }
+                }
+
+                int elemfrom = Integer.parseInt(elemsFrom[i]);
+                if (education.getYearFrom() != elemfrom) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", elemID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(elemfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", elemID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(elemfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", elemID, "yearFrom", Integer.toString(elemfrom));
+                            break;
+                    }
+                }
+
+                int elemto = Integer.parseInt(elemsTo[i]);
+                if (education.getYearTo() != elemto) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", elemID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(elemto), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", elemID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(elemto), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", elemID, "yearTo", Integer.toString(elemto));
+                            break;
+                    }
+                }
+                
+                String elemaward = elemsAward[i];
+                if (!education.getAward().equals(elemaward)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", elemID, "award", education.getAward(), elemaward, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", elemID, "award", education.getAward(), elemaward, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", elemID, "award", elemaward);
+                            break;
+                    }
+                }
+            }
+        }
+        
+        //high school
+        String[] highschoolsID = request.getParameterValues("highschoolid");
+        String[] highschoolsName = request.getParameterValues("highschoolname");
+        String[] highschoolsFrom = request.getParameterValues("highschoolfrom");
+        String[] highschoolsTo = request.getParameterValues("highschoolto");
+        String[] highschoolsAward = request.getParameterValues("highschoolaward");
+        educationlist = db.getEducation("High School", emp.getEntryNum());
+
+        if (highschoolsID != null) {
+            for (int i = 0; i < highschoolsID.length; i++) {
+                modelEducationHistory education = educationlist.get(i);
+                int highschoolID = Integer.parseInt(highschoolsID[i]);
+
+                String highschoolname = highschoolsName[i];
+                if (!education.getSchoolName().equals(highschoolname)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", highschoolID, "schoolName", education.getSchoolName(), highschoolname, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", highschoolID, "schoolName", education.getSchoolName(), highschoolname, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", highschoolID, "schoolName", highschoolname);
+                            break;
+                    }
+                }
+
+                int highschoolfrom = Integer.parseInt(highschoolsFrom[i]);
+                if (education.getYearFrom() != highschoolfrom) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", highschoolID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(highschoolfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", highschoolID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(highschoolfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", highschoolID, "yearFrom", Integer.toString(highschoolfrom));
+                            break;
+                    }
+                }
+
+                int highschoolto = Integer.parseInt(highschoolsTo[i]);
+                if (education.getYearTo() != highschoolto) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", highschoolID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(highschoolto), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", highschoolID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(highschoolto), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", highschoolID, "yearTo", Integer.toString(highschoolto));
+                            break;
+                    }
+                }
+                
+                String highschoolaward = highschoolsAward[i];
+                if (!education.getAward().equals(highschoolaward)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", highschoolID, "award", education.getAward(), highschoolaward, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", highschoolID, "award", education.getAward(), highschoolaward, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", highschoolID, "award", highschoolaward);
+                            break;
+                    }
+                }
+            }
+        }
+        
+        //college
+        String[] collegesID = request.getParameterValues("collegeid");
+        String[] collegesName = request.getParameterValues("collegename");
+        String[] collegesFrom = request.getParameterValues("collegefrom");
+        String[] collegesTo = request.getParameterValues("collegeto");
+        String[] collegesAward = request.getParameterValues("collegeaward");
+        educationlist = db.getEducation("College", emp.getEntryNum());
+
+        if (collegesID != null) {
+            for (int i = 0; i < collegesID.length; i++) {
+                modelEducationHistory education = educationlist.get(i);
+                int collegeID = Integer.parseInt(collegesID[i]);
+
+                String collegename = collegesName[i];
+                if (!education.getSchoolName().equals(collegename)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", collegeID, "schoolName", education.getSchoolName(), collegename, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", collegeID, "schoolName", education.getSchoolName(), collegename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", collegeID, "schoolName", collegename);
+                            break;
+                    }
+                }
+
+                int collegefrom = Integer.parseInt(collegesFrom[i]);
+                if (education.getYearFrom() != collegefrom) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", collegeID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(collegefrom), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", collegeID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(collegefrom), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", collegeID, "yearFrom", Integer.toString(collegefrom));
+                            break;
+                    }
+                }
+
+                int collegeto = Integer.parseInt(collegesTo[i]);
+                if (education.getYearTo() != collegeto) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", collegeID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(collegeto), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", collegeID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(collegeto), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", collegeID, "yearTo", Integer.toString(collegeto));
+                            break;
+                    }
+                }
+                
+                String collegeaward = collegesAward[i];
+                if (!education.getAward().equals(collegeaward)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", collegeID, "award", education.getAward(), collegeaward, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", collegeID, "award", education.getAward(), collegeaward, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", collegeID, "award", collegeaward);
+                            break;
+                    }
+                }
+            }
+        }
+        
+        //vocational
+        String[] vocationalsID = request.getParameterValues("vocationalid");
+        String[] vocationalsName = request.getParameterValues("vocationalname");
+        String[] vocationalsFrom = request.getParameterValues("vocationalfrom");
+        String[] vocationalsTo = request.getParameterValues("vocationalto");
+        String[] vocationalsAward = request.getParameterValues("vocationalaward");
+        educationlist = db.getEducation("College", emp.getEntryNum());
+
+        if (vocationalsID != null) {
+            for (int i = 0; i < vocationalsID.length; i++) {
+                modelEducationHistory education = educationlist.get(i);
+                int vocationalID = Integer.parseInt(vocationalsID[i]);
+
+                String vocationalname = vocationalsName[i];
+                if (!education.getSchoolName().equals(vocationalname)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", vocationalID, "schoolName", education.getSchoolName(), vocationalname, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", vocationalID, "schoolName", education.getSchoolName(), vocationalname, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", vocationalID, "schoolName", vocationalname);
+                            break;
+                    }
+                }
+
+                int vocationalfrom = Integer.parseInt(vocationalsFrom[i]);
+                if (education.getYearFrom() != vocationalfrom) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", vocationalID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(vocationalfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", vocationalID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(vocationalfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", vocationalID, "yearFrom", Integer.toString(vocationalfrom));
+                            break;
+                    }
+                }
+
+                int vocationalto = Integer.parseInt(vocationalsTo[i]);
+                if (education.getYearTo() != vocationalto) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", vocationalID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(vocationalto), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", vocationalID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(vocationalto), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", vocationalID, "yearTo", Integer.toString(vocationalto));
+                            break;
+                    }
+                }
+                
+                String vocationalaward = vocationalsAward[i];
+                if (!education.getAward().equals(vocationalaward)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", vocationalID, "award", education.getAward(), vocationalaward, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", vocationalID, "award", education.getAward(), vocationalaward, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", vocationalID, "award", vocationalaward);
+                            break;
+                    }
+                }
+            }
+        }
+        
+        //master
+        String[] mastersID = request.getParameterValues("masterid");
+        String[] mastersName = request.getParameterValues("mastername");
+        String[] mastersFrom = request.getParameterValues("masterfrom");
+        String[] mastersTo = request.getParameterValues("masterto");
+        String[] mastersAward = request.getParameterValues("masteraward");
+        educationlist = db.getEducation("College", emp.getEntryNum());
+
+        if (mastersID != null) {
+            for (int i = 0; i < mastersID.length; i++) {
+                modelEducationHistory education = educationlist.get(i);
+                int masterID = Integer.parseInt(mastersID[i]);
+
+                String mastername = mastersName[i];
+                if (!education.getSchoolName().equals(mastername)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", masterID, "schoolName", education.getSchoolName(), mastername, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", masterID, "schoolName", education.getSchoolName(), mastername, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", masterID, "schoolName", mastername);
+                            break;
+                    }
+                }
+
+                int masterfrom = Integer.parseInt(mastersFrom[i]);
+                if (education.getYearFrom() != masterfrom) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", masterID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(masterfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", masterID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(masterfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", masterID, "yearFrom", Integer.toString(masterfrom));
+                            break;
+                    }
+                }
+
+                int masterto = Integer.parseInt(mastersTo[i]);
+                if (education.getYearTo() != masterto) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", masterID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(masterto), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", masterID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(masterto), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", masterID, "yearTo", Integer.toString(masterto));
+                            break;
+                    }
+                }
+                
+                String masteraward = mastersAward[i];
+                if (!education.getAward().equals(masteraward)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", masterID, "award", education.getAward(), masteraward, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", masterID, "award", education.getAward(), masteraward, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", masterID, "award", masteraward);
+                            break;
+                    }
+                }
+            }
+        }
+        
+        //other
+        String[] othersID = request.getParameterValues("otherid");
+        String[] othersName = request.getParameterValues("othername");
+        String[] othersFrom = request.getParameterValues("otherfrom");
+        String[] othersTo = request.getParameterValues("otherto");
+        String[] othersAward = request.getParameterValues("otheraward");
+        educationlist = db.getEducation("College", emp.getEntryNum());
+
+        if (othersID != null) {
+            for (int i = 0; i < othersID.length; i++) {
+                modelEducationHistory education = educationlist.get(i);
+                int otherID = Integer.parseInt(othersID[i]);
+
+                String othername = othersName[i];
+                if (!education.getSchoolName().equals(othername)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", otherID, "schoolName", education.getSchoolName(), othername, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", otherID, "schoolName", education.getSchoolName(), othername, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", otherID, "schoolName", othername);
+                            break;
+                    }
+                }
+
+                int otherfrom = Integer.parseInt(othersFrom[i]);
+                if (education.getYearFrom() != otherfrom) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", otherID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(otherfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", otherID, "yearFrom", Integer.toString(education.getYearFrom()), Integer.toString(otherfrom), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", otherID, "yearFrom", Integer.toString(otherfrom));
+                            break;
+                    }
+                }
+
+                int otherto = Integer.parseInt(othersTo[i]);
+                if (education.getYearTo() != otherto) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", otherID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(otherto), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", otherID, "yearTo", Integer.toString(education.getYearTo()), Integer.toString(otherto), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", otherID, "yearTo", Integer.toString(otherto));
+                            break;
+                    }
+                }
+                
+                String otheraward = othersAward[i];
+                if (!education.getAward().equals(otheraward)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("education_history", otherID, "award", education.getAward(), otheraward, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("education_history", otherID, "award", education.getAward(), otheraward, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("education_history", otherID, "award", otheraward);
+                            break;
+                    }
+                }
+            }
+        }
     }
 }

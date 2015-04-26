@@ -252,13 +252,10 @@
                     <div id="box">
                         <div id="header">
                             <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
-                            <%
-                                if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
-                            %>
-                            <div class = "editSpan"><span class = "editMessage">Click on an entry to change its content</span><input type="button" onclick = "return false;" value="Edit" id="editButton"><input type = "submit" value = "Save" id = "saveButton"/></div>
-                                <%}%>
-                        </div>
 
+                            <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+
+                        </div>
                         <select id="options" size="6">
                             <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
                                                                                                                                     birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
@@ -273,12 +270,17 @@
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                                 disciplinary actions, records of filed leaves, recognitions, and awards-->
                         </select>
-
-
-                        <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                         <form action = "EditEmployeeData" method = "POST" id = "info-form">
                             <%}%>
+
+                            <%
+                                if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {
+                            %>
+                            <div class = "editSpan"><span class = "editMessage">Click on an entry to change its content</span><input type="button" onclick = "return false;" value="Edit" id="editButton"><input type = "submit" value = "Save" id = "saveButton"/></div>
+                                <%}%>
+
                             <div id="personal" class="pages">
+                                <br><br>
                                 <div class="content">
                                     <div class="line"><span class="label">First Name</span>
                                         <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/></div>
@@ -328,6 +330,7 @@
                                 </div>
                             </div>
                             <div id="relations" class="pages">
+                                <br><br>
                                 <div class="content">
                                     <%
                                         if (!emp.getCivilStatus().equals("Single")) {
@@ -456,6 +459,7 @@
                             </div>
 
                             <div id="edu" class="pages">
+                                <br><br>
                                 <%
                                     ArrayList<modelEducationHistory> schoolList;
                                 %>
@@ -475,11 +479,12 @@
                                                 <input type = "text" class="data" name = "elemname" value = "<%=school.getSchoolName()%>" readonly/>
                                             </div>
                                             <div class="line"><span class="label">Years</span>
-                                                <input type = "date" class="data" name = "elemfrom" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" name = "elemto" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/>
+                                                <input type = "number" class="data" name = "elemfrom" value = "<%=school.getYearFrom()%>" readonly/> to <input type = "number" class="data" name = "elemto" value = "<%=school.getYearTo()%>" readonly/>
                                             </div>
                                             <div class="line"><span class="label">Awards</span>
                                                 <input type = "text" class="data" name = "elemaward" value = "<%=school.getAward()%>" readonly/>
                                             </div>
+                                            <input type = "hidden" name = "elemid" value = "<%=school.getEducationHistoryID()%>">
                                             <br/>
                                         </div>
                                     </div>
@@ -499,12 +504,13 @@
                                             <input type = "text" class="data" name = "highschoolname" value = "<%=school.getSchoolName()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Years</span>
-                                            <input type = "date" class="data" name = "highschoolfrom" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" name = "highschoolto" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/>
+                                            <input type = "number" class="data" name = "highschoolfrom" value = "<%=school.getYearFrom()%>" readonly/> to <input type = "number" class="data" name = "hishschoolto" value = "<%=school.getYearTo()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Awards</span>
                                             <input type = "text" class="data" name = "highschoolaward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
-                                        <br/>
+                                        <input type = "hidden" name = "highschool" value = "<%=school.getEducationHistoryID()%>">
+                                            <br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -522,12 +528,13 @@
                                             <input type = "text" class="data" name = "collegename" value = "<%=school.getSchoolName()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Years</span>
-                                            <input type = "date" class="data" name = "collegefrom" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" name = "collegeto" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/>
+                                            <input type = "number" class="data" name = "collegefrom" value = "<%=school.getYearFrom()%>" readonly/> to <input type = "number" class="data" name = "collegeto" value = "<%=school.getYearTo()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Awards</span>
                                             <input type = "text" class="data" name = "collegeaward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
-                                        <br/>
+                                        <input type = "hidden" name = "collegeid" value = "<%=school.getEducationHistoryID()%>">
+                                            <br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -548,12 +555,13 @@
                                             <input type = "text" class="data" name = "vocationalname" value = "<%=school.getSchoolName()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Years</span>
-                                            <input type = "date" class="data" name = "vocationalfrom" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" name = "vocationalto" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/>
+                                            <input type = "number" class="data" name = "vocationalfrom" value = "<%=school.getYearFrom()%>" readonly/> to <input type = "number" class="data" name = "vocationalto" value = "<%=school.getYearTo()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Awards</span>
                                             <input type = "text" class="data" name = "vocationalaward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
-                                        <br/>
+                                        <input type = "hidden" name = "vocationalid" value = "<%=school.getEducationHistoryID()%>">
+                                            <br/>
                                     </div>
                                     <%
                                             }
@@ -577,12 +585,13 @@
                                             <input type = "text" class="data" name = "mastername" value = "<%=school.getSchoolName()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Years</span>
-                                            <input type = "date" class="data" name = "masterfrom" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" name = "masterto" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/>
+                                            <input type = "number" class="data" name = "masterfrom" value = "<%=school.getYearFrom()%>" readonly/> to <input type = "number" class="data" name = "masterto" value = "<%=school.getYearTo()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Awards</span>
                                             <input type = "text" class="data" name = "masteraward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
-                                        <br/>
+                                        <input type = "hidden" name = "masterid" value = "<%=school.getEducationHistoryID()%>">
+                                            <br/>
                                     </div>
                                     <%
                                             }
@@ -606,12 +615,13 @@
                                             <input type = "text" class="data" name = "othername" value = "<%=school.getSchoolName()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Years</span>
-                                            <input type = "date" class="data" name = "otherfrom" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearFrom())%>" readonly/> to <input type = "date" class="data" name = "otherto" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(school.getYearTo())%>" readonly/>
+                                            <input type = "number" class="data" name = "otherfrom" value = "<%=school.getYearFrom()%>" readonly/> to <input type = "number" class="data" name = "otherto" value = "<%=school.getYearTo()%>" readonly/>
                                         </div>
                                         <div class="line"><span class="label">Awards</span>
                                             <input type = "text" class="data" name = "otheraward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
-                                        <br/>
+                                        <input type = "hidden" name = "otherid" value = "<%=school.getEducationHistoryID()%>">
+                                            <br/>
                                     </div>
                                     <%
                                             }
@@ -645,6 +655,7 @@
                                 </div>
                             </div>
                             <div id="history" class="pages">
+                                <br><br>
                                 <div class="content"> 
 
                                     <div>

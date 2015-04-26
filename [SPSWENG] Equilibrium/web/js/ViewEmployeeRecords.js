@@ -16,6 +16,7 @@ $(document).ready(function () {
             $("#info-form").show();
         else
             $("#info-form").hide();
+        $("#options").show();
         $(currPage).hide();
         $(nextPage).show();
         currPage = nextPage;

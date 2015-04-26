@@ -18,11 +18,18 @@ import javax.servlet.http.HttpSession;
 
 public class ChangePasswordServlet extends HttpServlet {
 
+    /*
+    *   The doGet function of the servlet.
+    */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
 
+    /*
+    *   The doPost function of the servlet.
+    *   Updates changes in the database using queries.
+    */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

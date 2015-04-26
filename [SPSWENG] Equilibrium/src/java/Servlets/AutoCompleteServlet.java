@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AutoCompleteServlet extends HttpServlet {
 
+    /*
+    *   The doGet function of the servlet.
+    *   Used to Autocomplete
+    */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,6 +30,9 @@ public class AutoCompleteServlet extends HttpServlet {
         response.getWriter().write(suggestions); 
     }
 
+    /*
+    *   The doPost function of the servlet.
+    */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

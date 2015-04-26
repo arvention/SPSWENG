@@ -1,10 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ClassHelpers;
 
+/*  Class Name:     EmailNotifier
+*   Developer:      Arces Talavera
+*   Description:    Used to send email in modules that require sending email for notifications
+*/  
+
+package ClassHelpers;
 
 import Database.Database;
 import java.util.Calendar;
@@ -25,6 +25,10 @@ public class EmailNotifier {
     private Session session;
     private Database db;
 
+    /*
+    *   constructor with no parameter
+    *   This constructor contains the emailaddress and the password created by the team for the company
+    */
     private EmailNotifier() {
         from = "equilibrium.intertrade@gmail.com";
         username = "equilibrium.intertrade";
@@ -44,10 +48,16 @@ public class EmailNotifier {
         });
     }
 
+    /*
+    *   gets a static instance object of the class.
+    */
     public static EmailNotifier getInstance() {
         return emailInstance;
     }
-
+    
+    /*
+    *   used to send the actual email
+    */
     public boolean sendEmail(String to, String body, String subject  ){
         
         boolean issend= true;
@@ -76,13 +86,15 @@ public class EmailNotifier {
             transport.close();
         } catch (MessagingException mex) {
             mex.printStackTrace();
-            issend=false;
+            issend = false;
         }
         
         return issend;
     }
     
-    
+    /*
+    *   used to send the email for leave request
+    */
     public void sendLeaveRequest(int empEntryNum, String leaveType, Date startDate, Date endDate, float dateCount) {
         System.out.println("EMP NUM = " + empEntryNum);
         

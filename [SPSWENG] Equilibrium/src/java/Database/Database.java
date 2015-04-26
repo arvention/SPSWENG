@@ -1198,7 +1198,7 @@ public class Database {
     public modelRelative getSpouse(int empEntryNum) {
         Statement stmt;
         ResultSet rs;
-        modelRelative spouse = new modelRelative();
+        modelRelative spouse = null;
         sql = "SELECT * FROM relative"
                 + " WHERE relation = 'spouse' AND empEntryNum = " + empEntryNum;
 
@@ -1208,6 +1208,7 @@ public class Database {
             rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
+                spouse = new modelRelative();
                 spouse.setRelativeID(rs.getInt("relativeID"));
                 spouse.setName(rs.getString("name"));
                 spouse.setContactNum(rs.getInt("contactNum"));

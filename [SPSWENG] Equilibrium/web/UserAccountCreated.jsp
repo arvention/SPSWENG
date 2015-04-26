@@ -5,6 +5,10 @@
 	<title> Create Account Successful! - Equilibrium </title>
         <link rel="stylesheet" type="text/css" media="all" href="css/UserAccountCreated.css"/>	
         <link rel="stylesheet" type="text/css" href="css/navigationBar.css"/>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         
         <script>
          $(document).ready(function () {
@@ -53,6 +57,7 @@
                
         %>
         <DIV class= "nav">
+        <form method="GET" action="SearchEmployee">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <u    <li><a href= "Logout"><span class="selectText">Log Out</span></a></li>
                    <li><a href= "changePassword.jsp"><span class="selectText">Change Password</span></a></li>
@@ -62,6 +67,7 @@
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/></li>
                 <li><a href="Homepage-HrEmployee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
+            </form>
         </DIV>
         <% 
            }

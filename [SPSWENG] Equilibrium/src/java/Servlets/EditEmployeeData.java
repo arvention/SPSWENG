@@ -6,12 +6,17 @@
 package Servlets;
 
 import Database.Database;
+import Models.modelCriminalOffenseHistory;
 import Models.modelEducationHistory;
 import Models.modelEmployee;
+import Models.modelLicense;
 import Models.modelRelative;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,12 +40,17 @@ public class EditEmployeeData extends HttpServlet {
             throws ServletException, IOException {
         modelEmployee logged = (modelEmployee) request.getSession().getAttribute("employee");
         modelEmployee emp = (modelEmployee) request.getSession().getAttribute("viewEmp");
-        editPersonalInformation(logged, emp, request);
-        editRelatives(logged, emp, request);
-        editEducationHistory(logged, emp, request);
+        try {
+            editPersonalInformation(logged, emp, request);
+            editRelatives(logged, emp, request);
+            editEducationHistory(logged, emp, request);
+            editCriminalOffenseHistory(logged, emp, request);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void editPersonalInformation(modelEmployee logged, modelEmployee emp, HttpServletRequest request) {
+    public void editPersonalInformation(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
         Database db = Database.getInstance();
         String firstname = request.getParameter("firstname");
         if (!emp.getFirstName().equals(firstname)) {
@@ -113,7 +123,7 @@ public class EditEmployeeData extends HttpServlet {
                     break;
             }
         }
-String birthplace = request.getParameter("birthplace");
+        String birthplace = request.getParameter("birthplace");
         if (!emp.getBirthplace().equals(birthplace)) {
             switch (logged.getEmployeeType()) {
                 case "Hr Employee":
@@ -127,10 +137,10 @@ String birthplace = request.getParameter("birthplace");
                     break;
             }
         }
-        
+
         String birthday = request.getParameter("birthday");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        if (!sdf.format(emp.getBirthday()).equals(sdf.format(birthday))) {
+        if (!sdf.format(emp.getBirthday()).equals(sdf.format(sdf.parse(birthday)))) {
             switch (logged.getEmployeeType()) {
                 case "Hr Employee":
                     db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "birthday", sdf.format(emp.getBirthday()), sdf.format(birthday), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
@@ -706,7 +716,7 @@ String birthplace = request.getParameter("birthplace");
                             break;
                     }
                 }
-                
+
                 String elemaward = elemsAward[i];
                 if (!education.getAward().equals(elemaward)) {
                     switch (logged.getEmployeeType()) {
@@ -723,7 +733,7 @@ String birthplace = request.getParameter("birthplace");
                 }
             }
         }
-        
+
         //high school
         String[] highschoolsID = request.getParameterValues("highschoolid");
         String[] highschoolsName = request.getParameterValues("highschoolname");
@@ -781,7 +791,7 @@ String birthplace = request.getParameter("birthplace");
                             break;
                     }
                 }
-                
+
                 String highschoolaward = highschoolsAward[i];
                 if (!education.getAward().equals(highschoolaward)) {
                     switch (logged.getEmployeeType()) {
@@ -798,7 +808,7 @@ String birthplace = request.getParameter("birthplace");
                 }
             }
         }
-        
+
         //college
         String[] collegesID = request.getParameterValues("collegeid");
         String[] collegesName = request.getParameterValues("collegename");
@@ -856,7 +866,7 @@ String birthplace = request.getParameter("birthplace");
                             break;
                     }
                 }
-                
+
                 String collegeaward = collegesAward[i];
                 if (!education.getAward().equals(collegeaward)) {
                     switch (logged.getEmployeeType()) {
@@ -873,7 +883,7 @@ String birthplace = request.getParameter("birthplace");
                 }
             }
         }
-        
+
         //vocational
         String[] vocationalsID = request.getParameterValues("vocationalid");
         String[] vocationalsName = request.getParameterValues("vocationalname");
@@ -931,7 +941,7 @@ String birthplace = request.getParameter("birthplace");
                             break;
                     }
                 }
-                
+
                 String vocationalaward = vocationalsAward[i];
                 if (!education.getAward().equals(vocationalaward)) {
                     switch (logged.getEmployeeType()) {
@@ -948,7 +958,7 @@ String birthplace = request.getParameter("birthplace");
                 }
             }
         }
-        
+
         //master
         String[] mastersID = request.getParameterValues("masterid");
         String[] mastersName = request.getParameterValues("mastername");
@@ -1006,7 +1016,7 @@ String birthplace = request.getParameter("birthplace");
                             break;
                     }
                 }
-                
+
                 String masteraward = mastersAward[i];
                 if (!education.getAward().equals(masteraward)) {
                     switch (logged.getEmployeeType()) {
@@ -1023,7 +1033,7 @@ String birthplace = request.getParameter("birthplace");
                 }
             }
         }
-        
+
         //other
         String[] othersID = request.getParameterValues("otherid");
         String[] othersName = request.getParameterValues("othername");
@@ -1081,7 +1091,7 @@ String birthplace = request.getParameter("birthplace");
                             break;
                     }
                 }
-                
+
                 String otheraward = othersAward[i];
                 if (!education.getAward().equals(otheraward)) {
                     switch (logged.getEmployeeType()) {
@@ -1093,6 +1103,130 @@ String birthplace = request.getParameter("birthplace");
 
                             db.changeAuditStatus(auditTrailID, "Approved");
                             db.changeFieldValue("education_history", otherID, "award", otheraward);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void editLicense(modelEmployee logged, modelEmployee emp, HttpServletRequest request) {
+        Database db = Database.getInstance();
+
+        String[] licensesID = request.getParameterValues("licenseid");
+        String[] licensesName = request.getParameterValues("licensename");
+        String[] licensesScore = request.getParameterValues("licensescore");
+        ArrayList<modelLicense> licenses = db.getLicenses(emp.getEntryNum());
+
+        if (licensesID != null) {
+            for (int i = 0; i < licensesID.length; i++) {
+                modelLicense license = licenses.get(i);
+                int licenseID = Integer.parseInt(licensesID[i]);
+
+                String licensename = licensesName[i];
+                if (!license.getLicenseName().equals(licensename)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("license", licenseID, "licenseName", license.getLicenseName(), licensename, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("license", licenseID, "licenseName", license.getLicenseName(), licensename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("license", licenseID, "licenseName", licensename);
+                            break;
+                    }
+                }
+
+                int licensescore = Integer.parseInt(licensesScore[i]);
+                if (license.getPercentage() != licensescore) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("license", licenseID, "percentage", Integer.toString(license.getPercentage()), Integer.toString(licensescore), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("license", licenseID, "percentage", Integer.toString(license.getPercentage()), Integer.toString(licensescore), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("license", licenseID, "percentage", Integer.toString(licensescore));
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void editEmploymentHistory(modelEmployee logged, modelEmployee emp, HttpServletRequest request) {
+        Database db = Database.getInstance();
+
+        String[] histosID = request.getParameterValues("histoid");
+        String[] histosOccupation = request.getParameterValues("histooccupation");
+        String[] histosDate = request.getParameterValues("histodate");
+        String[] histosStart = request.getParameterValues("histostartsalary");
+        String[] histosEnd = request.getParameterValues("histoendsalary");
+        String[] histosEmpName = request.getParameterValues("histoemployername");
+        String[] histosEmpAddress = request.getParameterValues("histoemployeraddress");
+        String[] histosEmpContact = request.getParameterValues("histoemployercontact");
+        String[] histosSupName = request.getParameterValues("histosupervisorname");
+        String[] histosSupContact = request.getParameterValues("histosupervisorcontact");
+        String[] histosReason = request.getParameterValues("historeason");
+    }
+
+    public void editCriminalOffenseHistory(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
+        Database db = Database.getInstance();
+        String[] offensesID = request.getParameterValues("offenseid");
+        String[] offensesName = request.getParameterValues("offensename");
+        String[] offensesDate = request.getParameterValues("offensedate");
+        String[] offensesPlace = request.getParameterValues("offenseplace");
+        ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
+
+        if (offensesID != null) {
+            for (int i = 0; i < offensesID.length; i++) {
+                modelCriminalOffenseHistory offense = offenses.get(i);
+                int offenseID = Integer.parseInt(offensesID[i]);
+
+                String offensename = offensesName[i];
+                if (!offense.getCriminalOffense().equals(offensename)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "criminalOffense", offense.getCriminalOffense(), offensename, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "criminalOffense", offense.getCriminalOffense(), offensename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("criminal_offense_history", offenseID, "criminalOffense", offensename);
+                            break;
+                    }
+                }
+
+                String offensedate = offensesDate[i];
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                if (!sdf.format(offense.getDateOfOffense()).equals(sdf.format(sdf.parse(offensedate)))) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("employee", offenseID, "birthday", sdf.format(offense.getDateOfOffense()), sdf.format(offensedate), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("employee", offenseID, "birthday", sdf.format(offense.getDateOfOffense()), sdf.format(offensedate), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("employee", offenseID, "birthday", sdf.format(offensedate));
+                            break;
+                    }
+                }
+
+                String offenseplace = offensesPlace[i];
+                if (!offense.getPlaceOfOffense().equals(offenseplace)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "placeOfOffense", offense.getPlaceOfOffense(), offenseplace, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "placeOfOffense", offense.getPlaceOfOffense(), offenseplace, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("criminal_offense_history", offenseID, "placeOfOffense", offenseplace);
                             break;
                     }
                 }

@@ -647,6 +647,8 @@
                                         <div class="line"><span class="label">Score</span>
                                             <input type = "number" min = "0" class="data" name = "licensescore" value = "<%=license.getPercentage()%>" readonly/>
                                         </div>
+                                        <br>
+                                        <input type ="hidden" value = "<%=license.getLicenseID()%>" name = "licenseid" />
                                     </div>
                                     <%
                                             }
@@ -690,6 +692,7 @@
                                             <div class="line"><span class="label">Reason for leaving</span>
                                                 <input type = "text" class="data" name = "historeason" value = "<%=empHisto.getReasonForLeaving()%>" readonly/></div>
                                         </div>
+                                            <input type = "hidden" name = "histoid" value = "<%=empHisto.getEmploymentHistoryID()%>"/>
                                         <br>
                                         <%}%>
                                     </div>
@@ -714,6 +717,7 @@
                                             <div class="line"><span class="label">Place of Offense</span>
                                                 <input type = "text" class="data" name = "offenseplace" value = "<%=offense.getPlaceOfOffense()%>" readonly/></div>
                                         </div>
+                                        <input type = "hidden" name = "offenseid" value ="<%=offense.getCriminalOffenseHistoryID()%>"/>
                                         <br>
                                         <%}%>
                                     </div>

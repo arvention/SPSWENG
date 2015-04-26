@@ -8,7 +8,7 @@
     <head>
         <title>Home - Equilibrium</title>
         <link rel="shortcut icon" href="img/eq logo.ico">
-        <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-Manager1.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="css/Homepage-Manager_1.css"/>
 
         <script src="js/HomepageFunc.js"></script>
         <script type = "text/javascript" src = "js/Homepage-Manager.js"></script>
@@ -33,6 +33,7 @@
             </script>
     </head>
     <body>
+     <form method="GET" action="SearchEmployee">
         <DIV class= "nav">
             <!-- When going back to any page here, please do not forget to add prompt if the user wants to discard any changes made to any form element.-->
             <ul>
@@ -42,6 +43,7 @@
                 <li><input name="searchbox" class="searchBox" id="search" type="search" placeholder="Search Employee Records"/></li>
                 <li><a href="Homepage-SManager.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
+            </form>
         </DIV>	
         
         <div id="box">

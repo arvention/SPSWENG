@@ -1,7 +1,7 @@
 
 /*  Class Name:     modelBranch
 *   Developer:      Arren Antioquia
-*   Description:    model for the branch table in the database
+*   Description:    model for the record table in the database
 */  
 
 package Models;

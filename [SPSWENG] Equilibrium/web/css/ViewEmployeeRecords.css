@@ -15,10 +15,13 @@ input[type="file"] {
     margin-bottom: 10px;
     border: 0;
     background-color: #D63333;
-    width: 200px;
+    width: 190px;
     font-size: 14px;
     opacity: .75;
     color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
 }
 
 .button {

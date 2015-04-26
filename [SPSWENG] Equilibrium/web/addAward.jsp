@@ -184,7 +184,7 @@ console.log(today);
 		<br/>
 
 						                  
-                <span class="nameText">Award Name</span>  <input type="text" name="awardname" placeholder="Award Name" class="awardName" required /> <br/><br/>
+                <span class="nameText">Award Name</span>  <input type="text" size="50" name="awardname" placeholder="Award Name" class="awardName" required /> <br/><br/>
                 <span class="nameText">Date Received</span> <input id="datepicker" class="dateReceived" name="awardreceive"  required="true" /><br/><br/>                                 
                 <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..."></textarea><br/><br/>
                 <input type="file" name="filename" class="chooseFile"/>   

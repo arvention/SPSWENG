@@ -108,7 +108,7 @@ public class SaveEvaluation extends HttpServlet {
         }
             
         
-        if (evalname.length() >= 2500) { 
+        if (evalname.length() >= 50){ 
             request.setAttribute("message", "Character Limit Reached");
             RequestDispatcher view = request.getRequestDispatcher("addEvaluation.jsp");
             view.forward(request, response);

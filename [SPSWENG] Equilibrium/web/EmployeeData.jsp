@@ -137,7 +137,7 @@
         <%
            }
         %>        
-        
+        <span class="titleText">Add Employee Record</span>
         <DIV class="content">
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
@@ -258,10 +258,10 @@
                                 </td>
                                 <td>Current Position</td>
                                 <td><input type="text" class = "infoinput" maxlength = 45 name="empposition" placeholder="Current Position" /></td>
-                                <td>Expected Salary</td>
-                                <td><input type="number" class = "infoinput" step = "1" min = "0" max = "9999999" name="salary" placeholder="Expected Salary" /><br/></td>
                             </tr>
                             <tr>
+                                <td>Expected Salary</td>
+                                <td><input type="number" class = "infoinput" step = "1" min = "0" max = "9999999" name="salary" placeholder="Expected Salary" /><br/></td>
                                 <td>Hire Date</td>
                                 <td><input type="date" class = "infoinput" name="hiredate" placeholder="Hire Date"  /></td>
                                 <td>Manager</td>
@@ -278,23 +278,25 @@
                                 <td>Occupation</td>
                             </tr>
                             <tr>
-                                <td>Father</td>
+                                <td><span class="headers">Father</span></td>
                                 <td><input type="text" maxlength = 45 name="fathername" placeholder="Father's Name" /></td>
                                 <td><input type="number" step = "1" min = "0" max = "999" name="fatherage" placeholder="Age" /></td>
                                 <td><input type="text" maxlength = 20 name="fatheroccupation" placeholder="Occupation" /><br/></td>
                             </tr>
                             <tr>
-                                <td>Mother</td>
+                                <td><span class="headers">Mother</span></td>
                                 <td><input type="text" maxlength = 45 name="mothername" placeholder="Mother's Maiden Name" /></td>
                                 <td><input type="number" step = "1" min = "0" max = "999" name="motherage" placeholder="Age" /></td>
                                 <td><input type="text" maxlength = 20 name="motheroccupation" placeholder="Occupation" /></td>
                             </tr>
                         </table><br/><br/>
 
-                        <span class="headers">Siblings</span><br/>                
+                        <br/>                
                         <table name="siblings">
                             <tr>
-
+                                <td><span class="headers">Siblings</span></td>
+                            </tr>
+                            <tr>
                                 <td>Name of Sibling</td>
                                 <td>Age</td>
                                 <td>Occupation</td>
@@ -302,7 +304,6 @@
                                 <td></td>
                             </tr>
                             <tr>
-
                                 <td><input type="text" maxlength = 45 name="siblingname" placeholder="ex. Virma Lopez" /></td>
                                 <td><input type="number" step = "1" min = "0" max = "999" name="siblingage" placeholder="ex. 14" /></td>
                                 <td><input type="text" maxlength = 45 name="siblingoccupation" placeholder="ex. Student" /></td>
@@ -310,7 +311,19 @@
                                 <td><button class="addsibling">+</button></td>
                             </tr>
                         </table><br/><br/>
-
+                        <table>
+                            <tr>
+                                <td>Civil Status : </td>
+                                <td>
+                                    <select name="civilstatus" >
+                                        <option value="Single">Single</option>
+                                        <option value="Married">Married</option>
+                                        <option value="Divorced">Divorced</option>
+                                        <option value="Widowed">Widowed</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table></br>
                         <DIV class="tohide">
                             <table>
                                 <tr>
@@ -327,8 +340,11 @@
                                 </tr>
                             </table><br/><br/>
 
-                            <span class="headers">Children</span><br/>
+                            <br/>
                             <table name="children">
+                                <tr>
+                                    <td><span class="headers">Children</span></td>
+                                </tr>
                                 <tr>
 
                                     <td>Name of Child</td>
@@ -378,8 +394,10 @@
                                     }
                                 }
                             %>
-                        <span class="headers">Elementary</span><br/>
                         <table name="elementary">
+                            <tr>
+                                <td><span class="headers">Elementary</span></td>
+                            </tr>
                             <tr>
 
                                 <td>Name of School</td>
@@ -396,8 +414,10 @@
                             </tr>
                         </table><br/><br/>
 
-                        <span class="headers">High School</span><br/>
                         <table name="highschool">
+                            <tr>
+                                <td><span class="headers">High School</span></td>
+                            </tr>
                             <tr>
 
                                 <td>Name of School</td>
@@ -415,8 +435,10 @@
                             </tr>
                         </table><br/><br/>
 
-                        <span class="headers">College</span><br/>
                         <table name="college">
+                            <tr>
+                                <td><span class="headers">College</span></td>
+                            </tr>
                             <tr>
 
                                 <td>Name of School</td>
@@ -434,8 +456,11 @@
                             </tr>
                         </table><br /><br/>
 
-                        <span class="headers">Vocational</span><br/>
+                        
                         <table name="vocational">
+                            <tr>
+                                <td><span class="headers">Vocational</span></td>
+                            </tr>
                             <tr>
 
                                 <td>Name of School</td>
@@ -453,8 +478,11 @@
                             </tr>
                         </table><br/><br/>
 
-                        <span class="headers">Masteral</span><br/>
+                        
                         <table name="masteral">
+                            <tr>
+                                <td><span class="headers">Masteral</span></td>
+                            </tr>
                             <tr>
 
                                 <td>Name of School</td>
@@ -472,8 +500,11 @@
                             </tr>
                         </table><br/><br/>
 
-                        <span class="headers">Others</span><br/>
+                        
                         <table name="others">
+                            <tr>
+                                <td><span class="headers">Others</span></td>
+                            </tr>
                             <tr>
 
                                 <td>Name of School</td>
@@ -491,8 +522,11 @@
                             </tr>
                         </table><br/><br/>
 
-                        <span class="headers">Licenses/Exams</span><br/>
+                        
                         <table name="license">
+                            <tr>
+                                <td><span class="headers">Licenses/Exams</span></td>
+                            </tr>
                             <tr>
 
                                 <td>License/Exam Taken</td>
@@ -508,8 +542,7 @@
                     </DIV>
 
                     <DIV id="emphistory" class="tab-section">
-                        <span class="headers">Employment History</span><br/>
-                        <span>Note: Begin with present or most recent job.</span><br/><br/>
+                        
                         <table name="employment">
                             <tr>
 
@@ -566,8 +599,11 @@
                         </table>
                         <br/><br/>
                         <DIV class="tohide">
-                            <span class="headers">Past criminal offenses</span><br/>
+                            
                             <table name="criminaloffense">
+                                <tr>
+                                    <td><span class="headers">Past Criminal Offense/s</span></td>
+                                </tr>
                                 <tr>
                                     <td>Criminal Offense</td>
                                     <td>Date of Offense</td>
@@ -584,15 +620,15 @@
                     </DIV>
                 <input type="submit" value="Submit" />
             </form>
-
+            <DIV class= "footer">
+            <br/><hr width="75%"/>
+            EQUILIBRIUM INTERTRADE CORP.
+            </DIV>
         </DIV> 
             <div id = "bioMessage">
             </div>
                         
-        <DIV class= "footer">
-            <br/><hr width="75%"/>
-            EQUILIBRIUM INTERTRADE CORP.
-        </DIV>
+        
 
     </body>
 </html>

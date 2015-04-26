@@ -18,7 +18,7 @@ div.content{
     position: absolute;
     font-family: sans-serif;
     width: 50%;
-    margin-top: 7%;
+    margin-top: 5%;
     margin-left: 25%;
     margin-bottom: 0;
     padding-left: 15px;
@@ -156,16 +156,13 @@ form{
 DIV.footer{
     width: 100%;
     position: fixed;
-    top: 90%;
     left: 0%;
     bottom:0;
-    height: 500px;
     text-align:center;
     color: #808080;
     font-size: 11px;
     font-family: "Arial";
     background-color: #E8E8E8;
-    z-index: 1;
 }
 
 .searchBox{
@@ -189,8 +186,11 @@ DIV.footer{
         font-family: Arial;
 }
 #leaveMessage{
-        margin-right:auto;
-        margin-left:auto;
+    margin-top: 40%;
+    margin-left:25%;
+    height:10%;
+    width: 50%;
+    position: absolute;    
 }
 hr{
     border-top: 1px solid black;

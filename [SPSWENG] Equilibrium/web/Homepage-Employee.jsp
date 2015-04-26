@@ -84,7 +84,7 @@
             <%}%>
         </div>
         <div id = "leaveMessage">
-
+          Display
         </div>
         <div class= "footer">
             <hr width="75%"/>

@@ -115,7 +115,7 @@
                     $("#frameforpic").attr("src","DisplayImage?id=<%=emp.getEmployeeID()%>");
                 }
                 
-                 if(data === "2")
+               if(data === "2")
                 alert("Upload a picture first");
                 
                 console.log(data);
@@ -232,13 +232,11 @@
         
         <div id="all">
         <div class= "pageLeft">
-            <form action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
+            <form id="savepicform" action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
                 <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%>"/><br/>
             <input type='file' id="imgInp" name="filename" accept="image/*"/>
             <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
             <input id="savepicchange" class="button" type="submit" value="Save Changes"/> 
-            <input type='file' id="imgInp" name="filename" id="fileButton" accept="image/*"/>
-            <input id="savepicchange" type="submit" value="Save Changes" class="button"/>
             <input type="hidden" name="id" value="<%=emp.getEntryNum()%>" />
             </form>
         </div>

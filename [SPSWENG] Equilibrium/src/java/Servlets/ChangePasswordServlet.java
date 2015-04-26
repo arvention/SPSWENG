@@ -90,7 +90,7 @@ public class ChangePasswordServlet extends HttpServlet {
          //request.setAttribute("error", "Invalid Username/Password");
         }
         
-           view = request.getRequestDispatcher("changePassword.jsp");
+           view = request.getRequestDispatcher("ChangePasswordSuccess.jsp");
            view.forward(request, response);
             
     }

@@ -4,9 +4,10 @@
 <%@page import="Database.Database"%>
 <html>
 <head>
-    <link rel="shortcut icon" href="img/eq logo.ico">
+    <link rel="shortcut icon" href="img/eq logo.ico"/>
     <link rel="stylesheet" href="css/generateReport.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <title>Generate Report - EQuilibrium </title>
 
       <link rel="stylesheet" href="css/jquery-ui.css"/>
         <script src="js/jquery-1.10.2.js"></script>

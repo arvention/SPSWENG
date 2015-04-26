@@ -10,9 +10,10 @@ div.header{
 
     width: 100%;
     font-family: sans-serif;
-
+    font-size: 20;
+    font-weight:bold;
     text-align:center;
-    color: #D63333;
+    color: red;
 }
 div.content{
     position: absolute;

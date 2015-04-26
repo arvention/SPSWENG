@@ -1,7 +1,7 @@
 
 /*  Class Name:     modelBranch
 *   Developer:      Arren Antioquia
-*   Description:    Objects that can be downloaded through the system.
+*   Description:    model for the branch table in the database
 */  
 
 package Models;

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Evaluation - Equilibrium</title>
+        <title>Add Evaluation Success - Equilibrium</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href = "css/navigationBar.css" rel = "stylesheet" />

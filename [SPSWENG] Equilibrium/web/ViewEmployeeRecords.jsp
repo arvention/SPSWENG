@@ -36,6 +36,25 @@
         %>
         <script>
             $(document).ready(function() {
+                
+                var sugg = [];
+                var search;
+                $("#search").keyup(function () {
+                    search = $("#search").val();
+                    search = search.trim();
+                    console.log("HEREE");
+                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
+                        console.log(responseText);
+                        sugg = responseText.split("\n");
+                        console.log(sugg);
+                        $("#search").autocomplete({
+                            source: sugg
+                        });
+                    });
+                });
+                
+                
+                
                 function readURL(input) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
@@ -58,44 +77,58 @@
                     });
                     window.location.href = "GetImage?id=" + this.id;
                 });
+           /*     
+            $('#savepicform').ajaxForm({
+                console.log("it's here");
+                complete: function(xhr) {
+                alert("Upload complete");   
+                } 
+            });  
+            */
+           
+           
+     $('#savepicform').on('submit',(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
 
-              /*
-              $("#savepicchange").click(function () {
-                  
-                  
-                  
-                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
-
-                        console.log(responseText);
-                        sugg = responseText.split("\n");
-                        console.log(sugg);
-                        $("#search").autocomplete({
-                            source: sugg
-                        });
-                    });
-                });
-        */
+        $.ajax({
+            type:'POST',
+            url: $(this).attr('action'),
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                $('#imgInp').val("");
+                
+                
+                
+                if(data === "0")
+                alert("Success");
+                
+                else if(data==="1"){
+                    alert("Picture too Large"); 
+                    $("#frameforpic").attr("src","DisplayImage?id=<%=emp.getEmployeeID()%>");
+                }
+                
+                 if(data === "2")
+                alert("Upload a picture first");
+                
+                console.log(data);
+            },
+            error: function(data){
+                alert("Picture too Large");
+              //console.log(data);
+            }
+        });
+    }));
+           
+           
+           
         
-            });</script>  
-	<script>
-	 $(document).ready(function () {
-                var sugg = [];
-                var search;
-                $("#search").keyup(function () {
-                    search = $("#search").val();
-                    search = search.trim();
-                    console.log("HEREE");
-                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
-                        console.log(responseText);
-                        sugg = responseText.split("\n");
-                        console.log(sugg);
-                        $("#search").autocomplete({
-                            source: sugg
-                        });
-                    });
-                });
             });
-            </script>
+        </script>  
+
 
     </head>
 
@@ -171,8 +204,7 @@
             </ul>
         </DIV>
         <%
-           }
-           
+           }      
            else if (m.getEmployeeType().equals("Employee")){
         %>
         <div class= "nav">
@@ -195,9 +227,9 @@
         <div id="overlay"></div>
         <div class= "pageLeft" align = "center">
             
-            <form action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
+            <form id="savepicform" action="SaveProfilePic" method="POST" enctype="multipart/form-data" >
             <img id="frameforpic" class = "empPicture" src="DisplayImage?id=<%=emp.getEmployeeID()%>"/><br/>
-            <input type='file' id="imgInp" name="filename"/>
+            <input type='file' id="imgInp" name="filename" accept="image/*"/>
             <!--  <input id="changetheimage" class="botan" type="button" value="Change Image"/> -->    <br/><br/>
             <input id="savepicchange" class="botan" type="submit" value="Save Changes"/>
             <input type="hidden" name="id" value="<%=emp.getEntryNum()%>" />

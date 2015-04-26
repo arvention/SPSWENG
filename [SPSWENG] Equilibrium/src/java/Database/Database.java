@@ -677,21 +677,15 @@ public class Database {
         return max;
     }
 
-    public void savePic(int id, InputStream is, String filename) {
+    public void savePic(int id, InputStream is, String filename) throws SQLException {
 
         String sql = "UPDATE employee SET empPicture = ?, empPictureFileName ='" + filename + "' WHERE entryNum= " + id;
-
-        try {
-
+        
             PreparedStatement statement = con.prepareStatement(sql);
 
             statement.setBlob(1, is);
 
             statement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
     }
 

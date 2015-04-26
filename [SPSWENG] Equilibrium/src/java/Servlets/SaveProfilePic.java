@@ -80,31 +80,17 @@ public class SaveProfilePic extends HttpServlet {
     
         Part filePart = request.getPart("filename");
         
-        System.out.println("Heree");
+        if(filePart == null){
+            System.out.println("Hello qrwjeif");
+        }
         
         String id = request.getParameter("id");
          int intid = Integer.parseInt(id.trim());
          InputStream inputStream = filePart.getInputStream();
         String name = filePart.getSubmittedFileName();
-        
-        String reply="0"; 
-        
-        try{
-      if(filePart.getSize() !=0 ){
+         
       Database.getInstance().savePic(intid,inputStream, filePart.getSubmittedFileName());
-      
-      }else reply ="2";
-
-        }catch(Exception e){
-            reply = "1";
-            System.out.println(e);
-        }
-      
-      response.setContentType("text/plain");  
-      response.setCharacterEncoding("UTF-8"); 
-      response.getWriter().write(reply); 
-      
-    // response.sendRedirect("ViewEmployeeRecords.jsp");
+      response.sendRedirect("ViewEmployeeRecords.jsp");
         
          
         

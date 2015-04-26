@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Award - Equilibrium</title>
+        <title>Add Evaluation - Equilibrium</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href = "css/navigationBar.css" rel = "stylesheet" />
@@ -118,7 +118,7 @@
 
         <div class = "memoForm" align="center">
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <div class="titleText">Award was added successfully!</div><br/>
+            <div class="titleText">Evaluation was added successfully!</div><br/>
             <div class="titleText">${response}</div><br/>
         
             <%   

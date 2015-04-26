@@ -141,6 +141,13 @@
                         }
                     });
                 }));
+
+            <%
+                if (emp.getEmployeeType() != null) {
+            %>
+                $("#empType").find("option[value=\"<%=emp.getEmployeeType()%>\"]").attr('selected', 'selected');
+            <%   }
+            %>
             });
         </script>  
 
@@ -253,7 +260,6 @@
                         <div id="header">
                             <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
 
-                            <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
 
                         </div>
                         <select id="options" size="6">
@@ -270,7 +276,8 @@
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                                 disciplinary actions, records of filed leaves, recognitions, and awards-->
                         </select>
-                        <form action = "EditEmployeeData" method = "POST" id = "info-form">
+                        <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+                        <form onsubmit = "return editData('<%=user.getEmployeeType()%>', <%=emp.getEmployeeID()%>)" id = "info-form">
                             <%}%>
 
                             <%
@@ -326,7 +333,19 @@
                                         <input name = "band" type = "text" class="data" value = "<%=emp.getBand()%>" readonly/></div>
                                     <div class="line"><span class="label">Manager </span>
                                         <input name = "managerid" type = "text" class="data" value = "<%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%>" readonly/><span class = "editNote"><br>*Input the manager's ID number</span></div>
-
+                                            <%
+                                                if (emp.getEmployeeType() != null) {
+                                            %>
+                                    <div class="line"><span class="label">Account Type </span><input type ="text" class = "data" id = "select-temp" readonly value = "<%=emp.getEmployeeType()%>"/>
+                                        <select name = "empType" id = "empType" class = "select-input">
+                                            <option value = "Employee">Employee</option>
+                                            <option value = "Hr Employee">HR Employee</option>
+                                            <option value = "Hr Head">HR Head</option>
+                                            <option value = "Manager">Manager</option>
+                                            <option value = "Senior Manager">Senior Manager</option>
+                                        </select>
+                                        <%}%>
+                                    </div>
                                 </div>
                             </div>
                             <div id="relations" class="pages">
@@ -510,7 +529,7 @@
                                             <input type = "text" class="data" name = "highschoolaward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
                                         <input type = "hidden" name = "highschool" value = "<%=school.getEducationHistoryID()%>">
-                                            <br/>
+                                        <br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -534,7 +553,7 @@
                                             <input type = "text" class="data" name = "collegeaward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
                                         <input type = "hidden" name = "collegeid" value = "<%=school.getEducationHistoryID()%>">
-                                            <br/>
+                                        <br/>
                                     </div>
                                     <%}%>
                                 </div>
@@ -561,7 +580,7 @@
                                             <input type = "text" class="data" name = "vocationalaward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
                                         <input type = "hidden" name = "vocationalid" value = "<%=school.getEducationHistoryID()%>">
-                                            <br/>
+                                        <br/>
                                     </div>
                                     <%
                                             }
@@ -591,7 +610,7 @@
                                             <input type = "text" class="data" name = "masteraward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
                                         <input type = "hidden" name = "masterid" value = "<%=school.getEducationHistoryID()%>">
-                                            <br/>
+                                        <br/>
                                     </div>
                                     <%
                                             }
@@ -621,7 +640,7 @@
                                             <input type = "text" class="data" name = "otheraward" value = "<%=school.getAward()%>" readonly/>
                                         </div>
                                         <input type = "hidden" name = "otherid" value = "<%=school.getEducationHistoryID()%>">
-                                            <br/>
+                                        <br/>
                                     </div>
                                     <%
                                             }
@@ -692,7 +711,7 @@
                                             <div class="line"><span class="label">Reason for leaving</span>
                                                 <input type = "text" class="data" name = "historeason" value = "<%=empHisto.getReasonForLeaving()%>" readonly/></div>
                                         </div>
-                                            <input type = "hidden" name = "histoid" value = "<%=empHisto.getEmploymentHistoryID()%>"/>
+                                        <input type = "hidden" name = "histoid" value = "<%=empHisto.getEmploymentHistoryID()%>"/>
                                         <br>
                                         <%}%>
                                     </div>

@@ -1,3 +1,21 @@
+function editData(type, id){
+    $.ajax({
+        type: "POST",
+       url: "EditEmployeeData",
+       data: $("#info-form").serialize(),
+       success: function(){
+           if(type === "Hr Employee")
+               alert("Your revisions were sent for approval.");
+           else if(type === "Hr Head")
+               alert("Your revisions have been saved.");
+           
+           window.location.href = "ViewEmployee?id=" + id;
+       }
+    });
+    return false;
+}
+
+
 $(document).ready(function () {
     var currPage = "#personal", currRecord = "#memo";
     var nextPage, nextRecord;
@@ -38,6 +56,8 @@ $(document).ready(function () {
             //$(".data").css("border-bottom", "1px solid lightgray");
             $(".editMessage").show();
             $(".add-delete-button").show();
+            $("#select-temp").hide();
+            $(".select-input").show();
             $(".editNote").show();
         }
         else if($(this).val() === "Cancel") {
@@ -47,6 +67,8 @@ $(document).ready(function () {
             $(".data").attr("readonly", true);
             $(".data").css("border-bottom", "0");
             $(".editMessage").hide();
+            $("#select-temp").show();
+            $(".select-input").hide();
             $(".add-delete-button").hide();
             $("input[name='managerid']").attr("type", "text");
             $(".editNote").hide();

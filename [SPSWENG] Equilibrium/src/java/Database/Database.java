@@ -95,7 +95,7 @@ public class Database {
 
     public boolean isValidID(int id) {
         boolean valid = true;
-        
+
         try {
 
             sql = "select employeeID from employee where employeeID = " + id;
@@ -307,7 +307,7 @@ public class Database {
                 modelEmployee.setEmployeeType(employeeType);
                 int managerEntryNum = rs.getInt("managerEntryNum");
                 modelEmployee.setManagerEntryNum(managerEntryNum);
-                
+
                 return modelEmployee;
             }
 
@@ -640,7 +640,7 @@ public class Database {
 
         return max;
     }
-    
+
     public int saveAward(int empEntryNum, Date date, String awardName, String awardComment, InputStream is, String filename) {
 
         String sql = "";
@@ -1473,7 +1473,13 @@ public class Database {
     public void changeFieldValue(String tableName, int tableRefNum, String field, Object value) {
         try {
             if (tableName.equals("employee")) {
-                if (field.equals("lastName")) {
+                if (field.equals("employeeType")) {
+                    sql = "UPDATE employee SET employeeType = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if (field.equals("lastName")) {
                     sql = "UPDATE employee SET lastName = ? WHERE entryNum = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
                     statement.setString(1, (String) value);
@@ -1963,39 +1969,39 @@ public class Database {
 
         return employeeID;
     }
-    
+
     public int[] checkEmployeeData(int entryNum) {
         int[] count = new int[5];
-        
+
         try {
             /* getting relative count */
-            sql = "select count(relativeID) as count from relative\n" +
-                    "where empEntryNum = " + entryNum;
+            sql = "select count(relativeID) as count from relative\n"
+                    + "where empEntryNum = " + entryNum;
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count[0] = rs.getInt("count");
                 System.out.println("count = " + count[0]);
             }
-            
+
             /* getting employement history count */
-            sql = "select count(employmentHistoryID) as count from employment_history\n" +
-                    "where empEntryNum = " + entryNum;
+            sql = "select count(employmentHistoryID) as count from employment_history\n"
+                    + "where empEntryNum = " + entryNum;
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count[1] = rs.getInt("count");
             }
-            
+
             /* getting cirminal offense history count */
-            sql = "select count(criminalOffenseHistoryID) as count from criminal_offense_history\n" +
-                    "where empEntryNum = " + entryNum;
+            sql = "select count(criminalOffenseHistoryID) as count from criminal_offense_history\n"
+                    + "where empEntryNum = " + entryNum;
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count[2] = rs.getInt("count");
             }
-            
+
             /* getting documents count */
-            sql = "select count(recordID) as count from record\n" +
-                    "where empEntryNum = " + entryNum;
+            sql = "select count(recordID) as count from record\n"
+                    + "where empEntryNum = " + entryNum;
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count[3] = rs.getInt("count");

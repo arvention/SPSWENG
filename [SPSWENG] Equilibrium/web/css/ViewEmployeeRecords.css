@@ -322,3 +322,9 @@ DIV.footer{
     background-color: #E8E8E8;
     z-index: 1;
 }
+
+
+.select-input{
+    border: none;
+    display: none;
+}

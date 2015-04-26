@@ -1,20 +1,13 @@
-<%-- 
-    Document   : FileAwardSuccess
-    Created on : 04 26, 15, 3:58:40 PM
-    Author     : marienne lopez
---%>
-
 <%@page import="Models.modelEmployee"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Award - Equilibrium</title>
+        <title>Add Evaluation - Equilibrium</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href = "css/navigationBar.css" rel = "stylesheet" />
         <link rel="shortcut icon" href="img/eq logo.ico"/>
-        <link href = "css/AwardFiled.css" rel = "stylesheet" />
+        <link href = "css/MemoFiled.css" rel = "stylesheet" />
         <script>
          $(document).ready(function () {
                 var sugg = [];
@@ -123,20 +116,23 @@
            }
         %>        
 
-        <div class = "awardForm" align="center">
+        <div class = "memoForm" align="center">
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <div class="titleText">Award has been filed!</div><br/>
+            <div class="titleText">Evaluation was added successfully!</div><br/>
             <div class="titleText">${response}</div><br/>
-           <a href ="addAward.jsp">File another Award...</a><br/>
-            <%
-            if(m.getEmployeeType().equals("Hr Employee")){
+        
+            <%   
+            modelEmployee me =(modelEmployee) session.getAttribute("employee");
+            
+            
+            if(me.getEmployeeType().equals("Hr Employee")){
             %>
             <a href="Homepage-HrEmployee.jsp">Click here to return to home page...</a>
-        
+            
             <% 
             }else{
             %>
-            <a href="Homepage-HrHead.jsp">Click here to return to home page...</a>
+          <a href="Homepage-HrHead.jsp">Click here to return to home page...</a>
             <%}%>    
         </div>
         <div class = "pageBottom" style="margin-top: 3px"><hr width ="75%"/></br> 

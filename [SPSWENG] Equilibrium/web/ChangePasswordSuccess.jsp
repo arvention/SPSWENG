@@ -145,7 +145,7 @@
            }
             else if (m.getEmployeeType().equals("Senior Manager")){
             %>
-            <a href="Homepage-HrEmployee.jsp">Click here to return to home page...</a>
+            <a href="Homepage-SManager.jsp">Click here to return to home page...</a>
             
             <% 
             }else{

@@ -43,17 +43,22 @@
 
             <%
                 int[] count = db.checkEmployeeData(emp.getEntryNum());
-                if (count[0] == 0)
+                if (count[0] == 0) {
             %>  // check relative count
                 $("select").find("option[value=\"relations\"]").attr("disabled", "true");
-            <%
-                if (count[1] == 0)
+            <% }
+                if (count[1] == 0) {
             %>  // check employment history count
                 $("select").find("option[value=\"history\"]").attr("disabled", "true");
-            <%
-                if (count[2] == 0)
+            <% }
+                if (count[2] == 0) {
             %>  // check criminal offense count
                 $("select").find("option[value=\"others\"]").attr("disabled", "true");
+            <% }
+                if (count[3] == 0) {
+            %>  // check documents count
+                $("select").find("option[value=\"docs\"]").attr("disabled", "true");
+            <% } %>
 
                 var sugg = [];
                 var search;

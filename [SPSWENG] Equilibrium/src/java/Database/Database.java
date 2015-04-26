@@ -1965,7 +1965,7 @@ public class Database {
     }
     
     public int[] checkEmployeeData(int entryNum) {
-        int[] count = new int[4];
+        int[] count = new int[5];
         
         try {
             /* getting relative count */
@@ -1991,6 +1991,14 @@ public class Database {
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count[2] = rs.getInt("count");
+            }
+            
+            /* getting documents count */
+            sql = "select count(recordID) as count from record\n" +
+                    "where empEntryNum = " + entryNum;
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                count[3] = rs.getInt("count");
             }
         } catch (SQLException e) {
             e.printStackTrace();

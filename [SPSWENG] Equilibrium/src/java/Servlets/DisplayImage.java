@@ -11,6 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+    /*
+    
+    Classname:   DisplayImage
+    Developer:   Jet Virtusio
+    Description: Displays the image in jsp page
+    */
+
+
 public class DisplayImage extends HttpServlet {
 
     /*

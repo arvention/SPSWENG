@@ -300,14 +300,11 @@ input[type='date']{
     float: right;
     margin-right: 10px;
 }
-/*
+
 #info-form{
-    position: absolute;
-    z-index: 0;
-    height: 450px;
-    overflow-y: auto;
+    display: inline;
 }
-*/
+
 /*#docs, .pages{
     z-index: 1;
 }*/

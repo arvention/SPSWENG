@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     $(document).on("change", "#options", function () {
         nextPage = "#" + $("#options").find(":selected").val();
-        if(nextPage === "#personal")
+        if(nextPage !== "#docs")
             $("#info-form").show();
         else
             $("#info-form").hide();

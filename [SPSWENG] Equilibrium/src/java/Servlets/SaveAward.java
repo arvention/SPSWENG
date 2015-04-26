@@ -30,6 +30,13 @@ import javax.servlet.http.Part;
  *
  * @author Thursday
  */
+
+/*  Class Name:     SaveMemo.java
+*   Developer:      Jet Virtusio
+*   Description:    Saves Award in database
+*/  
+
+
 @MultipartConfig(maxFileSize = 16177215)  
 public class SaveAward extends HttpServlet {
 

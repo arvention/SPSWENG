@@ -84,13 +84,15 @@ public class ChangePasswordServlet extends HttpServlet {
         me =(modelEmployee) session.getAttribute("employee");
         if(Database.getInstance().isUserPassword( me.getEmployeeID(),oldpass)){
             Database.getInstance().changePassword(me.getEntryNum(), newpass);
-             request.setAttribute("error", "Success! Password Changed");
+            //request.setAttribute("error", "Success! Password Changed");
+            view = request.getRequestDispatcher("ChangePasswordSuccess.jsp");
         }else{
          request.setAttribute("error", "Invalid Password");
          //request.setAttribute("error", "Invalid Username/Password");
+          view = request.getRequestDispatcher("changePassword.jsp");
         }
         
-           view = request.getRequestDispatcher("ChangePasswordSuccess.jsp");
+          // view = request.getRequestDispatcher("ChangePasswordSuccess.jsp");
            view.forward(request, response);
             
     }

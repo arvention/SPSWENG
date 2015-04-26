@@ -62,5 +62,4 @@ public class modelBranch {
     public void setAddress(String address) {
         this.address = address;
     }
-    
 }

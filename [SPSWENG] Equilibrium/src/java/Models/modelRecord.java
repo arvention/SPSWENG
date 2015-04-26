@@ -1,5 +1,5 @@
 
-/*  Class Name:     modelBranch
+/*  Class Name:     modelRecord
 *   Developer:      Arren Antioquia
 *   Description:    model for the record table in the database
 */  

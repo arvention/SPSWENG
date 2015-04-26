@@ -141,7 +141,7 @@ public class SaveEvaluation extends HttpServlet {
            }
          //till here
             request.setAttribute("message","Success!");
-            RequestDispatcher view = request.getRequestDispatcher("addEvaluation.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("EvaluationSuccess.jsp");
             view.forward(request, response);
         
         

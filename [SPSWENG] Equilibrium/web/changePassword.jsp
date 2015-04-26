@@ -5,6 +5,10 @@
         <link rel = "stylesheet" type="text/css" href= "css/navigationBar.css"/>
         <link rel="stylesheet" type="text/css" media="all" href="css/changePassword.css"/>
         
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
      <script src="js/jquery-1.11.2.min.js"></script>
       <script src="js/jquery-ui.min.js"></script>
     <title>Change Password - EQuilibrium</title>

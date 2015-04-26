@@ -1,3 +1,17 @@
+DIV.footer{
+    width: 100%;
+    position: fixed;
+    top: 90%;
+    left: 0%;
+    height: 500px;
+    text-align:center;
+    color: #808080;
+    font-size: 11px;
+    font-family: "Arial";
+    background-color: #E8E8E8;
+    z-index: 1;
+}
+
 .searchBox{
     position: fixed;
     width: 250px;

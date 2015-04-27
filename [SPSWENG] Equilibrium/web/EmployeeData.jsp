@@ -204,13 +204,13 @@
                         </table>
                         <table>
                             <tr>
-                                <td>SSS #</td>
+                                <td>SSS</td>
                                 <td><input type="text" class = "infoinput" maxlength = 12 name="sssno" placeholder="Ex. 01-2345678-9" /></td>
-                                <td>TIN #</td>
+                                <td>TIN</td>
                                 <td><input type="text" class = "infoinput" maxlength = 16 name="tinno" placeholder="Ex. 999-999-999-999X" /></td>
-                                <td>PHIC #</td>
+                                <td>PHIC</td>
                                 <td><input type="text" class = "infoinput" maxlength = 14 name="phicno" placeholder="Ex. 01-234567890-1" /></td>
-                                <td>PAGIBIG #</td>
+                                <td>PAGIBIG</td>
                                 <td><input type="text" class = "infoinput" maxlength = 14 name="pagibigno" placeholder="Ex. 1234-5678-9101" /></td>
                             </tr>
                         </table>

@@ -32,7 +32,7 @@
                    
                    
                    else if($("#newpass").val() === $("#oldpass").val()){
-                       $("#status").text(${error});
+                       $("#status").text("${error}");
                        $("#passwordform").submit();
                    }
                    

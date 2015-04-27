@@ -175,9 +175,9 @@
            }
         %>        
 
-
+    <span class="titleText">Monthly Leave Report</span>
+        
     <div id = "box" align="center">
-	<span class="titleText">Monthly Leave Report</span><hr/>
     <div class="scrollingTable">
         <table id="reportTable">
     <tr>

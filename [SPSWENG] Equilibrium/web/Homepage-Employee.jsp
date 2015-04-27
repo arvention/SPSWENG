@@ -41,13 +41,11 @@
                 <li><a href="Homepage-Employee.jsp"><img class= "logo" src= "img/eqlogoclear.png" height="53px"/></a></li>
             </ul>
         </div>
+        
+        <span class="titleText">Leave Form Application</span>
         <div align="center" class="content">
             <form onsubmit = "return submitLeave()" id = "leave_form"><br>
                 <!--h4>ID Number: <input type="number" name = "idNum" required></h4-->
-                <div class= "header">
-                    <h3>Leave Form Application</h3>
-                </div>
-                <hr width= "75%"/>
                 <h4>Type of Leave:
                     <select name= "leaveType" required class = "form-input">
                         <option value= "Sick">Sick</option>
@@ -57,14 +55,14 @@
                         <option value= "Paternity">Paternity</option>
                         <option value= "Bereavement">Bereavement</option>
                     </select></h4>
-                <h4>Days of Leave: <input class = "form-input" type="number" min="0.5" max="15" name = "dayCount" step="0.5" required></h4><br/>
+                <h4>Days of Leave: <input class = "form-input" type="number" min="0.5" max="15" name = "dayCount" step="0.5" required></h4>
                 <h4>
-                    Inclusive Dates:
-
+                    Inclusive Dates:<span style="margin-right: 10px"></span>
                     <input type= "date" class= "leaveDate" id="dp" name = "startDate" required/> 
                     until 
                     <input type= "date" class= "leaveDate" id="dp" name = "endDate" required/>
                 </h4>
+                <div id="leaveMessage"></div>
                 <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
             </form>
             <%
@@ -82,13 +80,11 @@
             %>
             <a href="Homepage-Manager.jsp"><button class="back" type="submit" name="bBack">Back</button></a>
             <%}%>
-        </div>
-        <div id = "leaveMessage">
             
-        </div>
-        <div class= "footer">
+           <DIV class="footer">
             <hr width="75%"/>
             EQUILIBRIUM INTERTRADE CORP.
+        </DIV>
         </div>
     </body>
 </html>

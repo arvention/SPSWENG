@@ -154,10 +154,8 @@
            }
         %>        
 
+	<span class = "titleText">Change Password</span>
 	<div class= "content">
-		<span class = "titleText">Change Password</span>
-		
-		<br/><br/>
                 <form action="ChangePasswordServlet" method="POST" id="passwordform">
 		Current password: <input class= "textLine" input type="password" size="25" name="oldpassword" /> </br></br>
 		New password: <input class="textLine" input type="password" size="25" name="newpassword" id="newpass"/></br></br>
@@ -167,6 +165,6 @@
                 <input class="submitButton" input type= "submit" name="okButton" value="Save Changes" id="savebutton"/>	
                <!-- <input class="back" input type= "submit" name="bButton" value="Back"/>-->
 	</div>
-	<div class= "footer"><hr width="75%"/>EQUILIBRIUM INTERTRADE CORPORATION</div>
+	<div class= "footer"><hr width="75%"/>EQUILIBRIUM INTERTRADE CORP.</div>
 </body>
 </html>

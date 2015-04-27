@@ -34,7 +34,7 @@ td{
     height: auto;
 }
 
-input[type=submit]{
+/*input[type=submit]{
     position: relative;
     left: 85%;
     background-color: red;
@@ -46,7 +46,7 @@ input[type=submit]{
     padding-right: 10px;
     font-family: Arial, sans-serif;
     font-size: 12px;
-    opacity: .55;
+    //opacity: .55;
     position: relative;
     up: 500px;
     left: 1100px;
@@ -60,7 +60,7 @@ input[type=submit]{
     width: 10%;
     position: relative;
     left: 90%;
-}
+}*/
 
 input[type=submit]:hover{
     background-color: black;
@@ -86,19 +86,6 @@ select{
     padding-bottom: 3px;
 }
 
-DIV.footer{
-    width: 100%;
-    height: 40px;
-    text-align:center;
-    color: #808080;
-    font-size: 11px;
-    font-family: "Arial";
-    background-color: #E8E8E8;
-    position: fixed;
-    top: 94%;
-    left: 0%;
-}
-
 DIV.tab-section {
     background-color: white;
     padding: 10px;
@@ -106,7 +93,7 @@ DIV.tab-section {
     border-radius: 5px;
     opacity: .85;
     width: 1000px;
-    max-height: 400px;
+    max-height: 380px;
     overflow-y: auto;
 }
 
@@ -202,12 +189,21 @@ DIV.nav{
     border-radius: 5px 5px 0px 0px;
 }
 
+text{
+    border: solid black;
+}
+
+#bioMessage{
+    color: red;
+}
+
 .titleText{
-    font-size: 35px;
+    margin-top: 10px;
+    font-size: 30px;
     font-family: Arial;
     font-weight: bold;
     color: red;
-    opacity: .85;
+    opacity: .75;
     text-align: center;
     position: absolute;
     top: 10%;
@@ -215,10 +211,31 @@ DIV.nav{
     z-index: 1;
 }
 
-text{
-    border: solid black;
+input[type=submit] {
+    width: 110px;
+    height: 25px;
+    background-color: #D63333;
+    border: 0;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+
+    float: right;
+    opacity: .75;
+    margin-top: 10px;
 }
 
-#bioMessage{
-    color: red;
+DIV.footer{
+    width: 100%;
+    position: fixed;
+    top: 90%;
+    left: 0%;
+    height: 500px;
+    text-align:center;
+    color: #808080;
+    font-size: 11px;
+    font-family: "Arial";
+    background-color: #E8E8E8;
+    z-index: 1;
 }

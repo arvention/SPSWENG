@@ -352,7 +352,9 @@ public class EditEmployeeData extends HttpServlet {
         }
 
         String manager = request.getParameter("managerid");
-        if ((db.getFirstName(emp.getManagerEntryNum()) + " " + db.getLastName(emp.getManagerEntryNum())).equals(manager)) {
+        System.out.println("manager = " + manager);
+        if (!(db.getFirstName(emp.getManagerEntryNum()) + " " + db.getLastName(emp.getManagerEntryNum())).equals(manager)) {
+            System.out.println("hehe");
             switch (logged.getEmployeeType()) {
                 case "Hr Employee":
                     db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "managerEntryNum", Integer.toString(db.getEmployeeID(emp.getManagerEntryNum())), Integer.toString(db.getEntryNum(Integer.parseInt(manager))), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
@@ -361,7 +363,7 @@ public class EditEmployeeData extends HttpServlet {
                     int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "managerEntryNum", Integer.toString(db.getEmployee(manager).getEmployeeID()), Integer.toString(db.getEntryNum(Integer.parseInt(manager))), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
 
                     db.changeAuditStatus(auditTrailID, "Approved");
-                    db.changeFieldValue("employee", emp.getEntryNum(), "managerEntryNum", Integer.toString(db.getEmployeeID(emp.getManagerEntryNum())));
+                    db.changeFieldValue("employee", emp.getEntryNum(), "managerEntryNum", Integer.toString(db.getEntryNum(Integer.parseInt(manager))));
                     break;
             }
         }

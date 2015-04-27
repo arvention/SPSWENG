@@ -71,7 +71,7 @@ function validateForm() {
 }
 
 function goNext(){
-    window.location.href = "BiodataFiled.html";
+    window.location.href = "BiodataFiled.jsp";
 }
 
 $(document).ready(function() {

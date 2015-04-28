@@ -1,3 +1,4 @@
+<%@page import="Database.Database"%>
 <%@page import="Models.modelEmployee"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,8 +25,8 @@
         <script src="js/bootstrap.min.js"></script>
         <script>
                     $("#datepicker").datepicker({
-            changeMonth: true;
-                    changeYear: true;
+            changeMonth: true,
+                    changeYear: true
             });</script>
         <script type = "text/javascript" src = "js/LeaveForm.js"></script>
     </head>
@@ -62,7 +63,18 @@
                     until 
                     <input type= "date" class= "leaveDate" id="dp" name = "endDate" required/>
                 </h4>
-                <div id="leaveMessage"></div>
+                
+                <div id="leaveLeft"><b>Remaining leave requests left:</b> 
+                    <%
+                        modelEmployee m = (modelEmployee) request.getSession().getAttribute("employee");
+                        Database db = Database.getInstance();
+                        int maxLeave = 15;
+                        
+                        float remainingLeaves = maxLeave - db.getApprovedLeaveCount(m.getEmployeeID());
+                    %>
+                    <%=remainingLeaves%> days
+                </div>
+                <div id="leaveMessage" align = "center"></div>
                 <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>
             </form>
             <%

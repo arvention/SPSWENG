@@ -323,6 +323,9 @@ DIV.footer{
     z-index: 1;
 }
 
+#managerError{
+    display: none;
+}
 
 .select-input{
     border: none;

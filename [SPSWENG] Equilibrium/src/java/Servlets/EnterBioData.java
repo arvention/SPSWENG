@@ -38,7 +38,6 @@ public class EnterBioData extends HttpServlet {
 
         //--- variables ----------------------
         Database db = Database.getInstance();
-        RequestDispatcher view = null;
         int empEntryNum = 0;
         String empid = request.getParameter("employeeID");
         int managerid = Integer.parseInt(request.getParameter("emphead"));
@@ -60,7 +59,7 @@ public class EnterBioData extends HttpServlet {
         }
         if (db.isValidID(managerid)) {
             isError = true;
-            response.getWriter().write("- No Manager has an ID number " + managerid + ".<br>");
+            response.getWriter().write("- No Manager has an ID number, " + managerid + ".<br>");
         }
         else if (checkEmployee(managerid)){
             isError = true;

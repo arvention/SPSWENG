@@ -98,15 +98,6 @@
                     });
                     window.location.href = "GetImage?id=" + this.id;
                 });
-                /*     
-                 $('#savepicform').ajaxForm({
-                 console.log("it's here");
-                 complete: function(xhr) {
-                 alert("Upload complete");   
-                 } 
-                 });  
-                 */
-
 
                 $('#savepicform').on('submit', (function(e) {
                     e.preventDefault();
@@ -136,8 +127,7 @@
                             console.log(data);
                         },
                         error: function() {
-                            alert("Picture too Large");
-                            //console.log(data);
+                            alert("The size of the picture exceeds the limit");
                         }
                     });
                 }));
@@ -150,8 +140,6 @@
             %>
             });
         </script>  
-
-
     </head>
 
     <body bgcolor ="#E8E8E8">
@@ -259,8 +247,6 @@
                     <div id="box">
                         <div id="header">
                             <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
-
-
                         </div>
                         <select id="options" size="6">
                             <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
@@ -332,7 +318,9 @@
                                     <div class="line"><span class="label">Band</span>
                                         <input name = "band" type = "text" class="data" value = "<%=emp.getBand()%>" readonly/></div>
                                     <div class="line"><span class="label">Manager </span>
-                                        <input name = "managerid" type = "text" class="data" value = "<%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%>" readonly/><span class = "editNote"><br>*Input the manager's ID number</span></div>
+                                        <input name = "managerid" type = "text" class="data" value = "<%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%>" readonly/><span class = "editNote"><br>*Input the manager's ID number</span>
+                                        <br><span id = "managerError" class = "editNote"><b>*Employee ID not found</b></span> 
+                                    </div>
                                             <%
                                                 if (emp.getEmployeeType() != null) {
                                             %>

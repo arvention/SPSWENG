@@ -39,14 +39,24 @@ public class EditEmployeeData extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        Database db = Database.getInstance();
         modelEmployee logged = (modelEmployee) request.getSession().getAttribute("employee");
         modelEmployee emp = (modelEmployee) request.getSession().getAttribute("viewEmp");
         try {
-            editPersonalInformation(logged, emp, request);
-            editRelatives(logged, emp, request);
-            editEducationHistory(logged, emp, request);
-            editEmploymentHistory(logged, emp, request);
-            editCriminalOffenseHistory(logged, emp, request);
+            int managerID = Integer.parseInt(request.getParameter("managerid"));
+            if (!db.isValidID(managerID)) {
+                editPersonalInformation(logged, emp, request);
+                editRelatives(logged, emp, request);
+                editEducationHistory(logged, emp, request);
+                editEmploymentHistory(logged, emp, request);
+                editCriminalOffenseHistory(logged, emp, request);
+                response.getWriter().write("true");
+            }
+            else
+            {
+                response.getWriter().write("false");
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -54,7 +64,7 @@ public class EditEmployeeData extends HttpServlet {
 
     public void editPersonalInformation(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
         Database db = Database.getInstance();
-        
+
         String employeeType = request.getParameter("empType");
         if (!emp.getEmployeeType().equals(employeeType)) {
             switch (logged.getEmployeeType()) {
@@ -68,7 +78,7 @@ public class EditEmployeeData extends HttpServlet {
                     break;
             }
         }
-        
+
         String firstname = request.getParameter("firstname");
         if (!emp.getFirstName().equals(firstname)) {
             switch (logged.getEmployeeType()) {
@@ -352,9 +362,8 @@ public class EditEmployeeData extends HttpServlet {
         }
 
         String manager = request.getParameter("managerid");
-        System.out.println("manager = " + manager);
-        if (!(db.getFirstName(emp.getManagerEntryNum()) + " " + db.getLastName(emp.getManagerEntryNum())).equals(manager)) {
-            System.out.println("hehe");
+        System.out.println("manager = " + db.getEmployee(manager).getFirstName() + " " + db.getEmployee(manager).getLastName());
+        if (!(db.getFirstName(emp.getManagerEntryNum()) + " " + db.getLastName(emp.getManagerEntryNum())).equals((db.getEmployee(manager).getFirstName() + " " + db.getEmployee(manager).getLastName()))) {
             switch (logged.getEmployeeType()) {
                 case "Hr Employee":
                     db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "managerEntryNum", Integer.toString(db.getEmployeeID(emp.getManagerEntryNum())), Integer.toString(db.getEntryNum(Integer.parseInt(manager))), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
@@ -1288,7 +1297,7 @@ public class EditEmployeeData extends HttpServlet {
                             break;
                     }
                 }
-                
+
                 long empcontact = Long.parseLong(histosEmpContact[i]);
                 if (histo.getEmployerContactNum() != empcontact) {
                     switch (logged.getEmployeeType()) {
@@ -1303,7 +1312,7 @@ public class EditEmployeeData extends HttpServlet {
                             break;
                     }
                 }
-                
+
                 String histosupname = histosSupName[i];
                 if (!histo.getSupervisorName().equals(histosupname)) {
                     switch (logged.getEmployeeType()) {
@@ -1333,7 +1342,7 @@ public class EditEmployeeData extends HttpServlet {
                             break;
                     }
                 }
-                
+
                 String historeason = histosReason[i];
                 if (!histo.getReasonForLeaving().equals(historeason)) {
                     switch (logged.getEmployeeType()) {

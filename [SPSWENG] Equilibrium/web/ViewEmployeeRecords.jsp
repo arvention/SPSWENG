@@ -249,7 +249,7 @@
                             <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
                         </div>
                         <select id="options" size="6">
-                            <option selected value="personal">Personal</option> <!--complete name, position applied for or expected salary, home address, birthday, 
+                            <option selected value="personal">Personal Information</option> <!--complete name, position applied for or expected salary, home address, birthday, 
                                                                                                                                     birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
                             <option value="relations">Relations</option> <!--name, age, occupation and company of occupation of the employee’s siblings and parents. Information 
                                                                                                                     regarding the spouse’s name, contact number and occupation or employer is added, as well as the names of their children, age, grade or year and the school of the children-->	
@@ -257,7 +257,7 @@
                                                                                                                     school, years the employee has studied in that school and the awards given by the school to the employee are mentioned. The bio-data also includes the licensure exams taken and the score of the employee in the exams-->
                             <option value="history">Employment History</option> <!--job names, date of employment, beginning & ending salary, employer’s name, employer’s address, 
                                                                                                                             employer’s telephone number, supervisor’s name, supervisor’s contact number and reason for leaving-->
-                            <option value="others">Criminal Offense History</option> <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
+                             <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
                                                                                                         of that offense. -->
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                                 disciplinary actions, records of filed leaves, recognitions, and awards-->

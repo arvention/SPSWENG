@@ -93,7 +93,7 @@ DIV.tab-section {
     border-radius: 5px;
     opacity: .85;
     width: 1000px;
-    max-height: 380px;
+    max-height: 360px;
     overflow-y: auto;
 }
 

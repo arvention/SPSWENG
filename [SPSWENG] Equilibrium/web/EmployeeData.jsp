@@ -141,11 +141,10 @@
         <DIV class="content">
             <ul class="tabs">
                 <li><a href="#personalinfo">Personal Information</a></li>
-                <li><a href="#family">Family Relations</a></li>
-                <li><a href="#emergencycontact">Emergency Contact</a></li>
+                <li><a href="#family">Personal Information(Family)</a></li>
                 <li><a href="#edhistory">Education History</a></li>
-                <li><a href="#emphistory">Employment History</a></li>
-                <li><a href="#crimes">Past Criminal Offenses</a></li>
+                <li><a href="#emphistory">Employment Background</a></li>
+                <li><a href="#crimes">Disciplinary Actions</a></li>
             </ul>
             <form onsubmit = "return submitData()" class = "data_form">
                 
@@ -270,7 +269,7 @@
                             </tr>
                         </table>
                     </DIV>
-                    <DIV id="family" class="tab-section">
+                    <DIV id="family" class="tab-section" height="30">
                         <table>
                             <tr>
                                 <td></td>
@@ -327,6 +326,24 @@
                                 </td>
                             </tr>
                         </table>
+                        <table>
+                            <tr>
+                                <td>Emergency Contact's Name</td>
+                                <td><input type="text" maxlength = 45 name="emergencyname" placeholder="Person to notify in case of emergency" /></td>
+                            </tr>
+                            <tr>
+                                <td>Relationship with Emergency Contact</td>
+                                <td><input type="text" maxlength = 20 name="emergencyrel" placeholder="Relationship" /></td>
+                            </tr>
+                            <tr>
+                                <td>Emergency Contact's Address</td>
+                                <td><input type="text" maxlength = 100 name="emergencyaddress" placeholder="Address" /></td>
+                            </tr>
+                            <tr>
+                                <td>Emergency Contact's Number</td>
+                                <td><input type="number" min = "0" max = "999999999999" step = "1" name="emergencynumber" placeholder="Contact Number" /></td>
+                            </tr>
+                        </table>
                         <DIV class="tohide">
                             <table>
                                 <tr>
@@ -365,28 +382,12 @@
                                     <td><button class="addchild">+</button></td>
                                 </tr>
                             </table><br/><br/>
+                        
+                        
+                        
                         </DIV>
                     </DIV>
-                    <DIV id="emergencycontact" class="tab-section">
-                        <table>
-                            <tr>
-                                <td>Emergency Contact's Name</td>
-                                <td><input type="text" maxlength = 45 name="emergencyname" placeholder="Person to notify in case of emergency" /></td>
-                            </tr>
-                            <tr>
-                                <td>Relationship with Emergency Contact</td>
-                                <td><input type="text" maxlength = 20 name="emergencyrel" placeholder="Relationship" /></td>
-                            </tr>
-                            <tr>
-                                <td>Emergency Contact's Address</td>
-                                <td><input type="text" maxlength = 100 name="emergencyaddress" placeholder="Address" /></td>
-                            </tr>
-                            <tr>
-                                <td>Emergency Contact's Number</td>
-                                <td><input type="number" min = "0" max = "999999999999" step = "1" name="emergencynumber" placeholder="Contact Number" /></td>
-                            </tr>
-                        </table>
-                    </DIV>
+                    
                     <DIV id="edhistory" class="tab-section">
                         <%                            Boolean isEarlier = (Boolean) request.getSession().getAttribute("isEarlier");
                             if (isEarlier != null) {

@@ -28,6 +28,20 @@
 	opacity: 0.75;
 }
 
+#button{
+    margin-top: 2%;
+    background-color: #D63333;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    opacity: .75;
+    border: 0;
+    height: 30px;
+    width: 75px;
+}
+#button:hover{
+    cursor:pointer;
+}
 body{
     background-color: #E8E8E8;
     font-family: Arial, sans-serif;

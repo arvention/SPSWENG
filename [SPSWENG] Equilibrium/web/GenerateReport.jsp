@@ -2,6 +2,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Database.Database"%>
+<%@page import="java.io.*"%>
 <html>
 <head>
     <link rel="shortcut icon" href="img/eq logo.ico"/>
@@ -84,6 +85,26 @@
                 });
             }
         });
+    </script>
+    <script>
+        function getFile(){
+            <%
+                String str = "print me";
+                //always give the path from root. This way it almost always works.
+                String textFile = "C:/Users/User/Desktop/koya.csv";
+                try {
+                    FileWriter fw = new FileWriter(textFile);
+                    fw.append(str);
+                    fw.append(",");
+                    fw.append("Ye");
+                    //clean up
+                    fw.flush();
+                    fw.close();
+                    } catch(IOException e) {
+                        out.println(e.getMessage());
+                    }
+            %>
+        }
     </script>
 </head>
 <body onload="makeTableScroll();">
@@ -185,8 +206,7 @@
         <th> Leaves Taken </th>
         <th> Leaves Left </th>
     </tr>
-        </table>
-		
+        </table>	
     </div>
     		<br/>
 		Month
@@ -210,7 +230,10 @@
                     <% for(int i = min; i <= max; i++) { %>
                         <option><%=i%></option>
                     <% } %>
-		</select>
+		</select><br/>
+                
+                <input id="button" type="button" value="Download" onclick="getFile()"/>
+                
     </div>
 	   <DIV class="footer">
             <br/><hr width="75%"/>

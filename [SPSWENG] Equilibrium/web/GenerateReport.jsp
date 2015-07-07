@@ -231,9 +231,19 @@
                         <option><%=i%></option>
                     <% } %>
 		</select><br/>
+<<<<<<< HEAD
                 
                 <input id="button" type="button" value="Download" onclick="getFile()"/>
                 
+=======
+<<<<<<< HEAD
+                
+                <input id="button" type="button" value="Download" onclick="getFile()"/>
+                
+=======
+                <input type="button" value="Download" onclick="getFile()"/>
+>>>>>>> b9154f327025911ded000309d80e26639b73bf6c
+>>>>>>> ee5eff6a411914a1f667b382335818a81e9309ad
     </div>
 	   <DIV class="footer">
             <br/><hr width="75%"/>

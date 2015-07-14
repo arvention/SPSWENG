@@ -33,8 +33,16 @@
                         });
                     });
                 });
-
-
+                
+                $(".downloadButton").click(function() {
+                    var month = $("#month").val();
+                    var year = $("#year").text();
+                    
+                    $("#downloadreport").submit(function(e) {
+                        e.preventDefault(); // this will prevent from submitting the form.
+                    });
+                    window.location.href = "SaveReport?m=" + month + "&y=" + year;
+                });
             });
         </script>
 
@@ -85,26 +93,6 @@
                     });
                 }
             });
-        </script>
-        <script>
-            function getFile() {
-            <%
-                    String str = "print me";
-                    //always give the path from root. This way it almost always works.
-                    String textFile = "C:/Users/User/Desktop/koya.csv";
-                    try {
-                        FileWriter fw = new FileWriter(textFile);
-                        fw.append(str);
-                        fw.append(",");
-                        fw.append("Ye");
-                        //clean up
-                        fw.flush();
-                        fw.close();
-                    } catch (IOException e) {
-                        out.println(e.getMessage());
-                    }
-            %>
-            }
         </script>
     </head>
     <body onload="makeTableScroll();">
@@ -190,6 +178,7 @@
         <span class="titleText">Monthly Leave Report</span>
 
         <div id = "box" align="center">
+            <form id = "downloadreport">
             <div class="scrollingTable">
                 <table id="reportTable">
                     <tr>
@@ -223,7 +212,8 @@
                 <% }%>
             </select><br/>
 
-            <input id="button" type="button" value="Download" onclick="getFile()"/>
+            <button id="button" class = "downloadButton">Download</button>
+            </form>
         </div>
         <DIV class="footer">
             <br/><hr width="75%"/>

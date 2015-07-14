@@ -1895,6 +1895,35 @@ public class Database {
         return x;
     }
 
+    public String getDownloadReport(int month, int year) {
+        sql = "select concat(e.lastName, ', ' , e.firstName) as name, sum(l.duration) as sum \n"
+                + "from leave_form l, employee e\n"
+                + "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n"
+                + "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n"
+                + "group by concat(e.lastName, ', ' , e.firstName)\n"
+                + "order by concat(e.lastName, ', ' , e.firstName)";
+
+        Statement stmt;
+        ResultSet rs;
+        float tempSum;
+        float maxDays = 15;
+        String x = "";
+
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                tempSum = rs.getFloat("sum");
+                x += rs.getString("name") + ", " + tempSum + ", " + (maxDays - tempSum) + "\n";
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return x;
+    }
+
     public boolean isFile(int id) {
 
         sql = "select * from record where file is not null and recordID = " + id;

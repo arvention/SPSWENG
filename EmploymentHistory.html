@@ -1,0 +1,131 @@
+<html>
+   <head>
+     <title>Employee BioData - Employment History</title>
+	 <link rel="stylesheet" type="text/css" media="all" href="SampleScreensStyle.css"/>
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	 <script src="SampleScreensFunc.js"></script>
+   </head>
+   <script>
+         $(function(){
+		      var employmentcount = 1;
+			  var criminaloffensecount = 1;
+			  var employmentwrapper = $('table[name=employment]');
+			  var criminaloffensewrapper = $('table[name=criminaloffense]');
+			  var tohide = $('.tohide');
+			  
+			  $(tohide).hide();
+			  $('select[name=convicted]').change(function(){
+			      if( $('select[name=convicted]').find(':selected').val()==="y" )
+				      $(tohide).show();
+			     else
+				     $(tohide).hide();
+			  });
+			  
+			  $(document).on("click", ".addemployment", function(e){
+			      e.preventDefault();
+				  employmentcount++;
+				  $(employmentwrapper).append('<tr><td>' + employmentcount.toString() + '</td>'
+				     + '<td><input type="text" name="jobtitle" placeholder="Job Title"/></td>'
+					 + '<td><input type="text" name="jobemploydate" placeholder="Date of Employment"/></td>'
+					 + '<td><input type="text" name="jobbegsal" placeholder="Starting Salary"/></td>'
+					 + '<td><input type="text" name="jobendsal" placeholder="Ending Salary"/></td>'
+					 + '<td><input type="text" name="jobemployer" placeholder="Employer\'s Name"/></td>'
+					 + '<td><input type="text" name="jobaddress" placeholder="Employer\'s Address"/></td>'
+					 + '<td><input type="text" name="jobtelno" placeholder="Employer\'s Contact Number"/></td>'
+					 + '<td><input type="text" name="jobsupname" placeholder="Supervisor Name"/></td>'
+					 + '<td><input type="text" name="jobsupno" placeholder="Supervisor Contact Number"/></td>'
+					 + '<td><input type="text" name="jobreason" placeholder="Reason for Leaving"/></td>'
+					 + '<td><button class="removeemployment">Remove job history</button></td></tr>'
+				  );
+			  });
+			  
+			  $(document).on("click", ".removeemployment", function(e){
+			       e.preventDefault();
+				   employmentcount--;
+				   $(this).parent().parent().remove();
+			  });
+			  
+			 $(document).on("click", ".addcriminaloffense", function(e){
+			      e.preventDefault();
+				  criminaloffensecount++;
+				  $(criminaloffensewrapper).append('<tr><td>' + criminaloffensecount.toString() + '</td>'
+				     + '<td><input type="text" name="offensename" placeholder="Criminal Offense"/></td>'
+					 + '<td><input type="text" name="offensedate" placeholder="Date of Offence"/></td>'
+					 + '<td><input type="text" name="offenceplace" placeholder="Place of Offence"/></td>'
+					 + '<td><button class="removecriminaloffense">Remove criminal offense history</button></td></tr>'
+				  );
+			 });
+			 $(document).on("click", ".removecriminaloffense", function(e){
+			    e.preventDefault();
+				criminaloffensecount--;
+				$(this).parent().parent().remove();
+			 });
+	     });
+   </script>
+   <body>
+      <form>
+            <div class="content" style="width: 100%;">
+	    <span id="headers">Employment History</span><br/>
+		<span>Note: Begin with present or most recent job.</span><br/><br/>
+		<table name="employment">
+		   <tr>
+		      <td>#</td>
+			  <td>Job Title</td>
+			  <td>Date of Employment</td>
+			  <td>Starting Salary</td>
+			  <td>Ending Salary</td>
+			  <td>Employer's Name</td>
+			  <td>Employer's Address</td>
+			  <td>Employer's Contact Number</td>
+			  <td>Supervisor's Name</td>
+			  <td>Supervisor's Contact Number</td>
+			  <td>Reason for Leaving</td>
+		   </tr>
+		   <tr>
+		      <td>1</td>
+			  <td><input type="text" name="jobtitle" placeholder="Job Title"/></td>
+			  <td><input type="text" name="jobemploydate" placeholder="Date of Employment"/></td>
+			  <td><input type="text" name="jobbegsal" placeholder="Starting Salary"/></td>
+			  <td><input type="text" name="jobendsal" placeholder="Ending Salary"/></td>
+			  <td><input type="text" name="jobemployer" placeholder="Employer"/></td>
+			  <td><input type="text" name="jobaddress" placeholder="Employer Address"/></td>
+			  <td><input type="text" name="jobtelno" placeholder="Employer Telephone Number"/></td>
+			  <td><input type="text" name="jobsupname" placeholder="Supervisor Name"/></td>
+			  <td><input type="text" name="jobsupno" placeholder="Supervisor Number"/></td>
+			  <td><input type="text" name="jobreason" placeholder="Reason for Leaving"/></td>
+			  <td><button class="addemployment">Add job history</button></td>
+		   </tr>
+		</table><br/>
+		
+		<span>Has the employee ever been convicted of a criminal offense?</span>
+		<select name="convicted">
+		   <option>No</option>
+		   <option value="y">Yes</option>
+		</select><br/>
+		<div class="tohide">
+		<span id="header">Past criminal offenses</span><br/>
+		<table name="criminaloffense">
+		   <tr>
+		      <td>#</td>
+			  <td>Criminal Offense</td>
+			  <td>Date of Offense</td>
+			  <td>Place of Offence</td>
+		   </tr>
+		   <tr>
+		      <td>1</td>
+			  <td><input type="text" name="offensename" placeholder="Criminal Offense"/></td>
+			  <td><input type="text" name="offensedate" placeholder="Date of Offence"/></td>
+			  <td><input type="text" name="offenceplace" placeholder="Place of Offence"/></td>
+			  <td><button class="addcriminaloffense">Add criminal offense history</button></td>
+		   </tr>
+		</table>
+		</div>
+		<br/><br/><button>Next</button>
+	  </form><br/><br/>
+          </div>
+          <div class= "footer">
+			<hr width="75%"/>
+			EQUILIBRIUM INTERTRADE CORP.
+		</div>
+   </body>
+</html>

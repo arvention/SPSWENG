@@ -1,0 +1,71 @@
+<html lang="en">
+  <head>
+	<link rel="stylesheet" type="text/css" href="navbar.css">
+   	<link rel="stylesheet" type="text/css" href="leaveform.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "shortcut icon" href="eq logo.ico"/>
+    <title>Leave Application</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/jquery-ui.min.css" rel="stylesheet">
+  </head>
+    <script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="js/bootstrap.min.js"></script>
+   <script>
+		$("#datepicker").datepicker({
+			changeMonth: true;
+			changeYear: true;
+		});
+	</script>
+	
+	<body>
+		<div class= "nav">
+			<ul>
+				<li><a href= "#">Log Out</a></li>
+				<li><a href= "#">Announcements</a></li>
+				<li><a href= "#">Home</a></li>
+				<li><img class= "logo" src= "eqboyz.png"/></li>
+			</ul>
+		</div>
+		<div class= "header">
+			
+		</div>
+		<div align="center" class="content">
+		<form>
+		<h3>Leave Form Application</h3><br/>
+		<h4>Type of Leave:
+		<select name= "leaves" required>
+			<option value= "0">Sick</option>
+			<option value= "1">Vacation</option>
+			<option value= "2">Emergency</option>
+			<option value= "3">Maternity</option>
+			<option value= "4">Paternity</option>
+			<option value= "5">Bereavement</option>
+		</select></h4>
+		</br>
+	
+		<h4>Days of Leave: <input type="number" min="0.5" max="15" step="0.5" required></h4></br>
+	
+		<h4>
+		Inclusive Dates:
+	
+		<input type= "date" class= "form-control" id="dp" required/> 
+		until 
+		<input type= "date" class= "form-control" id="dp" required/></h4>
+		<input class= "submitButton" input type="submit" value= "Submit" name=  "datSubmit"></input>
+		</form>
+		<a href="homepage.html"><button class="back" name="bBack">Back</button></a>
+		</div>
+		
+		<div class= "footer">
+			<hr width="75%"/>
+			EQUILIBRIUM INTERTRADE CORP.
+		</div>
+		
+  </body>
+</html>

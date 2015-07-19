@@ -1,0 +1,180 @@
+<html>
+   <head>
+     <title>Employee BioData - Personal Information</title>
+	 <link rel="stylesheet" type="text/css" media="all" href="SampleScreensStyle.css"/>
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	 <script src="SampleScreensFunc.js"></script>
+	 <script>
+	     $(function(){
+		                 var siblingcount =1;
+				 var siblingwrapper = $('table[name=siblings]');
+				 var childcount = 1;
+				 var childwrapper = $('table[name=children]');
+                                 var tohide = $('.tohide');
+                                 
+                                 $(tohide).hide();
+			         $('select[name=civilstatus]').change(function(){
+			           if( $('select[name=civilstatus]').find(':selected').val()==="s" )
+				      $(tohide).hide();
+			     else
+				     $(tohide).show();
+			  });
+				 
+				 $(document).on("click", ".addsibling", function(e){
+				   e.preventDefault();
+				    siblingcount++;
+					$(siblingwrapper).append('<tr"><td> ' + siblingcount.toString()
+					   + ' </td>' 
+					   + '<td><input type="text" name="siblingname" placeholder="ex. Virma Lopez" /></td>'
+					   + '<td><input type="text" name="siblingage" placeholder="ex. 14" /></td>'
+					   + '<td><input type="text" name="siblingoccupation" placeholder="ex. Student" /></td>'
+					   + '<td><input type="text" name="siblingname" placeholder="ex. Binan, Laguna" /></td>'
+					   + '<td><button class="removesibling">Remove sibling info</button></td></tr>'
+					   );
+				 });
+				 
+				 $(document).on("click", ".removesibling", function(e){
+				    e.preventDefault();
+					siblingcount--;
+					//alert("Removing.");
+					$(this).parent().parent().remove();
+				 });
+				 
+				 $(document).on("click", ".addchild", function(e){
+				   e.preventDefault();
+				    childcount++;
+					$(childwrapper).append('<tr"><td> ' + childcount.toString()
+					   + ' </td>' 
+					   + '<td><input type="text" name="childrenname" placeholder="Name of Child"/></td>'
+					   + '<td><input type="text" name="childrenage" placeholder="Age"/></td>'
+					   + '<td><input type="text" name="childyear" placeholder="Grade/Year"/></td>'
+					   + '<td><input type="text" name="childschool" placeholder="School/Location"/></td>'
+					   + '<td><button class="removechild">Remove child info</button></td></tr>'
+					   );
+				 });
+				 
+				 $(document).on("click", ".removechild", function(e){
+				    e.preventDefault();
+					childcount--;
+					//alert("Removing.");
+					$(this).parent().parent().remove();
+				 });
+		 });
+	 </script>
+   </head>
+   <body>
+            <div class="content">
+	    <span id="headers">Personal Information</span><br/>
+	        Last Name: <input type="text" name="lastname" placeholder="Last Name"/><br/>
+		First Name: <input type="text" name="firstname" placeholder="First Name"/><br/>
+		Middle Name: <input type="text" name="middlename" placeholder="Middle Name"/><br/>
+		Position Applied For / Expected Salary: <input type="text" name="posal" placeholder="Position Applied For/Expected 
+
+Salary"/><br/>
+		Address: <input type="text" name="empaddress" placeholder="Address"/><br/>
+		Birthday: <input type="text" name="birthday" placeholder="Birthday"/><br/>
+		Birthplace: <input type="text" name="birthplace" placeholder="Birth Place"/><br/>
+		Home Phone: <input type="text" name="homephone" placeholder="Home Phone"/><br/>
+		Mobile Number: <input type="text" name="mobileno" placeholder="Mobile Number"/><br/>
+		Email Address:<input type="text" name="emailadd" placeholder="Email Address"/><br/>
+		SSS #: <input type="text" name="sssno" placeholder="SSS #"/><br/>
+		TIN #: <input type="text" name="tinno" placeholder="TIN #"/><br/>
+		PHIC #: <input type="text" name="phicno" placeholder="PHIC #"/><br/>
+		PAG-IBIG #: <input type="text" name="pagibigno" placeholder="PAG-IBIG #"/><br/>
+		Civil Status: <!--<input type="text" name="civilstatus" placeholder="Civil Status"/>-->
+                   <select name="civilstatus">
+                     <option value="s">Single</option>
+                     <option value="m">Married</option>
+                     <option value="d">Divorced</option>
+                     <option value="w">Widowed</option>
+                   </select><br/>
+		Citizenship: <input type="text" name="citizenship" placeholder="Citizenship"/><br/>
+		Religion: <input type="text" name="religion" placeholder="Religion"/><br/><br/>
+
+		<span id="headers">Familial Relations</span><br/><br/>
+                <span id="headers">Parents</span><br/>
+                <table>
+                   <tr>
+                     <td></td>
+                     <td>Name</td>
+                     <td>Age</td>
+                     <td>Occupation</td>
+                   </tr>
+                   <tr>
+                     <td>Father</td>
+                     <td><input type="text" name="fathername" placeholder="Father's Name"/></td>
+                     <td><input type="text" name="fatherage" placeholder="Age"/></td>
+                     <td><input type="text" name="fatheroccupation" placeholder="Occupation"/><br/></td>
+                   </tr>
+                   <tr>
+                     <td>Mother</td>
+                     <td><input type="text" name="mothername" placeholder="Mother's Maiden Name"/></td>
+                     <td><input type="text" name="motherage" placeholder="Age"/></td>
+                     <td><input type="text" name="motheroccupation" placeholder="Occupation"/></td>
+                   </tr>
+                </table><br/><br/>
+
+                <span id="headers">Siblings</span><br/>                
+		<table name="siblings">
+		      <tr>
+			     <td>#</td>
+				 <td>Name of Sibling</td>
+				 <td>Age</td>
+				 <td>Occupation</td>
+				 <td>Company/Location</td>
+				 <td> </td>
+			  </tr>
+			  <tr>
+			     <td>1</td>
+			     <td><input type="text" name="siblingname" placeholder="ex. Virma Lopez"/></td>
+		         <td><input type="text" name="siblingage" placeholder="ex. 14"/></td>
+		         <td><input type="text" name="siblingoccupation" placeholder="ex. Student"/></td>
+		         <td><input type="text" name="siblingcompany" placeholder="ex. Binan, Laguna"/></td>
+		         <td><button class="addsibling">Add sibling info</button></td>
+			  </tr>
+		    </table><br/><br/>
+
+                <div class="tohide">
+		Spouse's Name: <input type="text" name="spousename" placeholder="Name of Spouse"/><br/>
+		Spouse's Contact Number: <input type="text" name="spousecontact" placeholder="Contact Number"/><br/>
+		Spourse's Occupation/Employer: <input type="text" name="spouseoccupation" 
+
+placeholder="Occupation/Employer"/><br/><br/>
+                </div>
+
+                <span id="headers">Children</span><br/>
+		<table name="children">
+		      <tr>
+			     <td>#</td>
+				 <td>Name of Child</td>
+				 <td>Age</td>
+				 <td>Grade/Year</td>
+				 <td>School/Location</td>
+				 <td> </td>
+			  </tr>
+			  <tr>
+			     <td>1</td>
+			     <td><input type="text" name="childrenname" placeholder="ex. Virma Lopez"/></td>
+		         <td><input type="text" name="childrengage" placeholder="ex. 14"/></td>
+		         <td><input type="text" name="childrenyear" placeholder="ex. II"/></td>
+		         <td><input type="text" name="childschool" placeholder="ex. Binan, Laguna"/></td>
+		         <td><button class="addchild">Add child info</button></td>
+			  </tr>
+		    </table><br/><br/>
+
+		Emergency Contact's Name: <input type="text" name="emergencyname" placeholder="Person to notify in case of 
+
+emergency"/><br/>
+		Relationship with Emergency Contact: <input type="text" name="emergencyrel" placeholder="Relationship"/><br/>
+		Emergency Contact's Address: <input type="text" name="emergencyaddress" placeholder="Address"/><br/>
+		Emergency Contact's Number: <input type="text" name="emergencynumber" placeholder="Contact Number"/><br/><br/>
+		<button>Next</button>
+                </div><br/><br/><br/>
+
+                <div class= "footer">
+			<hr width="75%"/>
+			EQUILIBRIUM INTERTRADE CORP.
+		</div>
+	  
+   </body>
+</html>

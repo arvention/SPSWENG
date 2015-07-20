@@ -47,7 +47,6 @@ public class LoginServlet extends HttpServlet {
         
         /*  get Employee Account, returns null if the account does not exists*/
         modelEmployee modelEmployee = database.getEmployeeAccount(username, password);
-        
         /*  if account exists, go to proper homepage    */
         if (modelEmployee != null){
             if (modelEmployee.getEmployeeType().equalsIgnoreCase("Employee")){

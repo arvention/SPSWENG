@@ -2041,4 +2041,26 @@ public class Database {
 
         return count;
     }
+
+    public int getEmployeeYears(int entryNum) {
+        int employeeYear = 0;
+        try {
+            Calendar today = Calendar.getInstance();
+            int year = today.get(Calendar.YEAR);
+
+            //get hire date
+            sql = "SELECT YEAR(hireDate) from employee"
+                    + " WHERE entryNum = " + entryNum;
+
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                employeeYear = year - rs.getInt("YEAR(hireDate)");
+            }
+
+            System.out.println("YEARS = " + employeeYear);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeYear;
+    }
 }

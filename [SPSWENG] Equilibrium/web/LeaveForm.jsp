@@ -161,9 +161,31 @@
                 <div id="leaveLeft"><b>Remaining leave requests left:</b> 
                     <%
                         Database db = Database.getInstance();
-                        int maxLeave = 15;
+                        int vacLeave=0, sickLeave=0, patLeave=0;
                         
-                        float remainingLeaves = maxLeave - db.getApprovedLeaveCount(m.getEmployeeID());
+                        //if employee reaches 1 year of service.
+                        if(db.getEmployeeYears(db.getEntryNum(m.getEmployeeID()))==1){
+                            vacLeave= 7;
+                            sickLeave= 5;
+                            //paternity leave of 7 days for married employees.
+                            if(db.getSpouse(db.getEntryNum(m.getEmployeeID()))!=null){
+                                patLeave= 7;
+                            }
+                        }
+                        //if employee reaches 5 or more years of service
+                        else if(db.getEmployeeYears(db.getEntryNum(m.getEmployeeID()))>=5){
+                            vacLeave= 10;
+                            sickLeave= 5;
+                            //paternity leave of 7 days for married employees.
+                            if(db.getSpouse(db.getEntryNum(m.getEmployeeID()))!=null){
+                                patLeave= 7;
+                            }
+                        }
+                        /*
+                        Categorize the leave into 3(sick, vacation, paternity) and display them 
+                        accordingly instead of displaying the overall number.
+                        */
+                        float remainingLeaves = (vacLeave + sickLeave + patLeave) - db.getApprovedLeaveCount(m.getEmployeeID());
                     %>
                     <%=remainingLeaves%> days
                 </div>

@@ -2063,4 +2063,70 @@ public class Database {
         }
         return employeeYear;
     }
+    
+    public float getApprovedSick(int empID) {
+        float approveCount = 0;
+        Calendar today = Calendar.getInstance();
+        int year = today.get(Calendar.YEAR);
+
+        sql = "SELECT SUM(duration) FROM leave_form"
+                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected' AND leaveType = 'Sick'"
+                + " AND YEAR(startDate) = " + year;
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                approveCount = rs.getFloat("SUM(duration)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return approveCount;
+    }
+    
+    public float getApprovedVac(int empID) {
+        float approveCount = 0;
+        Calendar today = Calendar.getInstance();
+        int year = today.get(Calendar.YEAR);
+
+        sql = "SELECT SUM(duration) FROM leave_form"
+                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected' AND leaveType = 'Vacation'"
+                + " AND YEAR(startDate) = " + year;
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                approveCount = rs.getFloat("SUM(duration)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return approveCount;
+    }
+    
+    public float getApprovedPat(int empID) {
+        float approveCount = 0;
+        Calendar today = Calendar.getInstance();
+        int year = today.get(Calendar.YEAR);
+
+        sql = "SELECT SUM(duration) FROM leave_form"
+                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected' AND leaveType = 'Paternity'"
+                + " AND YEAR(startDate) = " + year;
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                approveCount = rs.getFloat("SUM(duration)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return approveCount;
+    }
 }

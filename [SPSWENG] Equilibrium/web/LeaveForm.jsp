@@ -161,33 +161,49 @@
                 <div id="leaveLeft"><b>Remaining leave requests left:</b> 
                     <%
                         Database db = Database.getInstance();
-                        int vacLeave=0, sickLeave=0, patLeave=0;
-                        
+                        int vacLeave = 0, sickLeave = 0, patLeave = 0;
+
                         //if employee reaches 1 year of service.
-                        if(db.getEmployeeYears(db.getEntryNum(m.getEmployeeID()))==1){
-                            vacLeave= 7;
-                            sickLeave= 5;
+                        if (db.getEmployeeYears(db.getEntryNum(m.getEmployeeID())) < 5) {
+                            vacLeave = 7;
+                            sickLeave = 5;
                             //paternity leave of 7 days for married employees.
-                            if(db.getSpouse(db.getEntryNum(m.getEmployeeID()))!=null){
-                                patLeave= 7;
+                            if (db.getSpouse(db.getEntryNum(m.getEmployeeID())) != null) {
+                                patLeave = 7;
                             }
-                        }
-                        //if employee reaches 5 or more years of service
-                        else if(db.getEmployeeYears(db.getEntryNum(m.getEmployeeID()))>=5){
-                            vacLeave= 10;
-                            sickLeave= 5;
+                        } //if employee reaches 5 or more years of service
+                        else if (db.getEmployeeYears(db.getEntryNum(m.getEmployeeID())) >= 5) {
+                            vacLeave = 10;
+                            sickLeave = 5;
                             //paternity leave of 7 days for married employees.
-                            if(db.getSpouse(db.getEntryNum(m.getEmployeeID()))!=null){
-                                patLeave= 7;
+                            if (db.getSpouse(db.getEntryNum(m.getEmployeeID())) != null) {
+                                patLeave = 7;
                             }
                         }
                         /*
-                        Categorize the leave into 3(sick, vacation, paternity) and display them 
-                        accordingly instead of displaying the overall number.
-                        */
-                        float remainingLeaves = (vacLeave + sickLeave + patLeave) - db.getApprovedLeaveCount(m.getEmployeeID());
+                         Categorize the leave into 3(sick, vacation, paternity) and display them 
+                         accordingly instead of displaying the overall number.
+                         */
+                        float remainingVacLeaves = vacLeave - db.getApprovedVac(m.getEmployeeID());
+                        float remainingSickLeaves = sickLeave - db.getApprovedSick(m.getEmployeeID());
+                        float remainingPatLeaves = patLeave - db.getApprovedPat(m.getEmployeeID());
                     %>
-                    <%=remainingLeaves%> days
+                    <br>
+                    <b>Vacation:</b> <%=remainingVacLeaves%> days<br>
+                    <b>Sick:</b> <%=remainingSickLeaves%> days<br>
+                    <b>Paternity:</b> 
+                    <%
+                        if (db.getSpouse(db.getEntryNum(m.getEmployeeID())) == null) {
+                    %>
+                    n/a
+                    <%
+                    } else {
+                    %>
+                    <%=remainingPatLeaves%>
+                    days
+                    <%
+    }
+                    %><br>
                 </div>
                 <div id="leaveMessage" align = "center"></div>
                 <input class= "submitButton" type="submit" value= "Submit" name= "dataSubmit"/>

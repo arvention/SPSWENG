@@ -183,8 +183,12 @@
                 <table id="reportTable">
                     <tr>
                         <th> Employee Name </th>
-                        <th> Leaves Taken </th>
-                        <th> Leaves Left </th>
+                        <th> Vacation </th>
+                        <th> Emergency </th>
+                        <th> Total Leaves Taken </th>
+                        <th> Vacation </th>
+                        <th> Emergency </th>
+                        <th> Total Leaves Left </th>
                     </tr>
                 </table>	
             </div>

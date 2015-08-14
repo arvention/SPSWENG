@@ -144,7 +144,7 @@
                 <li><a href="#family">Personal Information(Family)</a></li>
                 <li><a href="#edhistory">Education History</a></li>
                 <li><a href="#emphistory">Employment Background</a></li>
-                <li><a href="#crimes">Disciplinary Actions</a></li>
+                <li><a href="#crimes">Company Training</a></li>
             </ul>
             <form onsubmit = "return submitData()" class = "data_form">
                 
@@ -596,7 +596,7 @@
                     <DIV id="crimes" class="tab-section">
                         <table>
                             <tr>
-                                <td>Has the employee ever been convicted of a criminal offense?</td>
+                                <td>Did the employee take part in any of the company's activities?</td>
                                 <td><select name="convicted">
                                         <option value = "No">No</option>
                                         <option value = "Yes">Yes</option>
@@ -605,17 +605,17 @@
                         </table>
                         <br/><br/>
                         <DIV class="tohide">
-                            <span class="headers">Past criminal offenses</span><br/>
+                            <span class="headers">Company Involvement</span><br/>
                             <table name="criminaloffense">
                                 <tr>
-                                    <td>Criminal Offense</td>
-                                    <td>Date of Offense</td>
-                                    <td>Place of Offense</td>
+                                    <td>Name of Activity</td>
+                                    <td>Date of Activity</td>
+                                    <td>Venue of Activity</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" maxlength = 45 name="offensename" placeholder="Criminal Offense" /></td>
+                                    <td><input type="text" maxlength = 45 name="offensename" placeholder="Name of Activity" /></td>
                                     <td><input type="date" name="offensedate"/></td>
-                                    <td><input type="text" maxlength = 100 name="offenseplace" placeholder="Place of Offense" /></td>
+                                    <td><input type="text" maxlength = 100 name="offenseplace" placeholder="Venue of Activity" /></td>
                                     <td><button class="addcriminaloffense">+</button></td>
                                 </tr>
                             </table>

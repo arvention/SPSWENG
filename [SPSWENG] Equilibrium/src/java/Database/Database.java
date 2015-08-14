@@ -1895,27 +1895,55 @@ public class Database {
         return x;
     }
 
-    public String getDownloadReport(int month, int year) {
-        sql = "select concat(e.lastName, ', ' , e.firstName) as name, sum(l.duration) as sum \n"
+    public String getDownloadReport(int month, int year, int empID) {
+        Statement stmt;
+        ResultSet rs;
+        float tempSum;
+        String x = "";
+        int vacLeave = 0, sickLeave = 0, patLeave = 0;
+        
+        //if employee reaches 1 year of service.
+        if (getEmployeeYears(getEntryNum(empID)) < 5) {
+            vacLeave = 7;
+            sickLeave = 5;
+            //paternity leave of 7 days for married employees.
+            if (getSpouse(getEntryNum(empID)) != null) {
+                patLeave = 7;
+            }
+        } //if employee reaches 5 or more years of service
+        else if (getEmployeeYears(getEntryNum(empID)) >= 5) {
+            vacLeave = 10;
+            sickLeave = 5;
+            //paternity leave of 7 days for married employees.
+            if (getSpouse(getEntryNum(empID)) != null) {
+                patLeave = 7;
+            }
+        }
+        float maxDays = vacLeave + sickLeave + patLeave;
+        /*
+         Categorize the leave into 3(sick, vacation, paternity) and display them 
+         accordingly instead of displaying the overall number.
+         */
+        float remainingVacLeaves = vacLeave - getApprovedVac(empID);
+        float remainingSickLeaves = sickLeave - getApprovedSick(empID);
+        float remainingPatLeaves = patLeave - getApprovedPat(empID);
+
+        try {
+            stmt = con.createStatement();
+            sql = "select concat(e.firstName, ' ' , e.lastName) as name, sum(l.duration) as sum \n"
                 + "from leave_form l, employee e\n"
                 + "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n"
                 + "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n"
                 + "group by concat(e.lastName, ', ' , e.firstName)\n"
                 + "order by concat(e.lastName, ', ' , e.firstName)";
-
-        Statement stmt;
-        ResultSet rs;
-        float tempSum;
-        float maxDays = 15;
-        String x = "";
-
-        try {
-            stmt = con.createStatement();
+            
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
+                
                 tempSum = rs.getFloat("sum");
-                x += rs.getString("name") + ", " + tempSum + ", " + (maxDays - tempSum) + "\n";
+                x += rs.getString("name") + ", " + getApprovedVac(empID) + ", " + getApprovedSick(empID) + ", " + getApprovedPat(empID) + ", " + tempSum 
+                        + ", " + remainingVacLeaves + ", " + remainingSickLeaves + ", " + remainingPatLeaves + ", " + (maxDays - tempSum) + "\n";
             }
 
         } catch (SQLException e) {
@@ -2063,7 +2091,7 @@ public class Database {
         }
         return employeeYear;
     }
-    
+
     public float getApprovedSick(int empID) {
         float approveCount = 0;
         Calendar today = Calendar.getInstance();
@@ -2085,7 +2113,7 @@ public class Database {
 
         return approveCount;
     }
-    
+
     public float getApprovedVac(int empID) {
         float approveCount = 0;
         Calendar today = Calendar.getInstance();
@@ -2107,7 +2135,7 @@ public class Database {
 
         return approveCount;
     }
-    
+
     public float getApprovedPat(int empID) {
         float approveCount = 0;
         Calendar today = Calendar.getInstance();

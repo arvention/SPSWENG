@@ -7,15 +7,18 @@
 package Servlets;
 
 import Database.Database;
+import Models.modelEmployee;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -65,17 +68,19 @@ public class SaveReport extends HttpServlet {
         Database db = Database.getInstance();
         int month = parseInt(request.getParameter("m").trim());
         int year = parseInt(request.getParameter("y").trim());
+        HttpSession session = request.getSession();
+        modelEmployee m = (modelEmployee) session.getAttribute("employee");
         
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", "attachment; filename=\"" + month + "" + year + "LeaveReport.csv\"");
         try {
             OutputStream outStream = response.getOutputStream();
-            String reportHeader = "Last Name, Name, Leaves Taken, Leaves Left\n";
+            String reportHeader = "Employee Name, Vacation, Emergency, Paternity, Total Leaves Taken, Vacation, Emergency, Paternity, Total Leaves Left\n";
             outStream.write(reportHeader.getBytes());
             outStream.flush();
             
             //content
-            String reportContent = db.getDownloadReport(month, year);
+            String reportContent = db.getDownloadReport(month, year, m.getEmployeeID());
             outStream.write(reportContent.getBytes());
             outStream.flush();
             

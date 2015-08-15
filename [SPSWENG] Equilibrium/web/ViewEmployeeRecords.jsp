@@ -261,6 +261,7 @@
                                                                                                         of that offense. -->
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                                 disciplinary actions, records of filed leaves, recognitions, and awards-->
+                            <option value="training">Company Training</option> <!Company Involvement-->
                         </select>
                         <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                         <form onsubmit = "return editData('<%=user.getEmployeeType()%>', <%=emp.getEmployeeID()%>)" id = "info-form">
@@ -811,6 +812,17 @@
                                     <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                                 </form>
                                 <%}%>
+                            </div>
+                        </div>
+                        <div id="training" class="pages">
+                            <div class="content">
+                                <div class="line"><span class="label"><b>Date</b></span></div>
+                                <div class="line"><span class="label"><b>Name of Activity</b></div>   
+                                <div class="line"><span class="label"><b>Venue of Activity</b></div>
+                                <!-- guys pls make this similar to the the one in the documents tab. 
+                                i made it really similar i just need this to display details and be dynamic
+                                exactly like how you display the list of memos in documents tab. except it
+                                displays company involvement-->
                             </div>
                         </div>
                     </div>

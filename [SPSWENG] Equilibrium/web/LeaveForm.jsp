@@ -143,7 +143,6 @@
                 <!--h4>ID Number: <input type="number" name = "idNum" required></h4-->
                 <h4>Type of Leave:
                     <select name= "leaveType" required class = "form-input">
-                        <option value= "Sick">Sick</option>
                         <option value= "Vacation">Vacation</option>
                         <option value= "Emergency">Emergency</option>
                         <option value= "Maternity">Maternity</option>
@@ -161,12 +160,12 @@
                 <div id="leaveLeft"><b>Remaining leave requests left:</b> 
                     <%
                         Database db = Database.getInstance();
-                        int vacLeave = 0, sickLeave = 0, patLeave = 0;
+                        int vacLeave = 0, emergencyLeave = 0, patLeave = 0;
 
                         //if employee reaches 1 year of service.
                         if (db.getEmployeeYears(db.getEntryNum(m.getEmployeeID())) < 5) {
                             vacLeave = 7;
-                            sickLeave = 5;
+                            emergencyLeave = 5;
                             //paternity leave of 7 days for married employees.
                             if (db.getSpouse(db.getEntryNum(m.getEmployeeID())) != null) {
                                 patLeave = 7;
@@ -174,23 +173,23 @@
                         } //if employee reaches 5 or more years of service
                         else if (db.getEmployeeYears(db.getEntryNum(m.getEmployeeID())) >= 5) {
                             vacLeave = 10;
-                            sickLeave = 5;
+                            emergencyLeave = 5;
                             //paternity leave of 7 days for married employees.
                             if (db.getSpouse(db.getEntryNum(m.getEmployeeID())) != null) {
                                 patLeave = 7;
                             }
                         }
                         /*
-                         Categorize the leave into 3(sick, vacation, paternity) and display them 
+                         Categorize the leave into 3(emergency, vacation, paternity) and display them 
                          accordingly instead of displaying the overall number.
                          */
                         float remainingVacLeaves = vacLeave - db.getApprovedVac(m.getEmployeeID());
-                        float remainingSickLeaves = sickLeave - db.getApprovedSick(m.getEmployeeID());
+                        float remainingemergencyLeaves = emergencyLeave - db.getApprovedEmergency(m.getEmployeeID());
                         float remainingPatLeaves = patLeave - db.getApprovedPat(m.getEmployeeID());
                     %>
                     <br>
                     <b>Vacation:</b> <%=remainingVacLeaves%> days<br>
-                    <b>Sick:</b> <%=remainingSickLeaves%> days<br>
+                    <b>Emergency:</b> <%=remainingEmergencyLeaves%> days<br>
                     <b>Paternity:</b> 
                     <%
                         if (db.getSpouse(db.getEntryNum(m.getEmployeeID())) == null) {

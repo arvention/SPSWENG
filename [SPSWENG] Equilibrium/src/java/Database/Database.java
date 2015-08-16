@@ -1900,12 +1900,12 @@ public class Database {
         ResultSet rs;
         float tempSum;
         String x = "";
-        int vacLeave = 0, sickLeave = 0, patLeave = 0;
+        int vacLeave = 0, emergencyLeave = 0, patLeave = 0;
         
         //if employee reaches 1 year of service.
         if (getEmployeeYears(getEntryNum(empID)) < 5) {
             vacLeave = 7;
-            sickLeave = 5;
+            emergencyLeave = 5;
             //paternity leave of 7 days for married employees.
             if (getSpouse(getEntryNum(empID)) != null) {
                 patLeave = 7;
@@ -1913,19 +1913,19 @@ public class Database {
         } //if employee reaches 5 or more years of service
         else if (getEmployeeYears(getEntryNum(empID)) >= 5) {
             vacLeave = 10;
-            sickLeave = 5;
+            emergencyLeave = 5;
             //paternity leave of 7 days for married employees.
             if (getSpouse(getEntryNum(empID)) != null) {
                 patLeave = 7;
             }
         }
-        float maxDays = vacLeave + sickLeave + patLeave;
+        float maxDays = vacLeave + emergencyLeave + patLeave;
         /*
-         Categorize the leave into 3(sick, vacation, paternity) and display them 
+         Categorize the leave into 3(emergency, vacation, paternity) and display them 
          accordingly instead of displaying the overall number.
          */
         float remainingVacLeaves = vacLeave - getApprovedVac(empID);
-        float remainingSickLeaves = sickLeave - getApprovedSick(empID);
+        float remainingEmergencyLeaves = emergencyLeave - getApprovedEmergency(empID);
         float remainingPatLeaves = patLeave - getApprovedPat(empID);
 
         try {
@@ -1942,8 +1942,8 @@ public class Database {
             while (rs.next()) {
                 
                 tempSum = rs.getFloat("sum");
-                x += rs.getString("name") + ", " + getApprovedVac(empID) + ", " + getApprovedSick(empID) + ", " + getApprovedPat(empID) + ", " + tempSum 
-                        + ", " + remainingVacLeaves + ", " + remainingSickLeaves + ", " + remainingPatLeaves + ", " + (maxDays - tempSum) + "\n";
+                x += rs.getString("name") + ", " + getApprovedVac(empID) + ", " + getApprovedEmergency(empID) + ", " + getApprovedPat(empID) + ", " + tempSum 
+                        + ", " + remainingVacLeaves + ", " + remainingEmergencyLeaves + ", " + remainingPatLeaves + ", " + (maxDays - tempSum) + "\n";
             }
 
         } catch (SQLException e) {
@@ -2092,13 +2092,13 @@ public class Database {
         return employeeYear;
     }
 
-    public float getApprovedSick(int empID) {
+    public float getApprovedEmergency(int empID) {
         float approveCount = 0;
         Calendar today = Calendar.getInstance();
         int year = today.get(Calendar.YEAR);
 
         sql = "SELECT SUM(duration) FROM leave_form"
-                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected' AND leaveType = 'Sick'"
+                + " WHERE empEntryNum = " + getEntryNum(empID) + " AND isApproved != 'Rejected' AND leaveType = 'Emergency'"
                 + " AND YEAR(startDate) = " + year;
 
         try {

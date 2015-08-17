@@ -475,20 +475,21 @@ public class Database {
         }
     }
 
-    // -- CRIMINAL OFFENSE ------------------------------------
-    public void addOffense(int empEntryNum, String criminalOffense, Date dateOfOffense, String placeOfOffense) {
-        int maxOffense = 1;
-        sql = "SELECT MAX(criminalOffenseHistoryID) FROM criminal_offense_history";
-
+    // -- COMPANY TRAINING ------------------------------------
+    public void addTraining(int empEntryNum, String trainingName, Date trainingDate, String trainingVenue) {
+        int maxTraining = 1;
+        sql = "SELECT MAX(companyTrainingID) FROM company_training";
+        
+        System.out.println("HEHE1");
         try {
             rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                maxOffense = rs.getInt("MAX(criminalOffenseHistoryID)") + 1;
+                maxTraining = rs.getInt("MAX(companyTrainingID)") + 1;
             }
 
-            sql = "INSERT INTO criminal_offense_history"
-                    + " VALUES(" + maxOffense + ", " + empEntryNum + ", '" + criminalOffense + "', '" + dateOfOffense + "', '" + placeOfOffense + "')";
+            sql = "INSERT INTO company_training"
+                    + " VALUES(" + maxTraining + ", " + empEntryNum + ", '" + trainingDate + "', '" + trainingName + "', '" + trainingVenue + "')";
 
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -496,6 +497,28 @@ public class Database {
         }
     }
 
+    /*
+     // -- CRIMINAL OFFENSE ------------------------------------
+     public void addOffense(int empEntryNum, String criminalOffense, Date dateOfOffense, String placeOfOffense) {
+     int maxOffense = 1;
+     sql = "SELECT MAX(criminalOffenseHistoryID) FROM criminal_offense_history";
+
+     try {
+     rs = stmt.executeQuery(sql);
+
+     if (rs.next()) {
+     maxOffense = rs.getInt("MAX(criminalOffenseHistoryID)") + 1;
+     }
+
+     sql = "INSERT INTO criminal_offense_history"
+     + " VALUES(" + maxOffense + ", " + empEntryNum + ", '" + criminalOffense + "', '" + dateOfOffense + "', '" + placeOfOffense + "')";
+
+     stmt.executeUpdate(sql);
+     } catch (SQLException e) {
+     e.printStackTrace();
+     }
+     }
+     */
     //-- BIO DATA ---------------------------------------------------------------------------------------
     public int addInfo(int employeeID, String lastName, String firstName, String middleName, String address, Date birthDay,
             String birthplace, long mobileNumber, String SSSNumber, String TINNumber, String PHICNumber,
@@ -1867,7 +1890,7 @@ public class Database {
         float tempSum;
         String x = "";
         int vacLeave = 0, emergencyLeave = 0, patLeave = 0;
-        
+
         //if employee reaches 1 year of service.
         if (getEmployeeYears(getEntryNum(empID)) < 5) {
             vacLeave = 7;
@@ -1897,11 +1920,11 @@ public class Database {
         try {
             stmt = con.createStatement();
             sql = "select concat(e.lastName, ', ' , e.firstName) as name, sum(l.duration) as sum \n"
-                + "from leave_form l, employee e\n"
-                + "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n"
-                + "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n"
-                + "group by concat(e.lastName, ', ' , e.firstName)\n"
-                + "order by concat(e.lastName, ', ' , e.firstName)";
+                    + "from leave_form l, employee e\n"
+                    + "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n"
+                    + "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n"
+                    + "group by concat(e.lastName, ', ' , e.firstName)\n"
+                    + "order by concat(e.lastName, ', ' , e.firstName)";
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -1931,7 +1954,7 @@ public class Database {
         float tempSum;
         String x = "";
         int vacLeave = 0, emergencyLeave = 0, patLeave = 0;
-        
+
         //if employee reaches 1 year of service.
         if (getEmployeeYears(getEntryNum(empID)) < 5) {
             vacLeave = 7;
@@ -1961,18 +1984,18 @@ public class Database {
         try {
             stmt = con.createStatement();
             sql = "select concat(e.firstName, ' ' , e.lastName) as name, sum(l.duration) as sum \n"
-                + "from leave_form l, employee e\n"
-                + "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n"
-                + "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n"
-                + "group by concat(e.lastName, ', ' , e.firstName)\n"
-                + "order by concat(e.lastName, ', ' , e.firstName)";
-            
+                    + "from leave_form l, employee e\n"
+                    + "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n"
+                    + "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n"
+                    + "group by concat(e.lastName, ', ' , e.firstName)\n"
+                    + "order by concat(e.lastName, ', ' , e.firstName)";
+
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                
+
                 tempSum = rs.getFloat("sum");
-                x += rs.getString("name") + ", " + getApprovedVac(empID) + ", " + getApprovedEmergency(empID) + ", " + getApprovedPat(empID) + ", " + tempSum 
+                x += rs.getString("name") + ", " + getApprovedVac(empID) + ", " + getApprovedEmergency(empID) + ", " + getApprovedPat(empID) + ", " + tempSum
                         + ", " + remainingVacLeaves + ", " + remainingEmergencyLeaves + ", " + remainingPatLeaves + ", " + (maxDays - tempSum) + "\n";
             }
 

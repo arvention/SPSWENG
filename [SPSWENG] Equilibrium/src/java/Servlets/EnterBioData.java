@@ -1,9 +1,8 @@
 
 /*  Class Name:     EnterBioData
-*   Developer:      Arces Talavera
-*   Description:    servlet used by the hr head and hr employee to enter new bio data
-*/
-
+ *   Developer:      Arces Talavera
+ *   Description:    servlet used by the hr head and hr employee to enter new bio data
+ */
 package Servlets;
 
 import Database.Database;
@@ -21,16 +20,16 @@ import javax.servlet.http.HttpServletResponse;
 public class EnterBioData extends HttpServlet {
 
     /*
-    *   The doGet function of the servlet.
-    */
+     *   The doGet function of the servlet.
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
 
     /*
-    *   The doPost function of the servlet.
-    */
+     *   The doPost function of the servlet.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -60,8 +59,7 @@ public class EnterBioData extends HttpServlet {
         if (db.isValidID(managerid)) {
             isError = true;
             response.getWriter().write("- No Manager has an ID number, " + managerid + ".<br>");
-        }
-        else if (checkEmployee(managerid)){
+        } else if (checkEmployee(managerid)) {
             isError = true;
             response.getWriter().write("- The Employee with the ID number " + managerid + " is not a manager.<br>");
         }
@@ -72,7 +70,7 @@ public class EnterBioData extends HttpServlet {
             addLicenseExam(empEntryNum, db, request);
             addRelatives(empEntryNum, db, request);
             addEmploymentHistory(empEntryNum, db, request);
-            addCriminalOffenses(empEntryNum, db, request);
+            addCompanyTraining(empEntryNum, db, request);
         }
     }
 
@@ -89,9 +87,11 @@ public class EnterBioData extends HttpServlet {
         }
         String birthplace = request.getParameter("birthplace");
         int homePhone = 0;
+
         if (!request.getParameter("homephone").equals("")) {
             homePhone = Integer.parseInt(request.getParameter("homephone"));
         }
+
         String SSSNumber = request.getParameter("sssno");
         String TINNumber = request.getParameter("tinno");
         String PHICNumber = request.getParameter("phicno");
@@ -199,19 +199,20 @@ public class EnterBioData extends HttpServlet {
         }
     }
 
-    public void addCriminalOffenses(int empEntryNum, Database db, HttpServletRequest request) {
-        String isConvicted = request.getParameter("convicted");
-        if (isConvicted.equals("Yes")) {
-            String[] offenseNames = request.getParameterValues("offensename");
-            String[] offenseDates = request.getParameterValues("offensedate");
-            String[] offensePlaces = request.getParameterValues("offenseplace");
+    public void addCompanyTraining(int empEntryNum, Database db, HttpServletRequest request) {
+        String isTrained = request.getParameter("convicted");
+        System.out.println("ADDING TRAINING");
+        if (isTrained.equals("Yes")) {
+            String[] trainingNames = request.getParameterValues("offensename");
+            String[] trainingDates = request.getParameterValues("offensedate");
+            String[] trainingVenues = request.getParameterValues("offenseplace");
 
-            if (offenseNames != null && offenseDates != null && offensePlaces != null) {
-                for (int i = 0; i < offenseNames.length; i++) {
-                    if (!offenseNames[i].equals("") && !offenseDates[i].equals("") && !offensePlaces[i].equals("")) {
+            if (trainingNames != null && trainingDates != null && trainingVenues != null) {
+                for (int i = 0; i < trainingNames.length; i++) {
+                    if (!trainingNames[i].equals("") && !trainingDates[i].equals("") && !trainingVenues[i].equals("")) {
                         try {
-                            Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(offenseDates[i]);
-                            db.addOffense(empEntryNum, offenseNames[i], new java.sql.Date(tempDate.getTime()), offensePlaces[i]);
+                            Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(trainingDates[i]);
+                            db.addTraining(empEntryNum, trainingNames[i], new java.sql.Date(tempDate.getTime()), trainingVenues[i]);
                         } catch (ParseException ex) {
                             ex.printStackTrace();
                         }
@@ -220,6 +221,29 @@ public class EnterBioData extends HttpServlet {
             }
         }
     }
+    /*
+     public void addCriminalOffenses(int empEntryNum, Database db, HttpServletRequest request) {
+     String isConvicted = request.getParameter("convicted");
+     if (isConvicted.equals("Yes")) {
+     String[] offenseNames = request.getParameterValues("offensename");
+     String[] offenseDates = request.getParameterValues("offensedate");
+     String[] offensePlaces = request.getParameterValues("offenseplace");
+
+     if (offenseNames != null && offenseDates != null && offensePlaces != null) {
+     for (int i = 0; i < offenseNames.length; i++) {
+     if (!offenseNames[i].equals("") && !offenseDates[i].equals("") && !offensePlaces[i].equals("")) {
+     try {
+     Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(offenseDates[i]);
+     db.addOffense(empEntryNum, offenseNames[i], new java.sql.Date(tempDate.getTime()), offensePlaces[i]);
+     } catch (ParseException ex) {
+     ex.printStackTrace();
+     }
+     }
+     }
+     }
+     }
+     }
+     */
 
     public void addEmploymentHistory(int empEntryNum, Database db, HttpServletRequest request) {
         String[] jobTitles = request.getParameterValues("jobtitle");
@@ -682,15 +706,16 @@ public class EnterBioData extends HttpServlet {
         }
         return isCoincide;
     }
-    
-    public boolean checkEmployee(int managerid){
+
+    public boolean checkEmployee(int managerid) {
         boolean isEmployee = false;
         Database db = Database.getInstance();
         modelEmployee emp = db.getEmployee(Integer.toString(managerid));
-        
-        if(emp.getEmployeeType().equals("Employee"))
+
+        if (emp.getEmployeeType().equals("Employee")) {
             isEmployee = true;
-        
+        }
+
         return isEmployee;
     }
 }

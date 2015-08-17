@@ -19,7 +19,7 @@ div.content{
     position: absolute;
     left: 30%;
     width: 560px;
-    height: 290px;
+    height: 350px;
     font-family: sans-serif;
     margin-top: 10%;
     //margin-left: 25%;
@@ -224,7 +224,7 @@ form{
     
     float:right;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 DIV.footer{

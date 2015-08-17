@@ -156,6 +156,7 @@
                     until 
                     <input type= "date" class= "leaveDate" id="dp" name = "endDate" required/>
                 </h4>
+                <h4>Reason for Leave: <br/><textarea rows="4" cols="56" name="leaveReason" required></textarea></h4>
 
                 <div id="leaveLeft"><b>Remaining leave requests left:</b> 
                     <%

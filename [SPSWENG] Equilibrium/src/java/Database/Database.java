@@ -1861,30 +1861,60 @@ public class Database {
         return years;
     }
 
-    public String getLeaveReport(int month, int year) {
+    public String getLeaveReport(int month, int year, int empID) {
+        Statement stmt;
+        ResultSet rs;
+        float tempSum;
+        String x = "";
+        int vacLeave = 0, emergencyLeave = 0, patLeave = 0;
+        
+        //if employee reaches 1 year of service.
+        if (getEmployeeYears(getEntryNum(empID)) < 5) {
+            vacLeave = 7;
+            emergencyLeave = 5;
+            //paternity leave of 7 days for married employees.
+            if (getSpouse(getEntryNum(empID)) != null) {
+                patLeave = 7;
+            }
+        } //if employee reaches 5 or more years of service
+        else if (getEmployeeYears(getEntryNum(empID)) >= 5) {
+            vacLeave = 10;
+            emergencyLeave = 5;
+            //paternity leave of 7 days for married employees.
+            if (getSpouse(getEntryNum(empID)) != null) {
+                patLeave = 7;
+            }
+        }
+        float maxDays = vacLeave + emergencyLeave + patLeave;
+        /*
+         Categorize the leave into 3(emergency, vacation, paternity) and display them 
+         accordingly instead of displaying the overall number.
+         */
+        float remainingVacLeaves = vacLeave - getApprovedVac(empID);
+        float remainingEmergencyLeaves = emergencyLeave - getApprovedEmergency(empID);
+        float remainingPatLeaves = patLeave - getApprovedPat(empID);
 
-        sql = "select concat(e.lastName, ', ' , e.firstName) as name, sum(l.duration) as sum \n"
+        try {
+            stmt = con.createStatement();
+            sql = "select concat(e.lastName, ', ' , e.firstName) as name, sum(l.duration) as sum \n"
                 + "from leave_form l, employee e\n"
                 + "where l.empEntryNum = e.entryNum and l.isApproved = 'Approved'\n"
                 + "and month(l.startDate) = " + month + " and year(l.startDate) = " + year + "\n"
                 + "group by concat(e.lastName, ', ' , e.firstName)\n"
                 + "order by concat(e.lastName, ', ' , e.firstName)";
-
-        Statement stmt;
-        ResultSet rs;
-        float tempSum;
-        float maxDays = 15;
-        String x = "";
-
-        try {
-            stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 tempSum = rs.getFloat("sum");
                 x += "<tr class=\"entry\">\n"
                         + "<td>" + rs.getString("name") + "</td>\n"
+                        + "<td>" + getApprovedVac(empID) + "</td>\n"
+                        + "<td>" + getApprovedEmergency(empID) + "</td>\n"
+                        + "<td>" + getApprovedPat(empID) + "</td>\n"
                         + "<td>" + tempSum + "</td>\n"
+                        + "<td>" + remainingVacLeaves + "</td>\n"
+                        + "<td>" + remainingEmergencyLeaves + "</td>\n"
+                        + "<td>" + remainingPatLeaves + "</td>\n"
                         + "<td>" + (maxDays - tempSum) + "</td>\n"
                         + "</tr>";
             }

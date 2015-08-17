@@ -356,9 +356,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(criminaloffensewrapper).append(
-                '<tr><td><input type="text" maxlength = 45 name="offensename" placeholder="Criminal Offense" /></td>'
+                '<tr><td><input type="text" maxlength = 45 name="offensename" placeholder="Name of Activity" /></td>'
                 + '<td><input type="date" name="offensedate" placeholder="Date of Offense" /></td>'
-                + '<td><input type="text" maxlength = 100 name="offenseplace" placeholder="Place of Offense" /></td>'
+                + '<td><input type="text" maxlength = 100 name="offenseplace" placeholder="Venue of Activity" /></td>'
                 + '<td><button class="removecriminaloffense">-</button></td></tr>'
                 );
     });

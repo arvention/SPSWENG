@@ -166,6 +166,7 @@
                         <option value="Verbal Reprimand">Verbal Reprimand</option>
                         <option value="Written Reprimand">Written Reprimand</option>
                         <option value="Suspension">Suspension</option>
+                        <option value="Termination">Termination</option>
 
                     </select></div>
             <table name="softmemo" class="contentText">

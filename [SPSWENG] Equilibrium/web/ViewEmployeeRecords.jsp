@@ -4,6 +4,7 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelCompanyTraining"%>
 <%@page import="Models.modelRecord"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Models.modelEmploymentHistory"%>
@@ -249,7 +250,7 @@
                             <span id="name"><b><%=emp.getFirstName()%> <%=emp.getLastName()%></b></span>
                         </div>
                         <select id="options" size="6">
-                            <option selected value="personal">Personal Information</option> <!--complete name, position applied for or expected salary, home address, birthday, 
+                            <option selected value="personal">General Information</option> <!--complete name, position applied for or expected salary, home address, birthday, 
                                                                                                                                     birthplace, home phone number, mobile number, email address, civil status, citizenship and religion-->
                             <option value="relations">Relations</option> <!--name, age, occupation and company of occupation of the employee’s siblings and parents. Information 
                                                                                                                     regarding the spouse’s name, contact number and occupation or employer is added, as well as the names of their children, age, grade or year and the school of the children-->	
@@ -259,9 +260,10 @@
                                                                                                                             employer’s telephone number, supervisor’s name, supervisor’s contact number and reason for leaving-->
                              <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
                                                                                                         of that offense. -->
+                            <option value="training">Trainings</option> <!Company Involvement-->
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                                 disciplinary actions, records of filed leaves, recognitions, and awards-->
-                            <option value="training">Company Training</option> <!Company Involvement-->
+                            
                         </select>
                         <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                         <form onsubmit = "return editData('<%=user.getEmployeeType()%>', <%=emp.getEmployeeID()%>)" id = "info-form">
@@ -276,6 +278,7 @@
                             <div id="personal" class="pages">
                                 <br><br>
                                 <div class="content">
+                                    <b>Personal:</b><br><br>
                                     <div class="line"><span class="label">First Name</span>
                                         <input name = "firstname" type = "text" class="data" value = "<%=emp.getFirstName()%>" readonly/></div>
                                     <div class="line"><span class="label">Middle Name</span>
@@ -284,12 +287,6 @@
                                         <input name = "lastname" type = "text" class="data" value = "<%=emp.getLastName()%>" readonly/></div>
                                     <div class="line"><span class="label">ID Number</span>
                                         <%=emp.getEmployeeID()%></div>
-                                    <div class="line"><span class="label">Hire Date</span>
-                                        <%=emp.getHireDate()%></div>
-                                    <div class="line"><span class="label">Position</span>
-                                        <input name = "position" type = "text" class="data" value = "<%=emp.getPositionName()%>" readonly/></div>
-                                    <div class="line"><span class="label">Expected Salary</span>
-                                        <input name = "salary" type = "number" class="data" value = "<%=emp.getSalary()%>" readonly/></div>
                                     <div class="line"><span class="label">Date of Birth</span>
                                         <input name = "birthday" type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(emp.getBirthday())%>" readonly/></div>
                                     <div class="line"><span class="label">Place of Birth</span>
@@ -308,6 +305,14 @@
                                         <input name = "citizenship" type = "text" class="data" value = "<%=emp.getCitizenship()%>" readonly/></div>
                                     <div class="line"><span class="label">Religion</span>
                                         <input name = "religion" type = "text" class="data" value = "<%=emp.getReligion()%>" readonly/></div>
+                                    
+                                    <br><b>Others:</b><br><br>
+                                    <div class="line"><span class="label">Hire Date</span>
+                                        <%=emp.getHireDate()%></div>
+                                    <div class="line"><span class="label">Position</span>
+                                        <input name = "position" type = "text" class="data" value = "<%=emp.getPositionName()%>" readonly/></div>
+                                    <div class="line"><span class="label">Expected Salary</span>
+                                        <input name = "salary" type = "number" class="data" value = "<%=emp.getSalary()%>" readonly/></div>
                                     <div class="line"><span class="label">SSS #</span>
                                         <input name = "sssnum" type = "text" class="data" value = "<%=emp.getSSSNumber()%>" readonly/></div>
                                     <div class="line"><span class="label">TIN #</span>
@@ -732,9 +737,36 @@
                                 </div>
                             </div>
 
-                            <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+                            <!------------------>
+                            
+                        <div id="training" class="pages">
+                            <div class="content">
+                                <br><br>
+                                <%
+                                    ArrayList<modelCompanyTraining> trainingList = db.getCompanyTrainings(emp.getEntryNum());
+
+                                    for (modelCompanyTraining training : trainingList) {
+                                %>
+                                <div class = "line"><span class ="label"><b>Date</b></span>
+                                    <input name = "trainingdate" type = "text" class="data" value = "<%=training.getDate()%>" readonly/></div>
+                                <div class = "line"><span class ="label"><b>Name of Activity</b></span>
+                                    <input name = "trainingname" type = "text" class="data" value = "<%=training.getTrainingName()%>" readonly/></div>
+                                <div class = "line"><span class ="label"><b>Venue of Activity</b></span>
+                                    <input name = "trainingvenue" type = "text" class="data" value = "<%=training.getTrainingVenue()%>" readonly/></div>
+                                <input type = "hidden" name = "trainingid" value ="<%=training.getCompanyTrainingID()%>"/>
+                                <br>
+                                <%}%>
+                                <!-- guys pls make this similar to the the one in the documents tab. 
+                                i made it really similar i just need this to display details and be dynamic
+                                exactly like how you display the list of memos in documents tab. except it
+                                displays company involvement-->
+                            </div>
+                        </div>
+                                
+                        <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                         </form>
                         <%}%>
+                            
                         <div id= "docs" class="pages">
                             <div class="content"> 
                                 <select id="docs-select">
@@ -809,22 +841,12 @@
                                             <%}%>
                                         </div>
                                     </div> 
-                                    <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+                                <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                                 </form>
                                 <%}%>
                             </div>
                         </div>
-                        <div id="training" class="pages">
-                            <div class="content">
-                                <div class="line"><span class="label"><b>Date</b></span></div>
-                                <div class="line"><span class="label"><b>Name of Activity</b></div>   
-                                <div class="line"><span class="label"><b>Venue of Activity</b></div>
-                                <!-- guys pls make this similar to the the one in the documents tab. 
-                                i made it really similar i just need this to display details and be dynamic
-                                exactly like how you display the list of memos in documents tab. except it
-                                displays company involvement-->
-                            </div>
-                        </div>
+                            
                     </div>
                 </div>
             </div> <!-- end of box -->

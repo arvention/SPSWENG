@@ -22,7 +22,6 @@ function editData(type, id) {
     return false;
 }
 
-
 $(document).ready(function() {
     var currPage = "#personal", currRecord = "#memo";
     var nextPage, nextRecord;

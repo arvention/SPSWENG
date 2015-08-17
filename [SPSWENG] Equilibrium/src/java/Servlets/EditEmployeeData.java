@@ -6,6 +6,7 @@
 package Servlets;
 
 import Database.Database;
+import Models.modelCompanyTraining;
 import Models.modelCriminalOffenseHistory;
 import Models.modelEducationHistory;
 import Models.modelEmployee;
@@ -51,6 +52,7 @@ public class EditEmployeeData extends HttpServlet {
                 editEducationHistory(logged, emp, request);
                 editEmploymentHistory(logged, emp, request);
                 editCriminalOffenseHistory(logged, emp, request);
+                editCompanyTraining(logged, emp, request);
                 response.getWriter().write("true");
             }
             else
@@ -1416,6 +1418,70 @@ public class EditEmployeeData extends HttpServlet {
 
                             db.changeAuditStatus(auditTrailID, "Approved");
                             db.changeFieldValue("criminal_offense_history", offenseID, "placeOfOffense", offenseplace);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    
+    public void editCompanyTraining(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
+        Database db = Database.getInstance();
+        String[] trainingsID = request.getParameterValues("trainingid");
+        String[] trainingsDate = request.getParameterValues("trainingdate");
+        String[] trainingsName = request.getParameterValues("trainingname");
+        String[] trainingsVenue = request.getParameterValues("trainingvenue");
+        ArrayList<modelCompanyTraining> trainings = db.getCompanyTrainings(emp.getEntryNum());
+        
+        if (trainingsID != null) {
+            System.out.println("Hiiii");
+            for (int i = 0; i < trainingsID.length; i++) {
+                modelCompanyTraining training = trainings.get(i);
+                int trainingID = Integer.parseInt(trainingsID[i]);
+                
+                String trainingname = trainingsName[i];
+                
+                if (!training.getTrainingName().equals(trainingname)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("company_training", trainingID, "trainingName", training.getTrainingName(), trainingname, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("company_training", trainingID, "trainingName", training.getTrainingName(), trainingname, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("company_training", trainingID, "trainingName", trainingname);
+                            break;
+                    }
+                }
+
+                String trainingdate = trainingsDate[i];
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                if (!sdf.format(training.getDate()).equals(sdf.format(sdf.parse(trainingdate)))) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("company_training", trainingID, "date", sdf.format(training.getDate()), sdf.format(sdf.parse(trainingdate)), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("company_training", trainingID, "date", sdf.format(training.getDate()), sdf.format(sdf.parse(trainingdate)), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("company_training", trainingID, "date", sdf.format(sdf.parse(trainingdate)));
+                            break;
+                    }
+                }
+
+                String trainingvenue = trainingsVenue[i];
+                if (!training.getTrainingVenue().equals(trainingvenue)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("company_training", trainingID, "trainingVenue", training.getTrainingVenue(), trainingvenue, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("company_training", trainingID, "trainingVenue", training.getTrainingVenue(), trainingvenue, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("company_training", trainingID, "trainingVenue", trainingvenue);
                             break;
                     }
                 }

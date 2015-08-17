@@ -2,6 +2,7 @@ package Database;
 
 import ClassHelpers.Downloadables;
 import Models.modelBranch;
+import Models.modelCompanyTraining;
 import Models.modelCriminalOffenseHistory;
 import Models.modelDepartment;
 import Models.modelEducationHistory;
@@ -1357,6 +1358,35 @@ public class Database {
 
         return offenseList;
     }
+    
+    public ArrayList<modelCompanyTraining> getCompanyTrainings(int empEntryNum) {
+        ArrayList<modelCompanyTraining> trainingList = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+
+        try {
+            stmt = con.createStatement();
+
+            sql = "SELECT * FROM company_training"
+                    + " WHERE empEntryNum = " + empEntryNum;
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                modelCompanyTraining training = new modelCompanyTraining();
+                training.setCompanyTrainingID(rs.getInt("companyTrainingID"));
+                training.setDate(rs.getDate("date"));
+                training.setTrainingName(rs.getString("trainingName"));
+                training.setTrainingVenue(rs.getString("trainingVenue"));
+
+                trainingList.add(training);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return trainingList;
+    }
 
     public ArrayList<modelEmploymentHistory> getEmploymentHistory(int empEntryNum) {
         ArrayList<modelEmploymentHistory> empHistory = new ArrayList<>();
@@ -1802,6 +1832,27 @@ public class Database {
                     sql = "UPDATE relative SET contactNum = ? WHERE relativeID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
                     statement.setLong(1, Long.parseLong((String) value));
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if (tableName.equals("company_training")) {
+                if (field.equals("date")) {
+                    sql = "UPDATE company_training SET date = ? WHERE companyTrainingID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    Date date = Date.valueOf((String) value);
+                    statement.setDate(1, date);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if (field.equals("trainingName")) {
+                    sql = "UPDATE company_training SET trainingName = ? WHERE companyTrainingID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if (field.equals("trainingVenue")) {
+                    sql = "UPDATE company_training SET trainingVenue = ? WHERE companyTrainingID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 }

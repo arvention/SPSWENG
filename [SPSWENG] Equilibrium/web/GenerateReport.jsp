@@ -185,9 +185,11 @@
                         <th> Employee Name </th>
                         <th> Vacation </th>
                         <th> Emergency </th>
+                        <th> Paternity </th>
                         <th> Total Leaves Taken </th>
                         <th> Vacation </th>
                         <th> Emergency </th>
+                        <th> Paternity </th>
                         <th> Total Leaves Left </th>
                     </tr>
                 </table>	

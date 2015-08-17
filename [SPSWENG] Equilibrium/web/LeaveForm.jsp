@@ -184,7 +184,7 @@
                          accordingly instead of displaying the overall number.
                          */
                         float remainingVacLeaves = vacLeave - db.getApprovedVac(m.getEmployeeID());
-                        float remainingemergencyLeaves = emergencyLeave - db.getApprovedEmergency(m.getEmployeeID());
+                        float remainingEmergencyLeaves = emergencyLeave - db.getApprovedEmergency(m.getEmployeeID());
                         float remainingPatLeaves = patLeave - db.getApprovedPat(m.getEmployeeID());
                     %>
                     <br>

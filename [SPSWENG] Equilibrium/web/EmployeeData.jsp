@@ -135,6 +135,7 @@
                 <li><a href="#family">Personal Information(Family)</a></li>
                 <li><a href="#edhistory">Education History</a></li>
                 <li><a href="#emphistory">Employment Background</a></li>
+                <li><a href="#medhistory">Medical History</a></li>
                 <li><a href="#crimes">Company Training</a></li>
             </ul>
             <form onsubmit = "return submitData()" class = "data_form">
@@ -584,6 +585,48 @@
                     </table><br/>
                 </DIV>
 
+                <DIV id="medhistory" class="tab-section">
+                    <table>
+                        <tr>
+                            <td>Blood type: <input type="text" name="bloodType" placeholder="ex. O+,AB-"/></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table name="sickness">
+                        <tr>
+                            <td><span class="headers">Previous Illnesses</span></td>
+                        </tr>
+                        <tr>
+
+                            <td>Sickness</td>
+                            <td>Age</td>
+                        </tr>
+                        <tr>
+
+                            <td><input type="text" maxlength = 45 name="sicknessname" placeholder="ex. Measles" /></td>
+                            <td><input type="number" min = "0" max = "999" step = "1" name="sicknessage" placeholder="ex. 14" /></td>
+                            <td><button class="addsickness">+</button></td>
+                        </tr>
+                    </table><br/>
+                    
+                    <table name="phyExam">
+                        <tr>
+                            <td><span class="headers">Annual Physical Exam</span></td>
+                        </tr>
+                        <tr>
+                            <td>Findings</td>
+                            <td>Date Taken</td>
+                            <td>Remarks</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" maxlength = 45 size="25" name="findings" placeholder="ex. Measles" /></td>
+                            <td><input type="date" name="dateTaken" placeholder="ex. January 2, 2010"/></td>
+                            <td><input type="text" maxlength= 45 size="25" name="remarks" placeholder="ex. Needs Medical Attention"/></td>
+                            <td><button class="addannual">+</button></td>
+                        </tr>
+                    </table><br/>
+                </DIV>
+                        
                 <DIV id="crimes" class="tab-section">
                     <table>
                         <tr>

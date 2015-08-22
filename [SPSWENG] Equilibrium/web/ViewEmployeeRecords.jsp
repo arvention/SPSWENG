@@ -261,6 +261,7 @@
                                                                                                         of that offense. -->
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                                 disciplinary actions, records of filed leaves, recognitions, and awards-->
+                            <option value="medhistory">Medical History</option> <!Medical History-->
                             <option value="training">Company Training</option> <!Company Involvement-->
                         </select>
                         <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>

@@ -86,6 +86,8 @@ $(document).ready(function() {
     var otherswrapper = $('table[name=others]');
     var licensewrapper = $('table[name=license]');
     var employmentwrapper = $('table[name=employment]');
+    var sicknesswrapper = $('table[name=sickness]');
+    var annualwrapper = $('table[name=phyExam]');
     var criminaloffensewrapper = $('table[name=criminaloffense]');
     var miscfilewrapper = $('table[name=miscellaneous]');
 
@@ -352,6 +354,43 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on("click", ".addsickness", function(e) {
+        e.preventDefault();
+
+        $(sicknesswrapper).append(
+                '<tr><td><input type="text" maxlength = 45 name="sicknessname" placeholder="ex. Measles" /></td>'
+                + '<td><input type="number" min = "0" max = "999" step = "1" name="sicknessage" placeholder="ex. 14" /></td>'
+                + '<td><button class="removesickness">-</button></td></tr>'
+                );
+    });
+
+    $(document).on("click", ".removesickness", function(e) {
+        e.preventDefault();
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
+    });
+    
+    $(document).on("click", ".addannual", function(e) {
+        e.preventDefault();
+
+        $(annualwrapper).append(
+                '<tr><td><input type="text" maxlength = 45 size="25" name="findings" placeholder="ex. Measles" /></td>'
+                + '<td><input type="date" name="dateTaken" placeholder="ex. January 2, 2010"/></td>'
+                + '<td><input type="text" maxlength= 45 size="25" name="remarks" placeholder="ex. Needs Medical Attention"/></td>'
+                + '<td><button class="removeannual">-</button></td></tr>'
+                );
+    });
+
+    $(document).on("click", ".removeannual", function(e) {
+        e.preventDefault();
+        var c = confirm("Do you want to remove this row of data?");
+        if (c) {
+            $(this).parent().parent().remove();
+        }
+    });
+    
     $(document).on("click", ".addcriminaloffense", function(e) {
         e.preventDefault();
 

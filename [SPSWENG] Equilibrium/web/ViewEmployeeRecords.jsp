@@ -260,10 +260,11 @@
                                                                                                                             employer’s telephone number, supervisor’s name, supervisor’s contact number and reason for leaving-->
                              <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
                                                                                                         of that offense. -->
-                            <option value="training">Trainings</option> <!Company Involvement-->
+                            <option value="training">Trainings</option> <!--Company Involvement-->
+                            <option value="med">Medical History</option> <!--Medical History-->
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
                                                                                                                 disciplinary actions, records of filed leaves, recognitions, and awards-->
-                            
+
                         </select>
                         <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                         <form onsubmit = "return editData('<%=user.getEmployeeType()%>', <%=emp.getEmployeeID()%>)" id = "info-form">

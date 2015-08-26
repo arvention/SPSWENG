@@ -171,19 +171,19 @@ public class EnterBioData extends HttpServlet {
 
                 db.addRelative(relativeName, relativeRelation, empEntryNum, relativeOcc, relativeContact);
             }
+        }
 
-            //-- get children ------------------------------
-            if (request.getParameterValues("childrenname") != null && request.getParameterValues("childrenage") != null && request.getParameterValues("childrenoccupation") != null && request.getParameterValues("childrenlocation") != null) {
-                relativeRelation = "child";
-                relativesName = request.getParameterValues("childrenname");
-                relativesAge = request.getParameterValues("childrenage");
-                relativesOcc = request.getParameterValues("childrenoccupation");
-                relativesLocation = request.getParameterValues("childrenlocation");
+        //-- get children ------------------------------
+        if (request.getParameterValues("childrenname") != null && request.getParameterValues("childrenage") != null && request.getParameterValues("childrenoccupation") != null && request.getParameterValues("childrenlocation") != null) {
+            relativeRelation = "child";
+            relativesName = request.getParameterValues("childrenname");
+            relativesAge = request.getParameterValues("childrenage");
+            relativesOcc = request.getParameterValues("childrenoccupation");
+            relativesLocation = request.getParameterValues("childrenlocation");
 
-                for (int i = 0; i < relativesName.length; i++) {
-                    if (!relativesName[i].equals("") && !relativesAge[i].equals("") && !relativesOcc[i].equals("") && !relativesLocation[i].equals("")) {
-                        db.addRelative(relativesName[i], relativeRelation, empEntryNum, Integer.parseInt(relativesAge[i]), relativesOcc[i], relativesLocation[i]);
-                    }
+            for (int i = 0; i < relativesName.length; i++) {
+                if (!relativesName[i].equals("") && !relativesAge[i].equals("") && !relativesOcc[i].equals("") && !relativesLocation[i].equals("")) {
+                    db.addRelative(relativesName[i], relativeRelation, empEntryNum, Integer.parseInt(relativesAge[i]), relativesOcc[i], relativesLocation[i]);
                 }
             }
         }

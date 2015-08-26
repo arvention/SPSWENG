@@ -9,8 +9,10 @@ import Models.modelEducationHistory;
 import Models.modelEmployee;
 import Models.modelEmployeeAuditTrail;
 import Models.modelEmploymentHistory;
+import Models.modelIllness;
 import Models.modelLeaveForm;
 import Models.modelLicense;
+import Models.modelPhysicalExam;
 import Models.modelRecord;
 import Models.modelRelative;
 import java.io.InputStream;
@@ -308,7 +310,8 @@ public class Database {
                 modelEmployee.setEmployeeType(employeeType);
                 int managerEntryNum = rs.getInt("managerEntryNum");
                 modelEmployee.setManagerEntryNum(managerEntryNum);
-
+                String bloodType = rs.getString("bloodType");
+                modelEmployee.setBloodType(bloodType);
                 return modelEmployee;
             }
 
@@ -1387,6 +1390,63 @@ public class Database {
 
         return trainingList;
     }
+    
+    public ArrayList<modelIllness> getIllness(int empEntryNum){
+        ArrayList<modelIllness> illnessList = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+        
+        try{
+            stmt = con.createStatement();
+            
+            sql = "SELECT * FROM illness"
+                    + " WHERE empEntryNum = " + empEntryNum;
+            
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                modelIllness illness = new modelIllness();
+                illness.setIllnessID(rs.getInt("illnessID"));
+                illness.setAge(rs.getInt("age"));
+                illness.setIllnessName(rs.getString("illnessName"));
+                
+                illnessList.add(illness);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return illnessList;
+    }
+    
+    public ArrayList<modelPhysicalExam> getPhysicalExam(int empEntryNum) {
+        ArrayList<modelPhysicalExam> examList = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+
+        try {
+            stmt = con.createStatement();
+
+            sql = "SELECT * FROM physical_exam"
+                    + " WHERE empEntryNum = " + empEntryNum;
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                modelPhysicalExam exam = new modelPhysicalExam();
+                exam.setPhysicalExamID(rs.getInt("physicalExamID"));
+                exam.setDate(rs.getDate("date"));
+                exam.setFindings(rs.getString("findings"));
+                exam.setRemarks(rs.getString("remarks"));
+
+                examList.add(exam);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return examList;
+    }
 
     public ArrayList<modelEmploymentHistory> getEmploymentHistory(int empEntryNum) {
         ArrayList<modelEmploymentHistory> empHistory = new ArrayList<>();
@@ -1666,6 +1726,12 @@ public class Database {
                     statement.setInt(1, Integer.parseInt((String) value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
+                } else if (field.equals("bloodType")) {
+                    sql = "UPDATE employee SET bloodType = ? WHERE entryNum = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String)value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
                 }
             } /*else if (tableName.equals("criminal_offense_history")) {
                 if (field.equals("criminalOffense")) {
@@ -1853,6 +1919,41 @@ public class Database {
                     sql = "UPDATE company_training SET trainingVenue = ? WHERE companyTrainingID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
                     statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if (tableName.equals("physical_exam")) {
+                if (field.equals("date")) {
+                    sql = "UPDATE physical_exam SET date = ? WHERE physicalExamID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    Date date = Date.valueOf((String) value);
+                    statement.setDate(1, date);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if (field.equals("findings")) {
+                    sql = "UPDATE physical_exam SET findings = ? WHERE physicalExamID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if (field.equals("remarks")) {
+                    sql = "UPDATE physical_exam SET remarks = ? WHERE physicalExamID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                }
+            } else if (tableName.equals("illness")) {
+                if (field.equals("illnessName")) {
+                    sql = "UPDATE illness SET illnessName = ? WHERE illnessID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setString(1, (String) value);
+                    statement.setInt(2, tableRefNum);
+                    statement.executeUpdate();
+                } else if (field.equals("age")) {
+                    sql = "UPDATE illness SET age = ? WHERE illnessID = ?";
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, Integer.parseInt((String) value));
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 }

@@ -11,7 +11,9 @@ import Models.modelCriminalOffenseHistory;
 import Models.modelEducationHistory;
 import Models.modelEmployee;
 import Models.modelEmploymentHistory;
+import Models.modelIllness;
 import Models.modelLicense;
+import Models.modelPhysicalExam;
 import Models.modelRelative;
 import java.io.IOException;
 import java.text.ParseException;
@@ -51,13 +53,14 @@ public class EditEmployeeData extends HttpServlet {
                 editRelatives(logged, emp, request);
                 editEducationHistory(logged, emp, request);
                 editEmploymentHistory(logged, emp, request);
-               // editCriminalOffenseHistory(logged, emp, request);
+                // editCriminalOffenseHistory(logged, emp, request);
                 editCompanyTraining(logged, emp, request);
+                editBloodType(logged, emp, request);
+                editIllness(logged, emp, request);
+                editPhysicalExam(logged, emp, request);
                 response.getWriter().write("true");
-            }
-            else
-            {
-              response.getWriter().write("false");
+            } else {
+                response.getWriter().write("false");
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -1362,69 +1365,70 @@ public class EditEmployeeData extends HttpServlet {
             }
         }
     }
-/*
-    public void editCriminalOffenseHistory(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
-        Database db = Database.getInstance();
-        String[] offensesID = request.getParameterValues("offenseid");
-        String[] offensesName = request.getParameterValues("offensename");
-        String[] offensesDate = request.getParameterValues("offensedate");
-        String[] offensesPlace = request.getParameterValues("offenseplace");
-        ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
+    /*
+     public void editCriminalOffenseHistory(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
+     Database db = Database.getInstance();
+     String[] offensesID = request.getParameterValues("offenseid");
+     String[] offensesName = request.getParameterValues("offensename");
+     String[] offensesDate = request.getParameterValues("offensedate");
+     String[] offensesPlace = request.getParameterValues("offenseplace");
+     ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
 
-        if (offensesID != null) {
-            for (int i = 0; i < offensesID.length; i++) {
-                modelCriminalOffenseHistory offense = offenses.get(i);
-                int offenseID = Integer.parseInt(offensesID[i]);
+     if (offensesID != null) {
+     for (int i = 0; i < offensesID.length; i++) {
+     modelCriminalOffenseHistory offense = offenses.get(i);
+     int offenseID = Integer.parseInt(offensesID[i]);
 
-                String offensename = offensesName[i];
-                if (!offense.getCriminalOffense().equals(offensename)) {
-                    switch (logged.getEmployeeType()) {
-                        case "Hr Employee":
-                            db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "criminalOffense", offense.getCriminalOffense(), offensename, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
-                            break;
-                        case "Hr Head":
-                            int auditTrailID = db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "criminalOffense", offense.getCriminalOffense(), offensename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+     String offensename = offensesName[i];
+     if (!offense.getCriminalOffense().equals(offensename)) {
+     switch (logged.getEmployeeType()) {
+     case "Hr Employee":
+     db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "criminalOffense", offense.getCriminalOffense(), offensename, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+     break;
+     case "Hr Head":
+     int auditTrailID = db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "criminalOffense", offense.getCriminalOffense(), offensename, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
 
-                            db.changeAuditStatus(auditTrailID, "Approved");
-                            db.changeFieldValue("criminal_offense_history", offenseID, "criminalOffense", offensename);
-                            break;
-                    }
-                }
+     db.changeAuditStatus(auditTrailID, "Approved");
+     db.changeFieldValue("criminal_offense_history", offenseID, "criminalOffense", offensename);
+     break;
+     }
+     }
 
-                String offensedate = offensesDate[i];
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                if (!sdf.format(offense.getDateOfOffense()).equals(sdf.format(sdf.parse(offensedate)))) {
-                    switch (logged.getEmployeeType()) {
-                        case "Hr Employee":
-                            db.addEmployeeAuditTrail("employee", offenseID, "birthday", sdf.format(offense.getDateOfOffense()), sdf.format(offensedate), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
-                            break;
-                        case "Hr Head":
-                            int auditTrailID = db.addEmployeeAuditTrail("employee", offenseID, "birthday", sdf.format(offense.getDateOfOffense()), sdf.format(offensedate), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+     String offensedate = offensesDate[i];
+     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+     if (!sdf.format(offense.getDateOfOffense()).equals(sdf.format(sdf.parse(offensedate)))) {
+     switch (logged.getEmployeeType()) {
+     case "Hr Employee":
+     db.addEmployeeAuditTrail("employee", offenseID, "birthday", sdf.format(offense.getDateOfOffense()), sdf.format(offensedate), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+     break;
+     case "Hr Head":
+     int auditTrailID = db.addEmployeeAuditTrail("employee", offenseID, "birthday", sdf.format(offense.getDateOfOffense()), sdf.format(offensedate), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
 
-                            db.changeAuditStatus(auditTrailID, "Approved");
-                            db.changeFieldValue("employee", offenseID, "birthday", sdf.format(offensedate));
-                            break;
-                    }
-                }
+     db.changeAuditStatus(auditTrailID, "Approved");
+     db.changeFieldValue("employee", offenseID, "birthday", sdf.format(offensedate));
+     break;
+     }
+     }
 
-                String offenseplace = offensesPlace[i];
-                if (!offense.getPlaceOfOffense().equals(offenseplace)) {
-                    switch (logged.getEmployeeType()) {
-                        case "Hr Employee":
-                            db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "placeOfOffense", offense.getPlaceOfOffense(), offenseplace, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
-                            break;
-                        case "Hr Head":
-                            int auditTrailID = db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "placeOfOffense", offense.getPlaceOfOffense(), offenseplace, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+     String offenseplace = offensesPlace[i];
+     if (!offense.getPlaceOfOffense().equals(offenseplace)) {
+     switch (logged.getEmployeeType()) {
+     case "Hr Employee":
+     db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "placeOfOffense", offense.getPlaceOfOffense(), offenseplace, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+     break;
+     case "Hr Head":
+     int auditTrailID = db.addEmployeeAuditTrail("criminal_offense_history", offenseID, "placeOfOffense", offense.getPlaceOfOffense(), offenseplace, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
 
-                            db.changeAuditStatus(auditTrailID, "Approved");
-                            db.changeFieldValue("criminal_offense_history", offenseID, "placeOfOffense", offenseplace);
-                            break;
-                    }
-                }
-            }
-        }
-    }
-    */
+     db.changeAuditStatus(auditTrailID, "Approved");
+     db.changeFieldValue("criminal_offense_history", offenseID, "placeOfOffense", offenseplace);
+     break;
+     }
+     }
+     }
+     }
+     }
+     */
+
     public void editCompanyTraining(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
         Database db = Database.getInstance();
         String[] trainingsID = request.getParameterValues("trainingid");
@@ -1432,15 +1436,15 @@ public class EditEmployeeData extends HttpServlet {
         String[] trainingsName = request.getParameterValues("trainingname");
         String[] trainingsVenue = request.getParameterValues("trainingvenue");
         ArrayList<modelCompanyTraining> trainings = db.getCompanyTrainings(emp.getEntryNum());
-        
+
         if (trainingsID != null) {
             System.out.println("Hiiii");
             for (int i = 0; i < trainingsID.length; i++) {
                 modelCompanyTraining training = trainings.get(i);
                 int trainingID = Integer.parseInt(trainingsID[i]);
-                
+
                 String trainingname = trainingsName[i];
-                
+
                 if (!training.getTrainingName().equals(trainingname)) {
                     switch (logged.getEmployeeType()) {
                         case "Hr Employee":
@@ -1482,6 +1486,142 @@ public class EditEmployeeData extends HttpServlet {
 
                             db.changeAuditStatus(auditTrailID, "Approved");
                             db.changeFieldValue("company_training", trainingID, "trainingVenue", trainingvenue);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void editBloodType(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
+        Database db = Database.getInstance();
+        System.out.println("heyo1");
+        
+        String bloodType = request.getParameter("bloodType");
+        if (!emp.getBloodType().equals(bloodType)) {
+            switch (logged.getEmployeeType()) {
+                case "Hr Employee":
+                    db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "bloodType", emp.getBloodType(), bloodType, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                    break;
+                case "Hr Head":
+                    int auditTrailID = db.addEmployeeAuditTrail("employee", emp.getEntryNum(), "bloodType", emp.getBloodType(), bloodType, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                    db.changeAuditStatus(auditTrailID, "Approved");
+                    db.changeFieldValue("employee", emp.getEntryNum(), "bloodType", bloodType);
+                    break;
+            }
+        }
+    }
+
+    public void editIllness(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
+        Database db = Database.getInstance();
+        System.out.println("heyo2");
+        String[] illnessIDs = request.getParameterValues("illnessID");
+        String[] illnessNames = request.getParameterValues("illnessName");
+        String[] illnessAges = request.getParameterValues("illnessAge");
+
+        ArrayList<modelIllness> illnesses = db.getIllness(emp.getEntryNum());
+
+        if (illnessIDs != null) {
+            for (int i = 0; i < illnessIDs.length; i++) {
+                modelIllness illness = illnesses.get(i);
+                int illnessID = Integer.parseInt(illnessIDs[i]);
+                //illness
+                String illnessName = illnessNames[i];
+
+                if (!illness.getIllnessName().equals(illnessName)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("illness", illnessID, "illnessName", illness.getIllnessName(), illnessName, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("illness", illnessID, "illnessName", illness.getIllnessName(), illnessName, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("illness", illnessID, "illnessName", illnessName);
+                            break;
+                    }
+                }
+
+                //age
+                int age = Integer.parseInt(illnessAges[i]);
+                if (illness.getAge() != age) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("illness", illnessID, "age", Integer.toString(illness.getAge()), Integer.toString(age), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("illness", illnessID, "age", Integer.toString(illness.getAge()), Integer.toString(age), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("illness", illnessID, "age", Integer.toString(age));
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void editPhysicalExam(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
+        Database db = Database.getInstance();
+        System.out.println("heyo3");
+        String[] examsID = request.getParameterValues("examID");
+        String[] examsDate = request.getParameterValues("dateTaken");
+        String[] examsFindings = request.getParameterValues("findings");
+        String[] examsRemarks = request.getParameterValues("remarks");
+
+        ArrayList<modelPhysicalExam> exams = db.getPhysicalExam(emp.getEntryNum());
+
+        if (examsID != null) {
+            for (int i = 0; i < examsID.length; i++) {
+                modelPhysicalExam exam = exams.get(i);
+                int examID = Integer.parseInt(examsID[i]);
+                //findings
+                String examFindings = examsFindings[i];
+
+                if (!exam.getFindings().equals(examFindings)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("physical_exam", examID, "findings", exam.getFindings(), examFindings, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("physical_exam", examID, "findings", exam.getFindings(), examFindings, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("physical_exam", examID, "findings", examFindings);
+                            break;
+                    }
+                }
+
+                //date
+                String examDate = examsDate[i];
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                if (!sdf.format(exam.getDate()).equals(sdf.format(sdf.parse(examDate)))) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("physical_exam", examID, "date", sdf.format(exam.getDate()), sdf.format(sdf.parse(examDate)), logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("physical_exam", examID, "date", sdf.format(exam.getDate()), sdf.format(sdf.parse(examDate)), logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("physical_exam", examID, "date", sdf.format(sdf.parse(examDate)));
+                            break;
+                    }
+                }
+
+                //remarks
+                String examRemarks = examsRemarks[i];
+                if (!exam.getRemarks().equals(examRemarks)) {
+                    switch (logged.getEmployeeType()) {
+                        case "Hr Employee":
+                            db.addEmployeeAuditTrail("physical_exam", examID, "remarks", exam.getRemarks(), examRemarks, logged.getEntryNum(), emp.getEntryNum(), logged.getManagerEntryNum());
+                            break;
+                        case "Hr Head":
+                            int auditTrailID = db.addEmployeeAuditTrail("physical_exam", examID, "remarks", exam.getRemarks(), examRemarks, logged.getEntryNum(), emp.getEntryNum(), logged.getEntryNum());
+
+                            db.changeAuditStatus(auditTrailID, "Approved");
+                            db.changeFieldValue("physical_exam", examID, "remarks", examRemarks);
                             break;
                     }
                 }

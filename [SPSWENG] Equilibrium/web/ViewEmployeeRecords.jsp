@@ -4,6 +4,8 @@
     Author     : Arces
 --%>
 
+<%@page import="Models.modelPhysicalExam"%>
+<%@page import="Models.modelIllness"%>
 <%@page import="Models.modelCompanyTraining"%>
 <%@page import="Models.modelRecord"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -258,8 +260,8 @@
                                                                                                                     school, years the employee has studied in that school and the awards given by the school to the employee are mentioned. The bio-data also includes the licensure exams taken and the score of the employee in the exams-->
                             <option value="history">Employment History</option> <!--job names, date of employment, beginning & ending salary, employer’s name, employer’s address, 
                                                                                                                             employer’s telephone number, supervisor’s name, supervisor’s contact number and reason for leaving-->
-                             <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
-                                                                                                        of that offense. -->
+                            <!--The form also cites whether the employee has been convicted of a criminal offense and writes the details 
+                                                                                                       of that offense. -->
                             <option value="training">Trainings</option> <!--Company Involvement-->
                             <option value="med">Medical History</option> <!--Medical History-->
                             <option value="docs">Documents</option> <!--other important documents connected to the employee such as: employment contract, memorandums of 
@@ -306,7 +308,7 @@
                                         <input name = "citizenship" type = "text" class="data" value = "<%=emp.getCitizenship()%>" readonly/></div>
                                     <div class="line"><span class="label">Religion</span>
                                         <input name = "religion" type = "text" class="data" value = "<%=emp.getReligion()%>" readonly/></div>
-                                    
+
                                     <br><b>Others:</b><br><br>
                                     <div class="line"><span class="label">Hire Date</span>
                                         <%=emp.getHireDate()%></div>
@@ -716,35 +718,102 @@
                             </div>
 
                             <!------------------>
-                            
-                        <div id="training" class="pages">
-                            <div class="content">
-                                <br><br>
-                                <%
-                                    ArrayList<modelCompanyTraining> trainingList = db.getCompanyTrainings(emp.getEntryNum());
 
-                                    for (modelCompanyTraining training : trainingList) {
-                                %>
-                                <div class = "line"><span class ="label"><b>Date</b></span>
-                                    <input name = "trainingdate" type = "text" class="data" value = "<%=training.getDate()%>" readonly/></div>
-                                <div class = "line"><span class ="label"><b>Name of Activity</b></span>
-                                    <input name = "trainingname" type = "text" class="data" value = "<%=training.getTrainingName()%>" readonly/></div>
-                                <div class = "line"><span class ="label"><b>Venue of Activity</b></span>
-                                    <input name = "trainingvenue" type = "text" class="data" value = "<%=training.getTrainingVenue()%>" readonly/></div>
-                                <input type = "hidden" name = "trainingid" value ="<%=training.getCompanyTrainingID()%>"/>
-                                <br>
-                                <%}%>
-                                <!-- guys pls make this similar to the the one in the documents tab. 
-                                i made it really similar i just need this to display details and be dynamic
-                                exactly like how you display the list of memos in documents tab. except it
-                                displays company involvement-->
+                            <div id="training" class="pages">
+                                <div class="content">
+                                    <br><br>
+                                    <%
+                                        ArrayList<modelCompanyTraining> trainingList = db.getCompanyTrainings(emp.getEntryNum());
+
+                                        for (modelCompanyTraining training : trainingList) {
+                                    %>
+                                    <div class = "line"><span class ="label"><b>Date</b></span>
+                                        <input name = "trainingdate" type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(training.getDate())%>" readonly/></div>
+                                    <div class = "line"><span class ="label"><b>Name of Activity</b></span>
+                                        <input name = "trainingname" type = "text" class="data" value = "<%=training.getTrainingName()%>" readonly/></div>
+                                    <div class = "line"><span class ="label"><b>Venue of Activity</b></span>
+                                        <input name = "trainingvenue" type = "text" class="data" value = "<%=training.getTrainingVenue()%>" readonly/></div>
+                                    <input type = "hidden" name = "trainingid" value ="<%=training.getCompanyTrainingID()%>"/>
+                                    <br>
+                                    <%}%>
+                                    <!-- guys pls make this similar to the the one in the documents tab. 
+                                    i made it really similar i just need this to display details and be dynamic
+                                    exactly like how you display the list of memos in documents tab. except it
+                                    displays company involvement-->
+                                </div>
                             </div>
-                        </div>
-                                
-                        <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+
+                            <div id="med" class="pages">
+                                <div class="content">
+                                    <br><br>
+                                    <%
+                                        String bloodType = emp.getBloodType();
+                                    %>
+                                    <div>
+                                        <div class = "line"><span class ="label"><b>Blood Type</b></span>
+                                            <input name = "bloodType" type = "text" class="data" value = "<%=bloodType%>" readonly/>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <%
+                                        ArrayList<modelIllness> illnessList = db.getIllness(emp.getEntryNum());
+                                        if (illnessList.size() != 0) {
+                                    %>
+                                    <div>
+                                        <div class="label-rel">
+                                            Illness
+                                        </div>
+                                        <%
+                                            for (modelIllness illness : illnessList) {
+                                        %>
+                                        <div class="subContent">
+                                            <div class = "line"><span class ="label"><b>Illness</b></span>
+                                                <input name = "illnessName" type = "text" class="data" value = "<%=illness.getIllnessName()%>" readonly/></div>
+                                            <div class = "line"><span class ="label"><b>Age</b></span>
+                                                <input name = "illnessAge" type = "number" class="data" value = "<%=illness.getAge()%>" readonly/></div>
+                                            <input type = "hidden" name = "illnessID" value ="<%=illness.getIllnessID()%>"/>
+                                        </div>
+                                        <br>
+                                        <%
+                                            }%>
+
+                                    </div>
+                                    <%
+                                        }
+                                        ArrayList<modelPhysicalExam> examList = db.getPhysicalExam(emp.getEntryNum());
+                                        if (examList.size() != 0) {
+                                    %>
+                                    <div>
+                                        <div class="label-rel">
+                                            Annual Physical Examination
+                                        </div>
+                                        <%
+                                            for (modelPhysicalExam exam : examList) {
+                                        %>
+                                        <div class="subContent">
+                                            <div class = "line"><span class ="label"><b>Findings</b></span>
+                                                <input name = "findings" type = "text" class="data" value = "<%=exam.getFindings()%>" readonly/></div>
+                                            <div class = "line"><span class ="label"><b>Date Taken</b></span>
+                                                <input name = "dateTaken" type = "date" class="data" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(exam.getDate())%>" readonly/></div>
+                                            <div class = "line"><span class ="label"><b>Remarks</b></span>
+                                                <input name = "remarks" type = "text" class="data" value = "<%=exam.getRemarks()%>" readonly/></div>
+                                            <input type = "hidden" name = "examID" value ="<%=exam.getPhysicalExamID()%>"/>
+                                        </div>
+                                        <br>
+                                        <%
+                                            }
+                                        %>
+                                    </div>
+                                    <%
+                                        }
+                                    %>
+                                </div>
+                            </div>
+
+                            <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                         </form>
                         <%}%>
-                            
+
                         <div id= "docs" class="pages">
                             <div class="content"> 
                                 <select id="docs-select">
@@ -819,12 +888,11 @@
                                             <%}%>
                                         </div>
                                     </div> 
-                                <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
+                                    <%if (user.getEmployeeType().equals("Hr Employee") || user.getEmployeeType().equals("Hr Head")) {%>
                                 </form>
                                 <%}%>
                             </div>
                         </div>
-                            
                     </div>
                 </div>
             </div> <!-- end of box -->

@@ -525,7 +525,7 @@ public class Database {
             String birthplace, long mobileNumber, String SSSNumber, String TINNumber, String PHICNumber,
             String PAGIBIGNumber, String civilStatus, String citizenship, String religion,
             int salary, String emailAddress, int homePhone, String band, int departmentID, String position,
-            Date hireDate, int managerID) {
+            Date hireDate, int managerID, String bloodType) {
         int maxEntry = 1;
         int managerEntryNum = getEntryNum(managerID);
         sql = "SELECT MAX(entryNum) FROM employee";
@@ -540,10 +540,10 @@ public class Database {
             }
 
             sql = "INSERT INTO employee(entryNum, employeeID, lastName, firstName, middleName, address, birthDay, birthplace, mobileNumber, SSSNumber, TINNumber"
-                    + ", PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, hireDate, band, salary, departmentID, positionName, isDeleted, emailAddress, homePhone, managerEntryNum)"
+                    + ", PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, hireDate, band, salary, departmentID, positionName, isDeleted, emailAddress, homePhone, managerEntryNum, bloodType)"
                     + " VALUES(" + maxEntry + ", " + employeeID + ", '" + lastName + "', '" + firstName + "', '" + middleName + "', '" + address + "', '" + birthDay + "', '" + birthplace
                     + "', " + mobileNumber + ", '" + SSSNumber + "', '" + TINNumber + "', '" + PHICNumber + "', '" + PAGIBIGNumber + "', '" + civilStatus + "', '" + citizenship
-                    + "', '" + religion + "', '" + hireDate + "', '" + band + "', " + salary + ", " + departmentID + ", '" + position + "', '0', '" + emailAddress + "', " + homePhone + ", " + managerEntryNum + ")";
+                    + "', '" + religion + "', '" + hireDate + "', '" + band + "', " + salary + ", " + departmentID + ", '" + position + "', '0', '" + emailAddress + "', " + homePhone + ", " + managerEntryNum + ", '" + bloodType + "')";
 
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -1329,7 +1329,7 @@ public class Database {
         }
         return licenseList;
     }
-
+/*
     public ArrayList<modelCriminalOffenseHistory> getCriminalOffenses(int empEntryNum) {
         ArrayList<modelCriminalOffenseHistory> offenseList = new ArrayList<>();
         Statement stmt;
@@ -1358,7 +1358,7 @@ public class Database {
 
         return offenseList;
     }
-    
+    */
     public ArrayList<modelCompanyTraining> getCompanyTrainings(int empEntryNum) {
         ArrayList<modelCompanyTraining> trainingList = new ArrayList<>();
         Statement stmt;
@@ -1667,7 +1667,7 @@ public class Database {
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 }
-            } else if (tableName.equals("criminal_offense_history")) {
+            } /*else if (tableName.equals("criminal_offense_history")) {
                 if (field.equals("criminalOffense")) {
                     sql = "UPDATE criminal_offense_history SET criminalOffense = ? WHERE criminalOffenseHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
@@ -1688,7 +1688,7 @@ public class Database {
                     statement.setInt(2, tableRefNum);
                     statement.executeUpdate();
                 }
-            } else if (tableName.equals("education_history")) {
+            } */else if (tableName.equals("education_history")) {
                 if (field.equals("level")) {
                     sql = "UPDATE education_history SET level = ? WHERE educationHistoryID = ?";
                     PreparedStatement statement = con.prepareStatement(sql);
@@ -2151,15 +2151,15 @@ public class Database {
             if (rs.next()) {
                 count[1] = rs.getInt("count");
             }
-
-            /* getting cirminal offense history count */
+/*
+            /* getting cirminal offense history count 
             sql = "select count(criminalOffenseHistoryID) as count from criminal_offense_history\n"
                     + "where empEntryNum = " + entryNum;
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count[2] = rs.getInt("count");
             }
-
+*/
             /* getting documents count */
             sql = "select count(recordID) as count from record\n"
                     + "where empEntryNum = " + entryNum;
@@ -2260,5 +2260,47 @@ public class Database {
         }
 
         return approveCount;
+    }
+    
+    public void addSickness(int empEntryNum, String sicknessName, int sicknessAge){
+        int maxSickness = 1;
+
+        sql = "SELECT MAX(illnessID) FROM illness";
+
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                maxSickness = rs.getInt("MAX(illnessID)") + 1;
+            }
+
+            sql = "INSERT INTO illness"
+                    + " VALUES(" + maxSickness + ", " + empEntryNum + ", '" + sicknessName + "', " 
+                    + sicknessAge + ")";
+
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void addPhysicalExam(int empEntryNum, String examFindings, Date examDate, String examRemarks) {
+        int maxExam = 1;
+        sql = "SELECT MAX(physicalExamID) FROM physical_exam";
+        
+        try {
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                maxExam = rs.getInt("MAX(physicalExamID)") + 1;
+            }
+
+            sql = "INSERT INTO physical_exam"
+                    + " VALUES(" + maxExam + ", " + empEntryNum + ", '" + examDate + "', '" + examFindings + "', '" + examRemarks + "')";
+
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

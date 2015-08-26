@@ -37,6 +37,7 @@ public class modelEmployee {
     private String emailAddress;
     private String employeeType;
     private int managerEntryNum;
+    private int bloodType;
     
     /*
     *   getter function for entryNum
@@ -414,5 +415,19 @@ public class modelEmployee {
     */
     public void setManagerEntryNum(int managerEntryNum) {
         this.managerEntryNum = managerEntryNum;
+    }
+
+    /**
+     * @return the bloodType
+     */
+    public int getBloodType() {
+        return bloodType;
+    }
+
+    /**
+     * @param bloodType the bloodType to set
+     */
+    public void setBloodType(int bloodType) {
+        this.bloodType = bloodType;
     }
 }

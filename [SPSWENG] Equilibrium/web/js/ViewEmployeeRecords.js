@@ -58,6 +58,8 @@ $(document).ready(function() {
             $(this).val("Cancel");
             $("#saveButton").show();
             $("input[name='managerid']").attr("type", "number");
+            var manidnum = $("input[name='manageridnum']").val();
+            $("input[name='managerid']").attr("value", manidnum);
             $(".data").attr("readonly", false);
             $(".data").css("border-bottom", "1px solid lightgray");
             $(".editMessage").show();
@@ -78,6 +80,8 @@ $(document).ready(function() {
             $(".select-input").hide();
             $(".add-delete-button").hide();
             $("input[name='managerid']").attr("type", "text");
+            var manname = $("input[name='managername']").val();
+            $("input[name='managerid']").attr("value", manname);
             $(".editNote").hide();
         }
     });

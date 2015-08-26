@@ -325,6 +325,8 @@
                                     <div class="line"><span class="label">Band</span>
                                         <input name = "band" type = "text" class="data" value = "<%=emp.getBand()%>" readonly/></div>
                                     <div class="line"><span class="label">Manager </span>
+                                        <input type = "hidden" name = "manageridnum" value = "<%=db.getEmployeeID(emp.getManagerEntryNum())%>"/>
+                                        <input type = "hidden" name = "managername" value = "<%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%>"/>
                                         <input name = "managerid" type = "text" class="data" value = "<%=db.getFirstName(emp.getManagerEntryNum())%> <%=db.getLastName(emp.getManagerEntryNum())%>" readonly/><span class = "editNote"><br>*Input the manager's ID number</span>
                                         <br><span id = "managerError" class = "editNote"><b>*Employee ID not found</b></span> 
                                     </div>
@@ -707,31 +709,6 @@
                                                 <input type = "text" class="data" name = "historeason" value = "<%=empHisto.getReasonForLeaving()%>" readonly/></div>
                                         </div>
                                         <input type = "hidden" name = "histoid" value = "<%=empHisto.getEmploymentHistoryID()%>"/>
-                                        <br>
-                                        <%}%>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="others" class="pages">
-                                <div class="content"> 
-                                    <div>
-                                        <div class="label-rel">
-                                            Criminal Offense History
-                                        </div>
-                                        <%
-                                            ArrayList<modelCriminalOffenseHistory> offenses = db.getCriminalOffenses(emp.getEntryNum());
-                                            for (modelCriminalOffenseHistory offense : offenses) {
-                                        %>
-                                        <div class="subContent">
-                                            <div class="line"><span class="label"><b>Criminal Offense</b></span>
-                                                <input type = "text" class="data" name = "offensename" value = "<%=offense.getCriminalOffense()%>" readonly/></div>
-                                            <div class="line"><span class="label"><b>Date of Offense</b></span>
-                                                <input type = "date" class="data" name = "offensedate" value = "<%=new SimpleDateFormat("yyyy-MM-dd").format(offense.getDateOfOffense())%>" readonly/></div>
-                                            <div class="line"><span class="label">Place of Offense</span>
-                                                <input type = "text" class="data" name = "offenseplace" value = "<%=offense.getPlaceOfOffense()%>" readonly/></div>
-                                        </div>
-                                        <input type = "hidden" name = "offenseid" value ="<%=offense.getCriminalOffenseHistoryID()%>"/>
                                         <br>
                                         <%}%>
                                     </div>

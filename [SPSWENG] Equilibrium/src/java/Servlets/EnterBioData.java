@@ -71,6 +71,8 @@ public class EnterBioData extends HttpServlet {
             addRelatives(empEntryNum, db, request);
             addEmploymentHistory(empEntryNum, db, request);
             addCompanyTraining(empEntryNum, db, request);
+            addSickness(empEntryNum, db, request);
+            addPhysicalExam(empEntryNum, db, request);
         }
     }
 
@@ -109,6 +111,7 @@ public class EnterBioData extends HttpServlet {
         Date hireDate = new Date();
         int managerID = Integer.parseInt(request.getParameter("emphead"));
         Date birthDay = new Date();
+        String bloodType = request.getParameter("bloodType");
 
         try {
             birthDay = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("birthday"));
@@ -119,7 +122,7 @@ public class EnterBioData extends HttpServlet {
 
         int departmentID = db.getDeptID(department, branchID);
 
-        return db.addInfo(employeeID, lastName, firstName, middleName, address, new java.sql.Date(birthDay.getTime()), birthplace, mobileNumber, SSSNumber, TINNumber, PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, emailAddress, homePhone, Integer.toString(band), departmentID, position, new java.sql.Date(hireDate.getTime()), managerID);
+        return db.addInfo(employeeID, lastName, firstName, middleName, address, new java.sql.Date(birthDay.getTime()), birthplace, mobileNumber, SSSNumber, TINNumber, PHICNumber, PAGIBIGNumber, civilStatus, citizenship, religion, salary, emailAddress, homePhone, Integer.toString(band), departmentID, position, new java.sql.Date(hireDate.getTime()), managerID, bloodType);
     }
 
     public void addRelatives(int empEntryNum, Database db, HttpServletRequest request) {
@@ -216,6 +219,40 @@ public class EnterBioData extends HttpServlet {
                         } catch (ParseException ex) {
                             ex.printStackTrace();
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    public void addSickness(int empEntryNum, Database db, HttpServletRequest request) {
+        String[] sicknessNames, sicknessAges;
+
+        if (request.getParameterValues("sicknessname") != null && request.getParameterValues("sicknessage") != null) {
+            sicknessNames = request.getParameterValues("sicknessname");
+            sicknessAges = request.getParameterValues("sicknessage");
+
+            for (int i = 0; i < sicknessNames.length; i++) {
+                if (!sicknessNames[i].equals("") && !sicknessAges[i].equals("")) {
+                    db.addSickness(empEntryNum, sicknessNames[i], Integer.parseInt(sicknessAges[i]));
+                }
+            }
+        }
+    }
+
+    public void addPhysicalExam(int empEntryNum, Database db, HttpServletRequest request) {
+        String[] examFindings = request.getParameterValues("findings");
+        String[] examDates = request.getParameterValues("dateTaken");
+        String[] examRemarks = request.getParameterValues("remarks");
+
+        if (examFindings != null && examDates != null && examRemarks != null) {
+            for (int i = 0; i < examFindings.length; i++) {
+                if (!examFindings[i].equals("") && !examDates[i].equals("") && !examRemarks[i].equals("")) {
+                    try {
+                        Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(examDates[i]);
+                        db.addPhysicalExam(empEntryNum, examFindings[i], new java.sql.Date(tempDate.getTime()), examRemarks[i]);
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
                     }
                 }
             }

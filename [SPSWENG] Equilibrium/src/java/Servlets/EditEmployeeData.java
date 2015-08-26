@@ -51,13 +51,13 @@ public class EditEmployeeData extends HttpServlet {
                 editRelatives(logged, emp, request);
                 editEducationHistory(logged, emp, request);
                 editEmploymentHistory(logged, emp, request);
-                editCriminalOffenseHistory(logged, emp, request);
+               // editCriminalOffenseHistory(logged, emp, request);
                 editCompanyTraining(logged, emp, request);
                 response.getWriter().write("true");
             }
             else
             {
-                response.getWriter().write("false");
+              response.getWriter().write("false");
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -1362,7 +1362,7 @@ public class EditEmployeeData extends HttpServlet {
             }
         }
     }
-
+/*
     public void editCriminalOffenseHistory(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
         Database db = Database.getInstance();
         String[] offensesID = request.getParameterValues("offenseid");
@@ -1424,7 +1424,7 @@ public class EditEmployeeData extends HttpServlet {
             }
         }
     }
-    
+    */
     public void editCompanyTraining(modelEmployee logged, modelEmployee emp, HttpServletRequest request) throws ParseException {
         Database db = Database.getInstance();
         String[] trainingsID = request.getParameterValues("trainingid");

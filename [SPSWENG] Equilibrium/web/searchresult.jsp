@@ -46,6 +46,21 @@
                     $("#go").submit();
                 });
                 
+                $(".training").click(function() {
+
+                    var id = $(this).closest("div").attr("val");
+                    $("#numberofid").val(id);
+                    $("#kind").val("training");
+                    $("#go").submit();
+                });
+                
+                $(".med").click(function() {
+
+                    var id = $(this).closest("div").attr("val");
+                    $("#numberofid").val(id);
+                    $("#kind").val("med");
+                    $("#go").submit();
+                });
                 
             });
         </script>
@@ -206,7 +221,8 @@
                         <button class="addAward">Add Award</button>
                         <button class="filememo">File Memo</button>
                         <button class="evaluate">Evaluation</button>
-                        
+                        <button class="training"><a href="addTraining.jsp">Add Training</a></button>
+                        <button class="med"><a href="addMedical.jsp">Add Medical History</a></button>
                         
                        <%}%> 
                     </div>

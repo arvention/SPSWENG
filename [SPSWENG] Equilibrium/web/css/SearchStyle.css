@@ -86,8 +86,12 @@ DIV.pageTop{
 }
 
 a{
-    color: #D63333;
+    color: black;
     text-decoration: none;
+}
+
+a:hover{
+    cursor: default;
 }
 
 DIV.footer{

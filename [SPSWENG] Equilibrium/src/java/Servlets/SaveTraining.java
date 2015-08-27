@@ -91,6 +91,8 @@ public class SaveTraining extends HttpServlet {
         venue = request.getParameter("trainingvenue");
 
         db.addTraining(employee.getEntryNum(), name, new java.sql.Date(trainingDate.getTime()), venue);
+        
+        response.sendRedirect("AddTrainingSuccess.jsp");
     }
 
     /**

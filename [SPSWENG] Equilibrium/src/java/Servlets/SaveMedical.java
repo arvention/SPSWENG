@@ -104,6 +104,8 @@ public class SaveMedical extends HttpServlet {
                 db.addSickness(employee.getEntryNum(), findings, age);
                 break;
         }
+        
+        response.sendRedirect("AddMedicalSuccess.jsp");
     }
 
     /**

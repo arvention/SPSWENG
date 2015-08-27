@@ -71,7 +71,6 @@ public class SaveMemo extends HttpServlet {
             if (filePart.getSize() != 0) {
 
                 inputStream = filePart.getInputStream();
-                System.out.println("I am over gereee");
                 String nameoffile = filePart.getSubmittedFileName();
                 db.saveDisciplinary(intid, memo, typeofmemo, inputStream, nameoffile);
             } else {

@@ -13,26 +13,26 @@
 
         </style>
         <script>
-            
+
         </script>
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('#illnessDiv').hide();
-                $('select[name=listTypeMedical]').change(function () {
+                $('select[name=listTypeMedical]').change(function() {
                     if ($('select[name=listTypeMedical]').find(':selected').val() === "Illness")
                     {
                         $('#illnessDiv').show();
                         $('#examDiv').hide();
                     }
-                    else{
+                    else {
                         $('#examDiv').show();
                         $('#illnessDiv').hide();
                     }
-                    });
-                
+                });
+
                 var softmemowrapper = $('table[name=softmemo]');
 
-                $(document).on("click", ".addsoftmemo", function (e) {
+                $(document).on("click", ".addsoftmemo", function(e) {
                     e.preventDefault();
                     $(softmemowrapper).append(
                             '<tr><td><input type="file" name="filename" placeholder="File Name here" /></td>'
@@ -40,7 +40,7 @@
                             );
                 });
 
-                $(document).on("click", ".removesoftmemo", function (e) {
+                $(document).on("click", ".removesoftmemo", function(e) {
                     e.preventDefault();
                     var c = confirm("Do you want to remove this row of data?");
                     if (c) {
@@ -63,14 +63,14 @@
             %>
 
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 var sugg = [];
                 var search;
-                $("#search").keyup(function () {
+                $("#search").keyup(function() {
                     search = $("#search").val();
                     search = search.trim();
                     console.log("HEREE");
-                    $.get('AutoCompleteServlet', {keyword: search}, function (responseText) {
+                    $.get('AutoCompleteServlet', {keyword: search}, function(responseText) {
                         console.log(responseText);
                         sugg = responseText.split("\n");
                         console.log(sugg);
@@ -165,55 +165,36 @@
             <div class= "contentText"><h3>Add Medical Files</h3></div>
             <div class = "contentText">
 
-                <form action="SaveMemo" method="POST" enctype="multipart/form-data">
+                <form action="SaveMedical" method="POST">
                     Select type : <!--This should be either Physical Exam or Previous Illness-->
 
                     <select required name="listTypeMedical">
                         <option value="PhyExam">Physical Exam</option>
                         <option value="Illness">Previous Illnesses</option>
-
-<<<<<<< HEAD
                     </select>
 
-                <div id ="illnessDiv">
-                    <br/>
-                    Findings: <input type="text" maxlength="45" name="sickname" placeholder="ex. Measles"/>
-                    Age: <input type="number" min="0" max="999" step="1" name="sickage" placeholder="ex. 14"/>
-                </div>
-                <div id="examDiv">
-                    <br/>
-                    Findings: <input type="text" maxlength="45" name="sickname" placeholder="ex. Measles"/>
-                    Date: <input type="date" name="dateTaken" placeholder="ex. January 2, 2010"/><br/>
-                    Remarks: <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..." required ></textarea>
-                </div>
-                </div>
-                <input type="submit" class="submitButton"/> 
+                    <div id ="illnessDiv">
+                        <br/>
+                        Findings: <input type="text" maxlength="45" name="sickname" placeholder="ex. Measles"/>
+                        Age: <input type="number" min="0" max="999" step="1" name="sickage" placeholder="ex. 14"/>
+                    </div>
+                    <div id="examDiv">
+                        <br/>
+                        Findings: <input type="text" maxlength="45" name="sickfindings" placeholder="ex. Measles"/>
+                        Date: <input type="date" name="dateTaken" placeholder="ex. January 2, 2010"/><br/>
+                        Remarks: <textarea rows="7" cols = "70" name="remarks" class="memoText" placeholder="Enter text here..."></textarea>
+                    </div>
+                    <input type="submit" class="submitButton"/> 
 
-            </form>
-=======
-                    </select></div>
-
-            <div id ="illnessDiv">
-                Findings: <input type="text" maxlength="45" name="sickname" placeholder="ex. Measles"/>
-                Age: <input type="number" min="0" max="999" step="1" name="sickage" placeholder="ex. 14"/>
+                </form>
             </div>
-            <div id="examDiv">
-                Findings: <input type="text" maxlength="45" name="sickname" placeholder="ex. Measles"/>
-                Date: <input type="date" name="dateTaken" placeholder="ex. January 2, 2010"/><br/>
-                Remarks: <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..." required ></textarea>
-            </div>
-
-            <br/><input type="submit" class="submitButton"/> 
-
-        </form>
->>>>>>> origin/DEV5
-        <%=error%>     
+            <%=error%>     
 
 
-    </div>
+        </div>
 
 
-    <DIV class = "pageBottom"><hr width ="75%"/></br> EQUILIBRIUM INTERTRADE CORP.</div>
-</body>
+        <DIV class = "pageBottom"><hr width ="75%"/></br> EQUILIBRIUM INTERTRADE CORP.</div>
+    </body>
 
 </html>

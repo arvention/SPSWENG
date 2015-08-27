@@ -92,6 +92,14 @@
         <servlet-name>SaveReport</servlet-name>
         <servlet-class>Servlets.SaveReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveMedical</servlet-name>
+        <servlet-class>Servlets.SaveMedical</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveTraining</servlet-name>
+        <servlet-class>Servlets.SaveTraining</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>createAccountServlet</servlet-name>
         <url-pattern>/createAccountServlet</url-pattern>
@@ -191,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>SaveReport</servlet-name>
         <url-pattern>/SaveReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveMedical</servlet-name>
+        <url-pattern>/SaveMedical</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveTraining</servlet-name>
+        <url-pattern>/SaveTraining</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

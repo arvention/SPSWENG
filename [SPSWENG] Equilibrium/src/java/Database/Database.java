@@ -2397,9 +2397,16 @@ public class Database {
             }
 
             sql = "INSERT INTO physical_exam"
-                    + " VALUES(" + maxExam + ", " + empEntryNum + ", '" + examDate + "', '" + examFindings + "', '" + examRemarks + "')";
+                    + " VALUES(?, ?, ?, ?, ?);";
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, maxExam);
+            stmt.setInt(2, empEntryNum);
+            stmt.setDate(3, examDate);
+            stmt.setString(4, examFindings);
+            stmt.setString(5, examRemarks);
 
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

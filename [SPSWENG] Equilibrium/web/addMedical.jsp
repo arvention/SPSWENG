@@ -172,6 +172,7 @@
                         <option value="PhyExam">Physical Exam</option>
                         <option value="Illness">Previous Illnesses</option>
 
+<<<<<<< HEAD
                     </select>
 
                 <div id ="illnessDiv">
@@ -189,6 +190,23 @@
                 <input type="submit" class="submitButton"/> 
 
             </form>
+=======
+                    </select></div>
+
+            <div id ="illnessDiv">
+                Findings: <input type="text" maxlength="45" name="sickname" placeholder="ex. Measles"/>
+                Age: <input type="number" min="0" max="999" step="1" name="sickage" placeholder="ex. 14"/>
+            </div>
+            <div id="examDiv">
+                Findings: <input type="text" maxlength="45" name="sickname" placeholder="ex. Measles"/>
+                Date: <input type="date" name="dateTaken" placeholder="ex. January 2, 2010"/><br/>
+                Remarks: <textarea rows="7" cols = "70" name="memoNote" class="memoText" placeholder="Enter text here..." required ></textarea>
+            </div>
+
+            <br/><input type="submit" class="submitButton"/> 
+
+        </form>
+>>>>>>> origin/DEV5
         <%=error%>     
 
 
